@@ -85,9 +85,9 @@ class EcheckRedepositFunctionalTest extends \PHPUnit_Framework_TestCase
             'echeckToken' => array('accType' => 'Checking', 'litleToken' => '1234565789012', 'routingNum' => '123456789', 'checkNum' => '123455'),
             'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
 
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException', 'Missing Required Field: /litleTxnId/');
-        $retOb = $litleTest->echeckRedepositRequest($hash_in);
+        $retOb = $cnpTest->echeckRedepositRequest($hash_in);
     }
 
 }

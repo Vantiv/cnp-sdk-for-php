@@ -71,7 +71,7 @@ function initialize()
             "If you are not using batch processing, you may hit enter. ";
         $dir = trim(fgets(STDIN));
         $line['batch_requests_path'] = $dir;
-        $line['litle_requests_path'] = $dir;
+        $line['cnp_requests_path'] = $dir;
 
         print "Please input your SFTP username. If you are not using SFTP, you may hit enter. ";
         $line['sftp_username'] = trim(fgets(STDIN));

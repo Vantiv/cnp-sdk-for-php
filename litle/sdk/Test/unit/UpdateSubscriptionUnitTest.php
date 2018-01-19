@@ -46,9 +46,9 @@ class UpdateSubscriptionUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<subscriptionId>1.*<planCode>2.*<billToAddress.*<addressLine1>3.*<card.*type.*VI.*billingDate.*2013-12-17.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->updateSubscription($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->updateSubscription($hash_in);
     }
 
     public function test_PlanCodeIsOptional()
@@ -71,9 +71,9 @@ class UpdateSubscriptionUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->logicalNot($this->matchesRegularExpression('/.*planCode.*/')));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->updateSubscription($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->updateSubscription($hash_in);
     }
 
     public function test_BillToAddressIsOptional()
@@ -93,9 +93,9 @@ class UpdateSubscriptionUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->logicalNot($this->matchesRegularExpression('/.*billToAddress.*/')));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->updateSubscription($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->updateSubscription($hash_in);
     }
 
     public function test_CardIsOptional()
@@ -109,9 +109,9 @@ class UpdateSubscriptionUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->logicalNot($this->matchesRegularExpression('/.*card.*/')));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->updateSubscription($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->updateSubscription($hash_in);
     }
 
     public function test_BillingDateIsOptional()
@@ -124,9 +124,9 @@ class UpdateSubscriptionUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->logicalNot($this->matchesRegularExpression('/.*billingDate.*/')));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->updateSubscription($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->updateSubscription($hash_in);
     }
 
     public function test_choice_card()
@@ -146,9 +146,9 @@ class UpdateSubscriptionUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*card.*type.*VI.*number.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->updateSubscription($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->updateSubscription($hash_in);
     }
 
     public function test_choice_token()
@@ -168,9 +168,9 @@ class UpdateSubscriptionUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*litleToken.*1111222233334444.*type.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->updateSubscription($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->updateSubscription($hash_in);
     }
 
     public function test_choice_paypage()
@@ -190,9 +190,9 @@ class UpdateSubscriptionUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*paypage.*paypageRegistrationId.*abc123.*type.*VI.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->updateSubscription($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->updateSubscription($hash_in);
     }
 
 }

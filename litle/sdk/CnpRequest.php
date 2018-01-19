@@ -26,7 +26,7 @@ class CnpRequest
         $config = Obj2xml::getConfig($overrides);
 
         $this->config= $config;
-        $request_dir = $config['litle_requests_path'];
+        $request_dir = $config['cnp_requests_path'];
 
         if (substr($request_dir, -1, 1) != DIRECTORY_SEPARATOR) {
             $request_dir = $request_dir . DIRECTORY_SEPARATOR;

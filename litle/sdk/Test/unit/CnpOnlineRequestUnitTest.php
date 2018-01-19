@@ -24,7 +24,7 @@
 */
 namespace litle\sdk\Test\unit;
 use litle\sdk\CnpOnlineRequest;
-class LitleOnlineRequestUnitTest extends \PHPUnit_Framework_TestCase
+class CnpOnlineRequestUnitTest extends \PHPUnit_Framework_TestCase
 {
     public function test_set_merchant_sdk_integration()
     {
@@ -39,9 +39,9 @@ class LitleOnlineRequestUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*merchantSdk="Magento;8.14.3".*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->authorizationRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->authorizationRequest($hash_in);
     }
 
     public function test_set_merchant_sdk_default()
@@ -56,9 +56,9 @@ class LitleOnlineRequestUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*merchantSdk="PHP;11.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->authorizationRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->authorizationRequest($hash_in);
     }
 
 }

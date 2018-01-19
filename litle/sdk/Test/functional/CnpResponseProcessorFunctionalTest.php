@@ -7,7 +7,7 @@ use litle\sdk\CnpResponseProcessor;
 use litle\sdk\CnpRequest;
 use litle\sdk\BatchRequest;
 
-class LitleResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
+class CnpResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
 {
     private $direct;
     private $config;
@@ -21,7 +21,7 @@ class LitleResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
         }
         $this->config = Obj2xml::getConfig(array(
             'batch_requests_path' => $this->direct,
-            'litle_requests_path' => $this->direct
+            'cnp_requests_path' => $this->direct
         ));
         $this->sale = array('id' => 'id',
             'orderId' => '1864',

@@ -37,9 +37,9 @@ class UpdatePlanUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*planCode.*1.*active.*true.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->updatePlan($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->updatePlan($hash_in);
     }
 
 }

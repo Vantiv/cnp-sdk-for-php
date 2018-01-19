@@ -45,9 +45,9 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<authInformation><authDate>2002-10-09.*<authCode>543216.*><authAmount>12345.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->captureGivenAuthRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->captureGivenAuthRequest($hash_in);
 
     }
 
@@ -65,9 +65,9 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
        'type'=>'VI',
        'number' =>'4100000000000001',
        'expDate' =>'1210'));
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException("InvalidArgumentException","Missing Required Field: /amount/");
-        $retOb = $litleTest->captureGivenAuthRequest($hash_in);
+        $retOb = $cnpTest->captureGivenAuthRequest($hash_in);
     }
 
     public function test_both_choices_card_and_token()
@@ -90,9 +90,9 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
         'type'=>'VI',
         'number' =>'4100000000000001',
         'expDate' =>'1210'));
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
-        $retOb = $litleTest->captureGivenAuthRequest($hash_in);
+        $retOb = $cnpTest->captureGivenAuthRequest($hash_in);
     }
 
     public function test_all_choices()
@@ -120,9 +120,9 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
                   'expDate'=>'1210',
                   'cardValidationNum'=>'555',
                   'type'=>'VI'));
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
-        $retOb = $litleTest->captureGivenAuthRequest($hash_in);
+        $retOb = $cnpTest->captureGivenAuthRequest($hash_in);
     }
 
     public function test_loggedInUser()
@@ -146,9 +146,9 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*merchantSdk="PHP;10.1".*loggedInUser="gdake" xmlns=.*>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->captureGivenAuthRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->captureGivenAuthRequest($hash_in);
 
     }
 
@@ -167,9 +167,9 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
             ->method('request')
             ->with($this->matchesRegularExpression('/.*<amount>2<\/amount><surchargeAmount>1<\/surchargeAmount><orderSource>ecommerce<\/orderSource>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->captureGivenAuthRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->captureGivenAuthRequest($hash_in);
     }
 
     public function test_surchargeAmount_optional()
@@ -186,9 +186,9 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<amount>2<\/amount><orderSource>ecommerce<\/orderSource>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->captureGivenAuthRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->captureGivenAuthRequest($hash_in);
     }
 
     public function test_debtRepayment_true()
@@ -209,9 +209,9 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<\/merchantData><debtRepayment>true<\/debtRepayment><\/captureGivenAuth>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->captureGivenAuthRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->captureGivenAuthRequest($hash_in);
     }
 
     public function test_debtRepayment_false()
@@ -232,9 +232,9 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<\/merchantData><debtRepayment>false<\/debtRepayment><\/captureGivenAuth>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->captureGivenAuthRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->captureGivenAuthRequest($hash_in);
     }
 
     public function test_debtRepayment_optional()
@@ -254,9 +254,9 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<\/merchantData><\/captureGivenAuth>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->captureGivenAuthRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->captureGivenAuthRequest($hash_in);
     }
     
     public function test_simple_captureGivenAuth_secondaryAmount()
@@ -279,9 +279,9 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
     	->method('request')
     	->with($this->matchesRegularExpression('/.*<authInformation><authDate>2002-10-09.*<authCode>543216.*><authAmount>12345.*/'));
     
-    	$litleTest = new CnpOnlineRequest();
-    	$litleTest->newXML = $mock;
-    	$litleTest->captureGivenAuthRequest($hash_in);
+    	$cnpTest = new CnpOnlineRequest();
+    	$cnpTest->newXML = $mock;
+    	$cnpTest->captureGivenAuthRequest($hash_in);
     
     }
     
@@ -308,9 +308,9 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
     	->method('request')
     	->with($this->matchesRegularExpression('/.*<processingType>accountFunding.*<originalNetworkTransactionId>abcdefgh.*<originalTransactionAmount>1000.*/'));
     
-    	$litleTest = new CnpOnlineRequest();
-    	$litleTest->newXML = $mock;
-    	$litleTest->captureGivenAuthRequest($hash_in);
+    	$cnpTest = new CnpOnlineRequest();
+    	$cnpTest->newXML = $mock;
+    	$cnpTest->captureGivenAuthRequest($hash_in);
     
     }
  

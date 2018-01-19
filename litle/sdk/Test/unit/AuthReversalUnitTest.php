@@ -33,17 +33,17 @@ namespace litle\sdk;
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<litleTxnId>1234567890.*<amount>5000.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->authReversalRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->authReversalRequest($hash_in);
     }
 
     public function test_no_txnid()
     {
         $hash_in =array('reportGroup'=>'Planets','id' => 'id','amount'=>'106');
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException','Missing Required Field: /litleTxnId/');
-        $retOb = $litleTest->authReversalRequest($hash_in);
+        $retOb = $cnpTest->authReversalRequest($hash_in);
     }
 
     public function test_loggedInUser()
@@ -61,9 +61,9 @@ namespace litle\sdk;
         ->method('request')
         ->with($this->matchesRegularExpression('/.*merchantSdk="PHP;8.14.0".*loggedInUser="gdake" xmlns=.*>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->authReversalRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->authReversalRequest($hash_in);
     }
 
     public function test_surchargeAmount()
@@ -81,9 +81,9 @@ namespace litle\sdk;
             ->method('request')
             ->with($this->matchesRegularExpression('/.*<amount>2<\/amount><surchargeAmount>1<\/surchargeAmount><payPalNotes>notes<\/payPalNotes>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->authReversalRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->authReversalRequest($hash_in);
     }
 
     public function test_surchargeAmount_optional()
@@ -100,9 +100,9 @@ namespace litle\sdk;
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<amount>2<\/amount><payPalNotes>notes<\/payPalNotes>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->authReversalRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->authReversalRequest($hash_in);
     }
 
 }

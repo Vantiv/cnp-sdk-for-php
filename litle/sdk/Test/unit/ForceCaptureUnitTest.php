@@ -44,9 +44,9 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<token><litleToken>123456789101112.*<expDate>1210.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->forceCaptureRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->forceCaptureRequest($hash_in);
     }
     public function test_no_orderId()
     {
@@ -60,9 +60,9 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
        'expDate'=>'1210',
        'cardValidationNum'=>'555',
        'type'=>'VI'));
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /orderId/");
-        $retOb = $litleTest->forceCaptureRequest($hash_in);
+        $retOb = $cnpTest->forceCaptureRequest($hash_in);
     }
     public function test_no_orderSource()
     {
@@ -76,9 +76,9 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
            'expDate'=>'1210',
            'cardValidationNum'=>'555',
            'type'=>'VI'));
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /orderSource/");
-        $retOb = $litleTest->forceCaptureRequest($hash_in);
+        $retOb = $cnpTest->forceCaptureRequest($hash_in);
     }
     public function test_both_card_and_token()
     {
@@ -100,9 +100,9 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
       'expDate'=>'1210',
       'cardValidationNum'=>'555',
       'type'=>'VI'));
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
-        $retOb = $litleTest->forceCaptureRequest($hash_in);
+        $retOb = $cnpTest->forceCaptureRequest($hash_in);
     }
     public function test_all_choices()
     {
@@ -129,9 +129,9 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
           'expDate'=>'1210',
           'cardValidationNum'=>'555',
           'type'=>'VI'));
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
-        $retOb = $litleTest->forceCaptureRequest($hash_in);
+        $retOb = $cnpTest->forceCaptureRequest($hash_in);
     }
 
     public function test_loggedInUser()
@@ -153,9 +153,9 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*merchantSdk="PHP;10.1.0".*loggedInUser="gdake" xmlns=.*>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->forceCaptureRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->forceCaptureRequest($hash_in);
     }
 
     public function test_surchargeAmount()
@@ -172,9 +172,9 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
             ->method('request')
             ->with($this->matchesRegularExpression('/.*<amount>2<\/amount><surchargeAmount>1<\/surchargeAmount><orderSource>ecommerce<\/orderSource>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->forceCaptureRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->forceCaptureRequest($hash_in);
     }
 
     public function test_surchargeAmount_optional()
@@ -190,9 +190,9 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<amount>2<\/amount><orderSource>ecommerce<\/orderSource>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->forceCaptureRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->forceCaptureRequest($hash_in);
     }
 
     public function test_debtRepayment_true()
@@ -212,9 +212,9 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<\/merchantData><debtRepayment>true<\/debtRepayment><\/forceCapture>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->forceCaptureRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->forceCaptureRequest($hash_in);
     }
 
     public function test_debtRepayment_false()
@@ -234,9 +234,9 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<\/merchantData><debtRepayment>false<\/debtRepayment><\/forceCapture>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->forceCaptureRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->forceCaptureRequest($hash_in);
     }
 
     public function test_debtRepayment_optional()
@@ -255,9 +255,9 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<\/merchantData><\/forceCapture>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->forceCaptureRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->forceCaptureRequest($hash_in);
     }
     public function test_simple_forceCapture_secondary_amount()
     {
@@ -277,9 +277,9 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
     	->method('request')
     	->with($this->matchesRegularExpression('/.*<token><litleToken>123456789101112.*<expDate>1210.*/'));
     
-    	$litleTest = new CnpOnlineRequest();
-    	$litleTest->newXML = $mock;
-    	$litleTest->forceCaptureRequest($hash_in);
+    	$cnpTest = new CnpOnlineRequest();
+    	$cnpTest->newXML = $mock;
+    	$cnpTest->forceCaptureRequest($hash_in);
     }
     
     public function test_simple_forcCapture_withProcessingType()
@@ -302,9 +302,9 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
     	->method('request')
     	->with($this->matchesRegularExpression('/.*<processingType>initialRecurring.*/'));
     
-    	$litleTest = new CnpOnlineRequest();
-    	$litleTest->newXML = $mock;
-    	$litleTest->forceCaptureRequest($hash_in);
+    	$cnpTest = new CnpOnlineRequest();
+    	$cnpTest->newXML = $mock;
+    	$cnpTest->forceCaptureRequest($hash_in);
     }
     
 }

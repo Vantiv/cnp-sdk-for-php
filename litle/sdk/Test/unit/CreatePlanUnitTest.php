@@ -45,9 +45,9 @@ class CreatePlanUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*planCode.*1.*name.*2.*description.*3.*intervalType.*MONTHLY.*amount.*1000.*numberOfPayments.*5.*trialNumberOfIntervals.*6.*trialIntervalType.*WEEKLY.*active.*true.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->createPlan($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->createPlan($hash_in);
     }
 
     public function test_DescriptionIsOptional()
@@ -68,9 +68,9 @@ class CreatePlanUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->logicalNot($this->matchesRegularExpression('/.*description.*/')));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->createPlan($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->createPlan($hash_in);
     }
 
     public function test_NumberOfPaymentsIsOptional()
@@ -90,9 +90,9 @@ class CreatePlanUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->logicalNot($this->matchesRegularExpression('/.*numberOfPayments.*/')));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->createPlan($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->createPlan($hash_in);
     }
 
     public function test_TrialNumberOfIntervalsIsOptional()
@@ -112,9 +112,9 @@ class CreatePlanUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->logicalNot($this->matchesRegularExpression('/.*trialNumberOfIntervals.*/')));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->createPlan($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->createPlan($hash_in);
     }
 
     public function test_TrialIntervalTypeIsOptional()
@@ -134,9 +134,9 @@ class CreatePlanUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->logicalNot($this->matchesRegularExpression('/.*trialIntervalType.*/')));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->createPlan($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->createPlan($hash_in);
     }
 
     public function test_ActiveIsOptional()
@@ -156,9 +156,9 @@ class CreatePlanUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->logicalNot($this->matchesRegularExpression('/.*active.*/')));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->createPlan($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->createPlan($hash_in);
     }
 
 }

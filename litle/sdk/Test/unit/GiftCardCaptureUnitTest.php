@@ -49,9 +49,9 @@ class GiftCardCaptureUnitTest extends \PHPUnit_Framework_TestCase {
 		$mock = $this->getMock ('litle\sdk\CnpXmlMapper');
 		$mock->expects ( $this->once () )->method ( 'request' )->with ( $this->matchesRegularExpression ( '/.*<litleTxnId>1234567890.*<captureAmount>123.*<card><type>GC.*<number>4100000000000001.*<expDate>0118.*<cardValidationNum>411.*<pin>1234.*<originalRefCode>101.*<originalAmount>34561.*/' ) );
 		
-		$litleTest = new CnpOnlineRequest ();
-		$litleTest->newXML = $mock;
-		$litleTest->giftCardCaptureRequest ( $hash_in );
+		$cnpTest = new CnpOnlineRequest ();
+		$cnpTest->newXML = $mock;
+		$cnpTest->giftCardCaptureRequest ( $hash_in );
 	}
 	public function test_no_txnid() {
 		$hash_in = array (
@@ -59,8 +59,8 @@ class GiftCardCaptureUnitTest extends \PHPUnit_Framework_TestCase {
 				'captureAmount' => '106',
 				'id' => 'id' 
 		);
-		$litleTest = new CnpOnlineRequest ();
+		$cnpTest = new CnpOnlineRequest ();
 		$this->setExpectedException ( 'InvalidArgumentException', 'Missing Required Field: /litleTxnId/' );
-		$litleTest->captureRequest ( $hash_in );
+		$cnpTest->captureRequest ( $hash_in );
 	}
 }

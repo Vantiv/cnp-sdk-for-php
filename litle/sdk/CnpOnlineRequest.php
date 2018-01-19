@@ -824,7 +824,7 @@ class CnpOnlineRequest
     private static function overrideConfig($hash_in)
     {
         $hash_config = array();
-        $names = explode(',', LITLE_CONFIG_LIST);
+        $names = explode(',', CNP_CONFIG_LIST);
 
         foreach ($names as $name) {
             if (array_key_exists($name, $hash_in)) {
@@ -862,9 +862,9 @@ class CnpOnlineRequest
         Checker::choice($choice1);
         Checker::choice($choice2);
         $request = Obj2xml::toXml($hash,$hash_config, $type);
-        $litleOnlineResponse = $this->newXML->request($request,$hash_config,$this->useSimpleXml);
+        $cnpOnlineResponse = $this->newXML->request($request,$hash_config,$this->useSimpleXml);
 		
-        return $litleOnlineResponse;
+        return $cnpOnlineResponse;
     }
     
 }

@@ -41,8 +41,8 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'amount' => '123');
 
-        $litle = new CnpOnlineRequest($treeResponse = true);
-        $response = $litle->authorizationRequest($hash_in);
+        $cnp = new CnpOnlineRequest($treeResponse = true);
+        $response = $cnp->authorizationRequest($hash_in);
         $this->assertEquals('000', $response->authorizationResponse->response);
     }
 
@@ -52,8 +52,8 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
             'litleTxnId' => '12345678000', 'amount' => '123',
             'payPalNotes' => 'Notes');
 
-        $litle = new CnpOnlineRequest($treeResponse = true);
-        $response = $litle->authReversalRequest($hash_in);
+        $cnp = new CnpOnlineRequest($treeResponse = true);
+        $response = $cnp->authReversalRequest($hash_in);
         $this->assertEquals('000', $response->authReversalResponse->response);
     }
 
@@ -63,8 +63,8 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
             'litleTxnId' => '1234567891234567891',
             'amount' => '123');
 
-        $litle = new CnpOnlineRequest($treeResponse = true);
-        $response = $litle->captureRequest($hash_in);
+        $cnp = new CnpOnlineRequest($treeResponse = true);
+        $response = $cnp->captureRequest($hash_in);
         $this->assertEquals('000', $response->captureResponse->response);
     }
 
@@ -82,8 +82,8 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
                 'number' => '4100000000000000',
                 'expDate' => '1210'));
 
-        $litle = new CnpOnlineRequest($treeResponse = true);
-        $response = $litle->captureGivenAuthRequest($hash_in);
+        $cnp = new CnpOnlineRequest($treeResponse = true);
+        $response = $cnp->captureGivenAuthRequest($hash_in);
         $this->assertEquals('Approved', $response->captureGivenAuthResponse->message);
     }
 
@@ -100,8 +100,8 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'amount' => '123');
 
-        $litle = new CnpOnlineRequest($treeResponse = true);
-        $response = $litle->creditRequest($hash_in);
+        $cnp = new CnpOnlineRequest($treeResponse = true);
+        $response = $cnp->creditRequest($hash_in);
         $this->assertEquals('000', $response->creditResponse->response);
     }
 
@@ -111,8 +111,8 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
             'litleTxnId' => '123456789012345678',
             'amount' => '1000');
 
-        $litle = new CnpOnlineRequest($treeResponse = true);
-        $response = $litle->echeckCreditRequest($hash_in);
+        $cnp = new CnpOnlineRequest($treeResponse = true);
+        $response = $cnp->echeckCreditRequest($hash_in);
         $this->assertEquals('000', $response->echeckCreditResponse->response);
     }
 
@@ -122,8 +122,8 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
             'litleTxnId' => '123456789012345678',
             'amount' => '123');
 
-        $litle = new CnpOnlineRequest($treeResponse = true);
-        $response = $litle->echeckRedepositRequest($hash_in);
+        $cnp = new CnpOnlineRequest($treeResponse = true);
+        $response = $cnp->echeckRedepositRequest($hash_in);
         $this->assertEquals('000', $response->echeckRedepositResponse->response);
     }
 
@@ -137,8 +137,8 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
             'echeck' => array('accType' => 'Checking', 'accNum' => '12345657890', 'routingNum' => '123456789', 'checkNum' => '123455'),
             'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
 
-        $litle = new CnpOnlineRequest($treeResponse = true);
-        $response = $litle->echeckSaleRequest($hash_in);
+        $cnp = new CnpOnlineRequest($treeResponse = true);
+        $response = $cnp->echeckSaleRequest($hash_in);
         $this->assertEquals('000', $response->echeckSalesResponse->response);
     }
 
@@ -152,16 +152,16 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
             'echeck' => array('accType' => 'Checking', 'accNum' => '12345657890', 'routingNum' => '123456789', 'checkNum' => '123455'),
             'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
 
-        $litle = new CnpOnlineRequest($treeResponse = true);
-        $response = $litle->echeckVerificationRequest($hash_in);
+        $cnp = new CnpOnlineRequest($treeResponse = true);
+        $response = $cnp->echeckVerificationRequest($hash_in);
         $this->assertEquals('000', $response->echeckVerificationResponse->response);
     }
 
     public function test_echeckVoid()
     {
         $hash_in = array('litleTxnId' => '123456789012345678', 'id' => '1211',);
-        $litle = new CnpOnlineRequest($treeResponse = true);
-        $response = $litle->echeckVoidRequest($hash_in);
+        $cnp = new CnpOnlineRequest($treeResponse = true);
+        $response = $cnp->echeckVoidRequest($hash_in);
         $this->assertEquals('000', $response->echeckVoidResponse->response);
     }
 
@@ -181,16 +181,16 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
                 'expDate' => '1210'
             ));
 
-        $litle = new CnpOnlineRequest($treeResponse = true);
-        $response = $litle->forceCaptureRequest($hash_in);
+        $cnp = new CnpOnlineRequest($treeResponse = true);
+        $response = $cnp->forceCaptureRequest($hash_in);
         $this->assertEquals('000', $response->forceCaptureResponse->response);
     }
 
     public function test_void()
     {
         $hash_in = array('litleTxnId' => '123456789012345678', 'id' => '1211',);
-        $litle = new CnpOnlineRequest($treeResponse = true);
-        $response = $litle->voidRequest($hash_in);
+        $cnp = new CnpOnlineRequest($treeResponse = true);
+        $response = $cnp->voidRequest($hash_in);
         $this->assertEquals('0', $response['response']);
     }
 
