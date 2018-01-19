@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2011 Litle & Co.
+ * Copyright (c) 2011 Vantiv eCommerce Inc.
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -23,7 +23,7 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 namespace litle\sdk\Test\unit;
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 class UpdatePlanUnitTest extends \PHPUnit_Framework_TestCase
 {
     public function test_simple()
@@ -32,12 +32,12 @@ class UpdatePlanUnitTest extends \PHPUnit_Framework_TestCase
             'planCode'=>'1',
             'active'=>'true'
         );
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*planCode.*1.*active.*true.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->updatePlan($hash_in);
     }

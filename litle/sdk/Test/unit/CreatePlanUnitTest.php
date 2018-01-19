@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2011 Litle & Co.
+ * Copyright (c) 2011 Vantiv eCommerce Inc.
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -23,7 +23,7 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 namespace litle\sdk\Test\unit;
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 class CreatePlanUnitTest extends \PHPUnit_Framework_TestCase
 {
     public function test_simple()
@@ -40,12 +40,12 @@ class CreatePlanUnitTest extends \PHPUnit_Framework_TestCase
             'trialIntervalType'=>'WEEKLY',
             'active'=>'true'
         );
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*planCode.*1.*name.*2.*description.*3.*intervalType.*MONTHLY.*amount.*1000.*numberOfPayments.*5.*trialNumberOfIntervals.*6.*trialIntervalType.*WEEKLY.*active.*true.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->createPlan($hash_in);
     }
@@ -63,12 +63,12 @@ class CreatePlanUnitTest extends \PHPUnit_Framework_TestCase
             'trialIntervalType'=>'WEEKLY',
             'active'=>'true'
         );
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
         ->with($this->logicalNot($this->matchesRegularExpression('/.*description.*/')));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->createPlan($hash_in);
     }
@@ -85,12 +85,12 @@ class CreatePlanUnitTest extends \PHPUnit_Framework_TestCase
             'trialIntervalType'=>'WEEKLY',
             'active'=>'true'
         );
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
         ->with($this->logicalNot($this->matchesRegularExpression('/.*numberOfPayments.*/')));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->createPlan($hash_in);
     }
@@ -107,12 +107,12 @@ class CreatePlanUnitTest extends \PHPUnit_Framework_TestCase
             'trialIntervalType'=>'WEEKLY',
             'active'=>'true'
         );
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
         ->with($this->logicalNot($this->matchesRegularExpression('/.*trialNumberOfIntervals.*/')));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->createPlan($hash_in);
     }
@@ -129,12 +129,12 @@ class CreatePlanUnitTest extends \PHPUnit_Framework_TestCase
             'trialNumberOfIntervals'=>'6',
             'active'=>'true'
         );
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
         ->with($this->logicalNot($this->matchesRegularExpression('/.*trialIntervalType.*/')));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->createPlan($hash_in);
     }
@@ -151,12 +151,12 @@ class CreatePlanUnitTest extends \PHPUnit_Framework_TestCase
             'trialNumberOfIntervals'=>'6',
             'trialIntervalType'=>'WEEKLY'
         );
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
         ->with($this->logicalNot($this->matchesRegularExpression('/.*active.*/')));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->createPlan($hash_in);
     }

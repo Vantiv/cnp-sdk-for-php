@@ -1,6 +1,6 @@
 <?php
 /*
-* Copyright (c) 2011 Litle & Co.
+* Copyright (c) 2011 Vantiv eCommerce Inc.
 *
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
@@ -24,7 +24,7 @@
 */
 namespace litle\sdk\Test\certification;
 
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 USE litle\sdk\XmlParser;
 
 class CertBetaTest extends \PHPUnit_Framework_TestCase
@@ -51,7 +51,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
             ),
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $response = $initialize->authorizationRequest($hash);
         //        TODO: run against for certification
 //        $this->assertEquals('110', XmlParser::getNode($response, 'response'));
@@ -82,7 +82,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
             ),
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $response = $initialize->saleRequest($hash);
         //        TODO: run against for certification
 //        $this->assertEquals('110', XmlParser::getNode($response, 'response'));
@@ -94,7 +94,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
         $hash = array('id' => '1211',
             'litleTxnId' => (XmlParser::getNode($response, 'litleTxnId')),
             'reportGroup' => 'planets');
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $response = $initialize->voidRequest($hash);
         //        TODO: run against for certification
 //        $this->assertEquals('000', XmlParser::getNode($response, 'response'));
@@ -123,7 +123,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
             ),
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $response = $initialize->authorizationRequest($hash);
         //        TODO: run against for certification
 //        $this->assertEquals('301', XmlParser::getNode($response, 'response'));
@@ -154,7 +154,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
             ),
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $response = $initialize->authorizationRequest($hash);
         //        TODO: run against for certification
 //        $this->assertEquals('301', XmlParser::getNode($response, 'response'));
@@ -185,7 +185,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
             ),
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $response = $initialize->saleRequest($hash);
         //        TODO: run against for certification
 //        $this->assertEquals('301', XmlParser::getNode($response, 'response'));
@@ -216,7 +216,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
             ),
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $response = $initialize->authorizationRequest($hash);
         //        TODO: run against for certification
 //        $this->assertEquals('123', XmlParser::getNode($response, 'response'));
@@ -248,7 +248,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
             ),
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $response = $initialize->authorizationRequest($hash);
         //        TODO: run against for certification
 //        $this->assertEquals('123', XmlParser::getNode($response, 'response'));
@@ -279,7 +279,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
             ),
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $response = $initialize->saleRequest($hash);
         //        TODO: run against prelive for certification
 //        $this->assertEquals('123', XmlParser::getNode($response, 'response'));
@@ -310,7 +310,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
             ),
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $response = $initialize->authorizationRequest($hash);
         //        TODO: run against prelive for certification
         //$this->assertEquals('303', XmlParser::getNode($response, 'response'));
@@ -341,7 +341,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
             ),
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $response = $initialize->authorizationRequest($hash);
         //        TODO: run against prelive for certification
         //$this->assertEquals('303', XmlParser::getNode($response, 'response'));
@@ -372,7 +372,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
             ),
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $response = $initialize->saleRequest($hash);
         //        TODO: run against prelive for certification
         //$this->assertEquals('303', XmlParser::getNode($response, 'response'));
@@ -396,7 +396,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
             ),
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $response = $initialize->authorizationRequest($hash);
         //        TODO: run against prelive for certification
 //        $this->assertEquals('010', XmlParser::getNode($response, 'response'));
@@ -419,7 +419,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
             ),
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $response = $initialize->authorizationRequest($hash);
         //        TODO: run against prelive for certification
 //        $this->assertEquals('010', XmlParser::getNode($response, 'response'));
@@ -442,7 +442,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
             ),
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $response = $initialize->authorizationRequest($hash);
 //      TODO: run against prelive for certification
         //$this->assertEquals('010', XmlParser::getNode($response, 'response'));
@@ -466,7 +466,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
 //            'url' => 'https://prelive.litle.com/vap/communicator/online'
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $response = $initialize->authorizationRequest($hash);
 //        TODO: run against prelive for certification
 //        $this->assertEquals('010', XmlParser::getNode($response, 'response'));

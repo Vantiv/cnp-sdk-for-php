@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2011 Litle & Co.
+ * Copyright (c) 2011 Vantiv eCommerce Inc.
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -24,7 +24,7 @@
  */
 namespace litle\sdk\Test\functional;
 
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 use litle\sdk\XmlParser;
 
 class GiftCardAuthReversalFunctionalTest extends \PHPUnit_Framework_TestCase
@@ -49,7 +49,7 @@ class GiftCardAuthReversalFunctionalTest extends \PHPUnit_Framework_TestCase
             'originalSequenceNumber' => '111111'
         );
 
-        $initilaize = new LitleOnlineRequest();
+        $initilaize = new CnpOnlineRequest();
         $giftCardAuthReversalResponse = $initilaize->giftCardAuthReversalRequest($hash_in);
         $response = XmlParser::getNode($giftCardAuthReversalResponse, 'systemTraceId');
         $sequenceNumber = XmlParser::getNode($giftCardAuthReversalResponse, 'sequenceNumber');

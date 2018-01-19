@@ -1,6 +1,6 @@
 <?php
 /*
-* Copyright (c) 2011 Litle & Co.
+* Copyright (c) 2011 Vantiv eCommerce Inc.
 *
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
@@ -24,7 +24,7 @@
 */
 namespace litle\sdk\Test\functional;
 
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 use litle\sdk\XmlParser;
 
 class BalanceInquiryFunctionalTest extends \PHPUnit_Framework_TestCase
@@ -43,7 +43,7 @@ class BalanceInquiryFunctionalTest extends \PHPUnit_Framework_TestCase
             )
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $response = $initialize->balanceInquiry($hash_in);
         $message = XmlParser::getAttribute($response, 'litleOnlineResponse', 'message');
         $this->assertEquals('Valid Format', $message);

@@ -3,9 +3,9 @@
 namespace litle\sdk\Test\functional;
 
 use litle\sdk\Obj2xml;
-use litle\sdk\LitleRequest;
+use litle\sdk\CnpRequest;
 use litle\sdk\BatchRequest;
-use litle\sdk\LitleResponseProcessor;
+use litle\sdk\CnpResponseProcessor;
 
 require_once realpath(__DIR__) . '/../../../../vendor/autoload.php';
 
@@ -42,14 +42,14 @@ class LitleRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_wouldFill()
     {
-        $request = new LitleRequest ($this->config);
+        $request = new CnpRequest ($this->config);
         $this->assertTrue($request->wouldFill(500001));
         $this->assertFalse($request->wouldFill(500000));
     }
 
     public function test_fileCreation()
     {
-        $request = new LitleRequest ($this->config);
+        $request = new CnpRequest ($this->config);
         $this->assertTrue(file_exists($request->batches_file));
         $this->assertTrue(file_exists($request->request_file));
         $this->assertTrue(file_exists($request->response_file));
@@ -57,7 +57,7 @@ class LitleRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addBatch()
     {
-        $request = new LitleRequest ($this->config);
+        $request = new CnpRequest ($this->config);
         $batch = new BatchRequest ($this->direct);
         $batch->addSale($this->sale);
 
@@ -81,7 +81,7 @@ class LitleRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addBatch_tooBig()
     {
-        $request = new LitleRequest ($this->config);
+        $request = new CnpRequest ($this->config);
 
         for ($i = 0; $i < 5; $i++) {
             $batch = new BatchRequest ($this->direct);
@@ -101,7 +101,7 @@ class LitleRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addRFRRequest()
     {
-        $request = new LitleRequest ($this->config);
+        $request = new CnpRequest ($this->config);
 
         $request->createRFRRequest(array(
             'litleSessionId' => '8675309'
@@ -124,7 +124,7 @@ class LitleRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addBatch_closed()
     {
-        $request = new LitleRequest ($this->config);
+        $request = new CnpRequest ($this->config);
         $request->closeRequest();
 
         $batch = new BatchRequest ($this->direct);
@@ -134,7 +134,7 @@ class LitleRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addRFRRequest_closed()
     {
-        $request = new LitleRequest ($this->config);
+        $request = new CnpRequest ($this->config);
         $request->closeRequest();
 
         $this->setExpectedException('RuntimeException');
@@ -145,7 +145,7 @@ class LitleRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_closeRequest()
     {
-        $request = new LitleRequest ($this->config);
+        $request = new CnpRequest ($this->config);
 
         $batch = new BatchRequest ($this->direct);
         $batch->addSale($this->sale);
@@ -179,7 +179,7 @@ class LitleRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_sendToLitle()
     {
-        $request = new LitleRequest ($this->config);
+        $request = new CnpRequest ($this->config);
         $batch = new BatchRequest ($this->direct);
 
         $sale_hash = array('id' => 'id',
@@ -214,7 +214,7 @@ class LitleRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(file_exists($response));
         $this->assertEquals($response, $request->response_file);
 
-        $proc = new LitleResponseProcessor ($response);
+        $proc = new CnpResponseProcessor ($response);
 
         $resp = $proc->nextTransaction();
         $this->assertEquals('saleResponse', $resp->getName());
@@ -224,7 +224,7 @@ class LitleRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_sendToLitleStream()
     {
-        $request = new LitleRequest ($this->config);
+        $request = new CnpRequest ($this->config);
 
         $batch = new BatchRequest ($this->direct);
 
@@ -258,7 +258,7 @@ class LitleRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(file_exists($response));
         $this->assertEquals($response, $request->response_file);
 
-        $proc = new LitleResponseProcessor ($response);
+        $proc = new CnpResponseProcessor ($response);
 
         $resp = $proc->nextTransaction();
         $this->assertEquals('saleResponse', $resp->getName());

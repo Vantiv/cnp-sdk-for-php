@@ -24,15 +24,15 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 namespace litle\sdk;
-require_once realpath(dirname(__FILE__)) . '/LitleOnline.php';
-class LitleOnlineRequest
+require_once realpath(dirname(__FILE__)) . '/CnpOnline.php';
+class CnpOnlineRequest
 {
     private $useSimpleXml = false;
 
     public function __construct($treeResponse=false)
     {
         $this->useSimpleXml = $treeResponse;
-        $this->newXML = new LitleXmlMapper();
+        $this->newXML = new CnpXmlMapper();
     }
 
     public static function getAddressResponse($code)
@@ -857,8 +857,8 @@ class LitleOnlineRequest
 
     private function processRequest($hash_out, $hash_in, $type, $choice1 = null, $choice2 = null)
     {
-        $hash_config = LitleOnlineRequest::overrideConfig($hash_in);
-        $hash = LitleOnlineRequest::getOptionalAttributes($hash_in,$hash_out);
+        $hash_config = CnpOnlineRequest::overrideConfig($hash_in);
+        $hash = CnpOnlineRequest::getOptionalAttributes($hash_in,$hash_out);
         Checker::choice($choice1);
         Checker::choice($choice2);
         $request = Obj2xml::toXml($hash,$hash_config, $type);

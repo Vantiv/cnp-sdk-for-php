@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2011 Litle & Co.
+ * Copyright (c) 2011 Vantiv eCommerce Inc.
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -24,18 +24,18 @@
  */
 
 namespace litle\sdk\Test\unit;
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 class EcheckSaleUnitTest extends \PHPUnit_Framework_TestCase
 {
     public function test_simple_echeckSale()
     {
         $hash_in = array('litleTxnId' =>'123123','id' => 'id');
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<litleTxnId>123123.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->echeckSaleRequest($hash_in);
     }
@@ -45,7 +45,7 @@ class EcheckSaleUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array('reportGroup'=>'Planets','litleTxnId'=>'123456','id' => 'id',
         'echeckToken' => array('accType'=>'Checking','routingNum'=>'123123','litleToken'=>'1234565789012','checkNum'=>'123455'),
         'echeck' => array('accType'=>'Checking','routingNum'=>'123123','accNum'=>'12345657890','checkNum'=>'123455'));
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
         $retOb = $litleTest->echeckSaleRequest($hash_in);
     }
@@ -57,12 +57,12 @@ class EcheckSaleUnitTest extends \PHPUnit_Framework_TestCase
         		'id' => 'id',
                 'merchantSdk'=>'PHP;10.1.0',
                 'loggedInUser'=>'gdake');
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*merchantSdk="PHP;10.1.0".*loggedInUser="gdake" xmlns=.*>.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->echeckSaleRequest($hash_in);
     }
@@ -76,12 +76,12 @@ class EcheckSaleUnitTest extends \PHPUnit_Framework_TestCase
     			'billToAddress' => array(),
     			'echeck' => array('accType'=>'Checking','routingNum'=>'123123','accNum'=>'12345657890','checkNum'=>'123455'));
     	
-    	$mock = $this->getMock('litle\sdk\LitleXmlMapper');
+    	$mock = $this->getMock('litle\sdk\CnpXmlMapper');
     	$mock->expects($this->once())
     	->method('request')
     	->with($this->matchesRegularExpression('/.*<amount>5000.*<orderSource>ecommerce.*<accType>Checking.*<accNum>12345657890.*<routingNum>123123.*<checkNum>123455.*/'));
     	
-    	$litleTest = new LitleOnlineRequest();
+    	$litleTest = new CnpOnlineRequest();
     	$litleTest->newXML = $mock;
     	$litleTest->echeckSaleRequest($hash_in);
     }
@@ -89,12 +89,12 @@ class EcheckSaleUnitTest extends \PHPUnit_Framework_TestCase
     public function test_simple_customIdentifier()
     {
     	$hash_in = array('litleTxnId' =>'123123','id' => 'id','amount'=>'123','customIdentifier'=>'identifier');
-    	$mock = $this->getMock('litle\sdk\LitleXmlMapper');
+    	$mock = $this->getMock('litle\sdk\CnpXmlMapper');
     	$mock->expects($this->once())
     	->method('request')
     	->with($this->matchesRegularExpression('/.*<litleTxnId>123123.*<customIdentifier>identifier.*/'));
     
-    	$litleTest = new LitleOnlineRequest();
+    	$litleTest = new CnpOnlineRequest();
     	$litleTest->newXML = $mock;
     	$litleTest->echeckSaleRequest($hash_in);
     }

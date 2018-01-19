@@ -1,6 +1,6 @@
 <?php
 /*
-* Copyright (c) 2011 Litle & Co.
+* Copyright (c) 2011 Vantiv eCommerce Inc.
 *
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
@@ -25,7 +25,7 @@
 
 namespace litle\sdk\Test\certification;
 
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 USE litle\sdk\XmlParser;
 
 class CertTokenTest extends \PHPUnit_Framework_TestCase
@@ -36,7 +36,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
             'orderId' => '50',
             'accountNumber' => '4457119922390123');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->registerTokenRequest($token_hash);
 
         //TODO: Getting empty registertokenresponse
@@ -53,7 +53,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
             'orderId' => '51',
             'accountNumber' => '4457119999999999');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->registerTokenRequest($token_hash);
         //$this->assertEquals('820', XMLParser::getNode($registerTokenResponse, 'response'));
         //$this->assertEquals('Credit card number was invalid', XMLParser::getNode($registerTokenResponse, 'message'));
@@ -65,7 +65,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
             'orderId' => '52',
             'accountNumber' => '4457119922390123');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->registerTokenRequest($token_hash);
         //TODO: Getting empty registertokenresponse
         //$this->assertEquals('445711', XMLParser::getNode($registerTokenResponse, 'bin'));
@@ -81,7 +81,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
             'orderId' => '53',
             'echeckForToken' => array('accNum' => '1099999998', 'routingNum' => '114567895'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->registerTokenRequest($token_hash);
         //TODO: Getting empty registertokenresponse
         //$this->assertEquals('EC', XMLParser::getNode($registerTokenResponse, 'type'));
@@ -97,7 +97,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
             'orderId' => '54',
             'echeckForToken' => array('accNum' => '1022222102', 'routingNum' => '1145_7895'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->registerTokenRequest($token_hash);
         //$this->assertEquals('900', XMLParser::getNode($registerTokenResponse, 'response'));
        //$this->assertEquals('Invalid bank routing number', XMLParser::getNode($registerTokenResponse, 'message'));
@@ -111,7 +111,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'card' => array('number' => '5435101234510196', 'expDate' => '1112', 'cardValidationNum' => '987', 'type' => 'MC'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->authorizationRequest($token_hash);
 
         //$this->assertEquals('MC', XMLParser::getNode($registerTokenResponse, 'type'));
@@ -130,7 +130,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'card' => array('number' => '5435109999999999', 'expDate' => '1112', 'cardValidationNum' => '987', 'type' => 'MC'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->authorizationRequest($token_hash);
        // $this->assertEquals('301', XMLParser::getNode($registerTokenResponse, 'response'));
        // $this->assertEquals('Invalid account number', XMLParser::getNode($registerTokenResponse, 'message'));
@@ -144,7 +144,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'card' => array('number' => '5435101234510196', 'expDate' => '1112', 'cardValidationNum' => '987', 'type' => 'MC'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->authorizationRequest($token_hash);
 
        // $this->assertEquals('MC', XMLParser::getNode($registerTokenResponse, 'type'));
@@ -163,7 +163,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'token' => array('litleToken' => '1712990000040196', 'expDate' => '1112'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($token_hash);
 
         //$this->assertEquals('822', XMLParser::getNode($authorizationResponse, 'response'));
@@ -178,7 +178,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'token' => array('litleToken' => '1712999999999999', 'expDate' => '1112'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($token_hash);
 
        // $this->assertEquals('823', XMLParser::getNode($authorizationResponse, 'response'));
@@ -197,7 +197,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
                 'lastName' => 'Black'),
             'echeck' => array('accType' => 'Checking', 'accNum' => '1099999003', 'routingNum' => '011100012'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->echeckSaleRequest($token_hash);
 //  TODO: when certifying run against prelive
 //        $this->assertEquals('801', XMLParser::getNode($registerTokenResponse, 'tokenResponseCode'));
@@ -218,7 +218,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
                 'lastName' => 'Black'),
             'echeck' => array('accType' => 'Checking', 'accNum' => '1099999999', 'routingNum' => '011100012'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->echeckSaleRequest($token_hash);
 //  TODO: when certifying run against prelive
 //        $this->assertEquals('801', XMLParser::getNode($registerTokenResponse, 'tokenResponseCode'));
@@ -239,7 +239,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
                 'lastName' => 'Black'),
             'echeck' => array('accType' => 'Checking', 'accNum' => '1099999999', 'routingNum' => '011100012'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->echeckSaleRequest($token_hash);
 //  TODO: when certifying run against prelive
 //        $this->assertEquals('801',XMLParser::getNode($registerTokenResponse,'tokenResponseCode'));
@@ -260,7 +260,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
                 'lastName' => 'Black'),
             'echeck' => array('accType' => 'Corporate', 'accNum' => '6099999993', 'routingNum' => '211370545'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->echeckSaleRequest($token_hash);
         //TODO no tokenResponse
     }

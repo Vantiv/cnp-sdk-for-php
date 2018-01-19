@@ -1,6 +1,6 @@
 <?php
 /*
-* Copyright (c) 2011 Litle & Co.
+* Copyright (c) 2011 Vantiv eCommerce Inc.
 *
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
@@ -24,7 +24,7 @@
 */
 namespace litle\sdk\Test\functional;
 
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 use litle\sdk\XmlParser;
 
 class EcheckSaleFunctionalTest extends \PHPUnit_Framework_TestCase
@@ -40,7 +40,7 @@ class EcheckSaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'echeck' => array('accType' => 'Checking', 'accNum' => '12345657890', 'routingNum' => '123456789', 'checkNum' => '123455'),
             'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $echeckSaleResponse = $initialize->echeckSaleRequest($hash_in);
         $response = XmlParser::getNode($echeckSaleResponse, 'response');
         $this->assertEquals('000', $response);
@@ -56,7 +56,7 @@ class EcheckSaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'echeckToken' => array('accType' => 'Checking', 'litleToken' => '1234565789012', 'routingNum' => '123456789', 'checkNum' => '123455'),
             'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $echeckSaleResponse = $initialize->echeckSaleRequest($hash_in);
         $response = XmlParser::getNode($echeckSaleResponse, 'response');
         $this->assertEquals('000', $response);
@@ -71,7 +71,7 @@ class EcheckSaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'echeckToken' => array('accType' => 'Checking', 'litleToken' => '1234565789012', 'routingNum' => '123456789', 'checkNum' => '123455'),
             'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $echeckSaleResponse = $initialize->echeckSaleRequest($hash_in);
         $message = XmlParser::getAttribute($echeckSaleResponse, 'litleOnlineResponse', 'message');
         $this->assertRegExp('/Error validating xml data against the schema/', $message);
@@ -88,7 +88,7 @@ class EcheckSaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'),
             'shipToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $echeckSaleResponse = $initialize->echeckSaleRequest($hash_in);
         $response = XmlParser::getNode($echeckSaleResponse, 'response');
         $this->assertEquals('000', $response);
@@ -104,7 +104,7 @@ class EcheckSaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'echeck' => array('accType' => 'Checking', 'accNum' => '12345657890', 'routingNum' => '123456789', 'checkNum' => '123455'),
             'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $echeckSaleResponse = $initialize->echeckSaleRequest($hash_in);
         $response = XmlParser::getNode($echeckSaleResponse, 'response');
         $this->assertEquals('000', $response);
@@ -120,7 +120,7 @@ class EcheckSaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'echeck' => array('accType' => 'Checking', 'accNum' => '12345657890', 'routingNum' => '123456789', 'checkNum' => '123455', 'ccdPaymentInformation' => 'ccd'),
             'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $echeckSaleResponse = $initialize->echeckSaleRequest($hash_in);
         $response = XmlParser::getNode($echeckSaleResponse, 'response');
         $this->assertEquals('000', $response);
@@ -136,7 +136,7 @@ class EcheckSaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'echeck' => array('accType' => 'Checking', 'accNum' => '12345657890', 'routingNum' => '123456789', 'checkNum' => '123455', 'ccdPaymentInformation' => '000000000000000000000000000000000000000000000000000000000000000000000000000000000'),
             'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $echeckSaleResponse = $initialize->echeckSaleRequest($hash_in);
         $message = XmlParser::getAttribute($echeckSaleResponse, 'litleOnlineResponse', 'message');
         $this->assertRegExp('/Error validating xml data against the schema/', $message);
@@ -156,7 +156,7 @@ class EcheckSaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'customIdentifier' => 'identifier'
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $echeckSaleResponse = $initialize->echeckSaleRequest($hash_in);
         $response = XmlParser::getNode($echeckSaleResponse, 'response');
         $this->assertEquals('000', $response);

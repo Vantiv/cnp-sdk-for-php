@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2011 Litle & Co.
+ * Copyright (c) 2011 Vantiv eCommerce Inc.
 *
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
@@ -23,18 +23,18 @@
 * OTHER DEALINGS IN THE SOFTWARE.
 */
 namespace litle\sdk\Test\unit;
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 class CaptureUnitTest extends \PHPUnit_Framework_TestCase
 {
     public function test_simple_capture()
     {
         $hash_in = array('litleTxnId'=> '12312312', 'amount'=>'123', 'id' => 'id');
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<litleTxnId>12312312.*<amount>123.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->captureRequest($hash_in);
     }
@@ -42,7 +42,7 @@ class CaptureUnitTest extends \PHPUnit_Framework_TestCase
     public function test_no_txnid()
     {
         $hash_in =array('reportGroup'=>'Planets','amount'=>'106','id' => 'id');
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException','Missing Required Field: /litleTxnId/');
         $litleTest->captureRequest($hash_in);
     }
@@ -55,12 +55,12 @@ class CaptureUnitTest extends \PHPUnit_Framework_TestCase
                 'merchantSdk'=>'PHP;10.1.0',
                 'amount'=>'123',
                 'loggedInUser'=>'gdake');
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*merchantSdk="PHP;10.1.0".*loggedInUser="gdake" xmlns=.*>.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->captureRequest($hash_in);
     }
@@ -74,13 +74,13 @@ class CaptureUnitTest extends \PHPUnit_Framework_TestCase
             'surchargeAmount'=>'1',
             'payPalNotes'=>'notes',
         );
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock
             ->expects($this->once())
             ->method('request')
             ->with($this->matchesRegularExpression('/.*<amount>2<\/amount><surchargeAmount>1<\/surchargeAmount><payPalNotes>notes<\/payPalNotes>.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->captureRequest($hash_in);
     }
@@ -93,13 +93,13 @@ class CaptureUnitTest extends \PHPUnit_Framework_TestCase
                 'amount'=>'2',
                 'payPalNotes'=>'notes',
         );
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock
         ->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<amount>2<\/amount><payPalNotes>notes<\/payPalNotes>.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->captureRequest($hash_in);
     }
@@ -107,12 +107,12 @@ class CaptureUnitTest extends \PHPUnit_Framework_TestCase
     public function test_simple_capture_withPin()
     {
     	$hash_in = array('litleTxnId'=> '12312312', 'amount'=>'123', 'id' => 'id','pin' => '02139');
-    	$mock = $this->getMock('litle\sdk\LitleXmlMapper');
+    	$mock = $this->getMock('litle\sdk\CnpXmlMapper');
     	$mock->expects($this->once())
     	->method('request')
     	->with($this->matchesRegularExpression('/.*<pin>02139.*/'));
     
-    	$litleTest = new LitleOnlineRequest();
+    	$litleTest = new CnpOnlineRequest();
     	$litleTest->newXML = $mock;
     	$litleTest->captureRequest($hash_in);
     }

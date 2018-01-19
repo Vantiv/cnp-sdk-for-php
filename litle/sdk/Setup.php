@@ -43,7 +43,7 @@ function initialize()
 {
     $line = array();
     $merchantArray = array();
-    $handle = @fopen('./litle_SDK_config.ini', "w");
+    $handle = @fopen('./cnp_SDK_config.ini', "w");
     if ($handle) {
         print "Welcome to Vantiv eCommerce PHP_SDK" . PHP_EOL;
         print "Please input your user name: ";

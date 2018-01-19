@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2011 Litle & Co.
+ * Copyright (c) 2011 Vantiv eCommerce Inc.
 *
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
@@ -24,7 +24,7 @@
 */
 namespace litle\sdk\Test\functional;
 
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 use litle\sdk\XmlParser;
 
 class VoidSettledTransactionTest extends \PHPUnit_Framework_TestCase
@@ -40,7 +40,7 @@ class VoidSettledTransactionTest extends \PHPUnit_Framework_TestCase
                 'expDate' => '0112',
                 'cardValidationNum' => '1313',
                 'type' => 'AX'));
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
 

@@ -1,6 +1,6 @@
 <?php
 /*
-* Copyright (c) 2011 Litle & Co.
+* Copyright (c) 2011 Vantiv eCommerce Inc.
 *
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
@@ -24,7 +24,7 @@
 */
 namespace litle\sdk\Test\functional;
 
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 use litle\sdk\XmlParser;
 
 class UpdateSubscriptionFunctionalTest extends \PHPUnit_Framework_TestCase
@@ -46,7 +46,7 @@ class UpdateSubscriptionFunctionalTest extends \PHPUnit_Framework_TestCase
             ),
             'billingDate' => '2013-12-17');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $updateSubscriptionResponse = $initialize->updateSubscription($hash_in);
         $message = XmlParser::getAttribute($updateSubscriptionResponse, 'litleOnlineResponse', 'message');
         $this->assertEquals('Valid Format', $message);

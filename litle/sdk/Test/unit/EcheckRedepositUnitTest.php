@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2011 Litle & Co.
+ * Copyright (c) 2011 Vantiv eCommerce Inc.
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -23,18 +23,18 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 namespace litle\sdk\Test\unit;
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 class EcheckRedepositUnitTest extends \PHPUnit_Framework_TestCase
 {
     public function test_simple_echeckRedeposit()
     {
         $hash_in = array('litleTxnId' =>'123123','id' => 'id');
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<litleTxnId>123123.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->echeckRedepositRequest($hash_in);
     }
@@ -42,7 +42,7 @@ class EcheckRedepositUnitTest extends \PHPUnit_Framework_TestCase
     public function test_no_litleTxnId()
     {
         $hash_in = array('reportGroup'=>'Planets','id' => 'id');
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /litleTxnId/");
         $retOb = $litleTest->echeckRedepositRequest($hash_in);
     }
@@ -51,7 +51,7 @@ class EcheckRedepositUnitTest extends \PHPUnit_Framework_TestCase
     {
         $hash_in = array('reportGroup'=>'Planets','litleTxnId'=>'123456','id' => 'id',
          'echeck' => array('accType'=>'Checking','accNum'=>'12345657890','checkNum'=>'123455'));
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /routingNum/");
         $retOb = $litleTest->echeckRedepositRequest($hash_in);
     }
@@ -60,7 +60,7 @@ class EcheckRedepositUnitTest extends \PHPUnit_Framework_TestCase
     {
         $hash_in = array('reportGroup'=>'Planets','litleTxnId'=>'123456','id' => 'id',
         'echeckToken' => array('accType'=>'Checking','litleToken'=>'1234565789012','checkNum'=>'123455'));
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /routingNum/");
         $retOb = $litleTest->echeckRedepositRequest($hash_in);
     }
@@ -70,7 +70,7 @@ class EcheckRedepositUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array('reportGroup'=>'Planets','litleTxnId'=>'123456','id' => 'id',
         'echeckToken' => array('accType'=>'Checking','routingNum'=>'123123','litleToken'=>'1234565789012','checkNum'=>'123455'),
         'echeck' => array('accType'=>'Checking','routingNum'=>'123123','accNum'=>'12345657890','checkNum'=>'123455'));
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
         $retOb = $litleTest->echeckRedepositRequest($hash_in);
     }
@@ -82,12 +82,12 @@ class EcheckRedepositUnitTest extends \PHPUnit_Framework_TestCase
         		'id' => 'id',
                 'merchantSdk'=>'PHP;10.1.0',
                 'loggedInUser'=>'gdake');
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*merchantSdk="PHP;10.1.0".*loggedInUser="gdake" xmlns=.*>.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->echeckRedepositRequest($hash_in);
     }
@@ -98,12 +98,12 @@ class EcheckRedepositUnitTest extends \PHPUnit_Framework_TestCase
                 'litleTxnId' =>'123123',
         		'id' => 'id',
                 'merchantData'=>array('campaign'=>'camping'));
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<litleTxnId>123123<\/litleTxnId>.*<merchantData>.*<campaign>camping<\/campaign>.*<\/merchantData>/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->echeckRedepositRequest($hash_in);
     }
@@ -111,12 +111,12 @@ class EcheckRedepositUnitTest extends \PHPUnit_Framework_TestCase
     public function test_customIdentifier()
     {
     	$hash_in = array('litleTxnId' =>'123123','id' => 'id', 'customIdentifier' => 'customer');
-    	$mock = $this->getMock('litle\sdk\LitleXmlMapper');
+    	$mock = $this->getMock('litle\sdk\CnpXmlMapper');
     	$mock->expects($this->once())
     	->method('request')
     	->with($this->matchesRegularExpression('/.*<litleTxnId>123123.*<customIdentifier>customer.*/'));
     
-    	$litleTest = new LitleOnlineRequest();
+    	$litleTest = new CnpOnlineRequest();
     	$litleTest->newXML = $mock;
     	$litleTest->echeckRedepositRequest($hash_in);
     }

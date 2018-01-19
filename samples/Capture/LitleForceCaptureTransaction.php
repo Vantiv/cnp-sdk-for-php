@@ -19,7 +19,7 @@ $capture_info = array(
   )
 );
  
-$initialize = new LitleOnlineRequest();
+$initialize = new CnpOnlineRequest();
 $response = $initialize->forceCaptureRequest($capture_info);
  
 #display results

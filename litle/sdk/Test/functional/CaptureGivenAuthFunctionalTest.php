@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2011 Litle & Co.
+ * Copyright (c) 2011 Vantiv eCommerce Inc.
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -24,7 +24,7 @@
  */
 namespace litle\sdk\Test\functional;
 
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 use litle\sdk\XmlParser;
 
 class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
@@ -43,7 +43,7 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
                 'number' => '4100000000000000',
                 'expDate' => '1210'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $captureGivenAuthResponse = $initialize->captureGivenAuthRequest($hash_in);
         $message = XmlParser::getNode($captureGivenAuthResponse, 'message');
         $this->assertEquals('Approved', $message);
@@ -63,7 +63,7 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
                 'litleToken' => '123456789101112',
                 'expDate' => '1210'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $captureGivenAuthResponse = $initialize->captureGivenAuthRequest($hash_in);
         $message = XmlParser::getNode($captureGivenAuthResponse, 'message');
         $this->assertEquals('Approved', $message);
@@ -85,7 +85,7 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
                 'number' => '4100000000000000',
                 'expDate' => '1210'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $captureGivenAuthResponse = $initialize->captureGivenAuthRequest($hash_in);
         $message = XmlParser::getNode($captureGivenAuthResponse, 'message');
         $this->assertEquals('Approved', $message);
@@ -106,7 +106,7 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
                 'number' => '4100000000000000',
                 'expDate' => '1210'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $captureGivenAuthResponse = $initialize->captureGivenAuthRequest($hash_in);
         $message = XmlParser::getNode($captureGivenAuthResponse, 'message');
         $this->assertEquals('Approved', $message);
@@ -127,7 +127,7 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
                 'number' => '4100000000000000',
                 'expDate' => '1210'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $captureGivenAuthResponse = $initialize->captureGivenAuthRequest($hash_in);
         $message = XmlParser::getNode($captureGivenAuthResponse, 'message');
         $this->assertEquals('Approved', $message);
@@ -154,7 +154,7 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
             'originalTransactionAmount' => '1000'
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $captureGivenAuthResponse = $initialize->captureGivenAuthRequest($hash_in);
         $message = XmlParser::getNode($captureGivenAuthResponse, 'message');
         $this->assertEquals('Approved', $message);

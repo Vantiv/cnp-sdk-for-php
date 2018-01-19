@@ -1,6 +1,6 @@
 <?php
 /*
-* Copyright (c) 2011 Litle & Co.
+* Copyright (c) 2011 Vantiv eCommerce Inc.
 *
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
@@ -25,7 +25,7 @@
 
 namespace litle\sdk\Test\certification;
 
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 USE litle\sdk\XmlParser;
 
 class CertAuthReversal extends \PHPUnit_Framework_TestCase
@@ -48,7 +48,7 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
                 'expDate' => '0112',
                 'cardValidationNum' => '349',
                 'type' => 'VI'));
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
@@ -60,7 +60,7 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
         $capture_hash = array(
             'litleTxnId' => (XmlParser::getNode($authorizationResponse, 'litleTxnId')),
             'reportGroup' => 'planets', 'id' => '1211',);
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $captureResponse = $initialize->captureRequest($capture_hash);
         $this->assertEquals('000', XmlParser::getNode($captureResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($captureResponse, 'message'));
@@ -68,7 +68,7 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
         $authReversal_hash = array('id' => '1211',
             'litleTxnId' => (XmlParser::getNode($authorizationResponse, 'litleTxnId')),
             'reportGroup' => 'planets', 'amount' => '5005');
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authReversalResponse = $initialize->authReversalRequest($authReversal_hash);
         $this->assertEquals('000', XmlParser::getNode($authReversalResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authReversalResponse, 'message'));
@@ -96,7 +96,7 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
             //TODO 3-D Secure transaction not supported by merchant
             //'cardholderAuthentication' => array('authenticationValue' => 'BwABBJQ1AgAAAAAgJDUCAAAAAAA=')
         );
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
@@ -108,7 +108,7 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
         $authReversal_hash = array('id' => '1211',
             'litleTxnId' => (XmlParser::getNode($authorizationResponse, 'litleTxnId')),
             'reportGroup' => 'planets');
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authReversalResponse = $initialize->authReversalRequest($authReversal_hash);
         $this->assertEquals('000', XmlParser::getNode($authReversalResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authReversalResponse, 'message'));
@@ -132,7 +132,7 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
                 'expDate' => '0312',
                 'cardValidationNum' => '758',
                 'type' => 'DI'));
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
@@ -144,7 +144,7 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
         $authReversal_hash = array('id' => '1211',
             'litleTxnId' => (XmlParser::getNode($authorizationResponse, 'litleTxnId')),
             'reportGroup' => 'planets');
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authReversalResponse = $initialize->authReversalRequest($authReversal_hash);
         $this->assertEquals('000', XmlParser::getNode($authReversalResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authReversalResponse, 'message'));
@@ -167,7 +167,7 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
                 'number' => '375001000000005',
                 'expDate' => '0412',
                 'type' => 'AX'));
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         //TODO Processing Network Unavailable
         //$this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
@@ -179,7 +179,7 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
         $capture_hash = array('id' => '1211',
             'litleTxnId' => (XmlParser::getNode($authorizationResponse, 'litleTxnId')),
             'reportGroup' => 'planets', 'amount' => '20020');
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $captureResponse = $initialize->captureRequest($capture_hash);
         $this->assertEquals('000', XmlParser::getNode($captureResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($captureResponse, 'message'));
@@ -187,7 +187,7 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
         $authReversal_hash = array('id' => '1211',
             'litleTxnId' => (XmlParser::getNode($authorizationResponse, 'litleTxnId')),
             'reportGroup' => 'planets', 'amount' => '20020');
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authReversalResponse = $initialize->authReversalRequest($authReversal_hash);
         $this->assertEquals('000', XmlParser::getNode($authReversalResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authReversalResponse, 'message'));
@@ -203,7 +203,7 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
                 'number' => '375000026600004',
                 'expDate' => '0512',
                 'type' => 'AX'));
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         //TODO Processing Network Unavailable
         //$this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
@@ -213,7 +213,7 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
         $authReversal_hash = array('id' => '1211',
             'litleTxnId' => (XmlParser::getNode($authorizationResponse, 'litleTxnId')),
             'reportGroup' => 'planets', 'amount' => '10000');
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authReversalResponse = $initialize->authReversalRequest($authReversal_hash);
         $this->assertEquals('000', XmlParser::getNode($authReversalResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authReversalResponse, 'message'));

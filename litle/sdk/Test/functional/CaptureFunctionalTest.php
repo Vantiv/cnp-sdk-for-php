@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2011 Litle & Co.
+ * Copyright (c) 2011 Vantiv eCommerce Inc.
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -24,7 +24,7 @@
  */
 namespace litle\sdk\Test\functional;
 
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 use litle\sdk\XmlParser;
 
 class CaptureFunctionalTest extends \PHPUnit_Framework_TestCase
@@ -35,7 +35,7 @@ class CaptureFunctionalTest extends \PHPUnit_Framework_TestCase
             'litleTxnId' => '1234567891234567891',
             'amount' => '123');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $captureResponse = $initialize->captureRequest($hash_in);
         $message = XmlParser::getAttribute($captureResponse, 'litleOnlineResponse', 'response');
         $this->assertEquals('0', $message);
@@ -51,7 +51,7 @@ class CaptureFunctionalTest extends \PHPUnit_Framework_TestCase
                 'deliveryType' => 'TBD'),
             'payPalOrderComplete' => 'true');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $captureResponse = $initialize->captureRequest($hash_in);
         $message = XmlParser::getAttribute($captureResponse, 'litleOnlineResponse', 'response');
         $this->assertEquals('0', $message);
@@ -64,7 +64,7 @@ class CaptureFunctionalTest extends \PHPUnit_Framework_TestCase
             'patial' => 'true',
             'amount' => '123');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $captureResponse = $initialize->captureRequest($hash_in);
         $message = XmlParser::getAttribute($captureResponse, 'litleOnlineResponse', 'response');
         $this->assertEquals('0', $message);
@@ -76,7 +76,7 @@ class CaptureFunctionalTest extends \PHPUnit_Framework_TestCase
             'litleTxnId' => '1234567891234567891',
             'amount' => '123', 'pin' => '2139');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $captureResponse = $initialize->captureRequest($hash_in);
         $message = XmlParser::getAttribute($captureResponse, 'litleOnlineResponse', 'response');
         $this->assertEquals('0', $message);

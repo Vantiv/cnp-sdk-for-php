@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2011 Litle & Co.
+ * Copyright (c) 2011 Vantiv eCommerce Inc.
 *
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
@@ -23,7 +23,7 @@
 * OTHER DEALINGS IN THE SOFTWARE.
 */
 namespace litle\sdk\Test\unit;
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
 {
     public function test_simple_captureGivenAuth()
@@ -40,12 +40,12 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
        'type'=>'VI',
        'number' =>'4100000000000001',
        'expDate' =>'1210'));
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock	->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<authInformation><authDate>2002-10-09.*<authCode>543216.*><authAmount>12345.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->captureGivenAuthRequest($hash_in);
 
@@ -65,7 +65,7 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
        'type'=>'VI',
        'number' =>'4100000000000001',
        'expDate' =>'1210'));
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $this->setExpectedException("InvalidArgumentException","Missing Required Field: /amount/");
         $retOb = $litleTest->captureGivenAuthRequest($hash_in);
     }
@@ -90,7 +90,7 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
         'type'=>'VI',
         'number' =>'4100000000000001',
         'expDate' =>'1210'));
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
         $retOb = $litleTest->captureGivenAuthRequest($hash_in);
     }
@@ -120,7 +120,7 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
                   'expDate'=>'1210',
                   'cardValidationNum'=>'555',
                   'type'=>'VI'));
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
         $retOb = $litleTest->captureGivenAuthRequest($hash_in);
     }
@@ -141,12 +141,12 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
                         'type'=>'VI',
                         'number' =>'4100000000000001',
                         'expDate' =>'1210'));
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock	->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*merchantSdk="PHP;10.1".*loggedInUser="gdake" xmlns=.*>.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->captureGivenAuthRequest($hash_in);
 
@@ -161,13 +161,13 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
             'orderSource'=>'ecommerce',
             'orderId'=>'3'
         );
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock
             ->expects($this->once())
             ->method('request')
             ->with($this->matchesRegularExpression('/.*<amount>2<\/amount><surchargeAmount>1<\/surchargeAmount><orderSource>ecommerce<\/orderSource>.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->captureGivenAuthRequest($hash_in);
     }
@@ -180,13 +180,13 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
                 'orderSource'=>'ecommerce',
                 'orderId'=>'3'
         );
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock
         ->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<amount>2<\/amount><orderSource>ecommerce<\/orderSource>.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->captureGivenAuthRequest($hash_in);
     }
@@ -203,13 +203,13 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
                 ),
                 'debtRepayment'=>'true'
         );
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock
         ->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<\/merchantData><debtRepayment>true<\/debtRepayment><\/captureGivenAuth>.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->captureGivenAuthRequest($hash_in);
     }
@@ -226,13 +226,13 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
                 ),
                 'debtRepayment'=>'false'
         );
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock
         ->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<\/merchantData><debtRepayment>false<\/debtRepayment><\/captureGivenAuth>.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->captureGivenAuthRequest($hash_in);
     }
@@ -248,13 +248,13 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
                         'campaign'=>'foo',
                 ),
         );
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock
         ->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<\/merchantData><\/captureGivenAuth>.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->captureGivenAuthRequest($hash_in);
     }
@@ -274,12 +274,12 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
     					'type'=>'VI',
     					'number' =>'4100000000000001',
     					'expDate' =>'1210'));
-    	$mock = $this->getMock('litle\sdk\LitleXmlMapper');
+    	$mock = $this->getMock('litle\sdk\CnpXmlMapper');
     	$mock	->expects($this->once())
     	->method('request')
     	->with($this->matchesRegularExpression('/.*<authInformation><authDate>2002-10-09.*<authCode>543216.*><authAmount>12345.*/'));
     
-    	$litleTest = new LitleOnlineRequest();
+    	$litleTest = new CnpOnlineRequest();
     	$litleTest->newXML = $mock;
     	$litleTest->captureGivenAuthRequest($hash_in);
     
@@ -303,12 +303,12 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
     			'originalNetworkTransactionId' => 'abcdefgh',
     			'originalTransactionAmount' => '1000'
     	);
-    	$mock = $this->getMock('litle\sdk\LitleXmlMapper');
+    	$mock = $this->getMock('litle\sdk\CnpXmlMapper');
     	$mock	->expects($this->once())
     	->method('request')
     	->with($this->matchesRegularExpression('/.*<processingType>accountFunding.*<originalNetworkTransactionId>abcdefgh.*<originalTransactionAmount>1000.*/'));
     
-    	$litleTest = new LitleOnlineRequest();
+    	$litleTest = new CnpOnlineRequest();
     	$litleTest->newXML = $mock;
     	$litleTest->captureGivenAuthRequest($hash_in);
     

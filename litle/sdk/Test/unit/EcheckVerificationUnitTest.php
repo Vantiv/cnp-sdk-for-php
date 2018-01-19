@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2011 Litle & Co.
+ * Copyright (c) 2011 Vantiv eCommerce Inc.
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -23,19 +23,19 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 namespace litle\sdk\Test\unit;
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 class EcheckVerificationUnitTest extends \PHPUnit_Framework_TestCase
 {
     public function test_simple_echeckVerification()
     {
          $hash_in = array('amount'=>'123','orderId'=>'123','orderSource'=>'ecommerce','id' => 'id',
         'echeckToken' => array('accType'=>'Checking','routingNum'=>'123123','litleToken'=>'1234565789012','checkNum'=>'123455'));
-         $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+         $mock = $this->getMock('litle\sdk\CnpXmlMapper');
          $mock->expects($this->once())
          ->method('request')
          ->with($this->matchesRegularExpression('/.*<echeckToken>.*<accType>Checking.*/'));
 
-         $litleTest = new LitleOnlineRequest();
+         $litleTest = new CnpOnlineRequest();
          $litleTest->newXML = $mock;
          $litleTest->echeckSaleRequest($hash_in);
     }
@@ -45,7 +45,7 @@ class EcheckVerificationUnitTest extends \PHPUnit_Framework_TestCase
         'reportGroup'=>'Planets',
         'id' => 'id',
         'orderId'=>'12344');
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /amount/");
         $retOb = $litleTest->echeckVerificationRequest($hash_in);
     }
@@ -54,7 +54,7 @@ class EcheckVerificationUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array(
             'reportGroup'=>'Planets','id' => 'id',
             'amount'=>'123');
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /orderId/");
         $retOb = $litleTest->echeckVerificationRequest($hash_in);
     }
@@ -64,7 +64,7 @@ class EcheckVerificationUnitTest extends \PHPUnit_Framework_TestCase
             'reportGroup'=>'Planets','id' => 'id',
             'amount'=>'123',
             'orderId'=>'12344');
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /orderSource/");
         $retOb = $litleTest->echeckVerificationRequest($hash_in);
     }
@@ -73,7 +73,7 @@ class EcheckVerificationUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array('reportGroup'=>'Planets','amount'=>'123','orderId'=>'123','orderSource'=>'ecommerce','id' => 'id',
         'echeckToken' => array('accType'=>'Checking','routingNum'=>'123123','litleToken'=>'1234565789012','checkNum'=>'123455'),
         'echeck' => array('accType'=>'Checking','routingNum'=>'123123','accNum'=>'12345657890','checkNum'=>'123455'));
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
         $retOb = $litleTest->echeckVerificationRequest($hash_in);
     }
@@ -86,12 +86,12 @@ class EcheckVerificationUnitTest extends \PHPUnit_Framework_TestCase
                 'orderId'=>'123',
                 'orderSource'=>'ecommerce',
                 'echeckToken' => array('accType'=>'Checking','routingNum'=>'123123','litleToken'=>'1234565789012','checkNum'=>'123455'));
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*merchantSdk="PHP;10.1.0".*loggedInUser="gdake" xmlns=.*>.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->echeckVerificationRequest($hash_in);
     }
@@ -100,12 +100,12 @@ class EcheckVerificationUnitTest extends \PHPUnit_Framework_TestCase
     {
         $hash_in = array('amount'=>'123','orderId'=>'123','orderSource'=>'ecommerce','id' => 'id','merchantData'=>array('campaign'=>'camping'),
                 'echeckToken' => array('accType'=>'Checking','routingNum'=>'123123','litleToken'=>'1234565789012','checkNum'=>'123455'));
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<\/echeckToken>.*<merchantData>.*<campaign>camping<\/campaign>.*<\/merchantData>/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->echeckVerificationRequest($hash_in);
     }

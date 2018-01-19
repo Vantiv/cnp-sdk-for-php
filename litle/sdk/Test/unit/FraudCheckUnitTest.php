@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2011 Litle & Co.
+ * Copyright (c) 2011 Vantiv eCommerce Inc.
 *
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
@@ -23,7 +23,7 @@
 * OTHER DEALINGS IN THE SOFTWARE.
 */
 namespace litle\sdk\Test\unit;
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 class FraudCheckUnitTest extends \PHPUnit_Framework_TestCase
 {
 	public function test_no_customAttributes()
@@ -33,12 +33,12 @@ class FraudCheckUnitTest extends \PHPUnit_Framework_TestCase
 				'advancedFraudChecks' => array(
 						'threatMetrixSessionId' => 128)
 		);
-		$mock = $this->getMock('litle\sdk\LitleXmlMapper');
+		$mock = $this->getMock('litle\sdk\CnpXmlMapper');
 		$mock	->expects($this->once())
 		->method('request')
 		->with($this->matchesRegularExpression('/.*<advancedFraudChecks><threatMetrixSessionId>128<\/threatMetrixSessionId><\/advancedFraudChecks>.*/'));
 		
-		$litleTest = new LitleOnlineRequest();
+		$litleTest = new CnpOnlineRequest();
 		$litleTest->newXML = $mock;
 		$litleTest->fraudCheck($hash_in);
 	}
@@ -51,12 +51,12 @@ class FraudCheckUnitTest extends \PHPUnit_Framework_TestCase
 						'threatMetrixSessionId' => 128,
 						'customAttribute1' => 'abc')
 		);
-		$mock = $this->getMock('litle\sdk\LitleXmlMapper');
+		$mock = $this->getMock('litle\sdk\CnpXmlMapper');
 		$mock	->expects($this->once())
 		->method('request')
 		->with($this->matchesRegularExpression('/.*<advancedFraudChecks><threatMetrixSessionId>128<\/threatMetrixSessionId><customAttribute1>abc<\/customAttribute1><\/advancedFraudChecks>.*/'));
 	
-		$litleTest = new LitleOnlineRequest();
+		$litleTest = new CnpOnlineRequest();
 		$litleTest->newXML = $mock;
 		$litleTest->fraudCheck($hash_in);
 	}
@@ -70,12 +70,12 @@ class FraudCheckUnitTest extends \PHPUnit_Framework_TestCase
 						'customAttribute1' => 'abc',
 						'customAttribute2' => 'def')
 		);
-		$mock = $this->getMock('litle\sdk\LitleXmlMapper');
+		$mock = $this->getMock('litle\sdk\CnpXmlMapper');
 		$mock	->expects($this->once())
 		->method('request')
 		->with($this->matchesRegularExpression('/.*<advancedFraudChecks><threatMetrixSessionId>128<\/threatMetrixSessionId><customAttribute1>abc<\/customAttribute1><customAttribute2>def<\/customAttribute2><\/advancedFraudChecks>.*/'));
 	
-		$litleTest = new LitleOnlineRequest();
+		$litleTest = new CnpOnlineRequest();
 		$litleTest->newXML = $mock;
 		$litleTest->fraudCheck($hash_in);
 	}
@@ -90,12 +90,12 @@ class FraudCheckUnitTest extends \PHPUnit_Framework_TestCase
 						'customAttribute2' => 'def',
 						'customAttribute3' => 'ghi')
 		);
-		$mock = $this->getMock('litle\sdk\LitleXmlMapper');
+		$mock = $this->getMock('litle\sdk\CnpXmlMapper');
 		$mock	->expects($this->once())
 		->method('request')
 		->with($this->matchesRegularExpression('/.*<advancedFraudChecks><threatMetrixSessionId>128<\/threatMetrixSessionId><customAttribute1>abc<\/customAttribute1><customAttribute2>def<\/customAttribute2><customAttribute3>ghi<\/customAttribute3><\/advancedFraudChecks>.*/'));
 	
-		$litleTest = new LitleOnlineRequest();
+		$litleTest = new CnpOnlineRequest();
 		$litleTest->newXML = $mock;
 		$litleTest->fraudCheck($hash_in);
 	}
@@ -111,12 +111,12 @@ class FraudCheckUnitTest extends \PHPUnit_Framework_TestCase
 						'customAttribute3' => 'ghi',
 						'customAttribute4' => 'jkl')
 		);
-		$mock = $this->getMock('litle\sdk\LitleXmlMapper');
+		$mock = $this->getMock('litle\sdk\CnpXmlMapper');
 		$mock	->expects($this->once())
 		->method('request')
 		->with($this->matchesRegularExpression('/.*<advancedFraudChecks><threatMetrixSessionId>128<\/threatMetrixSessionId><customAttribute1>abc<\/customAttribute1><customAttribute2>def<\/customAttribute2><customAttribute3>ghi<\/customAttribute3><customAttribute4>jkl<\/customAttribute4><\/advancedFraudChecks>.*/'));
 	
-		$litleTest = new LitleOnlineRequest();
+		$litleTest = new CnpOnlineRequest();
 		$litleTest->newXML = $mock;
 		$litleTest->fraudCheck($hash_in);
 	}
@@ -133,12 +133,12 @@ class FraudCheckUnitTest extends \PHPUnit_Framework_TestCase
 						'customAttribute4' => 'jkl',
 						'customAttribute5' => 'mno')
 		);
-		$mock = $this->getMock('litle\sdk\LitleXmlMapper');
+		$mock = $this->getMock('litle\sdk\CnpXmlMapper');
 		$mock	->expects($this->once())
 		->method('request')
 		->with($this->matchesRegularExpression('/.*<advancedFraudChecks><threatMetrixSessionId>128<\/threatMetrixSessionId><customAttribute1>abc<\/customAttribute1><customAttribute2>def<\/customAttribute2><customAttribute3>ghi<\/customAttribute3><customAttribute4>jkl<\/customAttribute4><customAttribute5>mno<\/customAttribute5><\/advancedFraudChecks>.*/'));
 	
-		$litleTest = new LitleOnlineRequest();
+		$litleTest = new CnpOnlineRequest();
 		$litleTest->newXML = $mock;
 		$litleTest->fraudCheck($hash_in);
 	}
@@ -151,12 +151,12 @@ class FraudCheckUnitTest extends \PHPUnit_Framework_TestCase
 						'threatMetrixSessionId' => 128),
 				'amount' => 100
 		);
-		$mock = $this->getMock('litle\sdk\LitleXmlMapper');
+		$mock = $this->getMock('litle\sdk\CnpXmlMapper');
 		$mock	->expects($this->once())
 		->method('request')
 		->with($this->matchesRegularExpression('/.*<amount>100<\/amount>.*/'));
 		
-		$litleTest = new LitleOnlineRequest();
+		$litleTest = new CnpOnlineRequest();
 		$litleTest->newXML = $mock;
 		$litleTest->fraudCheck($hash_in);
 	}
@@ -184,12 +184,12 @@ class FraudCheckUnitTest extends \PHPUnit_Framework_TestCase
 						'zip' => '13579'
 				)
 		);
-		$mock = $this->getMock('litle\sdk\LitleXmlMapper');
+		$mock = $this->getMock('litle\sdk\CnpXmlMapper');
 		$mock	->expects($this->once())
 		->method('request')
 		->with($this->matchesRegularExpression('/.*<billToAddress><firstName>Fetty<\/firstName><lastName>Wap<\/lastName><addressLine1>1738 Trap Street<\/addressLine1><city>Queens<\/city><state>New York<\/state><zip>11412<\/zip><\/billToAddress>.*/'));
 		
-		$litleTest = new LitleOnlineRequest();
+		$litleTest = new CnpOnlineRequest();
 		$litleTest->newXML = $mock;
 		$litleTest->fraudCheck($hash_in);
 	}
@@ -209,12 +209,12 @@ class FraudCheckUnitTest extends \PHPUnit_Framework_TestCase
 						'zip' => '13579'
 				)
 		);
-		$mock = $this->getMock('litle\sdk\LitleXmlMapper');
+		$mock = $this->getMock('litle\sdk\CnpXmlMapper');
 		$mock	->expects($this->once())
 		->method('request')
 		->with($this->matchesRegularExpression('/.*<shipToAddress><firstName>Johnny<\/firstName><lastName>Appleseed<\/lastName><addressLine1>16 Maple Way<\/addressLine1><city>Orchard<\/city><state>California<\/state><zip>13579<\/zip><\/shipToAddress>.*/'));
 	
-		$litleTest = new LitleOnlineRequest();
+		$litleTest = new CnpOnlineRequest();
 		$litleTest->newXML = $mock;
 		$litleTest->fraudCheck($hash_in);
 	}

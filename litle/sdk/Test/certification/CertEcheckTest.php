@@ -1,6 +1,6 @@
 <?php
 /*
-* Copyright (c) 2011 Litle & Co.
+* Copyright (c) 2011 Vantiv eCommerce Inc.
 *
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
@@ -25,7 +25,7 @@
 
 namespace litle\sdk\Test\certification;
 
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 USE litle\sdk\XmlParser;
 
 class CertEcheckTest extends \PHPUnit_Framework_TestCase
@@ -45,7 +45,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
                 'accType' => 'Checking',
                 'routingNum' => '053100300'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $echeckVerificationResponse = $initialize->echeckVerificationRequest($echeck_hash);
         //TODO: Getting 001 as response
         //$this->assertEquals('301', XMLParser::getNode($echeckVerificationResponse, 'response'));
@@ -66,7 +66,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
                 'accNum' => '1099999999',
                 'accType' => 'Checking',
                 'routingNum' => '053000219'));
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
 
         $echeckVerificationResponse = $initialize->echeckVerificationRequest($echeck_hash);
         $this->assertEquals('000', XMLParser::getNode($echeckVerificationResponse, 'response'));
@@ -89,7 +89,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
                 'accType' => 'Corporate',
                 'routingNum' => '053100300'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $echeckVerificationResponse = $initialize->echeckVerificationRequest($echeck_hash);
         //TODO: Getting 000 as response
        // $this->assertEquals('950', XMLParser::getNode($echeckVerificationResponse, 'response'));
@@ -112,7 +112,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
                 'accType' => 'Corporate',
                 'routingNum' => '063102152'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $echeckVerificationResponse = $initialize->echeckVerificationRequest($echeck_hash);
         //TODO: Getting 000 as response
        // $this->assertEquals('951', XMLParser::getNode($echeckVerificationResponse, 'response'));
@@ -135,7 +135,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
                 'accType' => 'Checking',
                 'routingNum' => '053100300'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $echeckSaleResponse = $initialize->echeckSaleRequest($echeck_hash);
         //TODO: Getting 000 as response
         //$this->assertEquals('301', XMLParser::getNode($echeckSaleResponse, 'response'));
@@ -156,7 +156,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
                 'accType' => 'Checking',
                 'routingNum' => '211370545'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $echeckSaleResponse = $initialize->echeckSaleRequest($echeck_hash);
         $this->assertEquals('000', XMLParser::getNode($echeckSaleResponse, 'response'));
         $this->assertEquals('Approved', XMLParser::getNode($echeckSaleResponse, 'message'));
@@ -177,7 +177,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
                 'accType' => 'Corporate',
                 'routingNum' => '211370545'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $echeckSaleResponse = $initialize->echeckSaleRequest($echeck_hash);
         $this->assertEquals('000', XMLParser::getNode($echeckSaleResponse, 'response'));
         $this->assertEquals('Approved', XMLParser::getNode($echeckSaleResponse, 'message'));
@@ -198,7 +198,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
                 'accType' => 'Corporate',
                 'routingNum' => '053133052'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $echeckSaleResponse = $initialize->echeckSaleRequest($echeck_hash);
         //TODO: Getting 000 as response
         //$this->assertEquals('900', XMLParser::getNode($echeckSaleResponse, 'response'));
@@ -220,7 +220,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
                 'accType' => 'Checking',
                 'routingNum' => '053100300'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $echeckCreditResponse = $initialize->echeckCreditRequest($echeck_hash);
         $this->assertEquals('000', XMLParser::getNode($echeckCreditResponse, 'response'));
     }
@@ -240,7 +240,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
                 'accType' => 'Corporate',
                 'routingNum' => '063102152'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $echeckCreditResponse = $initialize->echeckCreditRequest($echeck_hash);
         $this->assertEquals('000', XMLParser::getNode($echeckCreditResponse, 'response'));
         $this->assertEquals('Approved', XMLParser::getNode($echeckCreditResponse, 'message'));
@@ -261,7 +261,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
                 'accType' => 'Corporate',
                 'routingNum' => '211370545'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $echeckCreditResponse = $initialize->echeckCreditRequest($echeck_hash);
         $this->assertEquals('000', XMLParser::getNode($echeckCreditResponse, 'response'));
         $this->assertEquals('Approved', XMLParser::getNode($echeckCreditResponse, 'message'));
@@ -271,7 +271,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
     {
         $echeck_hash = array('litleTxnId' => '430000000000000001', 'id' => 'id',);
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $echeckCreditResponse = $initialize->echeckCreditRequest($echeck_hash);
         $this->assertEquals('000', XMLParser::getNode($echeckCreditResponse, 'response'));
         $this->assertEquals('Approved', XMLParser::getNode($echeckCreditResponse, 'message'));
@@ -281,7 +281,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
     {
         $echeck_hash = array('litleTxnId' => '2', 'id' => 'id',);
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $echeckCreditResponse = $initialize->echeckCreditRequest($echeck_hash);
         $this->assertEquals('000', XMLParser::getNode($echeckCreditResponse, 'response'));
         $this->assertEquals('Approved', XMLParser::getNode($echeckCreditResponse, 'message'));

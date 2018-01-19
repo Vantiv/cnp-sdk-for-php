@@ -1,6 +1,6 @@
 <?php
 /*
-* Copyright (c) 2011 Litle & Co.
+* Copyright (c) 2011 Vantiv eCommerce Inc.
 *
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
@@ -24,7 +24,7 @@
 */
 namespace litle\sdk\Test\functional;
 
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 use litle\sdk\XmlParser;
 
 class EcheckVoidFunctionalTest extends \PHPUnit_Framework_TestCase
@@ -32,7 +32,7 @@ class EcheckVoidFunctionalTest extends \PHPUnit_Framework_TestCase
     public function test_simple_echeckVoid()
     {
         $hash_in = array('litleTxnId' => '123456789012345678', 'id' => 'id');
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $echeckVoidResponse = $initialize->echeckVoidRequest($hash_in);
         $response = XmlParser::getAttribute($echeckVoidResponse, 'litleOnlineResponse', 'response');
         $this->assertEquals('0', $response);

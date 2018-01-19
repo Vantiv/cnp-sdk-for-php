@@ -114,7 +114,7 @@ Running the above commands will create a configuration file in the lib directory
 
 ```php
 <?php
-require_once realpath(dirname(__FILE__)) . '/../lib/LitleOnline.php';  
+require_once realpath(dirname(__FILE__)) . 'CnpOnline.php';  
     // Visa $10.00 sale
     $hash_in = array(
 	      'amount'=>'106',
@@ -137,7 +137,7 @@ echo ("Vantiv eCommerce Transaction ID: " . XMLParser::getNode($saleResponse,'li
 As of 8.13.1, you may also use a tree-oriented style to get the response values:
 ```php
 <?php
-require_once realpath(dirname(__FILE__)) . '/../lib/LitleOnline.php';  
+require_once realpath(dirname(__FILE__)) . 'CnpOnline.php';  
     // Visa $10.00 sale
     $hash_in = array(
 	      'amount'=>'106',

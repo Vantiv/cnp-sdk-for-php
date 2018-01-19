@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2011 Litle & Co.
+ * Copyright (c) 2011 Vantiv eCommerce Inc.
 *
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
@@ -23,7 +23,7 @@
 * OTHER DEALINGS IN THE SOFTWARE.
 */
 namespace litle\sdk\Test\unit;
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 class QueryTransaction extends \PHPUnit_Framework_TestCase
 {
     public function testQueryTransactionSimple()
@@ -32,12 +32,12 @@ class QueryTransaction extends \PHPUnit_Framework_TestCase
         	'id' => 'id',
             'origId'=> '2111',
             'origActionType'=>'A');
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock	->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<origId>2111.*<origActionType>A.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->queryTransaction($hash_in);
     }

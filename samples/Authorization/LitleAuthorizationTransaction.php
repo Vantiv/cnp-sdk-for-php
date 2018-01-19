@@ -22,7 +22,7 @@ $auth_info = array(
 		      'type' => 'VI')
 			);
  
-$initialize = new LitleOnlineRequest(); 
+$initialize = new CnpOnlineRequest();
 $authResponse = $initialize->authorizationRequest($auth_info);
  
 #display results

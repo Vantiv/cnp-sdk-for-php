@@ -10,7 +10,7 @@ $capture_info = array(
         'id'=> '456',
 	);
  
-$initialize = new LitleOnlineRequest(); 
+$initialize = new CnpOnlineRequest();
 $captureResponse = $initialize->captureRequest($capture_info);
  
 #display results

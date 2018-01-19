@@ -20,7 +20,7 @@ $sale_info = array(
               'type' => 'MC')
             );
 
-$litle_request = new LitleRequest();
+$litle_request = new CnpRequest();
 $batch_request = new BatchRequest();
 
 # add a sale to the batch
@@ -34,7 +34,7 @@ $litle_request->closeRequest();
 # send the batch to litle via SFTP
 $response_file = $litle_request->sendToLitle();
 # process the response file
-$processor = new LitleResponseProcessor($response_file);
+$processor = new CnpResponseProcessor($response_file);
 
 while ($txn = $processor->nextTransaction()) {
     echo "Transaction Type : " . $txn->getName() . "\n";

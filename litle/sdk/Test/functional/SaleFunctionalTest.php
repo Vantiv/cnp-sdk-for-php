@@ -1,6 +1,6 @@
 <?php
 /*
-* Copyright (c) 2011 Litle & Co.
+* Copyright (c) 2011 Vantiv eCommerce Inc.
 *
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
@@ -24,7 +24,7 @@
 */
 namespace litle\sdk\Test\functional;
 
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 use litle\sdk\XmlParser;
 
 class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
@@ -42,7 +42,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'amount' => '123');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($hash_in);
         $response = XmlParser::getNode($saleResponse, 'response');
         $this->assertEquals('000', $response);
@@ -59,7 +59,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'amount' => '123');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($hash_in);
         $response = XmlParser::getNode($saleResponse, 'response');
         $this->assertEquals('000', $response);
@@ -75,7 +75,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'reportGroup' => 'Planets',
             'orderSource' => 'notecommerce',
             'amount' => '123');
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($hash_in);
         $message = XmlParser::getAttribute($saleResponse, 'litleOnlineResponse', 'message');
         $this->assertRegExp('/Error validating xml data against the schema/', $message);
@@ -94,7 +94,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'amount' => '123');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($hash_in);
         $message = XmlParser::getAttribute($saleResponse, 'litleOnlineResponse', 'message');
         $this->assertRegExp('/Error validating xml data against the schema/', $message);
@@ -113,7 +113,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'amount' => '123');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($hash_in);
         $response = XmlParser::getNode($saleResponse, 'response');
         $this->assertEquals('000', $response);
@@ -130,7 +130,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'amount' => '123');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($hash_in);
         $response = XmlParser::getNode($saleResponse, 'response');
         $this->assertEquals('000', $response);
@@ -148,7 +148,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'amount' => '123');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($hash_in);
         $message = XmlParser::getNode($saleResponse, 'message');
         $this->assertEquals('Approved', $message);
@@ -171,7 +171,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'amount' => '123');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($hash_in);
         $response = XmlParser::getNode($saleResponse, 'response');
         $this->assertEquals('000', $response);
@@ -194,7 +194,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'amount' => '1110');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($hash_in);
         $response = XmlParser::getNode($saleResponse, 'response');
         $this->assertEquals('110', $response);
@@ -219,7 +219,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
                 'customAttribute4' => '4',
                 'customAttribute5' => '5',
             ));
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($hash_in);
         $response = XmlParser::getNode($saleResponse, 'response');
         $this->assertEquals('000', $response);
@@ -243,7 +243,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'amount' => '123');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($hash_in);
         $response = XmlParser::getNode($saleResponse, 'response');
         $this->assertEquals('000', $response);
@@ -264,7 +264,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'amount' => '123');
 
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($hash_in);
         $response = XmlParser::getNode($saleResponse, 'networkTransactionId');
         $this->assertEquals('63225578415568556365452427825', $response);
@@ -299,7 +299,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
                 'taxExempt' => false
             ),
         );
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($sale_info);
         #display results
         echo ("Response: " . (XmlParser::getNode($saleResponse,'response'))) . "\n";

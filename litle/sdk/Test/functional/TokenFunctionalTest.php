@@ -1,6 +1,6 @@
 <?php
 /*
-* Copyright (c) 2011 Litle & Co.
+* Copyright (c) 2011 Vantiv eCommerce Inc.
 *
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
@@ -24,7 +24,7 @@
 */
 namespace litle\sdk\Test\functional;
 
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 use litle\sdk\XmlParser;
 
 class TokenFunctionalTest extends \PHPUnit_Framework_TestCase
@@ -38,7 +38,7 @@ class TokenFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderId' => '12344',
             'accountNumber' => '1233456789103801');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->registerTokenRequest($hash_in);
         $message = XmlParser::getAttribute($registerTokenResponse, 'litleOnlineResponse', 'message');
         $this->assertEquals('Valid Format', $message);
@@ -53,7 +53,7 @@ class TokenFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderId' => '12344',
             'paypageRegistrationId' => '1233456789101112');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->registerTokenRequest($hash_in);
         $message = XmlParser::getAttribute($registerTokenResponse, 'litleOnlineResponse', 'message');
         $this->assertEquals('Valid Format', $message);
@@ -68,7 +68,7 @@ class TokenFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderId' => '12344',
             'echeckForToken' => array('accNum' => '12344565', 'routingNum' => '123476545'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->registerTokenRequest($hash_in);
         $message = XmlParser::getAttribute($registerTokenResponse, 'litleOnlineResponse', 'message');
         $this->assertEquals('Valid Format', $message);
@@ -82,7 +82,7 @@ class TokenFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderId' => '12344',
             'echeckForToken' => array('routingNum' => '132344565'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException', 'Missing Required Field: /accNum/');
         $retOb = $litleTest->registerTokenRequest($hash_in);
     }
@@ -103,7 +103,7 @@ class TokenFunctionalTest extends \PHPUnit_Framework_TestCase
                 'signature' => 'signature',
                 'version' => 'version 1'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->registerTokenRequest($hash_in);
         $message = XmlParser::getAttribute($registerTokenResponse, 'litleOnlineResponse', 'message');
         $this->assertEquals('Valid Format', $message);
@@ -117,7 +117,7 @@ class TokenFunctionalTest extends \PHPUnit_Framework_TestCase
             'accountNumber' => '1233456789103801'
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->registerTokenRequest($hash_in);
         $message = XmlParser::getAttribute($registerTokenResponse, 'litleOnlineResponse', 'message');
         $cryptogram = XmlParser::getNode($registerTokenResponse, 'cryptogram');

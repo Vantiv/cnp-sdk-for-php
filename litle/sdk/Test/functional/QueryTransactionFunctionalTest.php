@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2011 Litle & Co.
+ * Copyright (c) 2011 Vantiv eCommerce Inc.
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -24,7 +24,7 @@
  */
 namespace litle\sdk\Test\functional;
 
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 use litle\sdk\XmlParser;
 
 class QueryTransactionFunctionalTest extends \PHPUnit_Framework_TestCase
@@ -36,7 +36,7 @@ class QueryTransactionFunctionalTest extends \PHPUnit_Framework_TestCase
             'origId' => '2111',
             'origActionType' => 'A');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $queryTransactionResponse = $initialize->queryTransaction($hash_in);
         $response = XmlParser::getNode($queryTransactionResponse, 'response');
         $this->assertEquals('000', $response);
@@ -60,7 +60,7 @@ class QueryTransactionFunctionalTest extends \PHPUnit_Framework_TestCase
             'origId' => 'ABC',
             'origActionType' => 'A');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $queryTransactionResponse = $initialize->queryTransaction($hash_in);
         $response = XmlParser::getNode($queryTransactionResponse, 'response');
         $message = XmlParser::getNode($queryTransactionResponse, 'message');
@@ -75,7 +75,7 @@ class QueryTransactionFunctionalTest extends \PHPUnit_Framework_TestCase
             'origId' => '2112',
             'origActionType' => 'A');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $queryTransactionResponse = $initialize->queryTransaction($hash_in);
         $response = XmlParser::getNode($queryTransactionResponse, 'response');
         $matchCount = XmlParser::getNode($queryTransactionResponse, 'matchCount');
@@ -99,7 +99,7 @@ class QueryTransactionFunctionalTest extends \PHPUnit_Framework_TestCase
             'origId' => 'ABCD0',
             'origActionType' => 'A');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $queryTransactionResponse = $initialize->queryTransaction($hash_in);
         $response = XmlParser::getNode($queryTransactionResponse, 'response');
         $message = XmlParser::getNode($queryTransactionResponse, 'message');

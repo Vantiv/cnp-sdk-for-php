@@ -1,6 +1,6 @@
 <?php
 /*
-* Copyright (c) 2011 Litle & Co.
+* Copyright (c) 2011 Vantiv eCommerce Inc.
 *
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
@@ -24,7 +24,7 @@
 */
 namespace litle\sdk\Test\functional;
 
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 use litle\sdk\XmlParser;
 
 class ForceCaptureFunctionalTest extends \PHPUnit_Framework_TestCase
@@ -45,7 +45,7 @@ class ForceCaptureFunctionalTest extends \PHPUnit_Framework_TestCase
                 'expDate' => '1210'
             ));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $forceCaptureResponse = $initialize->forceCaptureRequest($hash_in);
         $response = XmlParser::getAttribute($forceCaptureResponse, 'litleOnlineResponse', 'response');
         $this->assertEquals('000', $response);
@@ -68,7 +68,7 @@ class ForceCaptureFunctionalTest extends \PHPUnit_Framework_TestCase
                 'type' => 'VI'
             ));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $forceCaptureResponse = $initialize->forceCaptureRequest($hash_in);
         $message = XmlParser::getAttribute($forceCaptureResponse, 'litleOnlineResponse', 'message');
         $this->assertEquals('Valid Format', $message);
@@ -92,7 +92,7 @@ class ForceCaptureFunctionalTest extends \PHPUnit_Framework_TestCase
                 'expDate' => '1210'
             ));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $forceCaptureResponse = $initialize->forceCaptureRequest($hash_in);
         $response = XmlParser::getAttribute($forceCaptureResponse, 'litleOnlineResponse', 'response');
         $this->assertEquals('000', $response);
@@ -117,7 +117,7 @@ class ForceCaptureFunctionalTest extends \PHPUnit_Framework_TestCase
             'processingType' => 'initialRecurring'
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $forceCaptureResponse = $initialize->forceCaptureRequest($hash_in);
         $response = XmlParser::getAttribute($forceCaptureResponse, 'litleOnlineResponse', 'response');
         $this->assertEquals('000', $response);

@@ -1,6 +1,6 @@
 <?php
 /*
-* Copyright (c) 2011 Litle & Co.
+* Copyright (c) 2011 Vantiv eCommerce Inc.
 *
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
@@ -24,7 +24,7 @@
 */
 namespace litle\sdk\Test\functional;
 
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 use litle\sdk\XmlParser;
 
 class GiftCardCreditFunctionalTest extends \PHPUnit_Framework_TestCase
@@ -48,7 +48,7 @@ class GiftCardCreditFunctionalTest extends \PHPUnit_Framework_TestCase
 
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $giftCardCreditResponse = $initialize->giftCardCreditRequest($hash_in);
         $response = XmlParser::getNode($giftCardCreditResponse, 'response');
         $this->assertEquals('000', $response);
@@ -71,7 +71,7 @@ class GiftCardCreditFunctionalTest extends \PHPUnit_Framework_TestCase
 
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $giftCardCreditResponse = $initialize->giftCardCreditRequest($hash_in);
         $response = XmlParser::getNode($giftCardCreditResponse, 'response');
         $this->assertEquals('000', $response);

@@ -23,7 +23,7 @@ $auth_info = array(
 	)
 );
  
-$initialize = new LitleOnlineRequest(); 
+$initialize = new CnpOnlineRequest();
 $authResponse = $initialize->authorizationRequest($auth_info);
 
 echo ("Message: " . XmlParser::getNode($authResponse,'message'));

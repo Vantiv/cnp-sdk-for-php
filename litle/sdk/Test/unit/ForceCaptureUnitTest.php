@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2011 Litle & Co.
+ * Copyright (c) 2011 Vantiv eCommerce Inc.
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -23,7 +23,7 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 namespace litle\sdk\Test\unit;
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
 {
     public function test_simple_forcCapture()
@@ -39,12 +39,12 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
       'expDate'=>'1210',
       'cardValidationNum'=>'555',
       'type'=>'VI'));
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<token><litleToken>123456789101112.*<expDate>1210.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->forceCaptureRequest($hash_in);
     }
@@ -60,7 +60,7 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
        'expDate'=>'1210',
        'cardValidationNum'=>'555',
        'type'=>'VI'));
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /orderId/");
         $retOb = $litleTest->forceCaptureRequest($hash_in);
     }
@@ -76,7 +76,7 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
            'expDate'=>'1210',
            'cardValidationNum'=>'555',
            'type'=>'VI'));
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /orderSource/");
         $retOb = $litleTest->forceCaptureRequest($hash_in);
     }
@@ -100,7 +100,7 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
       'expDate'=>'1210',
       'cardValidationNum'=>'555',
       'type'=>'VI'));
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
         $retOb = $litleTest->forceCaptureRequest($hash_in);
     }
@@ -129,7 +129,7 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
           'expDate'=>'1210',
           'cardValidationNum'=>'555',
           'type'=>'VI'));
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
         $retOb = $litleTest->forceCaptureRequest($hash_in);
     }
@@ -148,12 +148,12 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
                         'expDate'=>'1210',
                         'cardValidationNum'=>'555',
                         'type'=>'VI'));
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*merchantSdk="PHP;10.1.0".*loggedInUser="gdake" xmlns=.*>.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->forceCaptureRequest($hash_in);
     }
@@ -166,13 +166,13 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
             'surchargeAmount'=>'1',
             'orderSource'=>'ecommerce',
         );
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock
             ->expects($this->once())
             ->method('request')
             ->with($this->matchesRegularExpression('/.*<amount>2<\/amount><surchargeAmount>1<\/surchargeAmount><orderSource>ecommerce<\/orderSource>.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->forceCaptureRequest($hash_in);
     }
@@ -184,13 +184,13 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
             'amount'=>'2',
             'orderSource'=>'ecommerce',
         );
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock
         ->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<amount>2<\/amount><orderSource>ecommerce<\/orderSource>.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->forceCaptureRequest($hash_in);
     }
@@ -206,13 +206,13 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
                 ),
                 'debtRepayment'=>'true'
         );
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock
         ->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<\/merchantData><debtRepayment>true<\/debtRepayment><\/forceCapture>.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->forceCaptureRequest($hash_in);
     }
@@ -228,13 +228,13 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
                 ),
                 'debtRepayment'=>'false'
         );
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock
         ->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<\/merchantData><debtRepayment>false<\/debtRepayment><\/forceCapture>.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->forceCaptureRequest($hash_in);
     }
@@ -249,13 +249,13 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
                         'campaign'=>'foo',
                 ),
         );
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock
         ->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<\/merchantData><\/forceCapture>.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->forceCaptureRequest($hash_in);
     }
@@ -272,12 +272,12 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
     					'expDate'=>'1210',
     					'cardValidationNum'=>'555',
     					'type'=>'VI'));
-    	$mock = $this->getMock('litle\sdk\LitleXmlMapper');
+    	$mock = $this->getMock('litle\sdk\CnpXmlMapper');
     	$mock->expects($this->once())
     	->method('request')
     	->with($this->matchesRegularExpression('/.*<token><litleToken>123456789101112.*<expDate>1210.*/'));
     
-    	$litleTest = new LitleOnlineRequest();
+    	$litleTest = new CnpOnlineRequest();
     	$litleTest->newXML = $mock;
     	$litleTest->forceCaptureRequest($hash_in);
     }
@@ -297,12 +297,12 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
     					'type'=>'VI'),
     			'processingType' => 'initialRecurring'
     			);
-    	$mock = $this->getMock('litle\sdk\LitleXmlMapper');
+    	$mock = $this->getMock('litle\sdk\CnpXmlMapper');
     	$mock->expects($this->once())
     	->method('request')
     	->with($this->matchesRegularExpression('/.*<processingType>initialRecurring.*/'));
     
-    	$litleTest = new LitleOnlineRequest();
+    	$litleTest = new CnpOnlineRequest();
     	$litleTest->newXML = $mock;
     	$litleTest->forceCaptureRequest($hash_in);
     }

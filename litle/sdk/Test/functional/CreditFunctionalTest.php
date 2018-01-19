@@ -1,6 +1,6 @@
 <?php
 /*
-* Copyright (c) 2011 Litle & Co.
+* Copyright (c) 2011 Vantiv eCommerce Inc.
 *
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
@@ -24,7 +24,7 @@
 */
 namespace litle\sdk\Test\functional;
 
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 use litle\sdk\XmlParser;
 
 class CreditFunctionalTest extends \PHPUnit_Framework_TestCase
@@ -42,7 +42,7 @@ class CreditFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'amount' => '123');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($hash_in);
         $response = XmlParser::getNode($creditResponse, 'response');
         $this->assertEquals('000', $response);
@@ -59,7 +59,7 @@ class CreditFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'amount' => '123');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($hash_in);
         $message = XmlParser::getAttribute($creditResponse, 'litleOnlineResponse', 'message');
         $this->assertRegExp('/Error validating xml data against the schema/', $message);
@@ -69,7 +69,7 @@ class CreditFunctionalTest extends \PHPUnit_Framework_TestCase
     {
         $hash_in = array('id' => 'id', 'reportGroup' => 'planets', 'litleTxnId' => '1234567891234567891');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($hash_in);
         $message = XmlParser::getAttribute($creditResponse, 'litleOnlineResponse', 'response');
         $this->assertEquals("0", $message);
@@ -89,7 +89,7 @@ class CreditFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'amount' => '123');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($hash_in);
         $response = XmlParser::getNode($creditResponse, 'response');
         $this->assertEquals('000', $response);
@@ -108,7 +108,7 @@ class CreditFunctionalTest extends \PHPUnit_Framework_TestCase
                 'expDate' => '1210'),
             'amexAggregatorData' => array('sellerMerchantCategoryCode' => '1234', 'sellerId' => '1234Id'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($hash_in);
         $response = XmlParser::getNode($creditResponse, 'response');
         $this->assertEquals('000', $response);
@@ -128,7 +128,7 @@ class CreditFunctionalTest extends \PHPUnit_Framework_TestCase
             'amount' => '123',
             'secondaryAmount' => '1234');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($hash_in);
         $response = XmlParser::getNode($creditResponse, 'response');
         $this->assertEquals('000', $response);
@@ -138,7 +138,7 @@ class CreditFunctionalTest extends \PHPUnit_Framework_TestCase
     {
         $hash_in = array('id' => 'id', 'reportGroup' => 'planets', 'litleTxnId' => '1234567891234567891', 'secondaryAmount' => '100');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($hash_in);
         $message = XmlParser::getAttribute($creditResponse, 'litleOnlineResponse', 'response');
         $this->assertEquals("0", $message);
@@ -156,7 +156,7 @@ class CreditFunctionalTest extends \PHPUnit_Framework_TestCase
             'pin' => '3333'
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($hash_in);
         $message = XmlParser::getAttribute($creditResponse, 'litleOnlineResponse', 'response');
         $this->assertEquals("0", $message);

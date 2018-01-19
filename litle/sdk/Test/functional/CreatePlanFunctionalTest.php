@@ -1,6 +1,6 @@
 <?php
 /*
-* Copyright (c) 2011 Litle & Co.
+* Copyright (c) 2011 Vantiv eCommerce Inc.
 *
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
@@ -24,7 +24,7 @@
 */
 namespace litle\sdk\Test\functional;
 
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 use litle\sdk\XmlParser;
 
 class CreatePlanFunctionalTest extends \PHPUnit_Framework_TestCase
@@ -38,7 +38,7 @@ class CreatePlanFunctionalTest extends \PHPUnit_Framework_TestCase
             'amount' => '1000'
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $createPlanResponse = $initialize->createPlan($hash_in);
         $message = XmlParser::getAttribute($createPlanResponse, 'litleOnlineResponse', 'message');
         $this->assertEquals('Valid Format', $message);

@@ -1,6 +1,6 @@
 <?php
 /*
-* Copyright (c) 2011 Litle & Co.
+* Copyright (c) 2011 Vantiv eCommerce Inc.
 *
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
@@ -24,7 +24,7 @@
 */
 namespace litle\sdk\Test\certification;
 
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 USE litle\sdk\XmlParser;
 
 class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
@@ -39,7 +39,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
                 'number' => '4457010200000247',
                 'expDate' => '0812',
                 'type' => 'VI'));
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
@@ -61,7 +61,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
                 'number' => '5500000254444445',
                 'expDate' => '0312',
                 'type' => 'MC'));
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
@@ -83,7 +83,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
                 'number' => '5592106621450897',
                 'expDate' => '0312',
                 'type' => 'MC'));
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
@@ -105,7 +105,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
                 'number' => '5590409551104142',
                 'expDate' => '0312',
                 'type' => 'MC'));
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
@@ -127,7 +127,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
                 'number' => '5587755665222179',
                 'expDate' => '0312',
                 'type' => 'MC'));
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
@@ -149,7 +149,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
                 'number' => '5445840176552850',
                 'expDate' => '0312',
                 'type' => 'MC'));
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         //TODO: getting 850 as response
         //$this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
@@ -172,7 +172,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
                 'number' => '5390016478904678',
                 'expDate' => '0312',
                 'type' => 'MC'));
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
@@ -194,7 +194,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
                 'number' => '4457010201000246',
                 'expDate' => '0912',
                 'type' => 'VI'));
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
@@ -213,7 +213,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
                 'number' => '4457010202000245',
                 'expDate' => '1111',
                 'type' => 'VI'));
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
@@ -232,7 +232,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
                 'number' => '5112010201000109',
                 'expDate' => '0412',
                 'type' => 'MC'));
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
@@ -251,7 +251,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
                 'number' => '5112010202000108',
                 'expDate' => '0812',
                 'type' => 'MC'));
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
@@ -270,7 +270,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
                 'number' => '4100204446270000',
                 'expDate' => '1112',
                 'type' => 'VI'));
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));

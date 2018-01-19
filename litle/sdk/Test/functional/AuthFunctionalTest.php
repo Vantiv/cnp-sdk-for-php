@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2011 Litle & Co.
+ * Copyright (c) 2011 Vantiv eCommerce Inc.
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -24,7 +24,7 @@
  */
 namespace litle\sdk\Test\functional;
 
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 use litle\sdk\XmlParser;
 
 class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
@@ -42,7 +42,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'amount' => '0');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $response = XmlParser::getNode($authorizationResponse, 'response');
         $this->assertEquals('000', $response);
@@ -99,7 +99,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
             ),
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $response = XmlParser::getNode($authorizationResponse, 'response');
         $this->assertEquals('000', $response);
@@ -116,7 +116,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'amount' => '123');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $message = XmlParser::getNode($authorizationResponse, 'message');
         $this->assertEquals('Approved', $message);
@@ -126,7 +126,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
     {
         $hash_in = array('id' => 'id', 'reportGroup' => 'planets', 'litleTxnId' => '1234567891234567891');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $message = XmlParser::getAttribute($authorizationResponse, 'litleOnlineResponse', 'message');
         $this->assertEquals("Valid Format", $message);
@@ -143,7 +143,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'notecommerce',
             'amount' => '123');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $message = XmlParser::getAttribute($authorizationResponse, 'litleOnlineResponse', 'message');
         $this->assertRegExp('/Error validating xml data against the schema/', $message);
@@ -160,7 +160,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'amount' => '123');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $message = XmlParser::getNode($authorizationResponse, 'message');
         $this->assertEquals('Approved', $message);
@@ -178,7 +178,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'amount' => '123');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $message = XmlParser::getNode($authorizationResponse, 'message');
         $this->assertEquals('Approved', $message);
@@ -196,7 +196,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
                 'type' => 'VI',
                 'number' => '4100000000000000',
                 'expDate' => '1210'));
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException', 'Missing Required Field: /capability/');
         $retOb = $litleTest->authorizationRequest($hash_in);
     }
@@ -217,7 +217,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
             'id' => '654',
             'amount' => '1000');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $response = XmlParser::getNode($authorizationResponse, 'response');
         $this->assertEquals('000', $response);
@@ -239,7 +239,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
             'id' => '654',
             'amount' => '1101');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $response = XmlParser::getNode($authorizationResponse, 'response');
         $this->assertEquals('101', $response);
@@ -261,7 +261,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
             'id' => '654',
             'amount' => '12312');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $response = XmlParser::getNode($authorizationResponse, 'response');
         $this->assertEquals('000', $response);
@@ -284,7 +284,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
             'originalTransactionAmount' => '1000'
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $response = XmlParser::getNode($authorizationResponse, 'response');
         $this->assertEquals('000', $response);
@@ -308,7 +308,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
             'originalTransactionAmount' => '1000'
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $response = XmlParser::getNode($authorizationResponse, 'networkTransactionId');
         $this->assertEquals('63225578415568556365452427825', $response);
@@ -335,7 +335,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
             'originalTransactionAmount' => '1000'
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $endpoint = XmlParser::getNode($authorizationResponse, 'endpoint');
         $fieldValue = XmlParser::getNode($authorizationResponse, 'fieldValue');
@@ -364,7 +364,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'amount' => '0');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $message = XmlParser::getAttribute($authorizationResponse, 'litleOnlineResponse', 'message');
         $this->assertRegExp('/Error validating xml data against the schema/', $message);
@@ -384,7 +384,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'amount' => '0');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $message = XmlParser::getAttribute($authorizationResponse, 'litleOnlineResponse', 'message');
         $this->assertRegExp('/Error validating xml data against the schema/', $message);
@@ -410,7 +410,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
             )
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $response = XmlParser::getAttribute($authorizationResponse, 'litleOnlineResponse', 'response');
         $this->assertEquals('000', $response);

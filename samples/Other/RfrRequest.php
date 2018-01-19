@@ -2,7 +2,7 @@
 namespace litle\sdk;
 require_once realpath(__DIR__). '/../../vendor/autoload.php'; 
 # use Auth batch to get the session Id
-$request = new LitleRequest();
+$request = new CnpRequest();
 $batch = new BatchRequest();
 	$hash_in = array(
 		'card'=>array('type'=>'VI',
@@ -16,7 +16,7 @@ $batch = new BatchRequest();
 	$batch->addAuth($hash_in);
 	$request->addBatchRequest($batch);
 	$responseFileLoc=$request->sendToLitleStream();
-	$resp = new LitleResponseProcessor($responseFileLoc);
+	$resp = new CnpResponseProcessor($responseFileLoc);
 	$xmlReader=$resp->getXmlReader();
 	$sessionId=$xmlReader->getAttribute("litleSessionId");
 	echo ("sessionId:" +$sessionId);
@@ -24,10 +24,10 @@ $batch = new BatchRequest();
 	
 	
      #Process RFR request
-	 $request = new LitleRequest();
+	 $request = new CnpRequest();
 	 $request->createRFRRequest(array('litleSessionId' => $sessionId));
 	 $response_file = $request->sendToLitleStream();
-	 $processor = new LitleResponseProcessor($response_file);
+	 $processor = new CnpResponseProcessor($response_file);
 	 $res=$processor->nextTransaction(true);
 	 echo $res;
 	 $xml = simplexml_load_string($res);

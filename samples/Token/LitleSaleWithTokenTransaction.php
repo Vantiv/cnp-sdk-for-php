@@ -22,7 +22,7 @@ $sale_info = array(
 		      'type' => 'MC')
 			);
  
-$initialize = new LitleOnlineRequest();
+$initialize = new CnpOnlineRequest();
 $saleResponse = $initialize->saleRequest($sale_info);
  
 #display results

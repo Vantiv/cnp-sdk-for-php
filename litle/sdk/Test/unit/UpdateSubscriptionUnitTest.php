@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2011 Litle & Co.
+ * Copyright (c) 2011 Vantiv eCommerce Inc.
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -23,7 +23,7 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 namespace litle\sdk\Test\unit;
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 class UpdateSubscriptionUnitTest extends \PHPUnit_Framework_TestCase
 {
     public function test_simple()
@@ -41,12 +41,12 @@ class UpdateSubscriptionUnitTest extends \PHPUnit_Framework_TestCase
                 'cardValidationNum' => '1213'
             ),
             'billingDate'=>'2013-12-17');
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<subscriptionId>1.*<planCode>2.*<billToAddress.*<addressLine1>3.*<card.*type.*VI.*billingDate.*2013-12-17.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->updateSubscription($hash_in);
     }
@@ -65,13 +65,13 @@ class UpdateSubscriptionUnitTest extends \PHPUnit_Framework_TestCase
                 'cardValidationNum' => '1213'
             ),
             'billingDate'=>'2013-12-17');
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
 
         $mock->expects($this->once())
         ->method('request')
         ->with($this->logicalNot($this->matchesRegularExpression('/.*planCode.*/')));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->updateSubscription($hash_in);
     }
@@ -87,13 +87,13 @@ class UpdateSubscriptionUnitTest extends \PHPUnit_Framework_TestCase
                 'cardValidationNum' => '1213'
             ),
             'billingDate'=>'2013-12-17');
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
 
         $mock->expects($this->once())
         ->method('request')
         ->with($this->logicalNot($this->matchesRegularExpression('/.*billToAddress.*/')));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->updateSubscription($hash_in);
     }
@@ -103,13 +103,13 @@ class UpdateSubscriptionUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array(
             'subscriptionId'=>'1',
             'billingDate'=>'2013-12-17');
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
 
         $mock->expects($this->once())
         ->method('request')
         ->with($this->logicalNot($this->matchesRegularExpression('/.*card.*/')));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->updateSubscription($hash_in);
     }
@@ -118,13 +118,13 @@ class UpdateSubscriptionUnitTest extends \PHPUnit_Framework_TestCase
     {
         $hash_in = array(
             'subscriptionId'=>'1');
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
 
         $mock->expects($this->once())
         ->method('request')
         ->with($this->logicalNot($this->matchesRegularExpression('/.*billingDate.*/')));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->updateSubscription($hash_in);
     }
@@ -140,13 +140,13 @@ class UpdateSubscriptionUnitTest extends \PHPUnit_Framework_TestCase
                 'cardValidationNum' => '1213'
             )
          );
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
 
         $mock->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*card.*type.*VI.*number.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->updateSubscription($hash_in);
     }
@@ -162,13 +162,13 @@ class UpdateSubscriptionUnitTest extends \PHPUnit_Framework_TestCase
                 'type'=>'VI'
             )
          );
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
 
         $mock->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*litleToken.*1111222233334444.*type.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->updateSubscription($hash_in);
     }
@@ -184,13 +184,13 @@ class UpdateSubscriptionUnitTest extends \PHPUnit_Framework_TestCase
                 'type'=>'VI',
             )
          );
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
 
         $mock->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*paypage.*paypageRegistrationId.*abc123.*type.*VI.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->updateSubscription($hash_in);
     }

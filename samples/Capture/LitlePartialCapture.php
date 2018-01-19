@@ -13,7 +13,7 @@ $capture_in = array(
 		'litleTxnId'=>'320000000000000001',
        		'amount'=>'5005'
 		);
-$initialize = new LitleOnlineRequest(); 
+$initialize = new CnpOnlineRequest(); 
 $captureResponse = $initialize->captureRequest($capture_in);
  
 #display results

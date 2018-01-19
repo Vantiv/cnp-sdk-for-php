@@ -23,7 +23,7 @@
 * OTHER DEALINGS IN THE SOFTWARE.
 */
 namespace litle\sdk;
-#require_once realpath(dirname(__FILE__)) . "/LitleOnline.php";
+#require_once realpath(dirname(__FILE__)) . "/CnpOnline.php";
 
 class XmlFields
 {

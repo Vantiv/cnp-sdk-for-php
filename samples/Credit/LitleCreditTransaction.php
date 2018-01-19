@@ -12,7 +12,7 @@ $credit_info = array(
                  'id'=> '456',
        		'amount'=>'1010'
 		);
-$initialize = new LitleOnlineRequest(); 
+$initialize = new CnpOnlineRequest(); 
 $creditResponse = $initialize->creditRequest($credit_info);
  
 #display results

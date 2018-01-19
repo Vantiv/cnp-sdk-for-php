@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2011 Litle & Co.
+ * Copyright (c) 2011 Vantiv eCommerce Inc.
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -24,7 +24,7 @@
  */
 namespace litle\sdk\Test\functional;
 
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 
 class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
 {
@@ -41,7 +41,7 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'amount' => '123');
 
-        $litle = new LitleOnlineRequest($treeResponse = true);
+        $litle = new CnpOnlineRequest($treeResponse = true);
         $response = $litle->authorizationRequest($hash_in);
         $this->assertEquals('000', $response->authorizationResponse->response);
     }
@@ -52,7 +52,7 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
             'litleTxnId' => '12345678000', 'amount' => '123',
             'payPalNotes' => 'Notes');
 
-        $litle = new LitleOnlineRequest($treeResponse = true);
+        $litle = new CnpOnlineRequest($treeResponse = true);
         $response = $litle->authReversalRequest($hash_in);
         $this->assertEquals('000', $response->authReversalResponse->response);
     }
@@ -63,7 +63,7 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
             'litleTxnId' => '1234567891234567891',
             'amount' => '123');
 
-        $litle = new LitleOnlineRequest($treeResponse = true);
+        $litle = new CnpOnlineRequest($treeResponse = true);
         $response = $litle->captureRequest($hash_in);
         $this->assertEquals('000', $response->captureResponse->response);
     }
@@ -82,7 +82,7 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
                 'number' => '4100000000000000',
                 'expDate' => '1210'));
 
-        $litle = new LitleOnlineRequest($treeResponse = true);
+        $litle = new CnpOnlineRequest($treeResponse = true);
         $response = $litle->captureGivenAuthRequest($hash_in);
         $this->assertEquals('Approved', $response->captureGivenAuthResponse->message);
     }
@@ -100,7 +100,7 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'amount' => '123');
 
-        $litle = new LitleOnlineRequest($treeResponse = true);
+        $litle = new CnpOnlineRequest($treeResponse = true);
         $response = $litle->creditRequest($hash_in);
         $this->assertEquals('000', $response->creditResponse->response);
     }
@@ -111,7 +111,7 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
             'litleTxnId' => '123456789012345678',
             'amount' => '1000');
 
-        $litle = new LitleOnlineRequest($treeResponse = true);
+        $litle = new CnpOnlineRequest($treeResponse = true);
         $response = $litle->echeckCreditRequest($hash_in);
         $this->assertEquals('000', $response->echeckCreditResponse->response);
     }
@@ -122,7 +122,7 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
             'litleTxnId' => '123456789012345678',
             'amount' => '123');
 
-        $litle = new LitleOnlineRequest($treeResponse = true);
+        $litle = new CnpOnlineRequest($treeResponse = true);
         $response = $litle->echeckRedepositRequest($hash_in);
         $this->assertEquals('000', $response->echeckRedepositResponse->response);
     }
@@ -137,7 +137,7 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
             'echeck' => array('accType' => 'Checking', 'accNum' => '12345657890', 'routingNum' => '123456789', 'checkNum' => '123455'),
             'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
 
-        $litle = new LitleOnlineRequest($treeResponse = true);
+        $litle = new CnpOnlineRequest($treeResponse = true);
         $response = $litle->echeckSaleRequest($hash_in);
         $this->assertEquals('000', $response->echeckSalesResponse->response);
     }
@@ -152,7 +152,7 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
             'echeck' => array('accType' => 'Checking', 'accNum' => '12345657890', 'routingNum' => '123456789', 'checkNum' => '123455'),
             'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
 
-        $litle = new LitleOnlineRequest($treeResponse = true);
+        $litle = new CnpOnlineRequest($treeResponse = true);
         $response = $litle->echeckVerificationRequest($hash_in);
         $this->assertEquals('000', $response->echeckVerificationResponse->response);
     }
@@ -160,7 +160,7 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
     public function test_echeckVoid()
     {
         $hash_in = array('litleTxnId' => '123456789012345678', 'id' => '1211',);
-        $litle = new LitleOnlineRequest($treeResponse = true);
+        $litle = new CnpOnlineRequest($treeResponse = true);
         $response = $litle->echeckVoidRequest($hash_in);
         $this->assertEquals('000', $response->echeckVoidResponse->response);
     }
@@ -181,7 +181,7 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
                 'expDate' => '1210'
             ));
 
-        $litle = new LitleOnlineRequest($treeResponse = true);
+        $litle = new CnpOnlineRequest($treeResponse = true);
         $response = $litle->forceCaptureRequest($hash_in);
         $this->assertEquals('000', $response->forceCaptureResponse->response);
     }
@@ -189,7 +189,7 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
     public function test_void()
     {
         $hash_in = array('litleTxnId' => '123456789012345678', 'id' => '1211',);
-        $litle = new LitleOnlineRequest($treeResponse = true);
+        $litle = new CnpOnlineRequest($treeResponse = true);
         $response = $litle->voidRequest($hash_in);
         $this->assertEquals('0', $response['response']);
     }

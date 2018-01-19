@@ -1,6 +1,6 @@
 <?php
 /*
-* Copyright (c) 2011 Litle & Co.
+* Copyright (c) 2011 Vantiv eCommerce Inc.
 *
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
@@ -24,7 +24,7 @@
 */
 namespace litle\sdk\Test\functional;
 
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 use litle\sdk\XmlParser;
 
 class EcheckRedepositFunctionalTest extends \PHPUnit_Framework_TestCase
@@ -35,7 +35,7 @@ class EcheckRedepositFunctionalTest extends \PHPUnit_Framework_TestCase
             'litleTxnId' => '123456789012345678',
             'amount' => '123');
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $echeckRedepositResponse = $initialize->echeckRedepositRequest($hash_in);
         $response = XmlParser::getNode($echeckRedepositResponse, 'response');
         $this->assertEquals('000', $response);
@@ -52,7 +52,7 @@ class EcheckRedepositFunctionalTest extends \PHPUnit_Framework_TestCase
             'echeck' => array('accType' => 'Checking', 'accNum' => '12345657890', 'routingNum' => '123456789', 'checkNum' => '123455'),
             'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $echeckRedepositResponse = $initialize->echeckRedepositRequest($hash_in);
         $response = XmlParser::getNode($echeckRedepositResponse, 'response');
         $this->assertEquals('000', $response);
@@ -69,7 +69,7 @@ class EcheckRedepositFunctionalTest extends \PHPUnit_Framework_TestCase
             'echeckToken' => array('accType' => 'Checking', 'litleToken' => '1234565789012', 'routingNum' => '123456789', 'checkNum' => '123455'),
             'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $echeckRedepositResponse = $initialize->echeckRedepositRequest($hash_in);
         $response = XmlParser::getNode($echeckRedepositResponse, 'response');
         $this->assertEquals('000', $response);
@@ -85,7 +85,7 @@ class EcheckRedepositFunctionalTest extends \PHPUnit_Framework_TestCase
             'echeckToken' => array('accType' => 'Checking', 'litleToken' => '1234565789012', 'routingNum' => '123456789', 'checkNum' => '123455'),
             'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException', 'Missing Required Field: /litleTxnId/');
         $retOb = $litleTest->echeckRedepositRequest($hash_in);
     }

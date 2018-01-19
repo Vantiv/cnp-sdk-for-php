@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2011 Litle & Co.
+ * Copyright (c) 2011 Vantiv eCommerce Inc.
 *
 * Permission is hereby granted, free of charge, to any person
 * obtaining a copy of this software and associated documentation
@@ -23,7 +23,7 @@
 * OTHER DEALINGS IN THE SOFTWARE.
 */
 namespace litle\sdk\Test\unit;
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 class LitleOnlineRequestUnitTest extends \PHPUnit_Framework_TestCase
 {
     public function test_set_merchant_sdk_integration()
@@ -34,12 +34,12 @@ class LitleOnlineRequestUnitTest extends \PHPUnit_Framework_TestCase
             'id'=>'654',
             'orderSource'=>'ecommerce',
             'amount'=>'123');
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*merchantSdk="Magento;8.14.3".*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->authorizationRequest($hash_in);
     }
@@ -51,12 +51,12 @@ class LitleOnlineRequestUnitTest extends \PHPUnit_Framework_TestCase
                 'id'=>'654',
                 'orderSource'=>'ecommerce',
                 'amount'=>'123');
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*merchantSdk="PHP;11.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->authorizationRequest($hash_in);
     }

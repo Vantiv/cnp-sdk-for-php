@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (c) 2011 Litle & Co.
+ * Copyright (c) 2011 Vantiv eCommerce Inc.
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -25,7 +25,7 @@
  */
 namespace litle\sdk\Test\unit;
 
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 
 class GiftCardCaptureUnitTest extends \PHPUnit_Framework_TestCase {
 	public function test_simple_GiftCardCapture() {
@@ -46,10 +46,10 @@ class GiftCardCaptureUnitTest extends \PHPUnit_Framework_TestCase {
 				'originalRefCode' => '101',
 				'originalAmount' => '34561' 
 		);
-		$mock = $this->getMock ( 'litle\sdk\LitleXmlMapper' );
+		$mock = $this->getMock ('litle\sdk\CnpXmlMapper');
 		$mock->expects ( $this->once () )->method ( 'request' )->with ( $this->matchesRegularExpression ( '/.*<litleTxnId>1234567890.*<captureAmount>123.*<card><type>GC.*<number>4100000000000001.*<expDate>0118.*<cardValidationNum>411.*<pin>1234.*<originalRefCode>101.*<originalAmount>34561.*/' ) );
 		
-		$litleTest = new LitleOnlineRequest ();
+		$litleTest = new CnpOnlineRequest ();
 		$litleTest->newXML = $mock;
 		$litleTest->giftCardCaptureRequest ( $hash_in );
 	}
@@ -59,7 +59,7 @@ class GiftCardCaptureUnitTest extends \PHPUnit_Framework_TestCase {
 				'captureAmount' => '106',
 				'id' => 'id' 
 		);
-		$litleTest = new LitleOnlineRequest ();
+		$litleTest = new CnpOnlineRequest ();
 		$this->setExpectedException ( 'InvalidArgumentException', 'Missing Required Field: /litleTxnId/' );
 		$litleTest->captureRequest ( $hash_in );
 	}

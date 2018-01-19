@@ -3,8 +3,8 @@
 namespace litle\sdk\Test\functional;
 
 use litle\sdk\Obj2xml;
-use litle\sdk\LitleResponseProcessor;
-use litle\sdk\LitleRequest;
+use litle\sdk\CnpResponseProcessor;
+use litle\sdk\CnpRequest;
 use litle\sdk\BatchRequest;
 
 class LitleResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
@@ -62,12 +62,12 @@ class LitleResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
         file_put_contents($this->direct . '/pizza.tmp', $malformed_resp);
 
         $this->setExpectedException('RuntimeException', "Response file $this->direct/pizza.tmp indicates error: Test test tes test");
-        $proc = new LitleResponseProcessor ($this->direct . '/pizza.tmp');
+        $proc = new CnpResponseProcessor ($this->direct . '/pizza.tmp');
     }
 
     public function test_processRaw()
     {
-        $request = new LitleRequest ($this->config);
+        $request = new CnpRequest ($this->config);
 
         // first batch
         $batch = new BatchRequest ($this->direct);
@@ -88,14 +88,14 @@ class LitleResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
         $request->addBatchRequest($batch);
 
         $resp = $request->sendToLitleStream();
-        $proc = new LitleResponseProcessor ($resp);
+        $proc = new CnpResponseProcessor ($resp);
         $res = $proc->nextTransaction(true);
         $this->assertTrue(strpos($res, "authorizationResponse") !== FALSE);
     }
 
     public function test_processMecha()
     {
-        $request = new LitleRequest ($this->config);
+        $request = new CnpRequest ($this->config);
 
         // first batch
         $batch = new BatchRequest ($this->direct);
@@ -367,7 +367,7 @@ class LitleResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
         $request->addBatchRequest($batch);
 
         $resp = $request->sendToLitleStream();
-        $respProcessor = new LitleResponseProcessor ($resp);
+        $respProcessor = new CnpResponseProcessor ($resp);
 
         $txnResponse = $respProcessor->nextTransaction();
         $responses = array();
@@ -405,7 +405,7 @@ class LitleResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
     public function test_echeckPreNote_all()
     {
 
-        $request = new LitleRequest ($this->config);
+        $request = new CnpRequest ($this->config);
 
         // first batch
         $batch_request = new BatchRequest ($this->direct);
@@ -487,7 +487,7 @@ class LitleResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
         $request->addBatchRequest($batch_request);
 
         $response = $request->sendToLitleStream();
-        $respProcessor = new LitleResponseProcessor ($response);
+        $respProcessor = new CnpResponseProcessor ($response);
 
         $txnResponse = $respProcessor->nextTransaction();
         $txnCount = 0;
@@ -504,7 +504,7 @@ class LitleResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
     public function test_PFIF_instruction_txn()
     {
 
-        $request = new LitleRequest ($this->config);
+        $request = new CnpRequest ($this->config);
 
         // first batch
         $batch_request = new BatchRequest ($this->direct);
@@ -611,7 +611,7 @@ class LitleResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
         $request->addBatchRequest($batch_request);
 
         $response = $request->sendToLitleStream();
-        $respProcessor = new LitleResponseProcessor ($response);
+        $respProcessor = new CnpResponseProcessor ($response);
 
         $txnResponse = $respProcessor->nextTransaction();
         $txnCount = 0;

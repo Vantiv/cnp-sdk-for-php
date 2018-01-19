@@ -2,7 +2,7 @@
 
 
 namespace litle\sdk;
-class LitleRequest
+class CnpRequest
 {
     # file name that holds the batch requests once added
     public $batches_file;

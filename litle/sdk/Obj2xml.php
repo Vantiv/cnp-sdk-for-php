@@ -23,7 +23,7 @@
 * OTHER DEALINGS IN THE SOFTWARE.
 */
 namespace litle\sdk;
-require_once realpath(dirname(__FILE__)) . '/LitleOnline.php';
+require_once realpath(dirname(__FILE__)) . '/CnpOnline.php';
 class Obj2xml
 {
     public static function toXml($data, $hash_config, $type, $rootNodeName = 'litleOnlineRequest')
@@ -255,9 +255,9 @@ class Obj2xml
     {
         $config_array = null;
 
-    $ini_file = realpath(dirname(__FILE__)) . '/litle_SDK_config.ini';
+    $ini_file = realpath(dirname(__FILE__)) . '/cnp_SDK_config.ini';
         if (file_exists($ini_file)) {
-            @$config_array =parse_ini_file('litle_SDK_config.ini');
+            @$config_array =parse_ini_file('cnp_SDK_config.ini');
         }
 
         if (empty($config_array)) {

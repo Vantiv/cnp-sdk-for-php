@@ -4,7 +4,7 @@ require_once realpath(__DIR__). '/../../vendor/autoload.php';
  
 # this is a really big request
  
-$request = new LitleRequest();
+$request = new CnpRequest();
  
 	$batch = new BatchRequest();
 	$hash_in = array(
@@ -30,7 +30,7 @@ $request = new LitleRequest();
 	$batch->addSale($hash_in); 
 	$request->addBatchRequest($batch);
  
-	$resp = new LitleResponseProcessor($request->sendToLitle());
+	$resp = new CnpResponseProcessor($request->sendToLitle());
 	while($txn = $resp->nextTransaction()){
 	  echo "Transaction Type : " . $txn->getName() . "\n";
 	  echo "Transaction Id: " . $txn->litleTxnId ." \n";

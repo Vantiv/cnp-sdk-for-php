@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2011 Litle & Co.
+ * Copyright (c) 2011 Vantiv eCommerce Inc.
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -23,7 +23,7 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 namespace litle\sdk\Test\unit;
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 class UpdateCardValidationNumOnTokenUnitTest extends \PHPUnit_Framework_TestCase
 {
     public function test_simple()
@@ -32,12 +32,12 @@ class UpdateCardValidationNumOnTokenUnitTest extends \PHPUnit_Framework_TestCase
             'orderId'=>'1',
             'litleToken'=>'123456789101112',
             'cardValidationNum'=>'123');
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<orderId>1.*<litleToken>123456789101112.*<cardValidationNum>123.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->updateCardValidationNumOnToken($hash_in);
     }
@@ -47,12 +47,12 @@ class UpdateCardValidationNumOnTokenUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array('id' => 'id',
                 'litleToken'=>'123456789101112',
                 'cardValidationNum'=>'123');
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<litleToken>123456789101112.*<cardValidationNum>123.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->updateCardValidationNumOnToken($hash_in);
     }
@@ -61,7 +61,7 @@ class UpdateCardValidationNumOnTokenUnitTest extends \PHPUnit_Framework_TestCase
     {
         $hash_in = array('id' => 'id',
                 'cardValidationNum'=>'123');
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /litleToken/");
         $retOb = $litleTest->updateCardValidationNumOnToken($hash_in);
     }
@@ -70,7 +70,7 @@ class UpdateCardValidationNumOnTokenUnitTest extends \PHPUnit_Framework_TestCase
     {
         $hash_in = array('id' => 'id',
                 'litleToken'=>'123456789101112');
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /cardValidationNum/");
         $retOb = $litleTest->updateCardValidationNumOnToken($hash_in);
     }
@@ -83,12 +83,12 @@ class UpdateCardValidationNumOnTokenUnitTest extends \PHPUnit_Framework_TestCase
                 'orderId'=>'1',
                 'litleToken'=>'123456789101112',
                 'cardValidationNum'=>'123');
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*merchantSdk="PHP;8.14.0".*loggedInUser="gdake" xmlns=.*>.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->updateCardValidationNumOnToken($hash_in);
     }

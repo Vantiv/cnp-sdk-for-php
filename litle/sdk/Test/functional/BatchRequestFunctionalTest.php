@@ -4,7 +4,7 @@ namespace litle\sdk\Test\functional;
 
 use litle\sdk\BatchRequest;
 
-require_once realpath(dirname(__FILE__)) . '../../../LitleOnline.php';
+require_once realpath(dirname(__FILE__)) . '../../../CnpOnline.php';
 
 class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 {

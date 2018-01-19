@@ -1,7 +1,7 @@
 <?php
 namespace litle\sdk;
 require_once realpath(__DIR__). '/../../vendor/autoload.php';  
-$request = new LitleRequest();
+$request = new CnpRequest();
 $batch = new BatchRequest();
 $sale_info = array(
         	  'orderId' => '1',
@@ -24,7 +24,7 @@ $batch->addSale($sale_info);
 $request->addBatchRequest($batch);
 $response_file = $request->sendToLitleStream();
  
-$proc = new LitleResponseProcessor($response_file);
+$proc = new CnpResponseProcessor($response_file);
  
 $raw_response = $proc->nextTransaction(true);
 

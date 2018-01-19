@@ -9,7 +9,7 @@ $void_info = array(
         'id'=> '456'
 	);
  
-$initialize = new LitleOnlineRequest();
+$initialize = new CnpOnlineRequest();
 $voidResponse = $initialize->voidRequest($void_info);
  
 #display results

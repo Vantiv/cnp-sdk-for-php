@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2011 Litle & Co.
+ * Copyright (c) 2011 Vantiv eCommerce Inc.
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -24,7 +24,7 @@
  */
 namespace litle\sdk\Test\functional;
 
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 use litle\sdk\XmlParser;
 
 class FraudCheckFunctionalTest extends \PHPUnit_Framework_TestCase
@@ -38,7 +38,7 @@ class FraudCheckFunctionalTest extends \PHPUnit_Framework_TestCase
                 'threatMetrixSessionId' => 128)
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $fraudCheckResponse = $initialize->fraudCheck($hash_in);
         $response = XmlParser::getNode($fraudCheckResponse, 'response');
         $this->assertEquals('000', $response);
@@ -53,7 +53,7 @@ class FraudCheckFunctionalTest extends \PHPUnit_Framework_TestCase
                 'customAttribute1' => 'abc')
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $fraudCheckResponse = $initialize->fraudCheck($hash_in);
         $message = XmlParser::getNode($fraudCheckResponse, 'deviceReviewStatus');
         $this->assertEquals('pass', $message);
@@ -69,7 +69,7 @@ class FraudCheckFunctionalTest extends \PHPUnit_Framework_TestCase
                 'customAttribute2' => 'def')
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $fraudCheckResponse = $initialize->fraudCheck($hash_in);
         $message = XmlParser::getNode($fraudCheckResponse, 'triggeredRule');
         $this->assertEquals('triggered_rule_default', $message);
@@ -86,7 +86,7 @@ class FraudCheckFunctionalTest extends \PHPUnit_Framework_TestCase
                 'customAttribute3' => '7')
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $fraudCheckResponse = $initialize->fraudCheck($hash_in);
         //echo $fraudCheckResponse->advancedFraudResults->triggeredRule[0];
         $message = XmlParser::getNode($fraudCheckResponse, 'triggeredRule');
@@ -105,7 +105,7 @@ class FraudCheckFunctionalTest extends \PHPUnit_Framework_TestCase
                 'customAttribute4' => 'jkl')
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $fraudCheckResponse = $initialize->fraudCheck($hash_in);
         $message = XmlParser::getNode($fraudCheckResponse, 'deviceReputationScore');
         $this->assertEquals('42', $message);
@@ -124,7 +124,7 @@ class FraudCheckFunctionalTest extends \PHPUnit_Framework_TestCase
                 'customAttribute5' => 'mno')
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $fraudCheckResponse = $initialize->fraudCheck($hash_in);
         $response = XmlParser::getNode($fraudCheckResponse, 'response');
         $this->assertEquals('000', $response);
@@ -139,7 +139,7 @@ class FraudCheckFunctionalTest extends \PHPUnit_Framework_TestCase
             'amount' => 100
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $fraudCheckResponse = $initialize->fraudCheck($hash_in);
         $message = XmlParser::getNode($fraudCheckResponse, 'deviceReviewStatus');
         $this->assertEquals('pass', $message);
@@ -169,7 +169,7 @@ class FraudCheckFunctionalTest extends \PHPUnit_Framework_TestCase
             )
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $fraudCheckResponse = $initialize->fraudCheck($hash_in);
         $message = XmlParser::getNode($fraudCheckResponse, 'deviceReputationScore');
         $this->assertEquals('42', $message);
@@ -191,7 +191,7 @@ class FraudCheckFunctionalTest extends \PHPUnit_Framework_TestCase
             )
         );
 
-        $initialize = new LitleOnlineRequest();
+        $initialize = new CnpOnlineRequest();
         $fraudCheckResponse = $initialize->fraudCheck($hash_in);
         $response = XmlParser::getNode($fraudCheckResponse, 'response');
         $this->assertEquals('000', $response);

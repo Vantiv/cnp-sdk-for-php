@@ -2,7 +2,7 @@
 
 namespace litle\sdk;
 
-class LitleResponseProcessor {
+class CnpResponseProcessor {
 	private $xml_reader;
 	
 	/*

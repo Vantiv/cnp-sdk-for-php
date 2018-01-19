@@ -1,6 +1,6 @@
 <?php
 /*
- * Copyright (c) 2011 Litle & Co.
+ * Copyright (c) 2011 Vantiv eCommerce Inc.
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -23,7 +23,7 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 namespace litle\sdk\Test\unit;
-use litle\sdk\LitleOnlineRequest;
+use litle\sdk\CnpOnlineRequest;
 class TokenUnitTest extends \PHPUnit_Framework_TestCase
 {
     public function test_token()
@@ -31,12 +31,12 @@ class TokenUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array(
             'orderId'=>'1','id' => 'id',
             'accountNumber'=>'123456789101112');
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<accountNumber>123456789101112*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->registerTokenRequest($hash_in);
     }
@@ -49,7 +49,7 @@ class TokenUnitTest extends \PHPUnit_Framework_TestCase
       'orderId'=>'12344',
       'accountNumber'=>'1233456789101112',
       'paypageRegistrationId'=>'1233456789101112');
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
         $retOb = $litleTest->registerTokenRequest($hash_in);
 
@@ -63,7 +63,7 @@ class TokenUnitTest extends \PHPUnit_Framework_TestCase
       'orderId'=>'12344',
       'echeckForToken'=>array('accNum'=>'12344565','routingNum'=>'123476545'),
       'paypageRegistrationId'=>'1233456789101112');
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
         $retOb = $litleTest->registerTokenRequest($hash_in);
 
@@ -78,7 +78,7 @@ class TokenUnitTest extends \PHPUnit_Framework_TestCase
       'accountNumber'=>'1233456789101112',
       'echeckForToken'=>array('accNum'=>'12344565','routingNum'=>'123476545'),
       'paypageRegistrationId'=>'1233456789101112');
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
         $retOb = $litleTest->registerTokenRequest($hash_in);
 
@@ -90,12 +90,12 @@ class TokenUnitTest extends \PHPUnit_Framework_TestCase
                 'orderId'=>'1','id' => 'id',
                 'accountNumber'=>'123456789101112',
                 'cardValidationNum'=>'123');
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<accountNumber>123456789101112.*<cardValidationNum>123.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->registerTokenRequest($hash_in);
     }
@@ -107,12 +107,12 @@ class TokenUnitTest extends \PHPUnit_Framework_TestCase
                 'merchantSdk'=>'PHP;8.14.0',
                 'orderId'=>'1',
                 'accountNumber'=>'123456789101112');
-        $mock = $this->getMock('litle\sdk\LitleXmlMapper');
+        $mock = $this->getMock('litle\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*merchantSdk="PHP;8.14.0".*loggedInUser="gdake" xmlns=.*>.*/'));
 
-        $litleTest = new LitleOnlineRequest();
+        $litleTest = new CnpOnlineRequest();
         $litleTest->newXML = $mock;
         $litleTest->registerTokenRequest($hash_in);
     }
@@ -126,12 +126,12 @@ class TokenUnitTest extends \PHPUnit_Framework_TestCase
     					'header'=> 'header stuff here',
     					'signature'=>'signature',
     					'version' => 'version 1'));
-    	$mock = $this->getMock('litle\sdk\LitleXmlMapper');
+    	$mock = $this->getMock('litle\sdk\CnpXmlMapper');
     	$mock->expects($this->once())
     	->method('request')
     	->with($this->matchesRegularExpression('/.*<applepay><data>string data here.*<header>header stuff here.*<signature>signature.*<version>version 1.*/'));
     
-    	$litleTest = new LitleOnlineRequest();
+    	$litleTest = new CnpOnlineRequest();
     	$litleTest->newXML = $mock;
     	$litleTest->registerTokenRequest($hash_in);
     }
@@ -143,12 +143,12 @@ class TokenUnitTest extends \PHPUnit_Framework_TestCase
     			'orderId'=>'androidpay',
     			'accountNumber'=>'1233456789103801'
     	);
-    	$mock = $this->getMock('litle\sdk\LitleXmlMapper');
+    	$mock = $this->getMock('litle\sdk\CnpXmlMapper');
     	$mock->expects($this->once())
     	->method('request')
     	->with($this->matchesRegularExpression('/.*<orderId>androidpay.*<accountNumber>1233456789103801.*/'));
     
-    	$litleTest = new LitleOnlineRequest();
+    	$litleTest = new CnpOnlineRequest();
     	$litleTest->newXML = $mock;
     	$litleTest->registerTokenRequest($hash_in);
     }
