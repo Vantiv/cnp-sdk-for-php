@@ -1,5 +1,5 @@
 <?php
-namespace litle\sdk;
+namespace cnp\sdk;
 require_once realpath(__DIR__). '/../../vendor/autoload.php';
 #Auth Reversal
 #litleTxnId contains the Vantiv Transaction Id returned on the authorization

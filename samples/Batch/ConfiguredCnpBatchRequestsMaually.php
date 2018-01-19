@@ -1,5 +1,5 @@
 <?php
-namespace litle\sdk;
+namespace cnp\sdk;
 require_once realpath(__DIR__). '/../../vendor/autoload.php';
 #Sale
 $sale_info = array(

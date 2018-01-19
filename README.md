@@ -63,12 +63,12 @@ $sale_info = array(
              'cardValidationNum' => '349',
              'type' => 'MC' )
             );
-$initialize = new litle\sdk\LitleOnlineRequest();
+$initialize = new cnp\sdk\LitleOnlineRequest();
 $saleResponse =$initialize->saleRequest($sale_info);
 #display results
-echo ("Response: " . (litle\sdk\XmlParser::getNode($saleResponse,'response')) . "<br>");
-echo ("Message: " . litle\sdk\XmlParser::getNode($saleResponse,'message') . "<br>");
-echo ("Vantiv eCommerce Transaction ID: " . litle\sdk\XmlParser::getNode($saleResponse,'litleTxnId'));
+echo ("Response: " . (cnp\sdk\XmlParser::getNode($saleResponse,'response')) . "<br>");
+echo ("Message: " . cnp\sdk\XmlParser::getNode($saleResponse,'message') . "<br>");
+echo ("Vantiv eCommerce Transaction ID: " . cnp\sdk\XmlParser::getNode($saleResponse,'litleTxnId'));
 ```
 > php your_sample_name
 
