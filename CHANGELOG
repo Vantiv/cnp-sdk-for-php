@@ -1,0 +1,120 @@
+= LitleOnline CHANGELOG
+
+==Version 11.0.1 (May 4, 2017)
+* Feature: update phpseclib to v2.0.4
+
+==Version 11.0 (Apr 10, 2017)
+* Feature: implement Vantiv eCommerce XMLv11.0
+* Feature: SEPA Support
+* Feature: iDEAL support
+* Feature: new giftCard transactions
+* Feature: giroPay support
+* Feature: Network Enhancements mandates
+* Feature: add support for raw network response
+* Bug fix: specify char encoding in HTTP header
+
+==Version 9.3.3
+Update SSL version to 6
+
+==Version 9.3.2
+HTTP timeout set to 500ms
+
+==Version 9.3.1 (March 9, 2015)
+*Feature: PFIF instruction transaction support was added
+
+== Version 9.03.0 (February 17, 2015)
+* Feature: Applepay support was added
+* Feature: Secondary amount support was added
+* Feature: Add support for new Batch transaction in version 9.3 schema
+
+==version 8.29.0 (January 22,2014)
+* Feature: Apple pay and secondary amounts now available.
+
+==version 8.27.0 (Auguest 26,2014)
+* Feature: Added samples for each type of transactions
+
+== version 8.25.0 (March 7, 2014)
+* Feature: Added support for ROAM: Authorization, ForceCapture, CaptureGivenAuth, Sale, Credit
+
+== version 8.24.0 (February 13, 2014)
+* Feature: add triggered rules for advancedFraudCheckResult
+
+== Version 8.23.0 (December 18, 2013)
+* Feature: advancedFraudChecks now available in authorization and sale 
+* Feature: catLevel (Cardholder Activated Terminal) now available in pos
+* Feature: advancedFraudResults now available in fraudResult
+
+== Version 8.22.0 (December 18, 2013)
+* Feature: Support for the following new gift card transactions:
+ActivateReversal, DeactivateReversal, LoadReversal, RefundReversal,
+UnloadReversal, DepositReversal
+* Feature: UpdateSubscription now can take token or paypage updates, and
+can return token in the response
+* Feature: Support for virtualGiftCard in giftCard activations and can be returned in EnhancedAuthResponses
+* Feature: Gift Card responses can be returned from AuthReversal
+
+== Version 8.21.0 (December 18, 2013)
+* Feature: Support for the following new recurring transactions:
+CreatePlan, UpdatePlan
+* Feature: Support for the following new gift card transactions:
+Activate, Deactivate, Load, Unload, Balance Inquiry
+* Feature: Gift card responses are now returned as part of
+authorzationResponse, authReversalResponse, captureResponse,
+forceCapture, captureGivenAuthResponse, saleResponse, creditResponse
+* Feature: fraudResult is now returned as part of captureResponse,
+forceCaptureResponse, captureGivenAuthResponse, creditResponse
+
+== Version 8.20.0 (December 17, 2013)
+* Feature: More initial support for Recurring, including the ability to update or cancel subscriptions
+* Cleanup: Move phpseclib to composer
+
+== Version 8.19.0 (July 30, 2013)
+* Feature: Added deptRepayment as a choice for authorizations, forceCapture, captureGivenAuth, sale
+* Feature: More initial support for Recurring, including a backwards incompatible changing a field from numberOfPaymentsRemaining to numberOfPayments
+* Feature: Add merchantData to forceRequest and captureGivenAuth
+
+== Version 8.18.0 (July 15, 2013)
+* Feature: Add initial support for recurring to sales
+
+== Version 8.17.0 (March 29, 2013)
+* Feature: Add recyling to voidResponse
+* Feature: Add support for surcharging credit card transactions
+* Feature: Add support for specifying the terminalId on a pos transaction
+* Feature: Add support for pos transactions on tied refunds
+
+== Version 8.15.0 (January 31, 2013)
+
+* Feature: Add merchantData to echeck verifications and echeck redeposits
+
+== Version 8.14.0 (January 30, 2013)
+
+* Feature: Merged pull request #12 from iToto to make convert DOMDocument to string for debugging
+* Bugfix: Merged pull request #14 from johnholden to truncate strings that are too long, thus preventing some xml validation errors
+* Feature: Temporary storage of card validation num on tokens
+* Feature: Updating card validation numbers on tokens
+
+== Version 8.13.1 (June 15, 2012)
+
+* Feature: Add support for accessing response as a tree using simplexml.  Access is provided if $treeResponse=true is passed to the LitleOnlineRequest constructor
+
+== Version 8.13 (May 18, 2012)
+
+* Feature: Authorizations and Sales can accept an optional fraudFilterOverride parameter
+
+== Version 8.12.2 (May 8, 2012)
+
+* Bugfix: Add support for line item data and tax detail to enhanced data
+
+== Version 8.12.1 (April 23, 2012)
+
+* Bugfix: Add support for id, customerid and reportgroup
+
+== Version 8.12 (April 17, 2012)
+
+* Bugfix: Add support for MerchantData on auth and sale
+* Feature: Add support for actionReason on credit
+* Feature: Track SDK Usage
+
+== Version 8.10.0 (April 2, 2012)
+
+* Initial release
