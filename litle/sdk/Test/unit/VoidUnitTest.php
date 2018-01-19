@@ -34,16 +34,16 @@ class VoidUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<litleTxnId>123123.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->voidRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->voidRequest($hash_in);
     }
     public function test_no_litleTxnId()
     {
         $hash_in = array('reportGroup'=>'Planets','id' => 'id');
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /litleTxnId/");
-        $retOb = $litleTest->voidRequest($hash_in);
+        $retOb = $cnpTest->voidRequest($hash_in);
     }
 
     public function test_loggedInUser()
@@ -58,8 +58,8 @@ class VoidUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*merchantSdk="PHP;8.14.0".*loggedInUser="gdake" xmlns=.*>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->voidRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->voidRequest($hash_in);
     }
 }

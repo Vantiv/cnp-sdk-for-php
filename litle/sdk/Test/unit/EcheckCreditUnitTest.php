@@ -34,9 +34,9 @@ class EcheckCreditUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<litleTxnId>123123.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->echeckCreditRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->echeckCreditRequest($hash_in);
     }
 
     public function test_both_choices()
@@ -44,9 +44,9 @@ class EcheckCreditUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array('reportGroup'=>'Planets','litleTxnId'=>'123456','id' => 'id',
         'echeckToken' => array('accType'=>'Checking','routingNum'=>'123123','litleToken'=>'1234565789012','checkNum'=>'123455'),
         'echeck' => array('accType'=>'Checking','routingNum'=>'123123','accNum'=>'12345657890','checkNum'=>'123455'));
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
-        $retOb = $litleTest->echeckCreditRequest($hash_in);
+        $retOb = $cnpTest->echeckCreditRequest($hash_in);
     }
 
     public function test_loggedInUser()
@@ -61,9 +61,9 @@ class EcheckCreditUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*merchantSdk="PHP;10.1.0".*loggedInUser="gdake" xmlns=.*>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->echeckCreditRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->echeckCreditRequest($hash_in);
     }
     
     public function test_echeck_credit_secondaryAmount()
@@ -80,9 +80,9 @@ class EcheckCreditUnitTest extends \PHPUnit_Framework_TestCase
     	->method('request')
     	->with($this->matchesRegularExpression('/.*<amount>5000.*<orderSource>ecommerce.*<accType>Checking.*<accNum>12345657890.*<routingNum>123123.*<checkNum>123455.*/'));
     	 
-    	$litleTest = new CnpOnlineRequest();
-    	$litleTest->newXML = $mock;
-    	$litleTest->echeckCreditRequest($hash_in);
+    	$cnpTest = new CnpOnlineRequest();
+    	$cnpTest->newXML = $mock;
+    	$cnpTest->echeckCreditRequest($hash_in);
     }
 
 }

@@ -37,9 +37,9 @@ class UpdateCardValidationNumOnTokenUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<orderId>1.*<litleToken>123456789101112.*<cardValidationNum>123.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->updateCardValidationNumOnToken($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->updateCardValidationNumOnToken($hash_in);
     }
 
     public function test_orderIdIsOptional()
@@ -52,27 +52,27 @@ class UpdateCardValidationNumOnTokenUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<litleToken>123456789101112.*<cardValidationNum>123.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->updateCardValidationNumOnToken($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->updateCardValidationNumOnToken($hash_in);
     }
 
     public function test_litleTokenIsRequired()
     {
         $hash_in = array('id' => 'id',
                 'cardValidationNum'=>'123');
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /litleToken/");
-        $retOb = $litleTest->updateCardValidationNumOnToken($hash_in);
+        $retOb = $cnpTest->updateCardValidationNumOnToken($hash_in);
     }
 
     public function test_cardValidationNumIsRequired()
     {
         $hash_in = array('id' => 'id',
                 'litleToken'=>'123456789101112');
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /cardValidationNum/");
-        $retOb = $litleTest->updateCardValidationNumOnToken($hash_in);
+        $retOb = $cnpTest->updateCardValidationNumOnToken($hash_in);
     }
 
     public function test_loggedInUser()
@@ -88,9 +88,9 @@ class UpdateCardValidationNumOnTokenUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*merchantSdk="PHP;8.14.0".*loggedInUser="gdake" xmlns=.*>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->updateCardValidationNumOnToken($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->updateCardValidationNumOnToken($hash_in);
     }
 
 }

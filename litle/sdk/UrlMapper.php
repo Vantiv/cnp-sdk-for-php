@@ -33,23 +33,23 @@ class UrlMapper
     const TRANSACT_POSTLIVE = "transact_postlive";
     const PRELIVE = "prelive";
 
-    public static function getUrl($litleEnv)
+    public static function getUrl($cnpEnv)
     {
-        $litleOnlineCtx = 'vap/communicator/online';
-        if ($litleEnv == UrlMapper::SANDBOX)
+        $cnpOnlineCtx = 'vap/communicator/online';
+        if ($cnpEnv == UrlMapper::SANDBOX)
             return 'https://www.testvantivcnp.com/sandbox/communicator/online';
-        elseif ($litleEnv == UrlMapper::POSTLIVE)
-            return 'https://payments.vantivpostlive.com/' . $litleOnlineCtx;
-        elseif ($litleEnv == UrlMapper::PRODUCTION)
-            return 'https://payments.vantivcnp.com/' . $litleOnlineCtx;
-        elseif ($litleEnv == UrlMapper::TRANSACT_PRODUCTION)
-            return 'https://transact.vantivcnp.com/' . $litleOnlineCtx;
-        elseif ($litleEnv == UrlMapper::TRANSACT_PRELIVE)
-            return 'https://transact.vantivprelive.com/' . $litleOnlineCtx;
-        elseif ($litleEnv == UrlMapper::TRANSACT_POSTLIVE)
-            return 'https://transact.vantivpostlive.com/' . $litleOnlineCtx;
-        elseif ($litleEnv == UrlMapper::PRELIVE)
-            return 'https://payments.vantivprelive.com/' . $litleOnlineCtx;
+        elseif ($cnpEnv == UrlMapper::POSTLIVE)
+            return 'https://payments.vantivpostlive.com/' . $cnpOnlineCtx;
+        elseif ($cnpEnv == UrlMapper::PRODUCTION)
+            return 'https://payments.vantivcnp.com/' . $cnpOnlineCtx;
+        elseif ($cnpEnv == UrlMapper::TRANSACT_PRODUCTION)
+            return 'https://transact.vantivcnp.com/' . $cnpOnlineCtx;
+        elseif ($cnpEnv == UrlMapper::TRANSACT_PRELIVE)
+            return 'https://transact.vantivprelive.com/' . $cnpOnlineCtx;
+        elseif ($cnpEnv == UrlMapper::TRANSACT_POSTLIVE)
+            return 'https://transact.vantivpostlive.com/' . $cnpOnlineCtx;
+        elseif ($cnpEnv == UrlMapper::PRELIVE)
+            return 'https://payments.vantivprelive.com/' . $cnpOnlineCtx;
         else
             return 'https://www.testvantivcnp.com/sandbox/communicator/online';
     }

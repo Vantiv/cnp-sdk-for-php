@@ -29,12 +29,12 @@ $config_hash = array(
   'sftp_password' => 'Zj8I8Ly5',
   'batch_url' => 'prelive.litle.com',
   'batch_requests_path' => '/usr/local/litle-home/twang/git/batches',
-  'litle_requests_path' => '/usr/local/litle-home/twang/git/batches'
+  'cnp_requests_path' => '/usr/local/litle-home/twang/git/batches'
 );
  
 $batch_dir = '/usr/local/litle-home/twang/git/batches';
  
-$litle_request = new CnpRequest($config_hash);
+$cnp_request = new CnpRequest($config_hash);
 $batch_request = new BatchRequest($batch_dir);
  
 # add a sale to the batch
@@ -42,11 +42,11 @@ $batch_request->addSale($sale_info);
 # close the batch, indicating that we intend to add no more sales
 $batch_request->closeRequest();
 # add the batch to the litle request
-$litle_request->addBatchRequest($batch_request);
+$cnp_request->addBatchRequest($batch_request);
 # close the litle request, indicating that we intend to add no more batches
-$litle_request->closeRequest();
+$cnp_request->closeRequest();
 # send the batch to litle via SFTP
-$response_file = $litle_request->sendToLitleStream();
+$response_file = $cnp_request->sendToLitleStream();
 # process the response file 
 $processor = new CnpResponseProcessor($response_file);
 

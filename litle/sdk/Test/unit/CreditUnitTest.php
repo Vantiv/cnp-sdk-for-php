@@ -34,9 +34,9 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<litleTxnId>12312312.*<amount>123.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->creditRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->creditRequest($hash_in);
     }
 
     public function test_both_choices_card_and_paypal()
@@ -57,9 +57,9 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
           'token'=>'1234',
           'transactionId'=>'123456')
         );
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
-        $retOb = $litleTest->creditRequest($hash_in);
+        $retOb = $cnpTest->creditRequest($hash_in);
     }
 
     public function test_three_choices_card_and_paypage_and_paypal()
@@ -85,9 +85,9 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
           'token'=>'1234',
           'transactionId'=>'123456')
         );
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
-        $retOb = $litleTest->creditRequest($hash_in);
+        $retOb = $cnpTest->creditRequest($hash_in);
 
     }
 
@@ -122,9 +122,9 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
           'cardValidationNum'=>'555',
           'type'=>'VI')
         );
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
-        $retOb = $litleTest->creditRequest($hash_in);
+        $retOb = $cnpTest->creditRequest($hash_in);
     }
 
     public function test_action_reason_on_orphaned_refund()
@@ -141,9 +141,9 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<actionReason>SUSPECT_FRAUD<\/actionReason>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->creditRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->creditRequest($hash_in);
     }
 
     public function test_loggedInUser()
@@ -160,9 +160,9 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*merchantSdk="PHP;10.1.0".*loggedInUser="gdake" xmlns=.*>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->creditRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->creditRequest($hash_in);
     }
 
     public function test_surchargeAmount_tied()
@@ -180,9 +180,9 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<litleTxnId>3<\/litleTxnId><amount>2<\/amount><surchargeAmount>1<\/surchargeAmount><processing.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->creditRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->creditRequest($hash_in);
     }
 
     public function test_surchargeAmount_tied_optional()
@@ -199,9 +199,9 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<litleTxnId>3<\/litleTxnId><amount>2<\/amount><processing.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->creditRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->creditRequest($hash_in);
     }
 
     public function test_surchargeAmount_orphan()
@@ -219,9 +219,9 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<amount>2<\/amount><surchargeAmount>1<\/surchargeAmount><orderSource>ecommerce<\/orderSource>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->creditRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->creditRequest($hash_in);
     }
 
     public function test_surchargeAmount_orphan_optional()
@@ -238,9 +238,9 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<amount>2<\/amount><orderSource>ecommerce<\/orderSource>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->creditRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->creditRequest($hash_in);
     }
 
     public function test_pos_tied()
@@ -263,9 +263,9 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<litleTxnId>3<\/litleTxnId><amount>2<\/amount><pos>.*<terminalId>abc123<\/terminalId><\/pos><payPalNotes>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->creditRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->creditRequest($hash_in);
     }
 
     public function test_pos_tied_optional()
@@ -282,9 +282,9 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<litleTxnId>3<\/litleTxnId><amount>2<\/amount><payPalNotes>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->creditRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->creditRequest($hash_in);
     }
     
     public function test_credit_with_secondaryAmount()
@@ -295,9 +295,9 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
     	->method('request')
     	->with($this->matchesRegularExpression('/.*<litleTxnId>12312312.*<amount>123.*/'));
     
-    	$litleTest = new CnpOnlineRequest();
-    	$litleTest->newXML = $mock;
-    	$litleTest->creditRequest($hash_in);
+    	$cnpTest = new CnpOnlineRequest();
+    	$cnpTest->newXML = $mock;
+    	$cnpTest->creditRequest($hash_in);
     }
     
     public function test_pin_tied()
@@ -317,9 +317,9 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
     	->method('request')
     	->with($this->matchesRegularExpression('/.*<pin>3333*/'));
     
-    	$litleTest = new CnpOnlineRequest();
-    	$litleTest->newXML = $mock;
-    	$litleTest->creditRequest($hash_in);
+    	$cnpTest = new CnpOnlineRequest();
+    	$cnpTest->newXML = $mock;
+    	$cnpTest->creditRequest($hash_in);
     }
     
     public function test_pin_tied_optional()
@@ -338,9 +338,9 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
     	->method('request')
     	->with($this->matchesRegularExpression('/.*<litleTxnId>1234567890.*<amount>123.*<secondaryAmount>3214.*<surchargeAmount>1.*/'));
     
-    	$litleTest = new CnpOnlineRequest();
-    	$litleTest->newXML = $mock;
-    	$litleTest->creditRequest($hash_in);
+    	$cnpTest = new CnpOnlineRequest();
+    	$cnpTest->newXML = $mock;
+    	$cnpTest->creditRequest($hash_in);
     }
 
 }

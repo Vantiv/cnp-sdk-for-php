@@ -38,9 +38,9 @@ class FraudCheckUnitTest extends \PHPUnit_Framework_TestCase
 		->method('request')
 		->with($this->matchesRegularExpression('/.*<advancedFraudChecks><threatMetrixSessionId>128<\/threatMetrixSessionId><\/advancedFraudChecks>.*/'));
 		
-		$litleTest = new CnpOnlineRequest();
-		$litleTest->newXML = $mock;
-		$litleTest->fraudCheck($hash_in);
+		$cnpTest = new CnpOnlineRequest();
+		$cnpTest->newXML = $mock;
+		$cnpTest->fraudCheck($hash_in);
 	}
 	
 	public function test_one_customAttributes()
@@ -56,9 +56,9 @@ class FraudCheckUnitTest extends \PHPUnit_Framework_TestCase
 		->method('request')
 		->with($this->matchesRegularExpression('/.*<advancedFraudChecks><threatMetrixSessionId>128<\/threatMetrixSessionId><customAttribute1>abc<\/customAttribute1><\/advancedFraudChecks>.*/'));
 	
-		$litleTest = new CnpOnlineRequest();
-		$litleTest->newXML = $mock;
-		$litleTest->fraudCheck($hash_in);
+		$cnpTest = new CnpOnlineRequest();
+		$cnpTest->newXML = $mock;
+		$cnpTest->fraudCheck($hash_in);
 	}
 	
 	public function test_two_customAttributes()
@@ -75,9 +75,9 @@ class FraudCheckUnitTest extends \PHPUnit_Framework_TestCase
 		->method('request')
 		->with($this->matchesRegularExpression('/.*<advancedFraudChecks><threatMetrixSessionId>128<\/threatMetrixSessionId><customAttribute1>abc<\/customAttribute1><customAttribute2>def<\/customAttribute2><\/advancedFraudChecks>.*/'));
 	
-		$litleTest = new CnpOnlineRequest();
-		$litleTest->newXML = $mock;
-		$litleTest->fraudCheck($hash_in);
+		$cnpTest = new CnpOnlineRequest();
+		$cnpTest->newXML = $mock;
+		$cnpTest->fraudCheck($hash_in);
 	}
 	
 	public function test_three_customAttributes()
@@ -95,9 +95,9 @@ class FraudCheckUnitTest extends \PHPUnit_Framework_TestCase
 		->method('request')
 		->with($this->matchesRegularExpression('/.*<advancedFraudChecks><threatMetrixSessionId>128<\/threatMetrixSessionId><customAttribute1>abc<\/customAttribute1><customAttribute2>def<\/customAttribute2><customAttribute3>ghi<\/customAttribute3><\/advancedFraudChecks>.*/'));
 	
-		$litleTest = new CnpOnlineRequest();
-		$litleTest->newXML = $mock;
-		$litleTest->fraudCheck($hash_in);
+		$cnpTest = new CnpOnlineRequest();
+		$cnpTest->newXML = $mock;
+		$cnpTest->fraudCheck($hash_in);
 	}
 	
 	public function test_four_customAttributes()
@@ -116,9 +116,9 @@ class FraudCheckUnitTest extends \PHPUnit_Framework_TestCase
 		->method('request')
 		->with($this->matchesRegularExpression('/.*<advancedFraudChecks><threatMetrixSessionId>128<\/threatMetrixSessionId><customAttribute1>abc<\/customAttribute1><customAttribute2>def<\/customAttribute2><customAttribute3>ghi<\/customAttribute3><customAttribute4>jkl<\/customAttribute4><\/advancedFraudChecks>.*/'));
 	
-		$litleTest = new CnpOnlineRequest();
-		$litleTest->newXML = $mock;
-		$litleTest->fraudCheck($hash_in);
+		$cnpTest = new CnpOnlineRequest();
+		$cnpTest->newXML = $mock;
+		$cnpTest->fraudCheck($hash_in);
 	}
 	
 	public function test_five_customAttributes()
@@ -138,9 +138,9 @@ class FraudCheckUnitTest extends \PHPUnit_Framework_TestCase
 		->method('request')
 		->with($this->matchesRegularExpression('/.*<advancedFraudChecks><threatMetrixSessionId>128<\/threatMetrixSessionId><customAttribute1>abc<\/customAttribute1><customAttribute2>def<\/customAttribute2><customAttribute3>ghi<\/customAttribute3><customAttribute4>jkl<\/customAttribute4><customAttribute5>mno<\/customAttribute5><\/advancedFraudChecks>.*/'));
 	
-		$litleTest = new CnpOnlineRequest();
-		$litleTest->newXML = $mock;
-		$litleTest->fraudCheck($hash_in);
+		$cnpTest = new CnpOnlineRequest();
+		$cnpTest->newXML = $mock;
+		$cnpTest->fraudCheck($hash_in);
 	}
 	
 	public function test_amount()
@@ -156,9 +156,9 @@ class FraudCheckUnitTest extends \PHPUnit_Framework_TestCase
 		->method('request')
 		->with($this->matchesRegularExpression('/.*<amount>100<\/amount>.*/'));
 		
-		$litleTest = new CnpOnlineRequest();
-		$litleTest->newXML = $mock;
-		$litleTest->fraudCheck($hash_in);
+		$cnpTest = new CnpOnlineRequest();
+		$cnpTest->newXML = $mock;
+		$cnpTest->fraudCheck($hash_in);
 	}
 	
 	public function test_billToAddress()
@@ -189,9 +189,9 @@ class FraudCheckUnitTest extends \PHPUnit_Framework_TestCase
 		->method('request')
 		->with($this->matchesRegularExpression('/.*<billToAddress><firstName>Fetty<\/firstName><lastName>Wap<\/lastName><addressLine1>1738 Trap Street<\/addressLine1><city>Queens<\/city><state>New York<\/state><zip>11412<\/zip><\/billToAddress>.*/'));
 		
-		$litleTest = new CnpOnlineRequest();
-		$litleTest->newXML = $mock;
-		$litleTest->fraudCheck($hash_in);
+		$cnpTest = new CnpOnlineRequest();
+		$cnpTest->newXML = $mock;
+		$cnpTest->fraudCheck($hash_in);
 	}
 	
 	public function test_shipToAddress()
@@ -214,8 +214,8 @@ class FraudCheckUnitTest extends \PHPUnit_Framework_TestCase
 		->method('request')
 		->with($this->matchesRegularExpression('/.*<shipToAddress><firstName>Johnny<\/firstName><lastName>Appleseed<\/lastName><addressLine1>16 Maple Way<\/addressLine1><city>Orchard<\/city><state>California<\/state><zip>13579<\/zip><\/shipToAddress>.*/'));
 	
-		$litleTest = new CnpOnlineRequest();
-		$litleTest->newXML = $mock;
-		$litleTest->fraudCheck($hash_in);
+		$cnpTest = new CnpOnlineRequest();
+		$cnpTest->newXML = $mock;
+		$cnpTest->fraudCheck($hash_in);
 	}
 }

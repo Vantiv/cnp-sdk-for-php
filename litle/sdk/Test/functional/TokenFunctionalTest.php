@@ -82,9 +82,9 @@ class TokenFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderId' => '12344',
             'echeckForToken' => array('routingNum' => '132344565'));
 
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException', 'Missing Required Field: /accNum/');
-        $retOb = $litleTest->registerTokenRequest($hash_in);
+        $retOb = $cnpTest->registerTokenRequest($hash_in);
     }
 
     public function test_simple_token_applepay()

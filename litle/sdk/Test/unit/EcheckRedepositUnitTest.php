@@ -34,35 +34,35 @@ class EcheckRedepositUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<litleTxnId>123123.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->echeckRedepositRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->echeckRedepositRequest($hash_in);
     }
 
     public function test_no_litleTxnId()
     {
         $hash_in = array('reportGroup'=>'Planets','id' => 'id');
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /litleTxnId/");
-        $retOb = $litleTest->echeckRedepositRequest($hash_in);
+        $retOb = $cnpTest->echeckRedepositRequest($hash_in);
     }
 
     public function test_no_routingNum_echeck()
     {
         $hash_in = array('reportGroup'=>'Planets','litleTxnId'=>'123456','id' => 'id',
          'echeck' => array('accType'=>'Checking','accNum'=>'12345657890','checkNum'=>'123455'));
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /routingNum/");
-        $retOb = $litleTest->echeckRedepositRequest($hash_in);
+        $retOb = $cnpTest->echeckRedepositRequest($hash_in);
     }
 
     public function test_no_routingNum_echeckToken()
     {
         $hash_in = array('reportGroup'=>'Planets','litleTxnId'=>'123456','id' => 'id',
         'echeckToken' => array('accType'=>'Checking','litleToken'=>'1234565789012','checkNum'=>'123455'));
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /routingNum/");
-        $retOb = $litleTest->echeckRedepositRequest($hash_in);
+        $retOb = $cnpTest->echeckRedepositRequest($hash_in);
     }
 
     public function test_both_choices()
@@ -70,9 +70,9 @@ class EcheckRedepositUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array('reportGroup'=>'Planets','litleTxnId'=>'123456','id' => 'id',
         'echeckToken' => array('accType'=>'Checking','routingNum'=>'123123','litleToken'=>'1234565789012','checkNum'=>'123455'),
         'echeck' => array('accType'=>'Checking','routingNum'=>'123123','accNum'=>'12345657890','checkNum'=>'123455'));
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
-        $retOb = $litleTest->echeckRedepositRequest($hash_in);
+        $retOb = $cnpTest->echeckRedepositRequest($hash_in);
     }
 
     public function test_loggedInUser()
@@ -87,9 +87,9 @@ class EcheckRedepositUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*merchantSdk="PHP;10.1.0".*loggedInUser="gdake" xmlns=.*>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->echeckRedepositRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->echeckRedepositRequest($hash_in);
     }
 
     public function test_merchantData()
@@ -103,9 +103,9 @@ class EcheckRedepositUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<litleTxnId>123123<\/litleTxnId>.*<merchantData>.*<campaign>camping<\/campaign>.*<\/merchantData>/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->echeckRedepositRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->echeckRedepositRequest($hash_in);
     }
     
     public function test_customIdentifier()
@@ -116,9 +116,9 @@ class EcheckRedepositUnitTest extends \PHPUnit_Framework_TestCase
     	->method('request')
     	->with($this->matchesRegularExpression('/.*<litleTxnId>123123.*<customIdentifier>customer.*/'));
     
-    	$litleTest = new CnpOnlineRequest();
-    	$litleTest->newXML = $mock;
-    	$litleTest->echeckRedepositRequest($hash_in);
+    	$cnpTest = new CnpOnlineRequest();
+    	$cnpTest->newXML = $mock;
+    	$cnpTest->echeckRedepositRequest($hash_in);
     }
     
 

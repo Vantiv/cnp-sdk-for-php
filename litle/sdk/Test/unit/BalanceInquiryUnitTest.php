@@ -45,8 +45,8 @@ class BalanceInquiryUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<orderId>1.*<orderSource>ECOMMERCE.*<card.*type.*GC.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->balanceInquiry($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->balanceInquiry($hash_in);
     }
 }

@@ -196,9 +196,9 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
                 'type' => 'VI',
                 'number' => '4100000000000000',
                 'expDate' => '1210'));
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException', 'Missing Required Field: /capability/');
-        $retOb = $litleTest->authorizationRequest($hash_in);
+        $retOb = $cnpTest->authorizationRequest($hash_in);
     }
 
     public function test_auth_with_applepay()

@@ -9,7 +9,7 @@ use litle\sdk\CnpResponseProcessor;
 
 require_once realpath(__DIR__) . '/../../../../vendor/autoload.php';
 
-class LitleRequestFunctionalTest extends \PHPUnit_Framework_TestCase
+class CnpRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 {
     private $direct;
     private $config;
@@ -23,7 +23,7 @@ class LitleRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         }
         $this->config = Obj2xml::getConfig(array(
             'batch_requests_path' => $this->direct,
-            'litle_requests_path' => $this->direct
+            'cnp_requests_path' => $this->direct
         ));
         $this->sale = array(
             'card' => array(

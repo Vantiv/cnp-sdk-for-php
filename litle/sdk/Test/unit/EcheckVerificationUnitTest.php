@@ -35,9 +35,9 @@ class EcheckVerificationUnitTest extends \PHPUnit_Framework_TestCase
          ->method('request')
          ->with($this->matchesRegularExpression('/.*<echeckToken>.*<accType>Checking.*/'));
 
-         $litleTest = new CnpOnlineRequest();
-         $litleTest->newXML = $mock;
-         $litleTest->echeckSaleRequest($hash_in);
+         $cnpTest = new CnpOnlineRequest();
+         $cnpTest->newXML = $mock;
+         $cnpTest->echeckSaleRequest($hash_in);
     }
     public function test_no_amount()
     {
@@ -45,18 +45,18 @@ class EcheckVerificationUnitTest extends \PHPUnit_Framework_TestCase
         'reportGroup'=>'Planets',
         'id' => 'id',
         'orderId'=>'12344');
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /amount/");
-        $retOb = $litleTest->echeckVerificationRequest($hash_in);
+        $retOb = $cnpTest->echeckVerificationRequest($hash_in);
     }
     public function test_no_orderId()
     {
         $hash_in = array(
             'reportGroup'=>'Planets','id' => 'id',
             'amount'=>'123');
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /orderId/");
-        $retOb = $litleTest->echeckVerificationRequest($hash_in);
+        $retOb = $cnpTest->echeckVerificationRequest($hash_in);
     }
     public function test_no_orderSounce()
     {
@@ -64,18 +64,18 @@ class EcheckVerificationUnitTest extends \PHPUnit_Framework_TestCase
             'reportGroup'=>'Planets','id' => 'id',
             'amount'=>'123',
             'orderId'=>'12344');
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /orderSource/");
-        $retOb = $litleTest->echeckVerificationRequest($hash_in);
+        $retOb = $cnpTest->echeckVerificationRequest($hash_in);
     }
     public function test_both_choices()
     {
         $hash_in = array('reportGroup'=>'Planets','amount'=>'123','orderId'=>'123','orderSource'=>'ecommerce','id' => 'id',
         'echeckToken' => array('accType'=>'Checking','routingNum'=>'123123','litleToken'=>'1234565789012','checkNum'=>'123455'),
         'echeck' => array('accType'=>'Checking','routingNum'=>'123123','accNum'=>'12345657890','checkNum'=>'123455'));
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
-        $retOb = $litleTest->echeckVerificationRequest($hash_in);
+        $retOb = $cnpTest->echeckVerificationRequest($hash_in);
     }
     public function test_loggedInUser()
     {
@@ -91,9 +91,9 @@ class EcheckVerificationUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*merchantSdk="PHP;10.1.0".*loggedInUser="gdake" xmlns=.*>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->echeckVerificationRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->echeckVerificationRequest($hash_in);
     }
 
     public function test_merchantData()
@@ -105,9 +105,9 @@ class EcheckVerificationUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<\/echeckToken>.*<merchantData>.*<campaign>camping<\/campaign>.*<\/merchantData>/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->echeckVerificationRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->echeckVerificationRequest($hash_in);
     }
 
 }

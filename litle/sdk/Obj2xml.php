@@ -264,7 +264,7 @@ class Obj2xml
             $config_array = array();
         }
 
-        $names = explode(',', LITLE_CONFIG_LIST);
+        $names = explode(',', CNP_CONFIG_LIST);
         foreach ($names as $name) {
             if (isset($data[$name])) {
                 $config[$name] = $data[$name];

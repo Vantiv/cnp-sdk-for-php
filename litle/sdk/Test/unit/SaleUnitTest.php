@@ -42,9 +42,9 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<card><type>VI.*<number>4100000000000001.*<expDate>1213.*<cardValidationNum>1213.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->saleRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->saleRequest($hash_in);
     }
     
     
@@ -73,9 +73,9 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
     	->method('request')
     	->with($this->matchesRegularExpression('/.*<advancedFraudChecks><threatMetrixSessionId>abc123<\/threatMetrixSessionId><customAttribute1>1<\/customAttribute1>.*?<\/advancedFraudChecks><\/sale>.*/'));
     
-    	$litleTest = new CnpOnlineRequest();
-    	$litleTest->newXML = $mock;
-    	$litleTest->saleRequest($hash_in);
+    	$cnpTest = new CnpOnlineRequest();
+    	$cnpTest->newXML = $mock;
+    	$cnpTest->saleRequest($hash_in);
     }
 
     public function test_no_orderId()
@@ -91,9 +91,9 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
           'number' =>'4100000000000001',
           'expDate' =>'1210')
         );
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /orderId/");
-        $retOb = $litleTest->saleRequest($hash_in);
+        $retOb = $cnpTest->saleRequest($hash_in);
     }
 
     public function test_no_amount()
@@ -109,9 +109,9 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
           'number' =>'4100000000000001',
           'expDate' =>'1210')
         );
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /amount/");
-        $retOb = $litleTest->saleRequest($hash_in);
+        $retOb = $cnpTest->saleRequest($hash_in);
     }
 
     public function test_no_orderSource()
@@ -127,9 +127,9 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
           'number' =>'4100000000000001',
           'expDate' =>'1210')
         );
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /orderSource/");
-        $retOb = $litleTest->saleRequest($hash_in);
+        $retOb = $cnpTest->saleRequest($hash_in);
     }
 
     public function test_both_choices_card_and_paypal()
@@ -150,9 +150,9 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
           'token'=>'1234',
           'transactionId'=>'123456')
         );
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
-        $retOb = $litleTest->saleRequest($hash_in);
+        $retOb = $cnpTest->saleRequest($hash_in);
     }
 
     public function test_three_choices_card_and_paypage_and_paypal()
@@ -178,9 +178,9 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
           'token'=>'1234',
           'transactionId'=>'123456')
         );
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
-        $retOb = $litleTest->saleRequest($hash_in);
+        $retOb = $cnpTest->saleRequest($hash_in);
     }
 
     public function test_all_choices_card_and_paypage_and_paypal_and_token()
@@ -214,9 +214,9 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
           'cardValidationNum'=>'555',
           'type'=>'VI')
         );
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
-        $retOb = $litleTest->saleRequest($hash_in);
+        $retOb = $cnpTest->saleRequest($hash_in);
     }
 
     public function test_merchant_data()
@@ -234,9 +234,9 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<merchantData>.*?<affiliate>bar<\/affiliate>.*?<\/merchantData>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->saleRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->saleRequest($hash_in);
     }
 
     public function test_fraud_filter_override()
@@ -259,9 +259,9 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<sale.*?<fraudFilterOverride>false<\/fraudFilterOverride>.*?<\/sale>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->saleRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->saleRequest($hash_in);
     }
 
     public function test_loggedInUser()
@@ -282,9 +282,9 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*merchantSdk="PHP;8.14.0".*loggedInUser="gdake" xmlns=.*>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->saleRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->saleRequest($hash_in);
     }
 
     public function test_surchargeAmount()
@@ -306,9 +306,9 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<amount>2<\/amount><surchargeAmount>1<\/surchargeAmount><orderSource>ecommerce<\/orderSource>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->saleRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->saleRequest($hash_in);
     }
 
     public function test_surchargeAmount_Optional()
@@ -329,9 +329,9 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<amount>2<\/amount><orderSource>ecommerce<\/orderSource>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->saleRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->saleRequest($hash_in);
     }
 
     public function test_recurringRequest()
@@ -359,9 +359,9 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<fraudFilterOverride>true<\/fraudFilterOverride><recurringRequest><subscription><planCode>abc123<\/planCode><numberOfPayments>12<\/numberOfPayments><\/subscription><\/recurringRequest>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->saleRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->saleRequest($hash_in);
     }
 
     public function test_recurringRequest_Optional()
@@ -383,9 +383,9 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<fraudFilterOverride>true<\/fraudFilterOverride><\/sale>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->saleRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->saleRequest($hash_in);
     }
 
     public function test_litleInternalRecurringRequest()
@@ -411,9 +411,9 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<fraudFilterOverride>true<\/fraudFilterOverride><litleInternalRecurringRequest><subscriptionId>123<\/subscriptionId><recurringTxnId>456<\/recurringTxnId><\/litleInternalRecurringRequest>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->saleRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->saleRequest($hash_in);
 
     }
 
@@ -436,9 +436,9 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<fraudFilterOverride>true<\/fraudFilterOverride><\/sale>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->saleRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->saleRequest($hash_in);
     }
 
     public function test_debtRepayment_true()
@@ -459,9 +459,9 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<\/litleInternalRecurringRequest><debtRepayment>true<\/debtRepayment><\/sale>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->saleRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->saleRequest($hash_in);
     }
 
     public function test_debtRepayment_false()
@@ -482,9 +482,9 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<\/litleInternalRecurringRequest><debtRepayment>false<\/debtRepayment><\/sale>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->saleRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->saleRequest($hash_in);
     }
 
     public function test_debtRepayment_optional()
@@ -504,9 +504,9 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<\/litleInternalRecurringRequest><\/sale>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->saleRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->saleRequest($hash_in);
     }
 
        function test_advancedFraudChecks()
@@ -530,9 +530,9 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
         ->expects($this->once())
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<debtRepayment>true<\/debtRepayment><advancedFraudChecks><threatMetrixSessionId>abc123<\/threatMetrixSessionId><\/advancedFraudChecks><\/sale>.*/'));
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->saleRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->saleRequest($hash_in);
     }
 
     public function test_advancedFraudChecks_withoutThreatMetrixSessionId()
@@ -554,9 +554,9 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
             )
         );
 
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException','Missing Required Field: /threatMetrixSessionId/');
-        $retOb = $litleTest->saleRequest($hash_in);
+        $retOb = $cnpTest->saleRequest($hash_in);
     }
     
     public function test_sale_with_card_secondaryAmount()
@@ -576,9 +576,9 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
     	->method('request')
     	->with($this->matchesRegularExpression('/.*<card><type>VI.*<number>4100000000000001.*<expDate>1213.*<cardValidationNum>1213.*/'));
     
-    	$litleTest = new CnpOnlineRequest();
-    	$litleTest->newXML = $mock;
-    	$litleTest->saleRequest($hash_in);
+    	$cnpTest = new CnpOnlineRequest();
+    	$cnpTest->newXML = $mock;
+    	$cnpTest->saleRequest($hash_in);
     }
 
     public function test_sale_with_applepay()
@@ -598,9 +598,9 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
     	->method('request')
     	->with($this->matchesRegularExpression('/.*<applepay><data>string data here.*<header>header stuff here.*<signature>signature.*<version>version 1.*/'));
     
-    	$litleTest = new CnpOnlineRequest();
-    	$litleTest->newXML = $mock;
-    	$litleTest->saleRequest($hash_in);
+    	$cnpTest = new CnpOnlineRequest();
+    	$cnpTest->newXML = $mock;
+    	$cnpTest->saleRequest($hash_in);
     }
     
     public function test_sale_with_sepaDirectDebit()
@@ -623,9 +623,9 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
     	->method('request')
     	->with($this->matchesRegularExpression('/.*<sepaDirectDebit><mandateProvider>Merchant.*<sequenceType>FirstRecurring.*<mandateReference>some string here.*<mandateUrl>some string here.*<iban>string with min of 15 char.*<preferredLanguage>USA.*/'));
     
-    	$litleTest = new CnpOnlineRequest();
-    	$litleTest->newXML = $mock;
-    	$litleTest->saleRequest($hash_in);
+    	$cnpTest = new CnpOnlineRequest();
+    	$cnpTest->newXML = $mock;
+    	$cnpTest->saleRequest($hash_in);
     }
     
     public function test_sale_with_processingType_orgTxnNtwId_orgTxnAmt()
@@ -648,8 +648,8 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
     	->method('request')
     	->with($this->matchesRegularExpression('/.*<card><type>VI.*<number>4100000000000001.*<expDate>1213.*<cardValidationNum>1213.*<processingType>accountFunding.*<originalNetworkTransactionId>abcdefgh.*<originalTransactionAmount>1000.*/'));
     
-    	$litleTest = new CnpOnlineRequest();
-    	$litleTest->newXML = $mock;
-    	$litleTest->saleRequest($hash_in);
+    	$cnpTest = new CnpOnlineRequest();
+    	$cnpTest->newXML = $mock;
+    	$cnpTest->saleRequest($hash_in);
     }
 }

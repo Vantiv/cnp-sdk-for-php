@@ -36,9 +36,9 @@ class TokenUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<accountNumber>123456789101112*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->registerTokenRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->registerTokenRequest($hash_in);
     }
 
     public function test_accountNum_and_paypage()
@@ -49,9 +49,9 @@ class TokenUnitTest extends \PHPUnit_Framework_TestCase
       'orderId'=>'12344',
       'accountNumber'=>'1233456789101112',
       'paypageRegistrationId'=>'1233456789101112');
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
-        $retOb = $litleTest->registerTokenRequest($hash_in);
+        $retOb = $cnpTest->registerTokenRequest($hash_in);
 
     }
 
@@ -63,9 +63,9 @@ class TokenUnitTest extends \PHPUnit_Framework_TestCase
       'orderId'=>'12344',
       'echeckForToken'=>array('accNum'=>'12344565','routingNum'=>'123476545'),
       'paypageRegistrationId'=>'1233456789101112');
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
-        $retOb = $litleTest->registerTokenRequest($hash_in);
+        $retOb = $cnpTest->registerTokenRequest($hash_in);
 
     }
 
@@ -78,9 +78,9 @@ class TokenUnitTest extends \PHPUnit_Framework_TestCase
       'accountNumber'=>'1233456789101112',
       'echeckForToken'=>array('accNum'=>'12344565','routingNum'=>'123476545'),
       'paypageRegistrationId'=>'1233456789101112');
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
-        $retOb = $litleTest->registerTokenRequest($hash_in);
+        $retOb = $cnpTest->registerTokenRequest($hash_in);
 
     }
 
@@ -95,9 +95,9 @@ class TokenUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<accountNumber>123456789101112.*<cardValidationNum>123.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->registerTokenRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->registerTokenRequest($hash_in);
     }
 
     public function test_loggedInUser()
@@ -112,9 +112,9 @@ class TokenUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*merchantSdk="PHP;8.14.0".*loggedInUser="gdake" xmlns=.*>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->registerTokenRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->registerTokenRequest($hash_in);
     }
     
     public function test_token_applepay()
@@ -131,9 +131,9 @@ class TokenUnitTest extends \PHPUnit_Framework_TestCase
     	->method('request')
     	->with($this->matchesRegularExpression('/.*<applepay><data>string data here.*<header>header stuff here.*<signature>signature.*<version>version 1.*/'));
     
-    	$litleTest = new CnpOnlineRequest();
-    	$litleTest->newXML = $mock;
-    	$litleTest->registerTokenRequest($hash_in);
+    	$cnpTest = new CnpOnlineRequest();
+    	$cnpTest->newXML = $mock;
+    	$cnpTest->registerTokenRequest($hash_in);
     }
     
     public function test_token_androidpay()
@@ -148,9 +148,9 @@ class TokenUnitTest extends \PHPUnit_Framework_TestCase
     	->method('request')
     	->with($this->matchesRegularExpression('/.*<orderId>androidpay.*<accountNumber>1233456789103801.*/'));
     
-    	$litleTest = new CnpOnlineRequest();
-    	$litleTest->newXML = $mock;
-    	$litleTest->registerTokenRequest($hash_in);
+    	$cnpTest = new CnpOnlineRequest();
+    	$cnpTest->newXML = $mock;
+    	$cnpTest->registerTokenRequest($hash_in);
     }
 
 }

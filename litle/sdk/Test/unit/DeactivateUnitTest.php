@@ -45,8 +45,8 @@ class DeactivateUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<orderId>1.*<orderSource>ECOMMERCE.*<card.*type.*GC.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->deactivate($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->deactivate($hash_in);
     }
 }

@@ -34,17 +34,17 @@ class CaptureUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<litleTxnId>12312312.*<amount>123.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->captureRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->captureRequest($hash_in);
     }
 
     public function test_no_txnid()
     {
         $hash_in =array('reportGroup'=>'Planets','amount'=>'106','id' => 'id');
-        $litleTest = new CnpOnlineRequest();
+        $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException','Missing Required Field: /litleTxnId/');
-        $litleTest->captureRequest($hash_in);
+        $cnpTest->captureRequest($hash_in);
     }
 
     public function test_loggedInUser()
@@ -60,9 +60,9 @@ class CaptureUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*merchantSdk="PHP;10.1.0".*loggedInUser="gdake" xmlns=.*>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->captureRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->captureRequest($hash_in);
     }
 
     public function test_surchargeAmount()
@@ -80,9 +80,9 @@ class CaptureUnitTest extends \PHPUnit_Framework_TestCase
             ->method('request')
             ->with($this->matchesRegularExpression('/.*<amount>2<\/amount><surchargeAmount>1<\/surchargeAmount><payPalNotes>notes<\/payPalNotes>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->captureRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->captureRequest($hash_in);
     }
 
     public function test_surchargeAmount_optional()
@@ -99,9 +99,9 @@ class CaptureUnitTest extends \PHPUnit_Framework_TestCase
         ->method('request')
         ->with($this->matchesRegularExpression('/.*<amount>2<\/amount><payPalNotes>notes<\/payPalNotes>.*/'));
 
-        $litleTest = new CnpOnlineRequest();
-        $litleTest->newXML = $mock;
-        $litleTest->captureRequest($hash_in);
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->captureRequest($hash_in);
     }
   
     public function test_simple_capture_withPin()
@@ -112,9 +112,9 @@ class CaptureUnitTest extends \PHPUnit_Framework_TestCase
     	->method('request')
     	->with($this->matchesRegularExpression('/.*<pin>02139.*/'));
     
-    	$litleTest = new CnpOnlineRequest();
-    	$litleTest->newXML = $mock;
-    	$litleTest->captureRequest($hash_in);
+    	$cnpTest = new CnpOnlineRequest();
+    	$cnpTest->newXML = $mock;
+    	$cnpTest->captureRequest($hash_in);
     }
     
 }
