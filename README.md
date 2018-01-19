@@ -17,7 +17,7 @@ This SDK was implemented to support the PHP programming language and was created
 
 See LICENSE file for details on using this software.
 
-Source Code available from : https://github.com/LitleCo/litle-sdk-for-php
+Source Code available from : https://github.com/Vantiv/cnp-sdk-for-php
 
 Please contact [Vantiv eCommerce](https://developer.vantiv.com/community/ecommerce) to receive valid merchant credentials in order to run tests successfully or if you require assistance in any way.  We are reachable at sdksupport@Vantiv.com
 
@@ -38,7 +38,7 @@ If you are using a composer to manage your dependencies, you can do the followin
 > php composer.phar install
 
 3) Configure the SDK:
-> cd litle/sdk
+> cd cnp/sdk
 > php Setup.php
 
 4) Run the attached sample:
@@ -63,12 +63,12 @@ $sale_info = array(
              'cardValidationNum' => '349',
              'type' => 'MC' )
             );
-$initialize = new litle\sdk\LitleOnlineRequest();
+$initialize = new cnp\sdk\CnpOnlineRequest();
 $saleResponse =$initialize->saleRequest($sale_info);
 #display results
-echo ("Response: " . (litle\sdk\XmlParser::getNode($saleResponse,'response')) . "<br>");
-echo ("Message: " . litle\sdk\XmlParser::getNode($saleResponse,'message') . "<br>");
-echo ("Vantiv eCommerce Transaction ID: " . litle\sdk\XmlParser::getNode($saleResponse,'litleTxnId'));
+echo ("Response: " . (cnp\sdk\XmlParser::getNode($saleResponse,'response')) . "<br>");
+echo ("Message: " . cnp\sdk\XmlParser::getNode($saleResponse,'message') . "<br>");
+echo ("Vantiv eCommerce Transaction ID: " . cnp\sdk\XmlParser::getNode($saleResponse,'cnpTxnId'));
 ```
 > php your_sample_name
 
@@ -77,10 +77,10 @@ Using without composer
 If you're not, you have to add a require for each and every class that's going to be used.
 
 1) Configure the SDK
-> cd into litle/sdk
+> cd into cnp/sdk
 > php Setup.php
 
-2) Add the litle folder and require the path for your file
+2) Add the cnp folder and require the path for your file
 
 3) run your file 
 
@@ -89,16 +89,16 @@ If you're not, you have to add a require for each and every class that's going t
 Clone Repo
 ---------------
 
-1) Install the LitleOnline PHP SDK from git. 
+1) Install the Vantiv eCommerce PHP SDK from git. 
 
-> git clone git://github.com/LitleCo/litle-sdk-for-php.git
+> git clone git://github.com/Vantiv/cnp-sdk-for-php.git
 
 > php ~/composer.phar install
 
 
 2) Once the SDK is downloaded run our setup program to generate a configuration file.
 
-> cd litle-sdk-for-php/lib
+> cd cnp-sdk-for-php/lib
 
 > php Setup.php
 
@@ -114,7 +114,7 @@ Running the above commands will create a configuration file in the lib directory
 
 ```php
 <?php
-require_once realpath(dirname(__FILE__)) . '/../lib/LitleOnline.php';  
+require_once realpath(dirname(__FILE__)) . '/../lib/CnpOnline.php';  
     // Visa $10.00 sale
     $hash_in = array(
 	      'amount'=>'106',
@@ -126,7 +126,7 @@ require_once realpath(dirname(__FILE__)) . '/../lib/LitleOnline.php';
 	     'expDate' =>'1000')
 	      );
 //Perform the transaction on the Vantiv eCommerce Platform
-$initialize = new LitleOnlineRequest();
+$initialize = new CnpOnlineRequest();
 $saleResponse = $initialize->saleRequest($hash_in);
 
 // Display Result 
@@ -137,7 +137,7 @@ echo ("Vantiv eCommerce Transaction ID: " . XMLParser::getNode($saleResponse,'li
 As of 8.13.1, you may also use a tree-oriented style to get the response values:
 ```php
 <?php
-require_once realpath(dirname(__FILE__)) . '/../lib/LitleOnline.php';  
+require_once realpath(dirname(__FILE__)) . '/../lib/CnpOnline.php';  
     // Visa $10.00 sale
     $hash_in = array(
 	      'amount'=>'106',
@@ -149,7 +149,7 @@ require_once realpath(dirname(__FILE__)) . '/../lib/LitleOnline.php';
 	     'expDate' =>'1000')
 	      );
 //Perform the transaction on the Vantiv eCommerce Platform
-$initialize = new LitleOnlineRequest($treeResponse=true);
+$initialize = new CnpOnlineRequest($treeResponse=true);
 $saleResponse = $initialize->saleRequest($hash_in);
 
 // Display Result 
@@ -162,21 +162,21 @@ NOTE: you may have to change the path to match that of your filesystems.
 
 If you get an error like:
 ```bash
-PHP Fatal error:  require_once(): Failed opening required '/home/gdake/git/litle-sdk-for-php/../lib/LitleONline.php' (include_path='.:/usr/share/pear:/usr/share/php') in /home/gdake/git/litle-sdk-for-php/foo.php on line 2
+PHP Fatal error:  require_once(): Failed opening required '/home/gdake/git/cnp-sdk-for-php/../lib/CnpOnline.php' (include_path='.:/usr/share/pear:/usr/share/php') in /home/gdake/git/cnp-sdk-for-php/foo.php on line 2
 ```
-You need to change the second line of your script to load the real location of LitleOnline.php
+You need to change the second line of your script to load the real location of CnpOnline.php
 
 If you get an error like:
 ```bash
-PHP Fatal error:  require(): Failed opening required '/home/gdake/litle-sdk-for-php/lib/../vendor/autoload.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/gdake/litle-sdk-for-php/lib/LitleOnline.php on line 42
+PHP Fatal error:  require(): Failed opening required '/home/gdake/cnp-sdk-for-php/lib/../vendor/autoload.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/gdake/cnp-sdk-for-php/lib/CnpOnline.php on line 42
 ```
 You probably had a problem with composer.  You can safely remove line 42 if you are not using batch processing, or you can edit it to point at our dependencies that you've downloaded in another way.
 
-5) Next run this file using php on the command line or inside a browser. You should see the following result provided you have connectivity to the Litle certification environment.  You will see an HTTP error if you don't have access to the Litle URL
+5) Next run this file using php on the command line or inside a browser. You should see the following result provided you have connectivity to the Vantiv eCommerce certification environment.  You will see an HTTP error if you don't have access to the Vantiv URL
 
     Message: Valid Format
     Vantiv eCommerce Transaction ID: <your-numeric-txn-id>
 
 More examples can be found here [php Gists])(https://gist.github.com/litleSDK)
 
-Please contact Litle & Co. with any further questions.   You can reach us at SDKSupport@Vantiv.com
+Please contact Vantiv eCommerce with any further questions.   You can reach us at SDKSupport@Vantiv.com
