@@ -25,7 +25,7 @@ $response = $initialize->forceCaptureRequest($capture_info);
 #display results
 echo ("Response: " . (XmlParser::getNode($response,'response')) . "<br>");
 echo ("Message: " . XmlParser::getNode($response,'message') . "<br>");
-echo ("Litle Transaction ID: " . XmlParser::getNode($response,'litleTxnId'));
+echo ("Vantiv Transaction ID: " . XmlParser::getNode($response,'litleTxnId'));
 
 if(XmlParser::getNode($response,'message')!='Approved')
  throw new \Exception('LitleForceCaptureTransaction does not get the right response');

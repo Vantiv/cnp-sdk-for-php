@@ -65,13 +65,13 @@ class CnpRequest
     }
 
     /*
-     * Adds a closed batch request to the Litle Request. This entails copying the completed batch file into the intermediary
+     * Adds a closed batch request to the Cnp Request. This entails copying the completed batch file into the intermediary
      * request file
      */
     public function addBatchRequest($batch_request)
     {
         if ($this->wouldFill($batch_request->total_txns)) {
-            throw new \RuntimeException("Couldn't add the batch to the Litle Request. The total number of transactions would exceed the maximum allowed for a request.");
+            throw new \RuntimeException("Couldn't add the batch to the Cnp Request. The total number of transactions would exceed the maximum allowed for a request.");
         }
 
         if ($this->closed) {
@@ -103,7 +103,7 @@ class CnpRequest
     public function createRFRRequest($hash_in)
     {
         if ($this->num_batch_requests > 0) {
-            throw new \RuntimeException("Could not add the RFR Request. A single Litle Request cannot have both an RFR request and batch requests together.");
+            throw new \RuntimeException("Could not add the RFR Request. A single Cnp Request cannot have both an RFR request and batch requests together.");
         }
 
         if ($this->closed) {
@@ -118,7 +118,7 @@ class CnpRequest
         $this->closed = true;
     }
     /*
-     * Fleshes out the XML needed for the Litle Request. Returns the file name of the completed request file
+     * Fleshes out the XML needed for the Cnp Request. Returns the file name of the completed request file
      */
     public function closeRequest()
     {
@@ -145,17 +145,17 @@ class CnpRequest
     /*
      * Alias for the preferred method of sFTP delivery
      */
-    public function sendToLitle()
+    public function sendToCnp()
     {
-        $this->sendToLitleSFTP();
+        $this->sendToCnpSFTP();
 
         return $this->response_file;
     }
 
     /*
-     * Deliver the Litle Request over sFTP using the credentials given by the config. Returns the name of the file retrieved from the server
+     * Deliver the Cnp Request over sFTP using the credentials given by the config. Returns the name of the file retrieved from the server
      */
-    public function sendToLitleSFTP()
+    public function sendToCnpSFTP()
     {
         if (!$this->closed) {
             $this->closeRequest();
@@ -167,13 +167,13 @@ class CnpRequest
         # rename when the file upload is complete
         $session->rename('/inbound/' . basename($this->request_file) . '.prg', '/inbound/' . basename($this->request_file) . '.asc');
 
-        $this->retrieveFromLitleSFTP($session);
+        $this->retrieveFromCnpSFTP($session);
     }
 
     /*
      * Given a timeout (defaults to 7200 seconds - two hours), periodically poll the SFTP directory, looking for the response file for this request.
      */
-    public function retrieveFromLitleSFTP($session, $sftp_timeout=7200)
+    public function retrieveFromCnpSFTP($session, $sftp_timeout=7200)
     {
         $time_spent = 0;
         $this->resetSFTPSession($session);
@@ -186,7 +186,7 @@ class CnpRequest
             $files = $session->nlist('/outbound');
 
             if (in_array(basename($this->request_file) . '.asc', $files)) {
-                $this->downloadFromLitleSFTP($session,$time_spent, $sftp_timeout);
+                $this->downloadFromCnpSFTP($session,$time_spent, $sftp_timeout);
 
                 return;
             }
@@ -228,7 +228,7 @@ class CnpRequest
     /*
      * Downloads the response file from the SFTP server to local system iteratively
      */
-    public function downloadFromLitleSFTP($session, $time_spent, $sftp_timeout)
+    public function downloadFromCnpSFTP($session, $time_spent, $sftp_timeout)
     {
         $sftp_remote_file = '/outbound/' . basename($this->request_file) . '.asc';
         $this->resetSFTPSession($session);
@@ -256,9 +256,9 @@ class CnpRequest
     }
 
     /*
-     * Deliver the Litle Request over a TCP stream. Returns the name of the file retrieved from the server
+     * Deliver the Cnp Request over a TCP stream. Returns the name of the file retrieved from the server
      */
-    public function sendToLitleStream()
+    public function sendToCnpStream()
     {
         if (!$this->closed) {
             $this->closeRequest();

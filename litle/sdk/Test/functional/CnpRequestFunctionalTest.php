@@ -177,7 +177,7 @@ class CnpRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         ), "", file_get_contents($request->request_file)));
     }
 
-    public function test_sendToLitle()
+    public function test_sendToCnp()
     {
         $request = new CnpRequest ($this->config);
         $batch = new BatchRequest ($this->direct);
@@ -209,7 +209,7 @@ class CnpRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         $request->addBatchRequest($batch);
         $request->closeRequest();
 
-        $response = $request->sendToLitle();
+        $response = $request->sendToCnp();
 
         $this->assertTrue(file_exists($response));
         $this->assertEquals($response, $request->response_file);
@@ -222,7 +222,7 @@ class CnpRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('1864', $resp->orderId);
     }
 
-    public function test_sendToLitleStream()
+    public function test_sendToCnpStream()
     {
         $request = new CnpRequest ($this->config);
 
@@ -253,7 +253,7 @@ class CnpRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $request->addBatchRequest($batch);
 
-        $response = $request->sendToLitleStream();
+        $response = $request->sendToCnpStream();
 
         $this->assertTrue(file_exists($response));
         $this->assertEquals($response, $request->response_file);

@@ -22,13 +22,13 @@ $sale_info = array(
 		      'type' => 'MC')
 			);
  
-$initialize = new LitleOnlineRequest();
+$initialize = new CnpOnlineRequest();
 $saleResponse = $initialize->saleRequest($sale_info);
  
 #display results
 echo ("Response: " . (XmlParser::getNode($saleResponse,'response')) . "<br>");
 echo ("Message: " . XmlParser::getNode($saleResponse,'message') . "<br>");
-echo ("Litle Transaction ID: " . XmlParser::getNode($saleResponse,'litleTxnId'));
+echo ("Vantiv Transaction ID: " . XmlParser::getNode($saleResponse,'litleTxnId'));
 
 if(XmlParser::getNode($saleResponse,'message')!='Approved')
  throw new \Exception('LitleSaleTransaction does not get the right response');

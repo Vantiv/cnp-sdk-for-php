@@ -32,7 +32,7 @@ class XmlFieldsTest extends \PHPUnit_Framework_TestCase
         $hash = array(
         "firstName" =>"Greg",
         "lastName"=>"Formich",
-        "companyName"=>"Litleco",
+        "companyName"=>"Vantiv",
         "addressLine1"=>"900 chelmosford st",
         "city"=> "Lowell",
         "state"=>"MA",
