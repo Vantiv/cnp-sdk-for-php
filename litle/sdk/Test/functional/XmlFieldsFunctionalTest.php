@@ -127,7 +127,7 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderId' => '12344',
             'amount' => '106',
             'orderSource' => 'ecommerce',
-            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'),
+            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'),
             'card' => array(
                 'type' => 'VI',
                 'number' => '4100000000000000',

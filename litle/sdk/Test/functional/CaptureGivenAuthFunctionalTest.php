@@ -77,7 +77,7 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
             'authInformation' => array(
                 'authDate' => '2002-10-09', 'authCode' => '543216',
                 'authAmount' => '12345'),
-            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'),
+            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'),
             'processingInstructions' => array('bypassVelocityCheck' => 'true'),
             'orderSource' => 'ecommerce',
             'card' => array(

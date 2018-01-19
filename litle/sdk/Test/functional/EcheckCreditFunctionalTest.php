@@ -58,7 +58,7 @@ class EcheckCreditFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderId' => '12345',
             'orderSource' => 'ecommerce',
             'echeck' => array('accType' => 'Checking', 'accNum' => '12345657890', 'routingNum' => '123456789', 'checkNum' => '123455'),
-            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
+            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'));
 
         $initialize = new CnpOnlineRequest();
         $echeckCreditResponse = $initialize->echeckCreditRequest($hash_in);
@@ -74,7 +74,7 @@ class EcheckCreditFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderId' => '12345',
             'orderSource' => 'ecommerce',
             'echeckToken' => array('accType' => 'Checking', 'litleToken' => '1234565789012', 'routingNum' => '123456789', 'checkNum' => '123455'),
-            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
+            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'));
 
         $initialize = new CnpOnlineRequest();
         $echeckCreditResponse = $initialize->echeckCreditRequest($hash_in);
@@ -105,7 +105,7 @@ class EcheckCreditFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderId' => '12345',
             'orderSource' => 'ecommerce',
             'echeck' => array('accType' => 'Checking', 'accNum' => '12345657890', 'routingNum' => '123456789', 'checkNum' => '123455'),
-            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
+            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'));
 
         $initialize = new CnpOnlineRequest();
         $echeckCreditResponse = $initialize->echeckCreditRequest($hash_in);

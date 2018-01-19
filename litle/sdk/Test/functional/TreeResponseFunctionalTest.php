@@ -135,7 +135,7 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderId' => '12345',
             'orderSource' => 'ecommerce',
             'echeck' => array('accType' => 'Checking', 'accNum' => '12345657890', 'routingNum' => '123456789', 'checkNum' => '123455'),
-            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
+            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'));
 
         $cnp = new CnpOnlineRequest($treeResponse = true);
         $response = $cnp->echeckSaleRequest($hash_in);
@@ -150,7 +150,7 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderId' => '12345',
             'orderSource' => 'ecommerce',
             'echeck' => array('accType' => 'Checking', 'accNum' => '12345657890', 'routingNum' => '123456789', 'checkNum' => '123455'),
-            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
+            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'));
 
         $cnp = new CnpOnlineRequest($treeResponse = true);
         $response = $cnp->echeckVerificationRequest($hash_in);

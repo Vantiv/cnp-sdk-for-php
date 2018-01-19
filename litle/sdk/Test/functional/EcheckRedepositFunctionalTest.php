@@ -50,7 +50,7 @@ class EcheckRedepositFunctionalTest extends \PHPUnit_Framework_TestCase
             'litleTxnId' => '123456789012345678',
             'orderSource' => 'ecommerce',
             'echeck' => array('accType' => 'Checking', 'accNum' => '12345657890', 'routingNum' => '123456789', 'checkNum' => '123455'),
-            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
+            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'));
 
         $initialize = new CnpOnlineRequest();
         $echeckRedepositResponse = $initialize->echeckRedepositRequest($hash_in);
@@ -67,7 +67,7 @@ class EcheckRedepositFunctionalTest extends \PHPUnit_Framework_TestCase
             'litleTxnId' => '123456789012345678',
             'orderSource' => 'ecommerce',
             'echeckToken' => array('accType' => 'Checking', 'litleToken' => '1234565789012', 'routingNum' => '123456789', 'checkNum' => '123455'),
-            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
+            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'));
 
         $initialize = new CnpOnlineRequest();
         $echeckRedepositResponse = $initialize->echeckRedepositRequest($hash_in);
@@ -83,7 +83,7 @@ class EcheckRedepositFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderId' => '12345',
             'orderSource' => 'ecommerce',
             'echeckToken' => array('accType' => 'Checking', 'litleToken' => '1234565789012', 'routingNum' => '123456789', 'checkNum' => '123455'),
-            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
+            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'));
 
         $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException', 'Missing Required Field: /litleTxnId/');

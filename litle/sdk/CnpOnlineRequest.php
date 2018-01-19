@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Copyright (c) 2011 Litle & Co.
+ * Copyright (c) 2011 Vantiv eCommerce Inc.
  *
  * Permission is hereby granted, free of charge, to any person
  * obtaining a copy of this software and associated documentation
@@ -51,7 +51,7 @@ class CnpOnlineRequest
                        "32" => "Address unavailable",
                        "33" => "General error",
                        "34" => "AVS not performed",
-                       "40" => "Address failed Litle & Co. edit checks");
+                       "40" => "Address failed Vantiv eCommerce Inc. edit checks");
 
         return (isset($codes[$code]) ? $codes[$code] : "Unknown Address Response");
     }

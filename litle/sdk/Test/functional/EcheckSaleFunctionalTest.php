@@ -38,7 +38,7 @@ class EcheckSaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderId' => '12345',
             'orderSource' => 'ecommerce',
             'echeck' => array('accType' => 'Checking', 'accNum' => '12345657890', 'routingNum' => '123456789', 'checkNum' => '123455'),
-            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
+            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'));
 
         $initialize = new CnpOnlineRequest();
         $echeckSaleResponse = $initialize->echeckSaleRequest($hash_in);
@@ -54,7 +54,7 @@ class EcheckSaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderId' => '12345',
             'orderSource' => 'ecommerce',
             'echeckToken' => array('accType' => 'Checking', 'litleToken' => '1234565789012', 'routingNum' => '123456789', 'checkNum' => '123455'),
-            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
+            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'));
 
         $initialize = new CnpOnlineRequest();
         $echeckSaleResponse = $initialize->echeckSaleRequest($hash_in);
@@ -69,7 +69,7 @@ class EcheckSaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderId' => '12345',
             'orderSource' => 'ecommerce',
             'echeckToken' => array('accType' => 'Checking', 'litleToken' => '1234565789012', 'routingNum' => '123456789', 'checkNum' => '123455'),
-            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
+            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'));
 
         $initialize = new CnpOnlineRequest();
         $echeckSaleResponse = $initialize->echeckSaleRequest($hash_in);
@@ -85,8 +85,8 @@ class EcheckSaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderId' => '12345',
             'orderSource' => 'ecommerce',
             'echeck' => array('accType' => 'Checking', 'accNum' => '12345657890', 'routingNum' => '123456789', 'checkNum' => '123455'),
-            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'),
-            'shipToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
+            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'),
+            'shipToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'));
 
         $initialize = new CnpOnlineRequest();
         $echeckSaleResponse = $initialize->echeckSaleRequest($hash_in);
@@ -102,7 +102,7 @@ class EcheckSaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderId' => '12345',
             'orderSource' => 'ecommerce',
             'echeck' => array('accType' => 'Checking', 'accNum' => '12345657890', 'routingNum' => '123456789', 'checkNum' => '123455'),
-            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
+            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'));
 
         $initialize = new CnpOnlineRequest();
         $echeckSaleResponse = $initialize->echeckSaleRequest($hash_in);
@@ -118,7 +118,7 @@ class EcheckSaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderId' => '12345',
             'orderSource' => 'ecommerce',
             'echeck' => array('accType' => 'Checking', 'accNum' => '12345657890', 'routingNum' => '123456789', 'checkNum' => '123455', 'ccdPaymentInformation' => 'ccd'),
-            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
+            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'));
 
         $initialize = new CnpOnlineRequest();
         $echeckSaleResponse = $initialize->echeckSaleRequest($hash_in);
@@ -134,7 +134,7 @@ class EcheckSaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderId' => '12345',
             'orderSource' => 'ecommerce',
             'echeck' => array('accType' => 'Checking', 'accNum' => '12345657890', 'routingNum' => '123456789', 'checkNum' => '123455', 'ccdPaymentInformation' => '000000000000000000000000000000000000000000000000000000000000000000000000000000000'),
-            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'));
+            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'));
 
         $initialize = new CnpOnlineRequest();
         $echeckSaleResponse = $initialize->echeckSaleRequest($hash_in);
@@ -150,7 +150,7 @@ class EcheckSaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderId' => '12345',
             'orderSource' => 'ecommerce',
             'echeck' => array('accType' => 'Checking', 'accNum' => '12345657890', 'routingNum' => '123456789', 'checkNum' => '123455', 'ccdPaymentInformation' => 'ccd'),
-            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'litle.com'),
+            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'),
             'customBilling' => array('city' => 'Boston', 'descriptor' => 'descriptor'),
             'merchantData' => array('campaign' => 'camping'),
             'customIdentifier' => 'identifier'

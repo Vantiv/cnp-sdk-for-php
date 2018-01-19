@@ -183,7 +183,7 @@ class CnpResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
                 'name' => 'Bob',
                 'city' => 'lowell',
                 'state' => 'MA',
-                'email' => 'litle.com'
+                'email' => 'vantiv.com'
             )
         );
         $batch->addEcheckSale($hash_in);
@@ -203,7 +203,7 @@ class CnpResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
                 'name' => 'Bob',
                 'city' => 'lowell',
                 'state' => 'MA',
-                'email' => 'litle.com'
+                'email' => 'vantiv.com'
             )
         );
         $batch->addEcheckVerification($hash_in);
@@ -415,7 +415,7 @@ class CnpResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
             'name' => 'PreNote Co.',
             'city' => 'lowell',
             'state' => 'MA',
-            'email' => 'litle.com'
+            'email' => 'vantiv.com'
         );
 
         $echeckSuccess = array(
