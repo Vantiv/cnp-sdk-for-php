@@ -1,5 +1,5 @@
 <?php
-namespace litle\sdk;
+namespace cnp\sdk;
 require_once realpath(__DIR__). '/../../vendor/autoload.php';
 #PHP SDK Auth with PayPage Registration ID 
 #Authorization
@@ -23,7 +23,7 @@ $auth_info = array(
 	)
 );
  
-$initialize = new LitleOnlineRequest(); 
+$initialize = new CnpOnlineRequest();
 $authResponse = $initialize->authorizationRequest($auth_info);
 
 echo ("Message: " . XmlParser::getNode($authResponse,'message'));
