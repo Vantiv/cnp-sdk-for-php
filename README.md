@@ -17,7 +17,7 @@ This SDK was implemented to support the PHP programming language and was created
 
 See LICENSE file for details on using this software.
 
-Source Code available from : https://github.com/LitleCo/litle-sdk-for-php
+Source Code available from : https://github.com/Vantiv/cnp-sdk-for-php
 
 Please contact [Vantiv eCommerce](https://developer.vantiv.com/community/ecommerce) to receive valid merchant credentials in order to run tests successfully or if you require assistance in any way.  We are reachable at sdksupport@Vantiv.com
 
@@ -68,7 +68,7 @@ $saleResponse =$initialize->saleRequest($sale_info);
 #display results
 echo ("Response: " . (cnp\sdk\XmlParser::getNode($saleResponse,'response')) . "<br>");
 echo ("Message: " . cnp\sdk\XmlParser::getNode($saleResponse,'message') . "<br>");
-echo ("Vantiv eCommerce Transaction ID: " . cnp\sdk\XmlParser::getNode($saleResponse,'litleTxnId'));
+echo ("Vantiv eCommerce Transaction ID: " . cnp\sdk\XmlParser::getNode($saleResponse,'cnpTxnId'));
 ```
 > php your_sample_name
 
@@ -89,9 +89,9 @@ If you're not, you have to add a require for each and every class that's going t
 Clone Repo
 ---------------
 
-1) Install the CnpOnline PHP SDK from git. 
+1) Install the Vantiv eCommerce PHP SDK from git. 
 
-> git clone git://github.com/LitleCo/litle-sdk-for-php.git
+> git clone git://github.com/Vantiv/cnp-sdk-for-php.git
 
 > php ~/composer.phar install
 
@@ -114,7 +114,7 @@ Running the above commands will create a configuration file in the lib directory
 
 ```php
 <?php
-require_once realpath(dirname(__FILE__)) . 'CnpOnline.php';  
+require_once realpath(dirname(__FILE__)) . '/../lib/CnpOnline.php';  
     // Visa $10.00 sale
     $hash_in = array(
 	      'amount'=>'106',
@@ -137,7 +137,7 @@ echo ("Vantiv eCommerce Transaction ID: " . XMLParser::getNode($saleResponse,'li
 As of 8.13.1, you may also use a tree-oriented style to get the response values:
 ```php
 <?php
-require_once realpath(dirname(__FILE__)) . 'CnpOnline.php';  
+require_once realpath(dirname(__FILE__)) . '/../lib/CnpOnline.php';  
     // Visa $10.00 sale
     $hash_in = array(
 	      'amount'=>'106',
@@ -162,7 +162,7 @@ NOTE: you may have to change the path to match that of your filesystems.
 
 If you get an error like:
 ```bash
-PHP Fatal error:  require_once(): Failed opening required '/home/gdake/git/cnp-sdk-for-php/../lib/CnpONline.php' (include_path='.:/usr/share/pear:/usr/share/php') in /home/gdake/git/cnp-sdk-for-php/foo.php on line 2
+PHP Fatal error:  require_once(): Failed opening required '/home/gdake/git/cnp-sdk-for-php/../lib/CnpOnline.php' (include_path='.:/usr/share/pear:/usr/share/php') in /home/gdake/git/cnp-sdk-for-php/foo.php on line 2
 ```
 You need to change the second line of your script to load the real location of CnpOnline.php
 
@@ -172,11 +172,11 @@ PHP Fatal error:  require(): Failed opening required '/home/gdake/cnp-sdk-for-ph
 ```
 You probably had a problem with composer.  You can safely remove line 42 if you are not using batch processing, or you can edit it to point at our dependencies that you've downloaded in another way.
 
-5) Next run this file using php on the command line or inside a browser. You should see the following result provided you have connectivity to the Cnp certification environment.  You will see an HTTP error if you don't have access to the Cnp URL
+5) Next run this file using php on the command line or inside a browser. You should see the following result provided you have connectivity to the Vantiv eCommerce certification environment.  You will see an HTTP error if you don't have access to the Vantiv URL
 
     Message: Valid Format
     Vantiv eCommerce Transaction ID: <your-numeric-txn-id>
 
 More examples can be found here [php Gists])(https://gist.github.com/litleSDK)
 
-Please contact Vantiv eCommerce Inc. with any further questions.   You can reach us at SDKSupport@Vantiv.com
+Please contact Vantiv eCommerce with any further questions.   You can reach us at SDKSupport@Vantiv.com
