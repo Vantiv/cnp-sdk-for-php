@@ -22,7 +22,7 @@ $sale_info = array(
 			);
 $batch->addSale($sale_info);
 $request->addBatchRequest($batch);
-$response_file = $request->sendToLitleStream();
+$response_file = $request->sendToCnpStream();
  
 $proc = new CnpResponseProcessor($response_file);
  

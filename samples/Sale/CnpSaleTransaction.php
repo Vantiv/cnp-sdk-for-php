@@ -31,4 +31,4 @@ echo ("Message: " . XmlParser::getNode($saleResponse,'message') . "<br>");
 echo ("Vantiv Transaction ID: " . XmlParser::getNode($saleResponse,'litleTxnId'));
 
 if(XmlParser::getNode($saleResponse,'message')!='Approved')
- throw new \Exception('LitleSaleTransaction does not get the right response');
+ throw new \Exception('CnpSaleTransaction does not get the right response');

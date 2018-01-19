@@ -31,4 +31,4 @@ echo ("Vantiv Transaction ID: " . XmlParser::getNode($response,'litleTxnId'));
 
 
 if(XmlParser::getNode($response,'message')!='Approved')
- throw new \Exception('LitleCaptureGivenAuthTransaction does not get the right response');
+ throw new \Exception('CnpCaptureGivenAuthTransaction does not get the right response');

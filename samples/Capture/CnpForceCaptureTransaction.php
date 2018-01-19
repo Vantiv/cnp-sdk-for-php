@@ -28,4 +28,4 @@ echo ("Message: " . XmlParser::getNode($response,'message') . "<br>");
 echo ("Vantiv Transaction ID: " . XmlParser::getNode($response,'litleTxnId'));
 
 if(XmlParser::getNode($response,'message')!='Approved')
- throw new \Exception('LitleForceCaptureTransaction does not get the right response');
+ throw new \Exception('CnpForceCaptureTransaction does not get the right response');

@@ -32,7 +32,7 @@ $cnp_request->addBatchRequest($batch_request);
 # close the litle request, indicating that we intend to add no more batches
 $cnp_request->closeRequest();
 # send the batch to litle via SFTP
-$response_file = $cnp_request->sendToLitle();
+$response_file = $cnp_request->sendToCnp();
 # process the response file
 $processor = new CnpResponseProcessor($response_file);
 

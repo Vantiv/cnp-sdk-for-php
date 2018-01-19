@@ -19,4 +19,4 @@ echo ("Vantiv Transaction ID: " . XmlParser::getNode($tokenResponse ,'litleTxnId
 echo ("Litle Token: " . XmlParser::getNode($tokenResponse ,'litleToken'));
 
 if(XmlParser::getNode($tokenResponse,'message')!='Account number was successfully registered')
- throw new \Exception('LitleRegisterTokenTransaction does not get the right response');
+ throw new \Exception('CnpRegisterTokenTransaction does not get the right response');

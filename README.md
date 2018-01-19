@@ -38,7 +38,7 @@ If you are using a composer to manage your dependencies, you can do the followin
 > php composer.phar install
 
 3) Configure the SDK:
-> cd litle/sdk
+> cd cnp/sdk
 > php Setup.php
 
 4) Run the attached sample:
@@ -63,7 +63,7 @@ $sale_info = array(
              'cardValidationNum' => '349',
              'type' => 'MC' )
             );
-$initialize = new cnp\sdk\LitleOnlineRequest();
+$initialize = new cnp\sdk\CnpOnlineRequest();
 $saleResponse =$initialize->saleRequest($sale_info);
 #display results
 echo ("Response: " . (cnp\sdk\XmlParser::getNode($saleResponse,'response')) . "<br>");
@@ -77,10 +77,10 @@ Using without composer
 If you're not, you have to add a require for each and every class that's going to be used.
 
 1) Configure the SDK
-> cd into litle/sdk
+> cd into cnp/sdk
 > php Setup.php
 
-2) Add the litle folder and require the path for your file
+2) Add the cnp folder and require the path for your file
 
 3) run your file 
 
@@ -89,7 +89,7 @@ If you're not, you have to add a require for each and every class that's going t
 Clone Repo
 ---------------
 
-1) Install the LitleOnline PHP SDK from git. 
+1) Install the CnpOnline PHP SDK from git. 
 
 > git clone git://github.com/LitleCo/litle-sdk-for-php.git
 
@@ -98,7 +98,7 @@ Clone Repo
 
 2) Once the SDK is downloaded run our setup program to generate a configuration file.
 
-> cd litle-sdk-for-php/lib
+> cd cnp-sdk-for-php/lib
 
 > php Setup.php
 
@@ -126,7 +126,7 @@ require_once realpath(dirname(__FILE__)) . 'CnpOnline.php';
 	     'expDate' =>'1000')
 	      );
 //Perform the transaction on the Vantiv eCommerce Platform
-$initialize = new LitleOnlineRequest();
+$initialize = new CnpOnlineRequest();
 $saleResponse = $initialize->saleRequest($hash_in);
 
 // Display Result 
@@ -149,7 +149,7 @@ require_once realpath(dirname(__FILE__)) . 'CnpOnline.php';
 	     'expDate' =>'1000')
 	      );
 //Perform the transaction on the Vantiv eCommerce Platform
-$initialize = new LitleOnlineRequest($treeResponse=true);
+$initialize = new CnpOnlineRequest($treeResponse=true);
 $saleResponse = $initialize->saleRequest($hash_in);
 
 // Display Result 
@@ -162,17 +162,17 @@ NOTE: you may have to change the path to match that of your filesystems.
 
 If you get an error like:
 ```bash
-PHP Fatal error:  require_once(): Failed opening required '/home/gdake/git/litle-sdk-for-php/../lib/LitleONline.php' (include_path='.:/usr/share/pear:/usr/share/php') in /home/gdake/git/litle-sdk-for-php/foo.php on line 2
+PHP Fatal error:  require_once(): Failed opening required '/home/gdake/git/cnp-sdk-for-php/../lib/CnpONline.php' (include_path='.:/usr/share/pear:/usr/share/php') in /home/gdake/git/cnp-sdk-for-php/foo.php on line 2
 ```
-You need to change the second line of your script to load the real location of LitleOnline.php
+You need to change the second line of your script to load the real location of CnpOnline.php
 
 If you get an error like:
 ```bash
-PHP Fatal error:  require(): Failed opening required '/home/gdake/litle-sdk-for-php/lib/../vendor/autoload.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/gdake/litle-sdk-for-php/lib/LitleOnline.php on line 42
+PHP Fatal error:  require(): Failed opening required '/home/gdake/cnp-sdk-for-php/lib/../vendor/autoload.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/gdake/cnp-sdk-for-php/lib/CnpOnline.php on line 42
 ```
 You probably had a problem with composer.  You can safely remove line 42 if you are not using batch processing, or you can edit it to point at our dependencies that you've downloaded in another way.
 
-5) Next run this file using php on the command line or inside a browser. You should see the following result provided you have connectivity to the Litle certification environment.  You will see an HTTP error if you don't have access to the Litle URL
+5) Next run this file using php on the command line or inside a browser. You should see the following result provided you have connectivity to the Cnp certification environment.  You will see an HTTP error if you don't have access to the Cnp URL
 
     Message: Valid Format
     Vantiv eCommerce Transaction ID: <your-numeric-txn-id>

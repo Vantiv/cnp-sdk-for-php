@@ -31,4 +31,4 @@ echo ("Message: " . XmlParser::getNode($authResponse,'message') . "<br>");
 echo ("Vantiv Transaction ID: " . XmlParser::getNode($authResponse,'litleTxnId'));
 
 if(XmlParser::getNode($authResponse,'message')!='Approved')
- throw new \Exception('LitleAuthorizationTransaction does not get the right response');
+ throw new \Exception('CnpAuthorizationTransaction does not get the right response');

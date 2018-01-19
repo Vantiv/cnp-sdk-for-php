@@ -87,7 +87,7 @@ class CnpResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $request->addBatchRequest($batch);
 
-        $resp = $request->sendToLitleStream();
+        $resp = $request->sendToCnpStream();
         $proc = new CnpResponseProcessor ($resp);
         $res = $proc->nextTransaction(true);
         $this->assertTrue(strpos($res, "authorizationResponse") !== FALSE);
@@ -366,7 +366,7 @@ class CnpResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
         $batch->addBalanceInquiry($hash_in);
         $request->addBatchRequest($batch);
 
-        $resp = $request->sendToLitleStream();
+        $resp = $request->sendToCnpStream();
         $respProcessor = new CnpResponseProcessor ($resp);
 
         $txnResponse = $respProcessor->nextTransaction();
@@ -486,7 +486,7 @@ class CnpResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $request->addBatchRequest($batch_request);
 
-        $response = $request->sendToLitleStream();
+        $response = $request->sendToCnpStream();
         $respProcessor = new CnpResponseProcessor ($response);
 
         $txnResponse = $respProcessor->nextTransaction();
@@ -610,7 +610,7 @@ class CnpResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $request->addBatchRequest($batch_request);
 
-        $response = $request->sendToLitleStream();
+        $response = $request->sendToCnpStream();
         $respProcessor = new CnpResponseProcessor ($response);
 
         $txnResponse = $respProcessor->nextTransaction();

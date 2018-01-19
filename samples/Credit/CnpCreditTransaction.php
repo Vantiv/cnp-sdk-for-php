@@ -1,7 +1,7 @@
 <?php
 namespace cnp\sdk;
 require_once realpath(__DIR__). '/../../vendor/autoload.php';
-#PHP SDK- Litle Credit Transaction
+#PHP SDK- Cnp Credit Transaction
 #Credit
 #litleTxnId contains the Vantiv Transaction Id returned on
 #the capture or sale transaction being credited
@@ -21,4 +21,4 @@ echo ("Message: " . XmlParser::getNode($creditResponse,'message') . "<br>");
 echo ("Vantiv Transaction ID: " . XmlParser::getNode($creditResponse,'litleTxnId'));
 
 if(XmlParser::getNode($creditResponse,'message')!='Approved')
- throw new \Exception('LitleCreditTransaction does not get the right response');
+ throw new \Exception('CnpCreditTransaction does not get the right response');

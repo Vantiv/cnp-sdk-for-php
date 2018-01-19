@@ -19,4 +19,4 @@ echo ("Message: " . XmlParser::getNode($captureResponse,'message') . "<br>");
 echo ("Vantiv Transaction ID: " . XmlParser::getNode($captureResponse,'litleTxnId'));
 
 if(XmlParser::getNode($captureResponse,'message')!='Approved')
- throw new \Exception('LitleCaptureTransaction does not get the right response');
+ throw new \Exception('CnpCaptureTransaction does not get the right response');

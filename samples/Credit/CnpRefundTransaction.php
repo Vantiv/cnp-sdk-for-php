@@ -23,5 +23,5 @@ echo ("Message: " . XmlParser::getNode($creditResponse,'message') . "<br>");
 echo ("Vantiv Transaction ID: " . XmlParser::getNode($creditResponse,'litleTxnId'));
 
 if(XmlParser::getNode($creditResponse,'message')!='Approved')
- throw new \Exception('LitleRefundTransaction does not get the right response');
+ throw new \Exception('CnpRefundTransaction does not get the right response');
 

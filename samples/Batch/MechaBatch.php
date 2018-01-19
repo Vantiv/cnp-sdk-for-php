@@ -30,7 +30,7 @@ $request = new CnpRequest();
 	$batch->addSale($hash_in); 
 	$request->addBatchRequest($batch);
  
-	$resp = new CnpResponseProcessor($request->sendToLitle());
+	$resp = new CnpResponseProcessor($request->sendToCnp());
 	while($txn = $resp->nextTransaction()){
 	  echo "Transaction Type : " . $txn->getName() . "\n";
 	  echo "Transaction Id: " . $txn->litleTxnId ." \n";

@@ -46,7 +46,7 @@ $cnp_request->addBatchRequest($batch_request);
 # close the litle request, indicating that we intend to add no more batches
 $cnp_request->closeRequest();
 # send the batch to litle via SFTP
-$response_file = $cnp_request->sendToLitleStream();
+$response_file = $cnp_request->sendToCnpStream();
 # process the response file 
 $processor = new CnpResponseProcessor($response_file);
 
@@ -54,5 +54,5 @@ while($txn = $processor->nextTransaction()){
 	echo "Transaction Type : " . $txn->getName() . "\n";
 	echo "Transaction Id: " . $txn->litleTxnId ." \n";
 	if($txn->message!='Approved')
- throw new \Exception('ConfiguredLitleBatchRequestsMaually does not get the right response');
+ throw new \Exception('ConfiguredCnpBatchRequestsMaually does not get the right response');
 }

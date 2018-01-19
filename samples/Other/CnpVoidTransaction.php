@@ -18,4 +18,4 @@ echo ("Message: " . XmlParser::getNode($voidResponse ,'message') . "<br>");
 echo ("Vantiv Transaction ID: " . XmlParser::getNode($voidResponse ,'litleTxnId'));
 
 if(XmlParser::getNode($voidResponse,'message')!='Approved')
- throw new \Exception('LitleVoidTransaction does not get the right response');
+ throw new \Exception('CnpVoidTransaction does not get the right response');

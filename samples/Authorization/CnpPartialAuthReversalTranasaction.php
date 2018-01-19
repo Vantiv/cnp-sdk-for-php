@@ -18,4 +18,4 @@ echo ("Message: " . XmlParser::getNode($reversalResponse,'message') . "<br>");
 echo ("Vantiv Transaction ID: " . XmlParser::getNode($reversalResponse,'litleTxnId'));
 
 if(XmlParser::getNode($reversalResponse,'message')!='Approved')
- throw new \Exception('LitlePartialAuthReversalTranasaction does not get the right response');
+ throw new \Exception('CnpPartialAuthReversalTranasaction does not get the right response');

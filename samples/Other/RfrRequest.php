@@ -15,7 +15,7 @@ $batch = new BatchRequest();
 		'amount'=>'123');
 	$batch->addAuth($hash_in);
 	$request->addBatchRequest($batch);
-	$responseFileLoc=$request->sendToLitleStream();
+	$responseFileLoc=$request->sendToCnpStream();
 	$resp = new CnpResponseProcessor($responseFileLoc);
 	$xmlReader=$resp->getXmlReader();
 	$sessionId=$xmlReader->getAttribute("litleSessionId");
@@ -26,7 +26,7 @@ $batch = new BatchRequest();
      #Process RFR request
 	 $request = new CnpRequest();
 	 $request->createRFRRequest(array('litleSessionId' => $sessionId));
-	 $response_file = $request->sendToLitleStream();
+	 $response_file = $request->sendToCnpStream();
 	 $processor = new CnpResponseProcessor($response_file);
 	 $res=$processor->nextTransaction(true);
 	 echo $res;
