@@ -36,12 +36,12 @@ class UpdateCardValidationNumOnTokenFunctionalTest extends \PHPUnit_Framework_Te
             'version' => '8.14',
             'reportGroup' => 'Planets',
             'orderId' => '12344',
-            'litleToken' => '123456789101112',
+            'cnpToken' => '123456789101112',
             'cardValidationNum' => '123');
 
         $initialize = new CnpOnlineRequest();
         $updateCardValidationNumOnTokenResponse = $initialize->updateCardValidationNumOnToken($hash_in);
-        $message = XmlParser::getAttribute($updateCardValidationNumOnTokenResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($updateCardValidationNumOnTokenResponse, 'cnpOnlineResponse', 'message');
         $this->assertEquals('Valid Format', $message);
     }
 }

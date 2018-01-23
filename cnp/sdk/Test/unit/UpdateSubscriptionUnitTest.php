@@ -156,7 +156,7 @@ class UpdateSubscriptionUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array(
             'subscriptionId'=>'1',
             'token' => array (
-                'litleToken'=>'1111222233334444',
+                'cnpToken'=>'1111222233334444',
                 'expDate'=>'1213',
                 'cardValidationNum' => '1213',
                 'type'=>'VI'
@@ -166,7 +166,7 @@ class UpdateSubscriptionUnitTest extends \PHPUnit_Framework_TestCase
 
         $mock->expects($this->once())
         ->method('request')
-        ->with($this->matchesRegularExpression('/.*litleToken.*1111222233334444.*type.*/'));
+        ->with($this->matchesRegularExpression('/.*cnpToken.*1111222233334444.*type.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;

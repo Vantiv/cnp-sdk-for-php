@@ -32,7 +32,7 @@ class DeactivateReversalFunctionalTest extends \PHPUnit_Framework_TestCase
     public function test_simple()
     {
         $hash_in = array(
-            'litleTxnId' => '1234567890',
+            'cnpTxnId' => '1234567890',
             'reportGroup' => 'Planets',
             'id' => 'id',
             'card' => array(
@@ -49,7 +49,7 @@ class DeactivateReversalFunctionalTest extends \PHPUnit_Framework_TestCase
         );
         $initialize = new CnpOnlineRequest();
         $deactivateReversalResponse = $initialize->deactivateReversalRequest($hash_in);
-        $response = XmlParser::getAttribute($deactivateReversalResponse, 'litleOnlineResponse', 'response');
+        $response = XmlParser::getAttribute($deactivateReversalResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('0', $response);
     }
 

@@ -29,7 +29,7 @@ use cnp\sdk\CnpOnlineRequest;
     public function test_giftCardAuthReversal()
     {
 		$hash_in = array (
-				'litleTxnId' => '1234567890',
+				'cnpTxnId' => '1234567890',
 				'reportGroup'=>'Planets',
 				'id' => 'id',
 				'card' => array (
@@ -50,7 +50,7 @@ use cnp\sdk\CnpOnlineRequest;
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock	->expects($this->once())
         ->method('request')
-        ->with($this->matchesRegularExpression('/.*<litleTxnId>1234567890.*<card><type>GC.*<number>4100000000000001.*<expDate>0118.*<cardValidationNum>411.*<pin>1234.*<originalRefCode>101.*<originalAmount>34561.*<originalSystemTraceId>33.*<originalSequenceNumber>111111.*/'));
+        ->with($this->matchesRegularExpression('/.*<cnpTxnId>1234567890.*<card><type>GC.*<number>4100000000000001.*<expDate>0118.*<cardValidationNum>411.*<pin>1234.*<originalRefCode>101.*<originalAmount>34561.*<originalSystemTraceId>33.*<originalSequenceNumber>111111.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;

@@ -122,13 +122,13 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Approved', $message);
     }
 
-    public function test_simple_auth_with_litleTxnId()
+    public function test_simple_auth_with_cnpTxnId()
     {
-        $hash_in = array('id' => 'id', 'reportGroup' => 'planets', 'litleTxnId' => '1234567891234567891');
+        $hash_in = array('id' => 'id', 'reportGroup' => 'planets', 'cnpTxnId' => '1234567891234567891');
 
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
-        $message = XmlParser::getAttribute($authorizationResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($authorizationResponse, 'cnpOnlineResponse', 'message');
         $this->assertEquals("Valid Format", $message);
     }
 
@@ -145,7 +145,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
-        $message = XmlParser::getAttribute($authorizationResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($authorizationResponse, 'cnpOnlineResponse', 'message');
         $this->assertRegExp('/Error validating xml data against the schema/', $message);
     }
 
@@ -366,7 +366,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
-        $message = XmlParser::getAttribute($authorizationResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($authorizationResponse, 'cnpOnlineResponse', 'message');
         $this->assertRegExp('/Error validating xml data against the schema/', $message);
 
     }
@@ -386,7 +386,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
-        $message = XmlParser::getAttribute($authorizationResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($authorizationResponse, 'cnpOnlineResponse', 'message');
         $this->assertRegExp('/Error validating xml data against the schema/', $message);
     }
 
@@ -412,7 +412,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
-        $response = XmlParser::getAttribute($authorizationResponse, 'litleOnlineResponse', 'response');
+        $response = XmlParser::getAttribute($authorizationResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('000', $response);
     }
 }

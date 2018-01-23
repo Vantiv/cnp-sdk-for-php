@@ -32,7 +32,7 @@ class LoadReversalFunctionalTest extends \PHPUnit_Framework_TestCase
     public function test_simple()
     {
         $hash_in = array(
-            'litleTxnId' => '1234567890',
+            'cnpTxnId' => '1234567890',
             'reportGroup' => 'Planets',
             'id' => 'id',
             'card' => array(
@@ -50,7 +50,7 @@ class LoadReversalFunctionalTest extends \PHPUnit_Framework_TestCase
         );
         $initialize = new CnpOnlineRequest();
         $loadReversalResponse = $initialize->loadReversalRequest($hash_in);
-        $response = XmlParser::getAttribute($loadReversalResponse, 'litleOnlineResponse', 'response');
+        $response = XmlParser::getAttribute($loadReversalResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('0', $response);
     }
 

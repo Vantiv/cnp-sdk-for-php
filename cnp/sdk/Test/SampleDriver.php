@@ -24,5 +24,5 @@ $saleResponse = $initialize->saleRequest($sale_info);
 #display results
 echo ("Response: " . (XmlParser::getNode($saleResponse,'response')) . "<br>");
 echo ("Message: " . XmlParser::getNode($saleResponse,'message') . "<br>");
-echo ("Vantiv Transaction ID: " . XmlParser::getNode($saleResponse,'litleTxnId'));
-echo ("All Response :"  . XmlParser::getAttribute($saleResponse,'litleOnlineResponse','version'));
+echo ("Vantiv Transaction ID: " . XmlParser::getNode($saleResponse,'cnpTxnId'));
+echo ("All Response :"  . XmlParser::getAttribute($saleResponse,'cnpOnlineResponse','version'));

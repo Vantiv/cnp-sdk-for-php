@@ -58,7 +58,7 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
 
         //test 32A
         $capture_hash = array(
-            'litleTxnId' => (XmlParser::getNode($authorizationResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($authorizationResponse, 'cnpTxnId')),
             'reportGroup' => 'planets', 'id' => '1211',);
         $initialize = new CnpOnlineRequest();
         $captureResponse = $initialize->captureRequest($capture_hash);
@@ -66,7 +66,7 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Approved', XmlParser::getNode($captureResponse, 'message'));
         //test32B
         $authReversal_hash = array('id' => '1211',
-            'litleTxnId' => (XmlParser::getNode($authorizationResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($authorizationResponse, 'cnpTxnId')),
             'reportGroup' => 'planets', 'amount' => '5005');
         $initialize = new CnpOnlineRequest();
         $authReversalResponse = $initialize->authReversalRequest($authReversal_hash);
@@ -106,7 +106,7 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
 
         //test 33A
         $authReversal_hash = array('id' => '1211',
-            'litleTxnId' => (XmlParser::getNode($authorizationResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($authorizationResponse, 'cnpTxnId')),
             'reportGroup' => 'planets');
         $initialize = new CnpOnlineRequest();
         $authReversalResponse = $initialize->authReversalRequest($authReversal_hash);
@@ -142,7 +142,7 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
 
         //test 34A
         $authReversal_hash = array('id' => '1211',
-            'litleTxnId' => (XmlParser::getNode($authorizationResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($authorizationResponse, 'cnpTxnId')),
             'reportGroup' => 'planets');
         $initialize = new CnpOnlineRequest();
         $authReversalResponse = $initialize->authReversalRequest($authReversal_hash);
@@ -177,7 +177,7 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
 
         //test 35A
         $capture_hash = array('id' => '1211',
-            'litleTxnId' => (XmlParser::getNode($authorizationResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($authorizationResponse, 'cnpTxnId')),
             'reportGroup' => 'planets', 'amount' => '20020');
         $initialize = new CnpOnlineRequest();
         $captureResponse = $initialize->captureRequest($capture_hash);
@@ -185,7 +185,7 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Approved', XmlParser::getNode($captureResponse, 'message'));
         //test35B
         $authReversal_hash = array('id' => '1211',
-            'litleTxnId' => (XmlParser::getNode($authorizationResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($authorizationResponse, 'cnpTxnId')),
             'reportGroup' => 'planets', 'amount' => '20020');
         $initialize = new CnpOnlineRequest();
         $authReversalResponse = $initialize->authReversalRequest($authReversal_hash);
@@ -211,7 +211,7 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
 
         //test 33A
         $authReversal_hash = array('id' => '1211',
-            'litleTxnId' => (XmlParser::getNode($authorizationResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($authorizationResponse, 'cnpTxnId')),
             'reportGroup' => 'planets', 'amount' => '10000');
         $initialize = new CnpOnlineRequest();
         $authReversalResponse = $initialize->authReversalRequest($authReversal_hash);

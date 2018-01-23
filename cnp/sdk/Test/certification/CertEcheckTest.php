@@ -269,7 +269,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
 
     public function test_48()
     {
-        $echeck_hash = array('litleTxnId' => '430000000000000001', 'id' => 'id',);
+        $echeck_hash = array('cnpTxnId' => '430000000000000001', 'id' => 'id',);
 
         $initialize = new CnpOnlineRequest();
         $echeckCreditResponse = $initialize->echeckCreditRequest($echeck_hash);
@@ -279,7 +279,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
 
     public function test_49()
     {
-        $echeck_hash = array('litleTxnId' => '2', 'id' => 'id',);
+        $echeck_hash = array('cnpTxnId' => '2', 'id' => 'id',);
 
         $initialize = new CnpOnlineRequest();
         $echeckCreditResponse = $initialize->echeckCreditRequest($echeck_hash);

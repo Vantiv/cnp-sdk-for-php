@@ -38,7 +38,7 @@ class CancelSubscriptionFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $cancelSubscriptionResponse = $initialize->cancelSubscription($hash_in);
-        $message = XmlParser::getAttribute($cancelSubscriptionResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($cancelSubscriptionResponse, 'cnpOnlineResponse', 'message');
 //        $this->assertEquals('Valid Format', $message);
     }
 }

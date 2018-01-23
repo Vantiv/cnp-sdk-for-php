@@ -83,7 +83,7 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array('merchantId' => '101',
           'version'=>'8.8','id' => 'id',
           'reportGroup'=>'Planets',
-          'litleTxnId'=>'123456',
+          'cnpTxnId'=>'123456',
           'amount'=>'106',
           'orderSource'=>'ecommerce',
           'card'=>array(
@@ -101,7 +101,7 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array('merchantId' => '101',
           'version'=>'8.8','id' => 'id',
           'reportGroup'=>'Planets',
-          'litleTxnId'=>'123456',
+          'cnpTxnId'=>'123456',
           'orderId'=>'12344',
           'orderSource'=>'ecommerce',
           'card'=>array(
@@ -119,7 +119,7 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array('merchantId' => '101',
           'version'=>'8.8','id' => 'id',
           'reportGroup'=>'Planets',
-          'litleTxnId'=>'123456',
+          'cnpTxnId'=>'123456',
           'orderId'=>'12344',
           'amount'=>'106',
           'card'=>array(
@@ -188,7 +188,7 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array('merchantId' => '101',
           'version'=>'8.8','id' => 'id',
           'reportGroup'=>'Planets',
-          'litleTxnId'=>'123456',
+          'cnpTxnId'=>'123456',
           'orderId'=>'12344',
           'amount'=>'106',
           'orderSource'=>'ecommerce',
@@ -209,7 +209,7 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
           'token'=>'1234',
           'transactionId'=>'123456'),
           'token'=> array(
-          'litleToken'=>'1234',
+          'cnpToken'=>'1234',
           'expDate'=>'1210',
           'cardValidationNum'=>'555',
           'type'=>'VI')
@@ -388,7 +388,7 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
         $cnpTest->saleRequest($hash_in);
     }
 
-    public function test_litleInternalRecurringRequest()
+    public function test_cnpInternalRecurringRequest()
     {
         $hash_in = array(
             'card'=>array(
@@ -400,7 +400,7 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
             'amount'=>'2',
             'orderSource'=>'ecommerce',
             'fraudFilterOverride'=>'true',
-            'litleInternalRecurringRequest'=>array(
+            'cnpInternalRecurringRequest'=>array(
                     'subscriptionId'=>'123',
                     'recurringTxnId'=>'456'
             )
@@ -409,7 +409,7 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
         $mock
         ->expects($this->once())
         ->method('request')
-        ->with($this->matchesRegularExpression('/.*<fraudFilterOverride>true<\/fraudFilterOverride><litleInternalRecurringRequest><subscriptionId>123<\/subscriptionId><recurringTxnId>456<\/recurringTxnId><\/litleInternalRecurringRequest>.*/'));
+        ->with($this->matchesRegularExpression('/.*<fraudFilterOverride>true<\/fraudFilterOverride><cnpInternalRecurringRequest><subscriptionId>123<\/subscriptionId><recurringTxnId>456<\/recurringTxnId><\/cnpInternalRecurringRequest>.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
@@ -417,7 +417,7 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
 
     }
 
-    public function test_litleInternalRecurringRequest_Optional()
+    public function test_cnpInternalRecurringRequest_Optional()
     {
         $hash_in = array(
             'card'=>array(
@@ -447,7 +447,7 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
                 'amount'=>'2','id' => 'id',
                 'orderSource'=>'ecommerce',
                 'orderId'=>'3',
-                'litleInternalRecurringRequest'=>array(
+                'cnpInternalRecurringRequest'=>array(
                         'subscriptionId'=>'123',
                         'recurringTxnId'=>'456'
                 ),
@@ -457,7 +457,7 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
         $mock
         ->expects($this->once())
         ->method('request')
-        ->with($this->matchesRegularExpression('/.*<\/litleInternalRecurringRequest><debtRepayment>true<\/debtRepayment><\/sale>.*/'));
+        ->with($this->matchesRegularExpression('/.*<\/cnpInternalRecurringRequest><debtRepayment>true<\/debtRepayment><\/sale>.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
@@ -470,7 +470,7 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
                 'amount'=>'2',
                 'orderSource'=>'ecommerce',
                 'orderId'=>'3','id' => 'id',
-                'litleInternalRecurringRequest'=>array(
+                'cnpInternalRecurringRequest'=>array(
                         'subscriptionId'=>'123',
                         'recurringTxnId'=>'456'
                 ),
@@ -480,7 +480,7 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
         $mock
         ->expects($this->once())
         ->method('request')
-        ->with($this->matchesRegularExpression('/.*<\/litleInternalRecurringRequest><debtRepayment>false<\/debtRepayment><\/sale>.*/'));
+        ->with($this->matchesRegularExpression('/.*<\/cnpInternalRecurringRequest><debtRepayment>false<\/debtRepayment><\/sale>.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
@@ -493,7 +493,7 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
                 'amount'=>'2',
                 'orderSource'=>'ecommerce',
                 'orderId'=>'3','id' => 'id',
-                'litleInternalRecurringRequest'=>array(
+                'cnpInternalRecurringRequest'=>array(
                         'subscriptionId'=>'123',
                         'recurringTxnId'=>'456'
                 ),
@@ -502,7 +502,7 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
         $mock
         ->expects($this->once())
         ->method('request')
-        ->with($this->matchesRegularExpression('/.*<\/litleInternalRecurringRequest><\/sale>.*/'));
+        ->with($this->matchesRegularExpression('/.*<\/cnpInternalRecurringRequest><\/sale>.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;

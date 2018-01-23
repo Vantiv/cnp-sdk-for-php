@@ -18,14 +18,14 @@ $batch = new BatchRequest();
 	$responseFileLoc=$request->sendToCnpStream();
 	$resp = new CnpResponseProcessor($responseFileLoc);
 	$xmlReader=$resp->getXmlReader();
-	$sessionId=$xmlReader->getAttribute("litleSessionId");
+	$sessionId=$xmlReader->getAttribute("cnpSessionId");
 	echo ("sessionId:" +$sessionId);
 	
 	
 	
      #Process RFR request
 	 $request = new CnpRequest();
-	 $request->createRFRRequest(array('litleSessionId' => $sessionId));
+	 $request->createRFRRequest(array('cnpSessionId' => $sessionId));
 	 $response_file = $request->sendToCnpStream();
 	 $processor = new CnpResponseProcessor($response_file);
 	 $res=$processor->nextTransaction(true);

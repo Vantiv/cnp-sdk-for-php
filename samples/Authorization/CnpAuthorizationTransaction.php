@@ -28,7 +28,7 @@ $authResponse = $initialize->authorizationRequest($auth_info);
 #display results
 echo ("Response: " . (XmlParser::getNode($authResponse,'response')) . "<br>");
 echo ("Message: " . XmlParser::getNode($authResponse,'message') . "<br>");
-echo ("Vantiv Transaction ID: " . XmlParser::getNode($authResponse,'litleTxnId'));
+echo ("Vantiv Transaction ID: " . XmlParser::getNode($authResponse,'cnpTxnId'));
 
 if(XmlParser::getNode($authResponse,'message')!='Approved')
  throw new \Exception('CnpAuthorizationTransaction does not get the right response');

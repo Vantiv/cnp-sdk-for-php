@@ -29,11 +29,11 @@ class EcheckSaleUnitTest extends \PHPUnit_Framework_TestCase
 {
     public function test_simple_echeckSale()
     {
-        $hash_in = array('litleTxnId' =>'123123','id' => 'id');
+        $hash_in = array('cnpTxnId' =>'123123','id' => 'id');
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
-        ->with($this->matchesRegularExpression('/.*<litleTxnId>123123.*/'));
+        ->with($this->matchesRegularExpression('/.*<cnpTxnId>123123.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
@@ -42,8 +42,8 @@ class EcheckSaleUnitTest extends \PHPUnit_Framework_TestCase
 
     public function test_both_choices()
     {
-        $hash_in = array('reportGroup'=>'Planets','litleTxnId'=>'123456','id' => 'id',
-        'echeckToken' => array('accType'=>'Checking','routingNum'=>'123123','litleToken'=>'1234565789012','checkNum'=>'123455'),
+        $hash_in = array('reportGroup'=>'Planets','cnpTxnId'=>'123456','id' => 'id',
+        'echeckToken' => array('accType'=>'Checking','routingNum'=>'123123','cnpToken'=>'1234565789012','checkNum'=>'123455'),
         'echeck' => array('accType'=>'Checking','routingNum'=>'123123','accNum'=>'12345657890','checkNum'=>'123455'));
         $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
@@ -53,7 +53,7 @@ class EcheckSaleUnitTest extends \PHPUnit_Framework_TestCase
     public function test_loggedInUser()
     {
         $hash_in = array(
-                'litleTxnId' =>'123123',
+                'cnpTxnId' =>'123123',
         		'id' => 'id',
                 'merchantSdk'=>'PHP;10.1.0',
                 'loggedInUser'=>'gdake');
@@ -88,11 +88,11 @@ class EcheckSaleUnitTest extends \PHPUnit_Framework_TestCase
     
     public function test_simple_customIdentifier()
     {
-    	$hash_in = array('litleTxnId' =>'123123','id' => 'id','amount'=>'123','customIdentifier'=>'identifier');
+    	$hash_in = array('cnpTxnId' =>'123123','id' => 'id','amount'=>'123','customIdentifier'=>'identifier');
     	$mock = $this->getMock('cnp\sdk\CnpXmlMapper');
     	$mock->expects($this->once())
     	->method('request')
-    	->with($this->matchesRegularExpression('/.*<litleTxnId>123123.*<customIdentifier>identifier.*/'));
+    	->with($this->matchesRegularExpression('/.*<cnpTxnId>123123.*<customIdentifier>identifier.*/'));
     
     	$cnpTest = new CnpOnlineRequest();
     	$cnpTest->newXML = $mock;

@@ -28,28 +28,28 @@ class VoidUnitTest extends \PHPUnit_Framework_TestCase
 {
     public function test_simple_echeckRedeposit()
     {
-        $hash_in = array('litleTxnId' =>'123123','reportGroup'=>'Planets','id' => 'id',);
+        $hash_in = array('cnpTxnId' =>'123123','reportGroup'=>'Planets','id' => 'id',);
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
-        ->with($this->matchesRegularExpression('/.*<litleTxnId>123123.*/'));
+        ->with($this->matchesRegularExpression('/.*<cnpTxnId>123123.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
         $cnpTest->voidRequest($hash_in);
     }
-    public function test_no_litleTxnId()
+    public function test_no_cnpTxnId()
     {
         $hash_in = array('reportGroup'=>'Planets','id' => 'id');
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /litleTxnId/");
+        $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /cnpTxnId/");
         $retOb = $cnpTest->voidRequest($hash_in);
     }
 
     public function test_loggedInUser()
     {
         $hash_in = array('id' => 'id',
-                'litleTxnId' =>'123123',
+                'cnpTxnId' =>'123123',
                 'merchantSdk'=>'PHP;8.14.0',
                 'reportGroup'=>'Planets',
                 'loggedInUser'=>'gdake');

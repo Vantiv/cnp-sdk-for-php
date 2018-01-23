@@ -28,11 +28,11 @@ class CaptureUnitTest extends \PHPUnit_Framework_TestCase
 {
     public function test_simple_capture()
     {
-        $hash_in = array('litleTxnId'=> '12312312', 'amount'=>'123', 'id' => 'id');
+        $hash_in = array('cnpTxnId'=> '12312312', 'amount'=>'123', 'id' => 'id');
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
-        ->with($this->matchesRegularExpression('/.*<litleTxnId>12312312.*<amount>123.*/'));
+        ->with($this->matchesRegularExpression('/.*<cnpTxnId>12312312.*<amount>123.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
@@ -43,14 +43,14 @@ class CaptureUnitTest extends \PHPUnit_Framework_TestCase
     {
         $hash_in =array('reportGroup'=>'Planets','amount'=>'106','id' => 'id');
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException','Missing Required Field: /litleTxnId/');
+        $this->setExpectedException('InvalidArgumentException','Missing Required Field: /cnpTxnId/');
         $cnpTest->captureRequest($hash_in);
     }
 
     public function test_loggedInUser()
     {
         $hash_in = array(
-                'litleTxnId'=> '12312312',
+                'cnpTxnId'=> '12312312',
         		'id' => 'id',
                 'merchantSdk'=>'PHP;10.1.0',
                 'amount'=>'123',
@@ -68,7 +68,7 @@ class CaptureUnitTest extends \PHPUnit_Framework_TestCase
     public function test_surchargeAmount()
     {
         $hash_in = array(
-            'litleTxnId'=>'3',
+            'cnpTxnId'=>'3',
         		'id' => 'id',
             'amount'=>'2',
             'surchargeAmount'=>'1',
@@ -88,7 +88,7 @@ class CaptureUnitTest extends \PHPUnit_Framework_TestCase
     public function test_surchargeAmount_optional()
     {
         $hash_in = array(
-                'litleTxnId'=>'3',
+                'cnpTxnId'=>'3',
         		'id' => 'id',
                 'amount'=>'2',
                 'payPalNotes'=>'notes',
@@ -106,7 +106,7 @@ class CaptureUnitTest extends \PHPUnit_Framework_TestCase
   
     public function test_simple_capture_withPin()
     {
-    	$hash_in = array('litleTxnId'=> '12312312', 'amount'=>'123', 'id' => 'id','pin' => '02139');
+    	$hash_in = array('cnpTxnId'=> '12312312', 'amount'=>'123', 'id' => 'id','pin' => '02139');
     	$mock = $this->getMock('cnp\sdk\CnpXmlMapper');
     	$mock->expects($this->once())
     	->method('request')

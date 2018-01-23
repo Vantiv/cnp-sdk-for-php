@@ -26,7 +26,7 @@ namespace cnp\sdk;
 require_once realpath(dirname(__FILE__)) . '/CnpOnline.php';
 class Obj2xml
 {
-    public static function toXml($data, $hash_config, $type, $rootNodeName = 'litleOnlineRequest')
+    public static function toXml($data, $hash_config, $type, $rootNodeName = 'cnpOnlineRequest')
     {
         $config= Obj2xml::getConfig($hash_config, $type);
         $xml = simplexml_load_string("<?xml version='1.0' encoding='utf-8'?><$rootNodeName />");
@@ -38,7 +38,7 @@ class Obj2xml
             $xml->addAttribute('loggedInUser',$data["loggedInUser"]);
         };
         unset($data['loggedInUser']);
-        $xml-> addAttribute('xmlns:xmlns','http://www.litle.com/schema');// does not show up on browser docs
+        $xml-> addAttribute('xmlns:xmlns','http://www.vantivcnp.com/schema');// does not show up on browser docs
         $authentication = $xml->addChild('authentication');
         $authentication->addChild('user',$config["user"]);
         $authentication->addChild('password',$config["password"]);
@@ -105,14 +105,14 @@ class Obj2xml
     public static function rfrRequestToXml($hash_in)
     {
         $rfr = simplexml_load_string("<RFRRequest />");
-        if (isset($hash_in['litleSessionId'])) {
-            $rfr->addChild('litleSessionId', $hash_in['litleSessionId']);
+        if (isset($hash_in['cnpSessionId'])) {
+            $rfr->addChild('cnpSessionId', $hash_in['cnpSessionId']);
         } elseif (isset($hash_in['merchantId']) && isset($hash_in['postDay'])) {
             $auFileRequest = $rfr->addChild('accountUpdateFileRequestData');
             $auFileRequest->addChild('merchantId', $hash_in['merchantId']);
             $auFileRequest->addChild('postDay', $hash_in['postDay']);
         } else {
-            throw new \RuntimeException('To add an RFR Request, either a litleSessionId or a merchantId and a postDay must be set.');
+            throw new \RuntimeException('To add an RFR Request, either a cnpSessionId or a merchantId and a postDay must be set.');
         }
 
         return str_replace("<?xml version=\"1.0\"?>\n", "", $rfr->asXML());
@@ -218,16 +218,16 @@ class Obj2xml
 
     public static function generateRequestHeader($config, $num_batch_requests)
     {
-        $xml = simplexml_load_string("<litleRequest />");
+        $xml = simplexml_load_string("<cnpRequest />");
 
         $xml->addAttribute('numBatchRequests', $num_batch_requests);
         $xml->addAttribute('version', CURRENT_XML_VERSION);
-        $xml->addAttribute('xmlns:xmlns','http://www.litle.com/schema');
+        $xml->addAttribute('xmlns:xmlns','http://www.vantivcnp.com/schema');
         $authentication = $xml->addChild('authentication');
         $authentication->addChild('user',$config["user"]);
         $authentication->addChild('password',$config["password"]);
 
-        return str_replace("<?xml version=\"1.0\"?>\n", "", str_replace("</litleRequest>", "", $xml->asXML()));
+        return str_replace("<?xml version=\"1.0\"?>\n", "", str_replace("</cnpRequest>", "", $xml->asXML()));
     }
 
     private static function iterateChildren($data,$transacType)

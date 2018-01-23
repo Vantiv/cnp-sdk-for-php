@@ -33,7 +33,7 @@ $request = new CnpRequest();
 	$resp = new CnpResponseProcessor($request->sendToCnp());
 	while($txn = $resp->nextTransaction()){
 	  echo "Transaction Type : " . $txn->getName() . "\n";
-	  echo "Transaction Id: " . $txn->litleTxnId ." \n";
+	  echo "Transaction Id: " . $txn->cnpTxnId ." \n";
 	  echo "Message: " . $txn->message ." \n";
 	  if($txn->message!='Approved')
 	 throw new \Exception('MechaBatch does not get the right response');

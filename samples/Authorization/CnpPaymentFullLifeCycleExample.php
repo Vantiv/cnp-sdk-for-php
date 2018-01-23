@@ -30,7 +30,7 @@ if(XmlParser::getNode($authResponse,'message')!='Approved')
  throw new \Exception('CnpPaymentFullLifeCycleExample authResponse does not get the right response');
 #Capture
 #Captures the authorization and results in money movement
-$capture_hash =  array('litleTxnId' =>(XmlParser::getNode($authResponse,'litleTxnId')),'id'=> '456',);
+$capture_hash =  array('cnpTxnId' =>(XmlParser::getNode($authResponse,'cnpTxnId')),'id'=> '456',);
 $initialize = new CnpOnlineRequest();
 $captureResponse = $initialize->captureRequest($capture_hash);
 
@@ -38,7 +38,7 @@ if(XmlParser::getNode($captureResponse,'message')!='Approved')
  throw new \Exception('CnpPaymentFullLifeCycleExample captureResponse does not get the right response');
 #Credit
 #Refund the customer
-$credit_hash =  array('litleTxnId' =>(XmlParser::getNode($captureResponse,'litleTxnId')),'id'=> '456',);
+$credit_hash =  array('cnpTxnId' =>(XmlParser::getNode($captureResponse,'cnpTxnId')),'id'=> '456',);
 $initialize = new CnpOnlineRequest();
 $creditResponse = $initialize->creditRequest($credit_hash);
 
@@ -46,7 +46,7 @@ if(XmlParser::getNode($creditResponse,'message')!='Approved')
  throw new \Exception('CnpPaymentFullLifeCycleExample creditResponse does not get the right response');
 #Void
 #Cancel the refund, note that a deposit can be Voided as well
-$void_hash =  array('litleTxnId' =>(XmlParser::getNode($creditResponse,'litleTxnId')),'id'=> '456',);
+$void_hash =  array('cnpTxnId' =>(XmlParser::getNode($creditResponse,'cnpTxnId')),'id'=> '456',);
 $initialize = new CnpOnlineRequest();
 $voidResponse = $initialize->voidRequest($void_hash);
 

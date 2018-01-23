@@ -32,7 +32,7 @@ class DepositReversalFunctionalTest extends \PHPUnit_Framework_TestCase
     public function test_simple()
     {
         $hash_in = array(
-            'litleTxnId' => '1234567890',
+            'cnpTxnId' => '1234567890',
             'reportGroup' => 'Planets',
             'id' => 'id',
             'card' => array(
@@ -50,7 +50,7 @@ class DepositReversalFunctionalTest extends \PHPUnit_Framework_TestCase
         );
         $initialize = new CnpOnlineRequest();
         $depositReversalResponse = $initialize->depositReversalRequest($hash_in);
-        $response = XmlParser::getAttribute($depositReversalResponse, 'litleOnlineResponse', 'response');
+        $response = XmlParser::getAttribute($depositReversalResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('0', $response);
     }
 

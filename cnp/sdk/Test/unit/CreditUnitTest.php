@@ -28,11 +28,11 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
 {
     public function test_credit()
     {
-        $hash_in = array('litleTxnId'=> '12312312','reportGroup'=>'Planets', 'amount'=>'123','id' => 'id',);
+        $hash_in = array('cnpTxnId'=> '12312312','reportGroup'=>'Planets', 'amount'=>'123','id' => 'id',);
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
-        ->with($this->matchesRegularExpression('/.*<litleTxnId>12312312.*<amount>123.*/'));
+        ->with($this->matchesRegularExpression('/.*<cnpTxnId>12312312.*<amount>123.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
@@ -96,7 +96,7 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array(
           'reportGroup'=>'Planets',
           'id' => 'id',
-          'litleTxnId'=>'123456',
+          'cnpTxnId'=>'123456',
           'orderId'=>'12344',
           'amount'=>'106',
           'orderSource'=>'ecommerce',
@@ -117,7 +117,7 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
           'token'=>'1234',
           'transactionId'=>'123456'),
           'token'=> array(
-          'litleToken'=>'1234',
+          'cnpToken'=>'1234',
           'expDate'=>'1210',
           'cardValidationNum'=>'555',
           'type'=>'VI')
@@ -149,7 +149,7 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
     public function test_loggedInUser()
     {
         $hash_in = array(
-                'litleTxnId'=> '12312312',
+                'cnpTxnId'=> '12312312',
         		'id' => 'id',
                 'reportGroup'=>'Planets',
                 'amount'=>'123',
@@ -171,14 +171,14 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
                 'amount'=>'2',
         		'id' => 'id',
                 'surchargeAmount'=>'1',
-                'litleTxnId'=>'3',
+                'cnpTxnId'=>'3',
                 'processingInstructions'=>array(),
         );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock
         ->expects($this->once())
         ->method('request')
-        ->with($this->matchesRegularExpression('/.*<litleTxnId>3<\/litleTxnId><amount>2<\/amount><surchargeAmount>1<\/surchargeAmount><processing.*/'));
+        ->with($this->matchesRegularExpression('/.*<cnpTxnId>3<\/cnpTxnId><amount>2<\/amount><surchargeAmount>1<\/surchargeAmount><processing.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
@@ -190,14 +190,14 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array(
                 'amount'=>'2',
         		'id' => 'id',
-                'litleTxnId'=>'3',
+                'cnpTxnId'=>'3',
                 'processingInstructions'=>array(),
         );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock
         ->expects($this->once())
         ->method('request')
-        ->with($this->matchesRegularExpression('/.*<litleTxnId>3<\/litleTxnId><amount>2<\/amount><processing.*/'));
+        ->with($this->matchesRegularExpression('/.*<cnpTxnId>3<\/cnpTxnId><amount>2<\/amount><processing.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
@@ -254,14 +254,14 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
                     'entryMode'=>'b',
                     'cardholderId'=>'c'
                 ),
-                'litleTxnId'=>'3',
+                'cnpTxnId'=>'3',
                 'payPalNotes'=>'notes',
         );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock
         ->expects($this->once())
         ->method('request')
-        ->with($this->matchesRegularExpression('/.*<litleTxnId>3<\/litleTxnId><amount>2<\/amount><pos>.*<terminalId>abc123<\/terminalId><\/pos><payPalNotes>.*/'));
+        ->with($this->matchesRegularExpression('/.*<cnpTxnId>3<\/cnpTxnId><amount>2<\/amount><pos>.*<terminalId>abc123<\/terminalId><\/pos><payPalNotes>.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
@@ -273,14 +273,14 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array(
                 'amount'=>'2',
         		'id' => 'id',
-                'litleTxnId'=>'3',
+                'cnpTxnId'=>'3',
                 'payPalNotes'=>'notes',
         );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock
         ->expects($this->once())
         ->method('request')
-        ->with($this->matchesRegularExpression('/.*<litleTxnId>3<\/litleTxnId><amount>2<\/amount><payPalNotes>.*/'));
+        ->with($this->matchesRegularExpression('/.*<cnpTxnId>3<\/cnpTxnId><amount>2<\/amount><payPalNotes>.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
@@ -289,11 +289,11 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
     
     public function test_credit_with_secondaryAmount()
     {
-    	$hash_in = array('litleTxnId'=> '12312312','reportGroup'=>'Planets', 'amount'=>'123', 'secondaryAmount' => '3214','id' => 'id',);
+    	$hash_in = array('cnpTxnId'=> '12312312','reportGroup'=>'Planets', 'amount'=>'123', 'secondaryAmount' => '3214','id' => 'id',);
     	$mock = $this->getMock('cnp\sdk\CnpXmlMapper');
     	$mock->expects($this->once())
     	->method('request')
-    	->with($this->matchesRegularExpression('/.*<litleTxnId>12312312.*<amount>123.*/'));
+    	->with($this->matchesRegularExpression('/.*<cnpTxnId>12312312.*<amount>123.*/'));
     
     	$cnpTest = new CnpOnlineRequest();
     	$cnpTest->newXML = $mock;
@@ -303,7 +303,7 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
     public function test_pin_tied()
     {
     	$hash_in = array(
-    			'litleTxnId'=> '1234567890',
+    			'cnpTxnId'=> '1234567890',
     			'id' => 'id',
     			'reportGroup'=>'Planets', 
     			'amount'=>'123', 
@@ -325,7 +325,7 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
     public function test_pin_tied_optional()
     {
     	$hash_in = array(
-    			'litleTxnId'=> '1234567890',
+    			'cnpTxnId'=> '1234567890',
     			'id' => 'id',
     			'reportGroup'=>'Planets',
     			'amount'=>'123',
@@ -336,7 +336,7 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
     	$mock
     	->expects($this->once())
     	->method('request')
-    	->with($this->matchesRegularExpression('/.*<litleTxnId>1234567890.*<amount>123.*<secondaryAmount>3214.*<surchargeAmount>1.*/'));
+    	->with($this->matchesRegularExpression('/.*<cnpTxnId>1234567890.*<amount>123.*<secondaryAmount>3214.*<surchargeAmount>1.*/'));
     
     	$cnpTest = new CnpOnlineRequest();
     	$cnpTest->newXML = $mock;

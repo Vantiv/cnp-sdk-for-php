@@ -167,7 +167,7 @@ class TransactionsUnitTest extends \PHPUnit_Framework_TestCase
 
     public function test_capture_simple_capture()
     {
-        $hash_in = array('litleTxnId'=> '12312312', 'amount'=>'123','id' => 'id',);
+        $hash_in = array('cnpTxnId'=> '12312312', 'amount'=>'123','id' => 'id',);
         $hash_out = Transactions::createCaptureHash($hash_in);
         $this->assertEquals($hash_in, array_intersect($hash_in, $hash_out));
     }
@@ -175,7 +175,7 @@ class TransactionsUnitTest extends \PHPUnit_Framework_TestCase
     public function test_capture_surchargeAmount()
     {
         $hash_in = array(
-            'litleTxnId'=>'3','id' => 'id',
+            'cnpTxnId'=>'3','id' => 'id',
             'amount'=>'2',
             'surchargeAmount'=>'1',
             'payPalNotes'=>'notes',
@@ -186,7 +186,7 @@ class TransactionsUnitTest extends \PHPUnit_Framework_TestCase
     public function test_capture_surchargeAmount_optional()
     {
         $hash_in = array(
-                'litleTxnId'=>'3','id' => 'id',
+                'cnpTxnId'=>'3','id' => 'id',
                 'amount'=>'2',
                 'payPalNotes'=>'notes',
         );
@@ -279,7 +279,7 @@ class TransactionsUnitTest extends \PHPUnit_Framework_TestCase
 
     public function test_credit()
     {
-        $hash_in = array('litleTxnId'=> '12312312','id' => 'id',
+        $hash_in = array('cnpTxnId'=> '12312312','id' => 'id',
                          'orderId'=> '2111',
                          'orderSource'=>'ecommerce',
                          'amount'=>'123');
@@ -304,7 +304,7 @@ class TransactionsUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array(
                 'amount'=>'2','id' => 'id',
                 'surchargeAmount'=>'1',
-                'litleTxnId'=>'3',
+                'cnpTxnId'=>'3',
                 'processingInstructions'=>array(),
         );
         $hash_out = Transactions::createCreditHash($hash_in);
@@ -315,7 +315,7 @@ class TransactionsUnitTest extends \PHPUnit_Framework_TestCase
     {
         $hash_in = array(
                 'amount'=>'2','id' => 'id',
-                'litleTxnId'=>'3',
+                'cnpTxnId'=>'3',
                 'processingInstructions'=>array(),
         );
         $hash_out = Transactions::createCreditHash($hash_in);
@@ -355,7 +355,7 @@ class TransactionsUnitTest extends \PHPUnit_Framework_TestCase
                     'entryMode'=>'b',
                     'cardholderId'=>'c'
                 ),
-                'litleTxnId'=>'3',
+                'cnpTxnId'=>'3',
                 'payPalNotes'=>'notes',
         );
         $hash_out = Transactions::createCreditHash($hash_in);
@@ -366,7 +366,7 @@ class TransactionsUnitTest extends \PHPUnit_Framework_TestCase
     {
         $hash_in = array(
                 'amount'=>'2','id' => 'id',
-                'litleTxnId'=>'3',
+                'cnpTxnId'=>'3',
                 'payPalNotes'=>'notes',
         );
         $hash_out = Transactions::createCreditHash($hash_in);
@@ -375,14 +375,14 @@ class TransactionsUnitTest extends \PHPUnit_Framework_TestCase
 
     public function test_echeckCredit()
     {
-        $hash_in = array('litleTxnId' =>'123123','id' => 'id',);
+        $hash_in = array('cnpTxnId' =>'123123','id' => 'id',);
         $hash_out = Transactions::createEcheckCreditHash($hash_in);
         $this->assertEquals($hash_in, array_intersect($hash_in, $hash_out));
     }
 
     public function test_echeckRedeposit()
     {
-        $hash_in = array('litleTxnId' =>'123123','id' => 'id',);
+        $hash_in = array('cnpTxnId' =>'123123','id' => 'id',);
         $hash_out = Transactions::createEcheckRedepositHash($hash_in);
         $this->assertEquals($hash_in, array_intersect($hash_in, $hash_out));
     }
@@ -390,7 +390,7 @@ class TransactionsUnitTest extends \PHPUnit_Framework_TestCase
     public function test_echeckRedeposit_merchantData()
     {
         $hash_in = array('id' => 'id',
-                'litleTxnId' =>'123123',
+                'cnpTxnId' =>'123123',
                 'merchantData'=>array('campaign'=>'camping'));
         $hash_out = Transactions::createEcheckRedepositHash($hash_in);
         $this->assertEquals($hash_in, array_intersect($hash_in, $hash_out));
@@ -398,7 +398,7 @@ class TransactionsUnitTest extends \PHPUnit_Framework_TestCase
 
     public function test_echeckSale()
     {
-        $hash_in = array('litleTxnId' =>'123123','id' => 'id',);
+        $hash_in = array('cnpTxnId' =>'123123','id' => 'id',);
         $hash_out = Transactions::createEcheckSaleHash($hash_in);
         $this->assertEquals($hash_in, array_intersect($hash_in, $hash_out));
     }
@@ -406,7 +406,7 @@ class TransactionsUnitTest extends \PHPUnit_Framework_TestCase
     public function test_simple_echeckVerification()
     {
          $hash_in = array('amount'=>'123','id' => 'id','orderId'=>'123','orderSource'=>'ecommerce',
-        'echeckToken' => array('accType'=>'Checking','routingNum'=>'123123','litleToken'=>'1234565789012','checkNum'=>'123455'));
+        'echeckToken' => array('accType'=>'Checking','routingNum'=>'123123','cnpToken'=>'1234565789012','checkNum'=>'123455'));
         $hash_out = Transactions::createEcheckVerificationHash($hash_in);
         $this->assertEquals($hash_in, array_intersect($hash_in, $hash_out));
     }
@@ -414,7 +414,7 @@ class TransactionsUnitTest extends \PHPUnit_Framework_TestCase
     public function test_echeckVerification_merchantData()
     {
         $hash_in = array('amount'=>'123','id' => 'id','orderId'=>'123','orderSource'=>'ecommerce','merchantData'=>array('campaign'=>'camping'),
-                'echeckToken' => array('accType'=>'Checking','routingNum'=>'123123','litleToken'=>'1234565789012','checkNum'=>'123455'));
+                'echeckToken' => array('accType'=>'Checking','routingNum'=>'123123','cnpToken'=>'1234565789012','checkNum'=>'123455'));
         $hash_out = Transactions::createEcheckVerificationHash($hash_in);
         $this->assertEquals($hash_in, array_intersect($hash_in, $hash_out));
     }
@@ -425,7 +425,7 @@ class TransactionsUnitTest extends \PHPUnit_Framework_TestCase
           'amount'=>'106','id' => 'id',
           'orderSource'=>'ecommerce',
           'token'=> array(
-          'litleToken'=>'123456789101112',
+          'cnpToken'=>'123456789101112',
           'expDate'=>'1210',
           'cardValidationNum'=>'555',
           'type'=>'VI'));
@@ -529,7 +529,7 @@ class TransactionsUnitTest extends \PHPUnit_Framework_TestCase
     {
         $hash_in = array(
             'orderId'=>'1','id' => 'id',
-            'litleToken'=>'123456789101112',
+            'cnpToken'=>'123456789101112',
             'cardValidationNum'=>'123');
         $hash_out = Transactions::createUpdateCardValidationNumOnTokenHash($hash_in);
         $this->assertEquals($hash_in, array_intersect($hash_in, $hash_out));
@@ -747,7 +747,7 @@ class TransactionsUnitTest extends \PHPUnit_Framework_TestCase
     
     public function test_echeckSale_secondaryamount()
     {
-    	$hash_in = array('litleTxnId' =>'123123', 'secondaryAmount' => '2000','id' => 'id',);
+    	$hash_in = array('cnpTxnId' =>'123123', 'secondaryAmount' => '2000','id' => 'id',);
     	$hash_out = Transactions::createEcheckSaleHash($hash_in);
     	$this->assertEquals($hash_in, array_intersect($hash_in, $hash_out));
     }

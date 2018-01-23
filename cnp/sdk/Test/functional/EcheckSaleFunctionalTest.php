@@ -53,7 +53,7 @@ class EcheckSaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'verify' => 'true',
             'orderId' => '12345',
             'orderSource' => 'ecommerce',
-            'echeckToken' => array('accType' => 'Checking', 'litleToken' => '1234565789012', 'routingNum' => '123456789', 'checkNum' => '123455'),
+            'echeckToken' => array('accType' => 'Checking', 'cnpToken' => '1234565789012', 'routingNum' => '123456789', 'checkNum' => '123455'),
             'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'));
 
         $initialize = new CnpOnlineRequest();
@@ -68,12 +68,12 @@ class EcheckSaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'verify' => 'true',
             'orderId' => '12345',
             'orderSource' => 'ecommerce',
-            'echeckToken' => array('accType' => 'Checking', 'litleToken' => '1234565789012', 'routingNum' => '123456789', 'checkNum' => '123455'),
+            'echeckToken' => array('accType' => 'Checking', 'cnpToken' => '1234565789012', 'routingNum' => '123456789', 'checkNum' => '123455'),
             'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'));
 
         $initialize = new CnpOnlineRequest();
         $echeckSaleResponse = $initialize->echeckSaleRequest($hash_in);
-        $message = XmlParser::getAttribute($echeckSaleResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($echeckSaleResponse, 'cnpOnlineResponse', 'message');
         $this->assertRegExp('/Error validating xml data against the schema/', $message);
     }
 
@@ -138,7 +138,7 @@ class EcheckSaleFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $echeckSaleResponse = $initialize->echeckSaleRequest($hash_in);
-        $message = XmlParser::getAttribute($echeckSaleResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($echeckSaleResponse, 'cnpOnlineResponse', 'message');
         $this->assertRegExp('/Error validating xml data against the schema/', $message);
     }
 

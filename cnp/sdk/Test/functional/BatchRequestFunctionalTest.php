@@ -80,7 +80,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
                 'cardValidationNum' => '1213'
             ),
             'id' => '1211',
-            'litleTxnId' => '12345678000',
+            'cnpTxnId' => '12345678000',
             'orderId' => '2111',
             'reportGroup' => 'Planets',
             'orderSource' => 'ecommerce',
@@ -107,7 +107,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
                 'cardValidationNum' => '1213'
             ),
             'id' => '1211',
-            'litleTxnId' => '12345678000',
+            'cnpTxnId' => '12345678000',
             'orderId' => '2111',
             'reportGroup' => 'Planets',
             'orderSource' => 'ecommerce',
@@ -128,7 +128,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
     {
         $hash_in = array(
             'id' => 'id',
-            'litleTxnId' => '12345678000',
+            'cnpTxnId' => '12345678000',
             'captureAmount' => '123',
             'card' => array(
                 'type' => 'GC',
@@ -183,7 +183,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
     public function test_addGiftCardCredit()
     {
         $hash_in = array(
-            'litleTxnId' => '12312312',
+            'cnpTxnId' => '12312312',
             'reportGroup' => 'Planets',
             'creditAmount' => '123',
             'id' => '1211',
@@ -268,7 +268,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
             ),
             'id' => '1211',
             'orderId' => '2111',
-            'litleTxnId' => '12345678000',
+            'cnpTxnId' => '12345678000',
             'reportGroup' => 'Planets',
             'orderSource' => 'ecommerce',
             'amount' => '123'
@@ -288,7 +288,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
     {
         $hash_in = array(
             'id' => 'id',
-            'litleTxnId' => '12345678000',
+            'cnpTxnId' => '12345678000',
             'captureAmount' => '123',
             'card' => array(
                 'type' => 'GC',
@@ -349,7 +349,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
             ),
             'id' => '1211',
             'orderId' => '2111',
-            'litleTxnId' => '12345678000',
+            'cnpTxnId' => '12345678000',
             'reportGroup' => 'Planets',
             'orderSource' => 'ecommerce',
             'amount' => '123'
@@ -715,7 +715,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
             ),
             'id' => '1211',
             'orderId' => '2111',
-            'litleToken' => '123456789101112',
+            'cnpToken' => '123456789101112',
             'reportGroup' => 'Planets',
             'orderSource' => 'ecommerce',
             'amount' => '123',
@@ -940,14 +940,14 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         $batch->addAuth($hash_in);
 
         $hash_in = array('id' => 'id',
-            'litleTxnId' => '1234567890',
+            'cnpTxnId' => '1234567890',
             'reportGroup' => 'Planets',
             'amount' => '5000'
         );
         $batch->addAuthReversal($hash_in);
 
         $hash_in = array('id' => 'id',
-            'litleTxnId' => '12312312',
+            'cnpTxnId' => '12312312',
             'amount' => '123'
         );
         $batch->addCapture($hash_in);
@@ -970,19 +970,19 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         $batch->addCaptureGivenAuth($hash_in);
 
         $hash_in = array('id' => 'id',
-            'litleTxnId' => '12312312',
+            'cnpTxnId' => '12312312',
             'reportGroup' => 'Planets',
             'amount' => '123'
         );
         $batch->addCredit($hash_in);
 
         $hash_in = array('id' => 'id',
-            'litleTxnId' => '123123'
+            'cnpTxnId' => '123123'
         );
         $batch->addEcheckCredit($hash_in);
 
         $hash_in = array(
-            'litleTxnId' => '123123', 'id' => 'id',
+            'cnpTxnId' => '123123', 'id' => 'id',
         );
         $batch->addEcheckRedeposit($hash_in);
 
@@ -1028,11 +1028,11 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $hash_in = array('id' => 'id',
             'orderId' => '123',
-            'litleTxnId' => '123456',
+            'cnpTxnId' => '123456',
             'amount' => '106',
             'orderSource' => 'ecommerce',
             'token' => array(
-                'litleToken' => '123456789101112',
+                'cnpToken' => '123456789101112',
                 'expDate' => '1210',
                 'cardValidationNum' => '555',
                 'type' => 'VI'
@@ -1062,7 +1062,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $hash_in = array('id' => 'id',
             'orderId' => '1',
-            'litleToken' => '123456789101112',
+            'cnpToken' => '123456789101112',
             'cardValidationNum' => '123'
         );
         $batch->addUpdateCardValidationNumOnToken($hash_in);

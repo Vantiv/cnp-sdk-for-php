@@ -232,7 +232,7 @@ class XmlFieldsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($hash_out["type"], "VISA");
         $this->assertEquals($hash_out["expDate"], "2013");
         $this->assertEquals($hash_out["cardValidationNum"], "123");
-        $this->assertEquals($hash_out["litleToken"], "REQUIRED");
+        $this->assertEquals($hash_out["cnpToken"], "REQUIRED");
 
     }
 
@@ -332,7 +332,7 @@ class XmlFieldsTest extends \PHPUnit_Framework_TestCase
     public function test_echeckTokenType()
     {
         $hash = array(
-        "litleToken" =>"1243141413421343",
+        "cnpToken" =>"1243141413421343",
         "accType"=>"checking");
         $hash_out = XmlFields::echeckTokenType($hash);
         $this->assertEquals($hash_out["accType"], "checking");

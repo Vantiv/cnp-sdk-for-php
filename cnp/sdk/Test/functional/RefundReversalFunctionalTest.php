@@ -32,7 +32,7 @@ class RefundReversalFunctionalTest extends \PHPUnit_Framework_TestCase
     public function test_simple()
     {
         $hash_in = array(
-            'litleTxnId' => '1234567890',
+            'cnpTxnId' => '1234567890',
             'reportGroup' => 'Planets',
             'id' => 'id',
             'card' => array(
@@ -50,7 +50,7 @@ class RefundReversalFunctionalTest extends \PHPUnit_Framework_TestCase
         );
         $initialize = new CnpOnlineRequest();
         $refundReversalResponse = $initialize->refundReversalRequest($hash_in);
-        $response = XmlParser::getAttribute($refundReversalResponse, 'litleOnlineResponse', 'response');
+        $response = XmlParser::getAttribute($refundReversalResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('0', $response);
     }
 

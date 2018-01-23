@@ -70,8 +70,8 @@ class CnpOnlineRequest
 
     public function authorizationRequest($hash_in)
     {
-        if (isset($hash_in['litleTxnId'])) {
-            $hash_out = array('litleTxnId'=> (XmlFields::returnArrayValue($hash_in,'litleTxnId')));
+        if (isset($hash_in['cnpTxnId'])) {
+            $hash_out = array('cnpTxnId'=> (XmlFields::returnArrayValue($hash_in,'cnpTxnId')));
         } else {
             $hash_out = array(
             'orderId'=> Checker::requiredField(XmlFields::returnArrayValue($hash_in,'orderId')),
@@ -120,7 +120,7 @@ class CnpOnlineRequest
     public function saleRequest($hash_in)
     {
         $hash_out = array(
-            'litleTxnId' => XmlFields::returnArrayValue($hash_in,'litleTxnId'),
+            'cnpTxnId' => XmlFields::returnArrayValue($hash_in,'cnpTxnId'),
             'orderId' =>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'orderId')),
             'amount' =>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'amount')),
         	'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
@@ -155,7 +155,7 @@ class CnpOnlineRequest
             'recyclingRequest'=>XmlFields::recyclingRequestType(XmlFields::returnArrayValue($hash_in,'recyclingRequest')),
             'fraudFilterOverride'=> XmlFields::returnArrayValue($hash_in,'fraudFilterOverride'),
             'recurringRequest'=>XmlFields::recurringRequestType(XmlFields::returnArrayValue($hash_in,'recurringRequest')),
-            'litleInternalRecurringRequest'=>XmlFields::litleInternalRecurringRequestType(XmlFields::returnArrayValue($hash_in,'litleInternalRecurringRequest')),
+            'cnpInternalRecurringRequest'=>XmlFields::cnpInternalRecurringRequestType(XmlFields::returnArrayValue($hash_in,'cnpInternalRecurringRequest')),
             'debtRepayment'=>XmlFields::returnArrayValue($hash_in,'debtRepayment'),
             'advancedFraudChecks'=>XmlFields::advancedFraudChecksType(XmlFields::returnArrayValue($hash_in,'advancedFraudChecks')),
         	'processingType' => XmlFields::returnArrayValue ( $hash_in, 'processingType' ),
@@ -174,7 +174,7 @@ class CnpOnlineRequest
     public function authReversalRequest($hash_in)
     {
         $hash_out = array(
-            'litleTxnId' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'litleTxnId')),
+            'cnpTxnId' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'cnpTxnId')),
         	'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
             'amount' =>XmlFields::returnArrayValue($hash_in,'amount'),
             'surchargeAmount' =>XmlFields::returnArrayValue($hash_in,'surchargeAmount'),
@@ -188,7 +188,7 @@ class CnpOnlineRequest
     public function giftCardAuthReversalRequest($hash_in)
     {
     	$hash_out = array( 
-    			'litleTxnId' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'litleTxnId')),
+    			'cnpTxnId' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'cnpTxnId')),
     			'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
     			'card'=> XmlFields::giftCardCardType(XmlFields::returnArrayValue($hash_in,'card')),
     			'originalRefCode' =>XmlFields::returnArrayValue($hash_in,'originalRefCode'),
@@ -204,7 +204,7 @@ class CnpOnlineRequest
         		
     public function giftCardCaptureRequest($hash_in) {
 		$hash_out = array (
-				'litleTxnId' => Checker::requiredField ( XmlFields::returnArrayValue ( $hash_in, 'litleTxnId' ) ),
+				'cnpTxnId' => Checker::requiredField ( XmlFields::returnArrayValue ( $hash_in, 'cnpTxnId' ) ),
 				'id' => Checker::requiredField ( XmlFields::returnArrayValue ( $hash_in, 'id' ) ),
 				'captureAmount' => XmlFields::returnArrayValue ( $hash_in, 'captureAmount' ),
 				'card' => XmlFields::giftCardCardType ( XmlFields::returnArrayValue ( $hash_in, 'card' ) ),
@@ -220,7 +220,7 @@ class CnpOnlineRequest
     public function creditRequest($hash_in)
     {
         $hash_out = array(
-                    'litleTxnId' => XmlFields::returnArrayValue($hash_in, 'litleTxnId'),
+                    'cnpTxnId' => XmlFields::returnArrayValue($hash_in, 'cnpTxnId'),
         		    'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
                     'orderId' =>XmlFields::returnArrayValue($hash_in, 'orderId'),
                     'amount' =>XmlFields::returnArrayValue($hash_in, 'amount'),
@@ -254,7 +254,7 @@ class CnpOnlineRequest
     public function giftCardCreditRequest($hash_in)
     {
     	$hash_out = array(
-    			'litleTxnId' => XmlFields::returnArrayValue($hash_in, 'litleTxnId'),   			
+    			'cnpTxnId' => XmlFields::returnArrayValue($hash_in, 'cnpTxnId'),
     			'orderId' =>XmlFields::returnArrayValue($hash_in, 'orderId'),
     			'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
     			'creditAmount' =>XmlFields::returnArrayValue($hash_in, 'creditAmount'),
@@ -321,7 +321,7 @@ class CnpOnlineRequest
         $hash_out = array(
         'partial'=>XmlFields::returnArrayValue($hash_in,'partial'),
         'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
-        'litleTxnId' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'litleTxnId')),
+        'cnpTxnId' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'cnpTxnId')),
         'amount' =>(XmlFields::returnArrayValue($hash_in,'amount')),
         'surchargeAmount' =>XmlFields::returnArrayValue($hash_in,'surchargeAmount'),
         'enhancedData'=>XmlFields::enhancedData(XmlFields::returnArrayValue($hash_in,'enhancedData')),
@@ -374,7 +374,7 @@ class CnpOnlineRequest
     public function echeckRedepositRequest($hash_in)
     {
         $hash_out = array(
-            'litleTxnId' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'litleTxnId')),
+            'cnpTxnId' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'cnpTxnId')),
         	'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
             'echeck'=>XmlFields::echeckType(XmlFields::returnArrayValue($hash_in,'echeck')),
             'echeckToken'=>XmlFields::echeckTokenType(XmlFields::returnArrayValue($hash_in,'echeckToken')),
@@ -391,7 +391,7 @@ class CnpOnlineRequest
     public function echeckSaleRequest($hash_in)
     {
         $hash_out = array(
-        'litleTxnId'=>XmlFields::returnArrayValue($hash_in,'litleTxnId'),
+        'cnpTxnId'=>XmlFields::returnArrayValue($hash_in,'cnpTxnId'),
         'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
         'orderId'=>XmlFields::returnArrayValue($hash_in,'orderId'),
         'verify'=>XmlFields::returnArrayValue($hash_in,'verify'),
@@ -421,7 +421,7 @@ class CnpOnlineRequest
     public function echeckCreditRequest($hash_in)
     {
         $hash_out = array(
-            'litleTxnId'=>XmlFields::returnArrayValue($hash_in,'litleTxnId'),
+            'cnpTxnId'=>XmlFields::returnArrayValue($hash_in,'cnpTxnId'),
         	'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
             'orderId'=>XmlFields::returnArrayValue($hash_in,'orderId'),
             'amount'=>XmlFields::returnArrayValue($hash_in,'amount'),
@@ -463,7 +463,7 @@ class CnpOnlineRequest
     public function voidRequest($hash_in)
     {
         $hash_out = array(
-        'litleTxnId' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'litleTxnId')),
+        'cnpTxnId' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'cnpTxnId')),
         'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
         'processingInstructions'=>XmlFields::processingInstructions(XmlFields::returnArrayValue($hash_in,'processingInstructions')));
         $voidResponse = $this->processRequest($hash_out,$hash_in,'void');
@@ -475,7 +475,7 @@ class CnpOnlineRequest
     {
         $hash_out = array(
         'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
-        'litleTxnId' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'litleTxnId')),
+        'cnpTxnId' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'cnpTxnId')),
         );
         $echeckVoidResponse = $this->processRequest($hash_out,$hash_in,"echeckVoid");
 
@@ -485,7 +485,7 @@ class CnpOnlineRequest
     public function depositReversalRequest($hash_in)
     {
         $hash_out = array(
-        		'litleTxnId' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'litleTxnId')),
+        		'cnpTxnId' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'cnpTxnId')),
         		'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
         		'card'=> XmlFields::giftCardCardType(XmlFields::returnArrayValue($hash_in,'card')),
         		'originalRefCode'=>XmlFields::returnArrayValue($hash_in,'originalRefCode'),
@@ -501,7 +501,7 @@ class CnpOnlineRequest
     public function refundReversalRequest($hash_in)
     {
         $hash_out = array(
-		        'litleTxnId' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'litleTxnId')),
+		        'cnpTxnId' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'cnpTxnId')),
 		        'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
         		'card'=> XmlFields::giftCardCardType(XmlFields::returnArrayValue($hash_in,'card')),
         		'originalRefCode'=>XmlFields::returnArrayValue($hash_in,'originalRefCode'),
@@ -517,7 +517,7 @@ class CnpOnlineRequest
     public function activateReversalRequest($hash_in)
     {
         $hash_out = array(
-		        'litleTxnId' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'litleTxnId')),
+		        'cnpTxnId' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'cnpTxnId')),
 		        'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
         		'card'=> XmlFields::giftCardCardType(XmlFields::returnArrayValue($hash_in,'card')),
         		'originalRefCode'=>XmlFields::returnArrayValue($hash_in,'originalRefCode'),
@@ -533,7 +533,7 @@ class CnpOnlineRequest
     public function deactivateReversalRequest($hash_in)
     {
         $hash_out = array(
-		        'litleTxnId' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'litleTxnId')),
+		        'cnpTxnId' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'cnpTxnId')),
 		        'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
         		'card'=> XmlFields::giftCardCardType(XmlFields::returnArrayValue($hash_in,'card')),
         		'originalRefCode'=>XmlFields::returnArrayValue($hash_in,'originalRefCode'),
@@ -548,7 +548,7 @@ class CnpOnlineRequest
     public function loadReversalRequest($hash_in)
     {
         $hash_out = array(
-		        'litleTxnId' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'litleTxnId')),
+		        'cnpTxnId' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'cnpTxnId')),
 		        'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
         		'card'=> XmlFields::giftCardCardType(XmlFields::returnArrayValue($hash_in,'card')),
         		'originalRefCode'=>XmlFields::returnArrayValue($hash_in,'originalRefCode'),
@@ -564,7 +564,7 @@ class CnpOnlineRequest
     public function unloadReversalRequest($hash_in)
     {
         $hash_out = array(
-		        'litleTxnId' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'litleTxnId')),
+		        'cnpTxnId' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'cnpTxnId')),
 		        'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
         		'card'=> XmlFields::giftCardCardType(XmlFields::returnArrayValue($hash_in,'card')),
         		'originalRefCode'=>XmlFields::returnArrayValue($hash_in,'originalRefCode'),
@@ -583,7 +583,7 @@ class CnpOnlineRequest
         $hash_out = array(
                 'orderId'=>XmlFields::returnArrayValue($hash_in,'orderId'),
         		'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
-                'litleToken' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'litleToken')),
+                'cnpToken' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'cnpToken')),
                 'cardValidationNum' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'cardValidationNum')),
         );
         $updateCardValidationNumOnTokenResponse = $this->processRequest($hash_out,$hash_in,"updateCardValidationNumOnToken");
@@ -815,7 +815,7 @@ class CnpOnlineRequest
     public function fundingInstructionVoid($hash_in)
     {
         $hash_out = array (
-            'litleTxnId' => XmlFields::returnArrayValue ( $hash_in, 'litleTxnId' ),
+            'cnpTxnId' => XmlFields::returnArrayValue ( $hash_in, 'cnpTxnId' ),
         );
         $fundingInstructionVoidResponse = $this ->processRequest($hash_out, $hash_in, "fundingInstructionVoid");
         return $fundingInstructionVoidResponse;

@@ -75,7 +75,7 @@ class CnpRequest
         }
 
         if ($this->closed) {
-            throw new \RuntimeException("Could not add the batchRequest. This litleRequest is closed.");
+            throw new \RuntimeException("Could not add the batchRequest. This cnpRequest is closed.");
         }
 
         if (!$batch_request->closed) {
@@ -107,12 +107,12 @@ class CnpRequest
         }
 
         if ($this->closed) {
-            throw new \RuntimeException("Could not add the RFR Request. This litleRequest is closed.");
+            throw new \RuntimeException("Could not add the RFR Request. This cnpRequest is closed.");
         }
         $RFRXml = Obj2xml::rfrRequestToXml($hash_in);
         file_put_contents($this->request_file, Obj2xml::generateRequestHeader($this->config, $this->num_batch_requests), FILE_APPEND);
         file_put_contents($this->request_file, $RFRXml, FILE_APPEND);
-        file_put_contents($this->request_file, "</litleRequest>", FILE_APPEND);
+        file_put_contents($this->request_file, "</cnpRequest>", FILE_APPEND);
         unlink($this->batches_file);
         unset($this->batches_file);
         $this->closed = true;
@@ -132,7 +132,7 @@ class CnpRequest
                 throw new \RuntimeException("Error when reading batches file at $this->batches_file. Please check your privilege.");
             }
             fclose($handle);
-            file_put_contents($this->request_file, "</litleRequest>", FILE_APPEND);
+            file_put_contents($this->request_file, "</cnpRequest>", FILE_APPEND);
 
             unlink($this->batches_file);
             unset($this->batches_file);

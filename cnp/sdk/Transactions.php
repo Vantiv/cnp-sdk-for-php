@@ -3,7 +3,7 @@ namespace cnp\sdk;
 class Transactions {
 	public static function createSaleHash($hash_in) {
 		$hash_out = array (
-				'litleTxnId' => XmlFields::returnArrayValue ( $hash_in, 'litleTxnId' ),
+				'cnpTxnId' => XmlFields::returnArrayValue ( $hash_in, 'cnpTxnId' ),
 				'orderId' => Checker::requiredField ( XmlFields::returnArrayValue ( $hash_in, 'orderId' ) ),
 				'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
 				'amount' => Checker::requiredField ( XmlFields::returnArrayValue ( $hash_in, 'amount' ) ),
@@ -36,7 +36,7 @@ class Transactions {
 				'recyclingRequest' => XmlFields::recyclingRequestType ( XmlFields::returnArrayValue ( $hash_in, 'recyclingRequest' ) ),
 				'fraudFilterOverride' => XmlFields::returnArrayValue ( $hash_in, 'fraudFilterOverride' ),
 				'recurringRequest' => XmlFields::recurringRequestType ( XmlFields::returnArrayValue ( $hash_in, 'recurringRequest' ) ),
-				'litleInternalRecurringRequest' => XmlFields::litleInternalRecurringRequestType ( XmlFields::returnArrayValue ( $hash_in, 'litleInternalRecurringRequest' ) ),
+				'cnpInternalRecurringRequest' => XmlFields::cnpInternalRecurringRequestType ( XmlFields::returnArrayValue ( $hash_in, 'cnpInternalRecurringRequest' ) ),
 				'debtRepayment' => XmlFields::returnArrayValue ( $hash_in, 'debtRepayment' ),
 				'advancedFraudChecks'=>XmlFields::advancedFraudChecksType(XmlFields::returnArrayValue($hash_in,'advancedFraudChecks'))
 		);
@@ -83,7 +83,7 @@ class Transactions {
 	}
 	public static function createAuthReversalHash($hash_in) {
 		$hash_out = array (
-				'litleTxnId' => Checker::requiredField ( XmlFields::returnArrayValue ( $hash_in, 'litleTxnId' ) ),
+				'cnpTxnId' => Checker::requiredField ( XmlFields::returnArrayValue ( $hash_in, 'cnpTxnId' ) ),
 				'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
 				'amount' => XmlFields::returnArrayValue ( $hash_in, 'amount' ),
 				'surchargeAmount' => XmlFields::returnArrayValue ( $hash_in, 'surchargeAmount' ),
@@ -95,7 +95,7 @@ class Transactions {
 	}
 	public static function createGiftCardAuthReversalHash($hash_in) {
 		$hash_out = array (
-				'litleTxnId' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'litleTxnId')),
+				'cnpTxnId' => Checker::requiredField(XmlFields::returnArrayValue($hash_in,'cnpTxnId')),
     			'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
     			'card'=> XmlFields::giftCardCardType(XmlFields::returnArrayValue($hash_in,'card')),
     			'originalRefCode' =>XmlFields::returnArrayValue($hash_in,'originalRefCode'),
@@ -109,7 +109,7 @@ class Transactions {
 	}
 	public static function createCreditHash($hash_in) {
 		$hash_out = array (
-				'litleTxnId' => XmlFields::returnArrayValue ( $hash_in, 'litleTxnId' ),
+				'cnpTxnId' => XmlFields::returnArrayValue ( $hash_in, 'cnpTxnId' ),
 				'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
 				'orderId' => XmlFields::returnArrayValue ( $hash_in, 'orderId' ),
 				'amount' => XmlFields::returnArrayValue ( $hash_in, 'amount' ),
@@ -136,7 +136,7 @@ class Transactions {
 	}
 	public static function createGiftCardCreditHash($hash_in) {
 		$hash_out = array(
-    			'litleTxnId' => XmlFields::returnArrayValue($hash_in, 'litleTxnId'),   			
+    			'cnpTxnId' => XmlFields::returnArrayValue($hash_in, 'cnpTxnId'),
     			'orderId' =>XmlFields::returnArrayValue($hash_in, 'orderId'),
     			'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
     			'creditAmount' =>XmlFields::returnArrayValue($hash_in, 'creditAmount'),
@@ -187,7 +187,7 @@ class Transactions {
 		$hash_out = array (
 				'partial' => XmlFields::returnArrayValue ( $hash_in, 'partial' ),
 				'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
-				'litleTxnId' => Checker::requiredField ( XmlFields::returnArrayValue ( $hash_in, 'litleTxnId' ) ),
+				'cnpTxnId' => Checker::requiredField ( XmlFields::returnArrayValue ( $hash_in, 'cnpTxnId' ) ),
 				'amount' => (XmlFields::returnArrayValue ( $hash_in, 'amount' )),
 				'surchargeAmount' => XmlFields::returnArrayValue ( $hash_in, 'surchargeAmount' ),
 				'enhancedData' => XmlFields::enhancedData ( XmlFields::returnArrayValue ( $hash_in, 'enhancedData' ) ),
@@ -200,7 +200,7 @@ class Transactions {
 	}
 	public static function createGiftCardCaptureHash($hash_in) {
 		$hash_out = array (
-				'litleTxnId' => Checker::requiredField ( XmlFields::returnArrayValue ( $hash_in, 'litleTxnId' ) ),
+				'cnpTxnId' => Checker::requiredField ( XmlFields::returnArrayValue ( $hash_in, 'cnpTxnId' ) ),
 				'id' => Checker::requiredField ( XmlFields::returnArrayValue ( $hash_in, 'id' ) ),
 				'captureAmount' => XmlFields::returnArrayValue ( $hash_in, 'captureAmount' ),
 				'card' => XmlFields::giftCardCardType ( XmlFields::returnArrayValue ( $hash_in, 'card' ) ),
@@ -240,7 +240,7 @@ class Transactions {
 	}
 	public static function createEcheckRedepositHash($hash_in) {
 		$hash_out = array (
-				'litleTxnId' => Checker::requiredField ( XmlFields::returnArrayValue ( $hash_in, 'litleTxnId' ) ),
+				'cnpTxnId' => Checker::requiredField ( XmlFields::returnArrayValue ( $hash_in, 'cnpTxnId' ) ),
 				'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
 				'echeck' => XmlFields::echeckType ( XmlFields::returnArrayValue ( $hash_in, 'echeck' ) ),
 				'echeckToken' => XmlFields::echeckTokenType ( XmlFields::returnArrayValue ( $hash_in, 'echeckToken' ) ),
@@ -251,7 +251,7 @@ class Transactions {
 	}
 	public static function createEcheckSaleHash($hash_in) {
 		$hash_out = array (
-				'litleTxnId' => XmlFields::returnArrayValue ( $hash_in, 'litleTxnId' ),
+				'cnpTxnId' => XmlFields::returnArrayValue ( $hash_in, 'cnpTxnId' ),
 				'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
 				'orderId' => XmlFields::returnArrayValue ( $hash_in, 'orderId' ),
 				'verify' => XmlFields::returnArrayValue ( $hash_in, 'verify' ),
@@ -269,7 +269,7 @@ class Transactions {
 	}
 	public static function createEcheckCreditHash($hash_in) {
 		$hash_out = array (
-				'litleTxnId' => XmlFields::returnArrayValue ( $hash_in, 'litleTxnId' ),
+				'cnpTxnId' => XmlFields::returnArrayValue ( $hash_in, 'cnpTxnId' ),
 				'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
 				'orderId' => XmlFields::returnArrayValue ( $hash_in, 'orderId' ),
 				'amount' => XmlFields::returnArrayValue ( $hash_in, 'amount' ),
@@ -411,7 +411,7 @@ class Transactions {
 	}
 	public static function createEcheckVerificationHash($hash_in) {
 		$hash_out = array (
-				'litleTxnId' => XmlFields::returnArrayValue ( $hash_in, 'litleTxnId' ),
+				'cnpTxnId' => XmlFields::returnArrayValue ( $hash_in, 'cnpTxnId' ),
 				'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
 				'orderId' => Checker::requiredField ( XmlFields::returnArrayValue ( $hash_in, 'orderId' ) ),
 				'amount' => Checker::requiredField ( XmlFields::returnArrayValue ( $hash_in, 'amount' ) ),
@@ -428,7 +428,7 @@ class Transactions {
 		$hash_out = array (
 				'orderId' => XmlFields::returnArrayValue ( $hash_in, 'orderId' ),
 				'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
-				'litleToken' => Checker::requiredField ( XmlFields::returnArrayValue ( $hash_in, 'litleToken' ) ),
+				'cnpToken' => Checker::requiredField ( XmlFields::returnArrayValue ( $hash_in, 'cnpToken' ) ),
 				'cardValidationNum' => Checker::requiredField ( XmlFields::returnArrayValue ( $hash_in, 'cardValidationNum' ) ) 
 		);
 		

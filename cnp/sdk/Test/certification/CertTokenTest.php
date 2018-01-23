@@ -43,7 +43,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
         //$this->assertEquals('445711', XMLParser::getNode($registerTokenResponse, 'bin'));
         //$this->assertEquals('VI', XMLParser::getNode($registerTokenResponse, 'type'));
         //$this->assertEquals('801', XMLParser::getNode($registerTokenResponse, 'response'));
-        //$this->assertEquals('1111222233330123', XMLParser::getNode($registerTokenResponse, 'litleToken'));
+        //$this->assertEquals('1111222233330123', XMLParser::getNode($registerTokenResponse, 'cnpToken'));
         //$this->assertEquals('Account number was successfully registered', XMLParser::getNode($registerTokenResponse, 'message'));
     }
 
@@ -71,7 +71,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
         //$this->assertEquals('445711', XMLParser::getNode($registerTokenResponse, 'bin'));
         //$this->assertEquals('VI', XMLParser::getNode($registerTokenResponse, 'type'));
         //$this->assertEquals('802', XMLParser::getNode($registerTokenResponse, 'response'));
-        //$this->assertEquals('1111222233330123', XMLParser::getNode($registerTokenResponse, 'litleToken'));
+        //$this->assertEquals('1111222233330123', XMLParser::getNode($registerTokenResponse, 'cnpToken'));
         //$this->assertEquals('Account number was previously registered', XMLParser::getNode($registerTokenResponse, 'message'));
     }
 
@@ -87,7 +87,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
         //$this->assertEquals('EC', XMLParser::getNode($registerTokenResponse, 'type'));
         //$this->assertEquals('998', XMLParser::getNode($registerTokenResponse, 'eCheckAccountSuffix'));
         //$this->assertEquals('801', XMLParser::getNode($registerTokenResponse, 'response'));
-        //$this->assertEquals('111922223333000998', XMLParser::getNode($registerTokenResponse, 'litleToken'));
+        //$this->assertEquals('111922223333000998', XMLParser::getNode($registerTokenResponse, 'cnpToken'));
         //$this->assertEquals('Account number was successfully registered', XMLParser::getNode($registerTokenResponse, 'message'));
     }
 
@@ -161,7 +161,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
             'orderId' => '59',
             'amount' => '15000',
             'orderSource' => 'ecommerce',
-            'token' => array('litleToken' => '1712990000040196', 'expDate' => '1112'));
+            'token' => array('cnpToken' => '1712990000040196', 'expDate' => '1112'));
 
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($token_hash);
@@ -176,7 +176,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
             'orderId' => '60',
             'amount' => '15000',
             'orderSource' => 'ecommerce',
-            'token' => array('litleToken' => '1712999999999999', 'expDate' => '1112'));
+            'token' => array('cnpToken' => '1712999999999999', 'expDate' => '1112'));
 
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($token_hash);
@@ -204,7 +204,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
 //        $this->assertEquals('Account number was successfully registered', XMLParser::getNode($registerTokenResponse, 'tokenMessage'));
 //        $this->assertEquals('EC', XMLParser::getNode($registerTokenResponse, 'type'));
 //        $this->assertEquals('003', XMLParser::getNode($registerTokenResponse, 'eCheckAccountSuffix'));
-//        $this->assertEquals('111922223333444003', XMLParser::getNode($registerTokenResponse, 'litleToken'));
+//        $this->assertEquals('111922223333444003', XMLParser::getNode($registerTokenResponse, 'cnpToken'));
     }
 
     function test_62()
@@ -225,7 +225,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
 //        $this->assertEquals('Account number was successfully registered', XMLParser::getNode($registerTokenResponse, 'tokenMessage'));
 //        $this->assertEquals('EC', XMLParser::getNode($registerTokenResponse, 'type'));
 //        $this->assertEquals('999', XMLParser::getNode($registerTokenResponse, 'eCheckAccountSuffix'));
-//        $this->assertEquals('111922223333444999', XMLParser::getNode($registerTokenResponse, 'litleToken'));
+//        $this->assertEquals('111922223333444999', XMLParser::getNode($registerTokenResponse, 'cnpToken'));
     }
 
     function test_63()
@@ -246,7 +246,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
 //        $this->assertEquals('Account number was successfully registered',XMLParser::getNode($registerTokenResponse,'tokenMessage'));
 //        $this->assertEquals('EC',XMLParser::getNode($registerTokenResponse,'type'));
 //        $this->assertEquals('999',XMLParser::getNode($registerTokenResponse,'eCheckAccountSuffix'));
-//        $this->assertEquals('111922223333555999',XMLParser::getNode($registerTokenResponse,'litleToken'));
+//        $this->assertEquals('111922223333555999',XMLParser::getNode($registerTokenResponse,'cnpToken'));
     }
 
     function test_64()

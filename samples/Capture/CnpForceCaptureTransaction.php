@@ -8,7 +8,7 @@ $capture_info = array(
   'merchantId' => '101',
   'version'=>'8.8',
   'reportGroup'=>'Planets',
-  'litleTxnId'=>'123456',
+  'cnpTxnId'=>'123456',
   'orderId'=>'12344',
   'amount'=>'106',
   'orderSource'=>'ecommerce',
@@ -25,7 +25,7 @@ $response = $initialize->forceCaptureRequest($capture_info);
 #display results
 echo ("Response: " . (XmlParser::getNode($response,'response')) . "<br>");
 echo ("Message: " . XmlParser::getNode($response,'message') . "<br>");
-echo ("Vantiv Transaction ID: " . XmlParser::getNode($response,'litleTxnId'));
+echo ("Vantiv Transaction ID: " . XmlParser::getNode($response,'cnpTxnId'));
 
 if(XmlParser::getNode($response,'message')!='Approved')
  throw new \Exception('CnpForceCaptureTransaction does not get the right response');

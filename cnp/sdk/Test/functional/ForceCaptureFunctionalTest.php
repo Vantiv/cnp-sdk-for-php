@@ -35,7 +35,7 @@ class ForceCaptureFunctionalTest extends \PHPUnit_Framework_TestCase
             'merchantId' => '101',
             'version' => '8.8',
             'reportGroup' => 'Planets',
-            'litleTxnId' => '123456',
+            'cnpTxnId' => '123456',
             'orderId' => '12344',
             'amount' => '106',
             'orderSource' => 'ecommerce',
@@ -47,7 +47,7 @@ class ForceCaptureFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $forceCaptureResponse = $initialize->forceCaptureRequest($hash_in);
-        $response = XmlParser::getAttribute($forceCaptureResponse, 'litleOnlineResponse', 'response');
+        $response = XmlParser::getAttribute($forceCaptureResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('000', $response);
     }
 
@@ -57,12 +57,12 @@ class ForceCaptureFunctionalTest extends \PHPUnit_Framework_TestCase
             'merchantId' => '101',
             'version' => '8.8',
             'reportGroup' => 'Planets',
-            'litleTxnId' => '123456',
+            'cnpTxnId' => '123456',
             'orderId' => '12344',
             'amount' => '106',
             'orderSource' => 'ecommerce',
             'token' => array(
-                'litleToken' => '123456789101112',
+                'cnpToken' => '123456789101112',
                 'expDate' => '1210',
                 'cardValidationNum' => '555',
                 'type' => 'VI'
@@ -70,7 +70,7 @@ class ForceCaptureFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $forceCaptureResponse = $initialize->forceCaptureRequest($hash_in);
-        $message = XmlParser::getAttribute($forceCaptureResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($forceCaptureResponse, 'cnpOnlineResponse', 'message');
         $this->assertEquals('Valid Format', $message);
     }
 
@@ -81,7 +81,7 @@ class ForceCaptureFunctionalTest extends \PHPUnit_Framework_TestCase
             'merchantId' => '101',
             'version' => '8.8',
             'reportGroup' => 'Planets',
-            'litleTxnId' => '123456',
+            'cnpTxnId' => '123456',
             'orderId' => '12344',
             'amount' => '106',
             'secondaryAmount' => '2000',
@@ -94,7 +94,7 @@ class ForceCaptureFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $forceCaptureResponse = $initialize->forceCaptureRequest($hash_in);
-        $response = XmlParser::getAttribute($forceCaptureResponse, 'litleOnlineResponse', 'response');
+        $response = XmlParser::getAttribute($forceCaptureResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('000', $response);
     }
 
@@ -104,7 +104,7 @@ class ForceCaptureFunctionalTest extends \PHPUnit_Framework_TestCase
             'merchantId' => '101',
             'version' => '8.8',
             'reportGroup' => 'Planets',
-            'litleTxnId' => '123456',
+            'cnpTxnId' => '123456',
             'orderId' => '12344',
             'amount' => '106',
             'secondaryAmount' => '2000',
@@ -119,7 +119,7 @@ class ForceCaptureFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $forceCaptureResponse = $initialize->forceCaptureRequest($hash_in);
-        $response = XmlParser::getAttribute($forceCaptureResponse, 'litleOnlineResponse', 'response');
+        $response = XmlParser::getAttribute($forceCaptureResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('000', $response);
     }
 }

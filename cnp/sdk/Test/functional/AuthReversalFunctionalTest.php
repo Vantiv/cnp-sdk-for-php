@@ -32,7 +32,7 @@ class AuthReversalFunctionalTest extends \PHPUnit_Framework_TestCase
     public function test_simple_authReversal()
     {
         $hash_in = array('id' => 'id',
-            'litleTxnId' => '12345678000', 'amount' => '123',
+            'cnpTxnId' => '12345678000', 'amount' => '123',
             'payPalNotes' => 'Notes');
 
         $initialize = new CnpOnlineRequest();
@@ -45,7 +45,7 @@ class AuthReversalFunctionalTest extends \PHPUnit_Framework_TestCase
     {
         $hash_in = array('id' => 'id',
             'amount' => '123',
-            'payPalNotes' => 'Notes', 'litleTxnId' => '12345678000',);
+            'payPalNotes' => 'Notes', 'cnpTxnId' => '12345678000',);
 
         $initialize = new CnpOnlineRequest();
         $authReversalResponse = $initialize->authReversalRequest($hash_in);

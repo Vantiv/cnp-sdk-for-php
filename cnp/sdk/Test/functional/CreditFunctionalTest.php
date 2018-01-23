@@ -61,17 +61,17 @@ class CreditFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($hash_in);
-        $message = XmlParser::getAttribute($creditResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'message');
         $this->assertRegExp('/Error validating xml data against the schema/', $message);
     }
 
-    public function test_simple_credit_with_litleTxnId()
+    public function test_simple_credit_with_cnpTxnId()
     {
-        $hash_in = array('id' => 'id', 'reportGroup' => 'planets', 'litleTxnId' => '1234567891234567891');
+        $hash_in = array('id' => 'id', 'reportGroup' => 'planets', 'cnpTxnId' => '1234567891234567891');
 
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($hash_in);
-        $message = XmlParser::getAttribute($creditResponse, 'litleOnlineResponse', 'response');
+        $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals("0", $message);
     }
 
@@ -134,20 +134,20 @@ class CreditFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('000', $response);
     }
 
-    public function test_simple_credit_with_litleTxnId_AndSecondaryAmount()
+    public function test_simple_credit_with_cnpTxnId_AndSecondaryAmount()
     {
-        $hash_in = array('id' => 'id', 'reportGroup' => 'planets', 'litleTxnId' => '1234567891234567891', 'secondaryAmount' => '100');
+        $hash_in = array('id' => 'id', 'reportGroup' => 'planets', 'cnpTxnId' => '1234567891234567891', 'secondaryAmount' => '100');
 
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($hash_in);
-        $message = XmlParser::getAttribute($creditResponse, 'litleOnlineResponse', 'response');
+        $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals("0", $message);
     }
 
     public function test_simple_credit_with_pin()
     {
         $hash_in = array(
-            'litleTxnId' => '12312312',
+            'cnpTxnId' => '12312312',
             'id' => 'id',
             'reportGroup' => 'Planets',
             'amount' => '123',
@@ -158,7 +158,7 @@ class CreditFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($hash_in);
-        $message = XmlParser::getAttribute($creditResponse, 'litleOnlineResponse', 'response');
+        $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals("0", $message);
     }
 }

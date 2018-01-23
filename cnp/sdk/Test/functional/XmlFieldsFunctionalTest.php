@@ -35,7 +35,7 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
             'merchantId' => '101',
             'version' => '8.8',
             'reportGroup' => 'Planets',
-            'litleTxnId' => '123456',
+            'cnpTxnId' => '123456',
             'orderId' => '12344',
             'amount' => '106',
             'orderSource' => 'ecommerce',
@@ -47,7 +47,7 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($hash_in);
-        $message = XmlParser::getAttribute($saleResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($saleResponse, 'cnpOnlineResponse', 'message');
         $this->assertRegExp('/Error validating xml data against the schema/', $message);
     }
 
@@ -57,7 +57,7 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
             'merchantId' => '101',
             'version' => '8.8',
             'reportGroup' => 'Planets',
-            'litleTxnId' => '123456',
+            'cnpTxnId' => '123456',
             'orderId' => '12344',
             'amount' => '106',
             'orderSource' => 'ecommerce',
@@ -70,16 +70,16 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($hash_in);
-        $message = XmlParser::getAttribute($saleResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($saleResponse, 'cnpOnlineResponse', 'message');
         $this->assertEquals('Valid Format', $message);
     }
 
-    public function test_simple_auth_with_litleTxnId()
+    public function test_simple_auth_with_cnpTxnId()
     {
         $hash_in = array('merchantId' => '101', 'id' => '1211',
             'version' => '8.8',
             'reportGroup' => 'Planets',
-            'litleTxnId' => '123456',
+            'cnpTxnId' => '123456',
             'orderId' => '12344',
             'amount' => '106',
             'orderSource' => 'ecommerce',
@@ -93,7 +93,7 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($hash_in);
-        $response = XmlParser::getAttribute($saleResponse, 'litleOnlineResponse', 'response');
+        $response = XmlParser::getAttribute($saleResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals("000", $response);
     }
 
@@ -102,7 +102,7 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
         $hash_in = array('merchantId' => '101', 'id' => '1211',
             'version' => '8.8',
             'reportGroup' => 'Planets',
-            'litleTxnId' => '123456',
+            'cnpTxnId' => '123456',
             'orderId' => '12344',
             'amount' => '106',
             'orderSource' => 'ecommerce',
@@ -115,7 +115,7 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($hash_in);
-        $message = XmlParser::getAttribute($saleResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($saleResponse, 'cnpOnlineResponse', 'message');
         $this->assertEquals("Valid Format", $message);
     }
 
@@ -135,7 +135,7 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
-        $message = XmlParser::getAttribute($authorizationResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($authorizationResponse, 'cnpOnlineResponse', 'message');
         $this->assertEquals("Valid Format", $message);
     }
 
@@ -155,7 +155,7 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
-        $message = XmlParser::getAttribute($authorizationResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($authorizationResponse, 'cnpOnlineResponse', 'message');
         $this->assertEquals("Valid Format", $message);
     }
 
@@ -175,7 +175,7 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
-        $message = XmlParser::getAttribute($authorizationResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($authorizationResponse, 'cnpOnlineResponse', 'message');
         $this->assertEquals("Valid Format", $message);
     }
 
@@ -196,7 +196,7 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($hash_in);
-        $message = XmlParser::getAttribute($saleResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($saleResponse, 'cnpOnlineResponse', 'message');
         $this->assertRegExp('/Error validating xml data against the schema/', $message);
     }
 
@@ -216,7 +216,7 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($hash_in);
-        $message = XmlParser::getAttribute($creditResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'message');
         $this->assertEquals("Valid Format", $message);
     }
 
@@ -237,7 +237,7 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($hash_in);
-        $message = XmlParser::getAttribute($creditResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'message');
         $this->assertRegExp('/Error validating xml data against the schema/', $message);
     }
 
@@ -263,7 +263,7 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($hash_in);
-        $message = XmlParser::getAttribute($creditResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'message');
         $this->assertEquals("Valid Format", $message);
     }
 
@@ -290,7 +290,7 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($hash_in);
-        $message = XmlParser::getAttribute($creditResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'message');
         $this->assertRegExp('/Error validating xml data against the schema/', $message);
     }
 
@@ -317,7 +317,7 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($hash_in);
-        $message = XmlParser::getAttribute($creditResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'message');
         $this->assertEquals("Valid Format", $message);
     }
 
@@ -351,7 +351,7 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($hash_in);
-        $message = XmlParser::getAttribute($creditResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'message');
         $this->assertEquals("Valid Format", $message);
     }
 
@@ -364,14 +364,14 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
             'amount' => '106',
             'orderSource' => 'ecommerce',
             'token' => array(
-                'litleToken' => '123456789101112',
+                'cnpToken' => '123456789101112',
                 'expDate' => '1210',
                 'cardValidationNum' => '555',
                 'type' => 'VI'));
 
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($hash_in);
-        $message = XmlParser::getAttribute($creditResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'message');
         $this->assertEquals("Valid Format", $message);
     }
 
@@ -384,14 +384,14 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
             'amount' => '106',
             'orderSource' => 'ecommerce',
             'token' => array(
-                'litleToken' => '123456',
+                'cnpToken' => '123456',
                 'expDate' => '1210',
                 'cardValidationNum' => '555',
                 'type' => 'VI'));
 
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($hash_in);
-        $message = XmlParser::getAttribute($creditResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'message');
         $this->assertRegExp('/Error validating xml data against the schema/', $message);
     }
 
@@ -404,12 +404,12 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
             'amount' => '106',
             'orderSource' => 'ecommerce',
             'token' => array(
-                'litleToken' => '123456789101112',
+                'cnpToken' => '123456789101112',
                 'type' => 'VI'));
 
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($hash_in);
-        $message = XmlParser::getAttribute($creditResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'message');
         $this->assertEquals("Valid Format", $message);
     }
 
@@ -429,7 +429,7 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($hash_in);
-        $message = XmlParser::getAttribute($creditResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'message');
         $this->assertEquals("Valid Format", $message);
     }
 
@@ -447,7 +447,7 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($hash_in);
-        $message = XmlParser::getAttribute($creditResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'message');
         $this->assertEquals("Valid Format", $message);
     }
 

@@ -82,7 +82,7 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
           'authDate'=>'2002-10-09','authCode'=>'543216',
          'authAmount'=>'12345'),
           'token'=> array(
-          'litleToken'=>'123456789101112',
+          'cnpToken'=>'123456789101112',
          'expDate'=>'1210',
         'cardValidationNum'=>'555',
         'type'=>'VI'),
@@ -100,7 +100,7 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array(
                   'reportGroup'=>'Planets',
         		  'id'=> 'id',
-                  'litleTxnId'=>'123456',
+                  'cnpTxnId'=>'123456',
                   'orderId'=>'12344',
                   'amount'=>'106',
                   'orderSource'=>'ecommerce',
@@ -116,7 +116,7 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
                   'cardValidationNum'=>'555',
                   'type'=>'VI'),
                   'token'=> array(
-                  'litleToken'=>'1234',
+                  'cnpToken'=>'1234',
                   'expDate'=>'1210',
                   'cardValidationNum'=>'555',
                   'type'=>'VI'));

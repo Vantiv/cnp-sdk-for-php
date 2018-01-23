@@ -38,7 +38,7 @@ class UpdatePlanFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $updatePlanResponse = $initialize->updatePlan($hash_in);
-        $message = XmlParser::getAttribute($updatePlanResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($updatePlanResponse, 'cnpOnlineResponse', 'message');
         $this->assertEquals('Valid Format', $message);
     }
 }

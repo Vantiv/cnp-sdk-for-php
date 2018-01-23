@@ -32,7 +32,7 @@ class GiftCardCreditFunctionalTest extends \PHPUnit_Framework_TestCase
     public function test_simple_giftCardCredit()
     {
         $hash_in = array(
-            'litleTxnId' => '12312312',
+            'cnpTxnId' => '12312312',
 //         		'orderId'=> '2111',
             'reportGroup' => 'Planets',
             'creditAmount' => '123',
@@ -57,7 +57,7 @@ class GiftCardCreditFunctionalTest extends \PHPUnit_Framework_TestCase
     public function test_simple_giftCardCredit_giftCardResponse()
     {
         $hash_in = array(
-            'litleTxnId' => '12312312',
+            'cnpTxnId' => '12312312',
             'reportGroup' => 'Planets',
             'creditAmount' => '123',
             'id' => '1211',

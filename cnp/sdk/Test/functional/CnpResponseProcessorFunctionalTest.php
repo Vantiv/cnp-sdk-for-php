@@ -47,17 +47,17 @@ class CnpResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_badResponse()
     {
-        $malformed_resp = '<litleResponse version="8.20" xmlns="http://www.litle.com/schema" response="1" message="Test test tes test" litleSessionId="819799340147507212">
-            <batchResponse litleBatchId="819799340147507220" merchantId="07103229">
+        $malformed_resp = '<cnpResponse version="8.20" xmlns="http://www.vantivcnp.com/schema" response="1" message="Test test tes test" cnpSessionId="819799340147507212">
+            <batchResponse cnpBatchId="819799340147507220" merchantId="07103229">
             <saleResponse reportGroup="Planets">
-                <litleTxnId>819799340147507238</litleTxnId>
+                <cnpTxnId>819799340147507238</cnpTxnId>
                 <orderId>1864</orderId>
                 <response>000</response>
                 <responseTime>2013-08-08T13:11:01</responseTime>
                 <message>Approved</message>
             </saleResponse>
             </batchResponse>
-            </litleResponse>';
+            </cnpResponse>';
 
         file_put_contents($this->direct . '/pizza.tmp', $malformed_resp);
 
@@ -114,14 +114,14 @@ class CnpResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
         $batch->addAuth($hash_in);
 
         $hash_in = array('id' => '1211',
-            'litleTxnId' => '1234567890',
+            'cnpTxnId' => '1234567890',
             'reportGroup' => 'Planets',
             'amount' => '5000'
         );
         $batch->addAuthReversal($hash_in);
 
         $hash_in = array('id' => '1211',
-            'litleTxnId' => '12312312',
+            'cnpTxnId' => '12312312',
             'amount' => '123'
         );
         $batch->addCapture($hash_in);
@@ -148,14 +148,14 @@ class CnpResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
         $batch->addCaptureGivenAuth($hash_in);
 
         $hash_in = array('id' => '1211',
-            'litleTxnId' => '12312312',
+            'cnpTxnId' => '12312312',
             'reportGroup' => 'Planets',
             'amount' => '123'
         );
         $batch->addCredit($hash_in);
 
         $hash_in = array('id' => '1211',
-            'litleTxnId' => '123123'
+            'cnpTxnId' => '123123'
         );
         $batch->addEcheckCredit($hash_in);
 
@@ -164,7 +164,7 @@ class CnpResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
         // third batch
         $batch = new BatchRequest ($this->direct);
         $hash_in = array('id' => '1211',
-            'litleTxnId' => '123123'
+            'cnpTxnId' => '123123'
         );
         $batch->addEcheckRedeposit($hash_in);
 
@@ -214,11 +214,11 @@ class CnpResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
         $batch = new BatchRequest ($this->direct);
         $hash_in = array('id' => '1211',
             'orderId' => '123',
-            'litleTxnId' => '123456',
+            'cnpTxnId' => '123456',
             'amount' => '106',
             'orderSource' => 'ecommerce',
             'token' => array(
-                'litleToken' => '123456789101112',
+                'cnpToken' => '123456789101112',
                 'expDate' => '1210',
                 'cardValidationNum' => '555',
                 'type' => 'VI'
@@ -248,7 +248,7 @@ class CnpResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $hash_in = array('id' => '1211',
             'orderId' => '1',
-            'litleToken' => '123456789101112',
+            'cnpToken' => '123456789101112',
             'cardValidationNum' => '123'
         );
         $batch->addUpdateCardValidationNumOnToken($hash_in);

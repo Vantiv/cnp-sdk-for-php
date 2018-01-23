@@ -32,7 +32,7 @@ class EcheckCreditFunctionalTest extends \PHPUnit_Framework_TestCase
     public function test_simple_echeckCredit()
     {
         $hash_in = array('id' => 'id',
-            'litleTxnId' => '123456789012345678',
+            'cnpTxnId' => '123456789012345678',
             'amount' => '1000');
 
         $initialize = new CnpOnlineRequest();
@@ -46,7 +46,7 @@ class EcheckCreditFunctionalTest extends \PHPUnit_Framework_TestCase
         $hash_in = array('id' => 'id');
         $initialize = new CnpOnlineRequest();
         $echeckCreditResponse = $initialize->echeckCreditRequest($hash_in);
-        $message = XmlParser::getAttribute($echeckCreditResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($echeckCreditResponse, 'cnpOnlineResponse', 'message');
         $this->assertRegExp('/Error validating xml data against the schema/', $message);
     }
 
@@ -73,7 +73,7 @@ class EcheckCreditFunctionalTest extends \PHPUnit_Framework_TestCase
             'verify' => 'true',
             'orderId' => '12345',
             'orderSource' => 'ecommerce',
-            'echeckToken' => array('accType' => 'Checking', 'litleToken' => '1234565789012', 'routingNum' => '123456789', 'checkNum' => '123455'),
+            'echeckToken' => array('accType' => 'Checking', 'cnpToken' => '1234565789012', 'routingNum' => '123456789', 'checkNum' => '123455'),
             'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'));
 
         $initialize = new CnpOnlineRequest();
@@ -89,11 +89,11 @@ class EcheckCreditFunctionalTest extends \PHPUnit_Framework_TestCase
             'verify' => 'true',
             'orderId' => '12345',
             'orderSource' => 'ecommerce',
-            'echeckToken' => array('accType' => 'Checking', 'litleToken' => '1234565789012', 'routingNum' => '123456789', 'checkNum' => '123455'));
+            'echeckToken' => array('accType' => 'Checking', 'cnpToken' => '1234565789012', 'routingNum' => '123456789', 'checkNum' => '123455'));
 
         $initialize = new CnpOnlineRequest();
         $echeckCreditResponse = $initialize->echeckCreditRequest($hash_in);
-        $message = XmlParser::getAttribute($echeckCreditResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($echeckCreditResponse, 'cnpOnlineResponse', 'message');
         $this->assertRegExp('/Error validating xml data against the schema/', $message);
     }
 
@@ -116,7 +116,7 @@ class EcheckCreditFunctionalTest extends \PHPUnit_Framework_TestCase
     public function test_simple_echeckCredit_With_SecondaryAmount()
     {
         $hash_in = array('id' => 'id',
-            'litleTxnId' => '123456789012345678',
+            'cnpTxnId' => '123456789012345678',
             'secondaryAmount' => '100',
             'amount' => '1000');
 

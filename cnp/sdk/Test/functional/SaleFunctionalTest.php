@@ -77,7 +77,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'amount' => '123');
         $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($hash_in);
-        $message = XmlParser::getAttribute($saleResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($saleResponse, 'cnpOnlineResponse', 'message');
         $this->assertRegExp('/Error validating xml data against the schema/', $message);
     }
 
@@ -96,7 +96,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($hash_in);
-        $message = XmlParser::getAttribute($saleResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($saleResponse, 'cnpOnlineResponse', 'message');
         $this->assertRegExp('/Error validating xml data against the schema/', $message);
     }
 
@@ -273,7 +273,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
     public function test_sale_with_detail_tax_multiple()
     {
         $sale_info = array(
-            'id' => 1,
+            'id' => '1',
             'orderId' => '1',
             'amount' => '10010',
             'orderSource'=>'ecommerce',
@@ -302,8 +302,8 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($sale_info);
         #display results
-        echo ("Response: " . (XmlParser::getNode($saleResponse,'response'))) . "\n";
-        echo ("Message: " . XmlParser::getNode($saleResponse,'message')) . "\n";
+        $response = XmlParser::getNode($saleResponse, 'response');
+        $this->assertEquals('000', $response);
     }
 
 

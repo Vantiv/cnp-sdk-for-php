@@ -30,7 +30,7 @@ use cnp\sdk\CnpOnlineRequest;
 class GiftCardCaptureUnitTest extends \PHPUnit_Framework_TestCase {
 	public function test_simple_GiftCardCapture() {
 		$hash_in = array (
-				'litleTxnId' => '1234567890',
+				'cnpTxnId' => '1234567890',
 				'id' => 'id',
 				'reportGroup'=>'Planets',
 				'captureAmount' => '123',
@@ -47,7 +47,7 @@ class GiftCardCaptureUnitTest extends \PHPUnit_Framework_TestCase {
 				'originalAmount' => '34561' 
 		);
 		$mock = $this->getMock ('cnp\sdk\CnpXmlMapper');
-		$mock->expects ( $this->once () )->method ( 'request' )->with ( $this->matchesRegularExpression ( '/.*<litleTxnId>1234567890.*<captureAmount>123.*<card><type>GC.*<number>4100000000000001.*<expDate>0118.*<cardValidationNum>411.*<pin>1234.*<originalRefCode>101.*<originalAmount>34561.*/' ) );
+		$mock->expects ( $this->once () )->method ( 'request' )->with ( $this->matchesRegularExpression ( '/.*<cnpTxnId>1234567890.*<captureAmount>123.*<card><type>GC.*<number>4100000000000001.*<expDate>0118.*<cardValidationNum>411.*<pin>1234.*<originalRefCode>101.*<originalAmount>34561.*/' ) );
 		
 		$cnpTest = new CnpOnlineRequest ();
 		$cnpTest->newXML = $mock;
@@ -60,7 +60,7 @@ class GiftCardCaptureUnitTest extends \PHPUnit_Framework_TestCase {
 				'id' => 'id' 
 		);
 		$cnpTest = new CnpOnlineRequest ();
-		$this->setExpectedException ( 'InvalidArgumentException', 'Missing Required Field: /litleTxnId/' );
+		$this->setExpectedException ( 'InvalidArgumentException', 'Missing Required Field: /cnpTxnId/' );
 		$cnpTest->captureRequest ( $hash_in );
 	}
 }

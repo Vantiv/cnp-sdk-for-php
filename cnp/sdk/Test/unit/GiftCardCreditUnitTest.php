@@ -29,7 +29,7 @@ class GiftCardCreditUnitTest extends \PHPUnit_Framework_TestCase
     public function test_credit()
     {
         $hash_in = array(
-        		'litleTxnId'=> '1234567890',
+        		'cnpTxnId'=> '1234567890',
         		'reportGroup'=>'Planets', 
         		'creditAmount'=>'123',
         		'id' => 'id',
@@ -44,7 +44,7 @@ class GiftCardCreditUnitTest extends \PHPUnit_Framework_TestCase
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
-        ->with($this->matchesRegularExpression('/.*<litleTxnId>1234567890.*<creditAmount>123.*<card><type>GC.*<number>4100000000000001.*<expDate>0118.*<cardValidationNum>411.*<pin>1234.*/'));
+        ->with($this->matchesRegularExpression('/.*<cnpTxnId>1234567890.*<creditAmount>123.*<card><type>GC.*<number>4100000000000001.*<expDate>0118.*<cardValidationNum>411.*<pin>1234.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;

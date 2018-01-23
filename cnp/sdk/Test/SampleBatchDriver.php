@@ -38,5 +38,5 @@ $processor = new CnpResponseProcessor($response_file);
 
 while ($txn = $processor->nextTransaction()) {
     echo "Transaction Type : " . $txn->getName() . "\n";
-    echo "Transaction Id: " . $txn->litleTxnId ." \n";
+    echo "Transaction Id: " . $txn->cnpTxnId ." \n";
 }

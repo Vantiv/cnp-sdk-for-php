@@ -31,18 +31,18 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array(
      'orderId'=>'123',
       'id' => 'id',
-      'litleTxnId'=>'123456',
+      'cnpTxnId'=>'123456',
       'amount'=>'106',
       'orderSource'=>'ecommerce',
       'token'=> array(
-      'litleToken'=>'123456789101112',
+      'cnpToken'=>'123456789101112',
       'expDate'=>'1210',
       'cardValidationNum'=>'555',
       'type'=>'VI'));
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
-        ->with($this->matchesRegularExpression('/.*<token><litleToken>123456789101112.*<expDate>1210.*/'));
+        ->with($this->matchesRegularExpression('/.*<token><cnpToken>123456789101112.*<expDate>1210.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
@@ -52,11 +52,11 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
     {
         $hash_in = array(
        'reportGroup'=>'Planets','id' => 'id',
-       'litleTxnId'=>'123456',
+       'cnpTxnId'=>'123456',
        'amount'=>'107',
        'orderSource'=>'ecommerce',
        'token'=> array(
-       'litleToken'=>'123456789101112',
+       'cnpToken'=>'123456789101112',
        'expDate'=>'1210',
        'cardValidationNum'=>'555',
        'type'=>'VI'));
@@ -68,11 +68,11 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
     {
         $hash_in = array(
            'reportGroup'=>'Planets','id' => 'id',
-           'litleTxnId'=>'123456',
+           'cnpTxnId'=>'123456',
            'amount'=>'107',
            'orderId'=>'123',
            'token'=> array(
-           'litleToken'=>'123456789101112',
+           'cnpToken'=>'123456789101112',
            'expDate'=>'1210',
            'cardValidationNum'=>'555',
            'type'=>'VI'));
@@ -85,7 +85,7 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array(
 
       'reportGroup'=>'Planets','id' => 'id',
-      'litleTxnId'=>'123456',
+      'cnpTxnId'=>'123456',
       'orderId'=>'12344',
       'amount'=>'106',
       'orderSource'=>'ecommerce',
@@ -96,7 +96,7 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
       'number' =>'4100000000000001',
       'expDate' =>'1210'),
       'token'=> array(
-      'litleToken'=>'1234',
+      'cnpToken'=>'1234',
       'expDate'=>'1210',
       'cardValidationNum'=>'555',
       'type'=>'VI'));
@@ -109,7 +109,7 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array(
 
           'reportGroup'=>'Planets','id' => 'id',
-          'litleTxnId'=>'123456',
+          'cnpTxnId'=>'123456',
           'orderId'=>'12344',
           'amount'=>'106',
           'orderSource'=>'ecommerce',
@@ -125,7 +125,7 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
           'cardValidationNum'=>'555',
           'type'=>'VI'),
           'token'=> array(
-          'litleToken'=>'1234',
+          'cnpToken'=>'1234',
           'expDate'=>'1210',
           'cardValidationNum'=>'555',
           'type'=>'VI'));
@@ -140,11 +140,11 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
                 'loggedInUser'=>'gdake','id' => 'id',
                 'merchantSdk'=>'PHP;10.1.0',
                 'orderId'=>'123',
-                'litleTxnId'=>'123456',
+                'cnpTxnId'=>'123456',
                 'amount'=>'106',
                 'orderSource'=>'ecommerce',
                 'token'=> array(
-                        'litleToken'=>'123456789101112',
+                        'cnpToken'=>'123456789101112',
                         'expDate'=>'1210',
                         'cardValidationNum'=>'555',
                         'type'=>'VI'));
@@ -263,19 +263,19 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
     {
     	$hash_in = array(
     			'orderId'=>'123','id' => 'id',
-    			'litleTxnId'=>'123456',
+    			'cnpTxnId'=>'123456',
     			'amount'=>'106',
     			'secondaryAmount' => '2000',
     			'orderSource'=>'ecommerce',
     			'token'=> array(
-    					'litleToken'=>'123456789101112',
+    					'cnpToken'=>'123456789101112',
     					'expDate'=>'1210',
     					'cardValidationNum'=>'555',
     					'type'=>'VI'));
     	$mock = $this->getMock('cnp\sdk\CnpXmlMapper');
     	$mock->expects($this->once())
     	->method('request')
-    	->with($this->matchesRegularExpression('/.*<token><litleToken>123456789101112.*<expDate>1210.*/'));
+    	->with($this->matchesRegularExpression('/.*<token><cnpToken>123456789101112.*<expDate>1210.*/'));
     
     	$cnpTest = new CnpOnlineRequest();
     	$cnpTest->newXML = $mock;
@@ -287,11 +287,11 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
     	$hash_in = array(
     			'orderId'=>'123',
     			'id' => 'id',
-    			'litleTxnId'=>'123456',
+    			'cnpTxnId'=>'123456',
     			'amount'=>'106',
     			'orderSource'=>'ecommerce',
     			'token'=> array(
-    					'litleToken'=>'123456789101112',
+    					'cnpToken'=>'123456789101112',
     					'expDate'=>'1210',
     					'cardValidationNum'=>'555',
     					'type'=>'VI'),

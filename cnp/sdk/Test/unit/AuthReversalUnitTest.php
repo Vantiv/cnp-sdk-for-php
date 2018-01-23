@@ -27,11 +27,11 @@ namespace cnp\sdk;
 {
     public function test_capture()
     {
-        $hash_in = array('litleTxnId'=> '1234567890','reportGroup'=>'Planets', 'amount'=>'5000','id' => 'id',);
+        $hash_in = array('cnpTxnId'=> '1234567890','reportGroup'=>'Planets', 'amount'=>'5000','id' => 'id',);
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock	->expects($this->once())
         ->method('request')
-        ->with($this->matchesRegularExpression('/.*<litleTxnId>1234567890.*<amount>5000.*/'));
+        ->with($this->matchesRegularExpression('/.*<cnpTxnId>1234567890.*<amount>5000.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
@@ -42,14 +42,14 @@ namespace cnp\sdk;
     {
         $hash_in =array('reportGroup'=>'Planets','id' => 'id','amount'=>'106');
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException','Missing Required Field: /litleTxnId/');
+        $this->setExpectedException('InvalidArgumentException','Missing Required Field: /cnpTxnId/');
         $retOb = $cnpTest->authReversalRequest($hash_in);
     }
 
     public function test_loggedInUser()
     {
         $hash_in = array(
-                'litleTxnId'=> '1234567890',
+                'cnpTxnId'=> '1234567890',
                 'reportGroup'=>'Planets',
         		'id' => 'id',
                 'amount'=>'5000',
@@ -69,7 +69,7 @@ namespace cnp\sdk;
     public function test_surchargeAmount()
     {
         $hash_in = array(
-            'litleTxnId'=>'3',
+            'cnpTxnId'=>'3',
             'amount'=>'2',
         	'id' => 'id',
             'surchargeAmount'=>'1',
@@ -89,7 +89,7 @@ namespace cnp\sdk;
     public function test_surchargeAmount_optional()
     {
         $hash_in = array(
-                'litleTxnId'=>'3',
+                'cnpTxnId'=>'3',
         		'id' => 'id',
                 'amount'=>'2',
                 'payPalNotes'=>'notes',

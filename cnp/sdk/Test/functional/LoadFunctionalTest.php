@@ -46,7 +46,7 @@ class LoadFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $response = $initialize->load($hash_in);
-        $message = XmlParser::getAttribute($response, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($response, 'cnpOnlineResponse', 'message');
         $this->assertEquals('Valid Format', $message);
     }
 }

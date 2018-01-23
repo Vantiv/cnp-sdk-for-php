@@ -33,7 +33,7 @@ class GiftCardAuthReversalFunctionalTest extends \PHPUnit_Framework_TestCase
     {
         $hash_in = array(
             'id' => 'id',
-            'litleTxnId' => '12345678000',
+            'cnpTxnId' => '12345678000',
             'captureAmount' => '123',
             'card' => array(
                 'type' => 'GC',

@@ -29,7 +29,7 @@ class EcheckVerificationUnitTest extends \PHPUnit_Framework_TestCase
     public function test_simple_echeckVerification()
     {
          $hash_in = array('amount'=>'123','orderId'=>'123','orderSource'=>'ecommerce','id' => 'id',
-        'echeckToken' => array('accType'=>'Checking','routingNum'=>'123123','litleToken'=>'1234565789012','checkNum'=>'123455'));
+        'echeckToken' => array('accType'=>'Checking','routingNum'=>'123123','cnpToken'=>'1234565789012','checkNum'=>'123455'));
          $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
          $mock->expects($this->once())
          ->method('request')
@@ -71,7 +71,7 @@ class EcheckVerificationUnitTest extends \PHPUnit_Framework_TestCase
     public function test_both_choices()
     {
         $hash_in = array('reportGroup'=>'Planets','amount'=>'123','orderId'=>'123','orderSource'=>'ecommerce','id' => 'id',
-        'echeckToken' => array('accType'=>'Checking','routingNum'=>'123123','litleToken'=>'1234565789012','checkNum'=>'123455'),
+        'echeckToken' => array('accType'=>'Checking','routingNum'=>'123123','cnpToken'=>'1234565789012','checkNum'=>'123455'),
         'echeck' => array('accType'=>'Checking','routingNum'=>'123123','accNum'=>'12345657890','checkNum'=>'123455'));
         $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
@@ -85,7 +85,7 @@ class EcheckVerificationUnitTest extends \PHPUnit_Framework_TestCase
                 'amount'=>'123',
                 'orderId'=>'123',
                 'orderSource'=>'ecommerce',
-                'echeckToken' => array('accType'=>'Checking','routingNum'=>'123123','litleToken'=>'1234565789012','checkNum'=>'123455'));
+                'echeckToken' => array('accType'=>'Checking','routingNum'=>'123123','cnpToken'=>'1234565789012','checkNum'=>'123455'));
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
@@ -99,7 +99,7 @@ class EcheckVerificationUnitTest extends \PHPUnit_Framework_TestCase
     public function test_merchantData()
     {
         $hash_in = array('amount'=>'123','orderId'=>'123','orderSource'=>'ecommerce','id' => 'id','merchantData'=>array('campaign'=>'camping'),
-                'echeckToken' => array('accType'=>'Checking','routingNum'=>'123123','litleToken'=>'1234565789012','checkNum'=>'123455'));
+                'echeckToken' => array('accType'=>'Checking','routingNum'=>'123123','cnpToken'=>'1234565789012','checkNum'=>'123455'));
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')

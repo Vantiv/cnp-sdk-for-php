@@ -62,7 +62,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
 
         //test 1A
         $capture_hash = array(
-            'litleTxnId' => (XmlParser::getNode($authorizationResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($authorizationResponse, 'cnpTxnId')),
             'reportGroup' => 'planets', 'id' => '1211',);
         $initialize = new CnpOnlineRequest();
         $captureResponse = $initialize->captureRequest($capture_hash);
@@ -71,7 +71,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
 
         //test 1B
         $credit_hash = array(
-            'litleTxnId' => (XmlParser::getNode($captureResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($captureResponse, 'cnpTxnId')),
             'reportGroup' => 'planets', 'id' => '1211',);
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($credit_hash);
@@ -80,7 +80,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
 
         //test 1C
         $void_hash = array(
-            'litleTxnId' => (XmlParser::getNode($creditResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($creditResponse, 'cnpTxnId')),
             'reportGroup' => 'planets', 'id' => '1211',);
         $initialize = new CnpOnlineRequest();
         $voidResponse = $initialize->voidRequest($void_hash);
@@ -144,7 +144,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         //$this->assertEquals('M', XmlParser::getNode($saleResponse, 'cardValidationResult'));
 
         $credit_hash = array(
-            'litleTxnId' => (XmlParser::getNode($saleResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($saleResponse, 'cnpTxnId')),
             'reportGroup' => 'planets', 'id' => '1211',);
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($credit_hash);
@@ -152,7 +152,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Approved', XmlParser::getNode($creditResponse, 'message'));
 
         $void_hash = array(
-            'litleTxnId' => (XmlParser::getNode($creditResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($creditResponse, 'cnpTxnId')),
             'reportGroup' => 'planets', 'id' => '1211',);
         $initialize = new CnpOnlineRequest();
         $voidResponse = $initialize->voidRequest($void_hash);
@@ -194,7 +194,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
 
         //test 2A
         $capture_hash = array('id' => '1211',
-            'litleTxnId' => (XmlParser::getNode($authorizationResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($authorizationResponse, 'cnpTxnId')),
             'reportGroup' => 'planets');
         $initialize = new CnpOnlineRequest();
         $captureResponse = $initialize->captureRequest($capture_hash);
@@ -203,7 +203,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
 
         //test 2B
         $credit_hash = array('id' => '1211',
-            'litleTxnId' => (XmlParser::getNode($captureResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($captureResponse, 'cnpTxnId')),
             'reportGroup' => 'planets');
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($credit_hash);
@@ -212,7 +212,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
 
         //test 2C
         $void_hash = array('id' => '1211',
-            'litleTxnId' => (XmlParser::getNode($creditResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($creditResponse, 'cnpTxnId')),
             'reportGroup' => 'planets');
         $initialize = new CnpOnlineRequest();
         $voidResponse = $initialize->voidRequest($void_hash);
@@ -285,7 +285,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
 
         //test 2B
         $credit_hash = array('id' => '1211',
-            'litleTxnId' => (XmlParser::getNode($saleResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($saleResponse, 'cnpTxnId')),
             'reportGroup' => 'planets');
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($credit_hash);
@@ -294,7 +294,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
 
         //test 2C
         $void_hash = array('id' => '1211',
-            'litleTxnId' => (XmlParser::getNode($creditResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($creditResponse, 'cnpTxnId')),
             'reportGroup' => 'planets');
         $initialize = new CnpOnlineRequest();
         $voidResponse = $initialize->voidRequest($void_hash);
@@ -332,7 +332,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
 
         //test 3A
         $capture_hash = array('id' => '1211',
-            'litleTxnId' => (XmlParser::getNode($authorizationResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($authorizationResponse, 'cnpTxnId')),
             'reportGroup' => 'planets', 'id' => '1211',);
         $initialize = new CnpOnlineRequest();
         $captureResponse = $initialize->captureRequest($capture_hash);
@@ -341,7 +341,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
 
         //test 3B
         $credit_hash = array('id' => '1211',
-            'litleTxnId' => (XmlParser::getNode($captureResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($captureResponse, 'cnpTxnId')),
             'reportGroup' => 'planets');
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($credit_hash);
@@ -350,7 +350,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
 
         //test 3C
         $void_hash = array('id' => '1211',
-            'litleTxnId' => (XmlParser::getNode($creditResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($creditResponse, 'cnpTxnId')),
             'reportGroup' => 'planets');
         $initialize = new CnpOnlineRequest();
         $voidResponse = $initialize->voidRequest($void_hash);
@@ -416,7 +416,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
 
         //test 3B
         $credit_hash = array('id' => '1211',
-            'litleTxnId' => (XmlParser::getNode($saleResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($saleResponse, 'cnpTxnId')),
             'reportGroup' => 'planets');
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($credit_hash);
@@ -425,7 +425,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
 
         //test 3C
         $void_hash = array('id' => '1211',
-            'litleTxnId' => (XmlParser::getNode($creditResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($creditResponse, 'cnpTxnId')),
             'reportGroup' => 'planets');
         $initialize = new CnpOnlineRequest();
         $voidResponse = $initialize->voidRequest($void_hash);
@@ -461,7 +461,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
 
         //test 4A
         $capture_hash = array('id' => '1211',
-            'litleTxnId' => (XmlParser::getNode($authorizationResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($authorizationResponse, 'cnpTxnId')),
             'reportGroup' => 'planets');
         $initialize = new CnpOnlineRequest();
         $captureResponse = $initialize->captureRequest($capture_hash);
@@ -470,7 +470,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
 
         //test 4B
         $credit_hash = array('id' => '1211',
-            'litleTxnId' => (XmlParser::getNode($captureResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($captureResponse, 'cnpTxnId')),
             'reportGroup' => 'planets');
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($credit_hash);
@@ -479,7 +479,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
 
         //test 4C
         $void_hash = array('id' => '1211',
-            'litleTxnId' => (XmlParser::getNode($creditResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($creditResponse, 'cnpTxnId')),
             'reportGroup' => 'planets');
         $initialize = new CnpOnlineRequest();
         $voidResponse = $initialize->voidRequest($void_hash);
@@ -543,7 +543,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
 
         //test 4B
         $credit_hash = array('id' => '1211',
-            'litleTxnId' => (XmlParser::getNode($saleResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($saleResponse, 'cnpTxnId')),
             'reportGroup' => 'planets');
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($credit_hash);
@@ -552,7 +552,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
 
         //test 4C
         $void_hash = array('id' => '1211',
-            'litleTxnId' => (XmlParser::getNode($creditResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($creditResponse, 'cnpTxnId')),
             'reportGroup' => 'planets');
         $initialize = new CnpOnlineRequest();
         $voidResponse = $initialize->voidRequest($void_hash);
@@ -586,7 +586,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
 
         //test 5A
         $capture_hash = array('id' => '1211',
-            'litleTxnId' => (XmlParser::getNode($authorizationResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($authorizationResponse, 'cnpTxnId')),
             'reportGroup' => 'planets');
         $initialize = new CnpOnlineRequest();
         $captureResponse = $initialize->captureRequest($capture_hash);
@@ -595,7 +595,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
 
         //test 5B
         $credit_hash = array('id' => '1211',
-            'litleTxnId' => (XmlParser::getNode($captureResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($captureResponse, 'cnpTxnId')),
             'reportGroup' => 'planets');
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($credit_hash);
@@ -604,7 +604,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
 
         //test 5C
         $void_hash = array('id' => '1211',
-            'litleTxnId' => (XmlParser::getNode($creditResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($creditResponse, 'cnpTxnId')),
             'reportGroup' => 'planets');
         $initialize = new CnpOnlineRequest();
         $voidResponse = $initialize->voidRequest($void_hash);
@@ -663,7 +663,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
 
         //test 5B
         $credit_hash = array('id' => '1211',
-            'litleTxnId' => (XmlParser::getNode($saleResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($saleResponse, 'cnpTxnId')),
             'reportGroup' => 'planets');
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($credit_hash);
@@ -672,7 +672,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
 
         //test 5C
         $void_hash = array('id' => '1211',
-            'litleTxnId' => (XmlParser::getNode($creditResponse, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($creditResponse, 'cnpTxnId')),
             'reportGroup' => 'planets');
         $initialize = new CnpOnlineRequest();
         $voidResponse = $initialize->voidRequest($void_hash);

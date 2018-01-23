@@ -27,7 +27,7 @@ $response = $initialize->captureGivenAuthRequest($capture_info);
 #display results
 echo ("Response: " . (XmlParser::getNode($response,'response')) . "<br>");
 echo ("Message: " . XmlParser::getNode($response,'message') . "<br>");
-echo ("Vantiv Transaction ID: " . XmlParser::getNode($response,'litleTxnId'));
+echo ("Vantiv Transaction ID: " . XmlParser::getNode($response,'cnpTxnId'));
 
 
 if(XmlParser::getNode($response,'message')!='Approved')

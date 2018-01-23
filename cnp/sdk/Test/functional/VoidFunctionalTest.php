@@ -31,10 +31,10 @@ class VoidFunctionalTest extends \PHPUnit_Framework_TestCase
 {
     public function test_simple_void()
     {
-        $hash_in = array('litleTxnId' => '123456789012345678', 'id' => '1211',);
+        $hash_in = array('cnpTxnId' => '123456789012345678', 'id' => '1211',);
         $initialize = new CnpOnlineRequest();
         $voidResponse = $initialize->voidRequest($hash_in);
-        $response = XmlParser::getAttribute($voidResponse, 'litleOnlineResponse', 'response');
+        $response = XmlParser::getAttribute($voidResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('0', $response);
     }
 

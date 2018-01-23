@@ -15,8 +15,8 @@ $tokenResponse = $initialize->registerTokenRequest($token_info);
 #display results
 echo ("Response: " . (XmlParser::getNode($tokenResponse ,'response')) . "<br>");
 echo ("Message: " . XmlParser::getNode($tokenResponse ,'message') . "<br>");
-echo ("Vantiv Transaction ID: " . XmlParser::getNode($tokenResponse ,'litleTxnId'). "<br>");
-echo ("Litle Token: " . XmlParser::getNode($tokenResponse ,'litleToken'));
+echo ("Vantiv Transaction ID: " . XmlParser::getNode($tokenResponse ,'cnpTxnId'). "<br>");
+echo ("Litle Token: " . XmlParser::getNode($tokenResponse ,'cnpToken'));
 
 if(XmlParser::getNode($tokenResponse,'message')!='Account number was successfully registered')
  throw new \Exception('CnpRegisterTokenTransaction does not get the right response');

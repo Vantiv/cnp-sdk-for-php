@@ -48,7 +48,7 @@ class UpdateSubscriptionFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $updateSubscriptionResponse = $initialize->updateSubscription($hash_in);
-        $message = XmlParser::getAttribute($updateSubscriptionResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($updateSubscriptionResponse, 'cnpOnlineResponse', 'message');
         $this->assertEquals('Valid Format', $message);
     }
 }

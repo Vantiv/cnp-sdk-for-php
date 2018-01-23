@@ -16,7 +16,7 @@ $sale_info = array(
 		      'zip' => '01803-3747',
 		      'country' => 'US'),
 		      'token'=>array(
-		      'litleToken' =>'5112010000000003',
+		      'cnpToken' =>'5112010000000003',
 		      'expDate' => '0112',
 		      'cardValidationNum' => '349',
 		      'type' => 'MC')
@@ -28,7 +28,7 @@ $saleResponse = $initialize->saleRequest($sale_info);
 #display results
 echo ("Response: " . (XmlParser::getNode($saleResponse,'response')) . "<br>");
 echo ("Message: " . XmlParser::getNode($saleResponse,'message') . "<br>");
-echo ("Vantiv Transaction ID: " . XmlParser::getNode($saleResponse,'litleTxnId'));
+echo ("Vantiv Transaction ID: " . XmlParser::getNode($saleResponse,'cnpTxnId'));
 
 if(XmlParser::getNode($saleResponse,'message')!='Approved')
  throw new \Exception('CnpSaleWithTokenTransaction does not get the right response');

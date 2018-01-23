@@ -40,7 +40,7 @@ class TokenFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->registerTokenRequest($hash_in);
-        $message = XmlParser::getAttribute($registerTokenResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($registerTokenResponse, 'cnpOnlineResponse', 'message');
         $this->assertEquals('Valid Format', $message);
     }
 
@@ -55,7 +55,7 @@ class TokenFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->registerTokenRequest($hash_in);
-        $message = XmlParser::getAttribute($registerTokenResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($registerTokenResponse, 'cnpOnlineResponse', 'message');
         $this->assertEquals('Valid Format', $message);
     }
 
@@ -70,7 +70,7 @@ class TokenFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->registerTokenRequest($hash_in);
-        $message = XmlParser::getAttribute($registerTokenResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($registerTokenResponse, 'cnpOnlineResponse', 'message');
         $this->assertEquals('Valid Format', $message);
     }
 
@@ -105,7 +105,7 @@ class TokenFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->registerTokenRequest($hash_in);
-        $message = XmlParser::getAttribute($registerTokenResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($registerTokenResponse, 'cnpOnlineResponse', 'message');
         $this->assertEquals('Valid Format', $message);
     }
 
@@ -119,7 +119,7 @@ class TokenFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->registerTokenRequest($hash_in);
-        $message = XmlParser::getAttribute($registerTokenResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($registerTokenResponse, 'cnpOnlineResponse', 'message');
         $cryptogram = XmlParser::getNode($registerTokenResponse, 'cryptogram');
         $expMonth = XmlParser::getNode($registerTokenResponse, 'expMonth');
         $expYear = XmlParser::getNode($registerTokenResponse, 'expYear');

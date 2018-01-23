@@ -30,12 +30,12 @@ class UpdateCardValidationNumOnTokenUnitTest extends \PHPUnit_Framework_TestCase
     {
         $hash_in = array('id' => 'id',
             'orderId'=>'1',
-            'litleToken'=>'123456789101112',
+            'cnpToken'=>'123456789101112',
             'cardValidationNum'=>'123');
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
-        ->with($this->matchesRegularExpression('/.*<orderId>1.*<litleToken>123456789101112.*<cardValidationNum>123.*/'));
+        ->with($this->matchesRegularExpression('/.*<orderId>1.*<cnpToken>123456789101112.*<cardValidationNum>123.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
@@ -45,31 +45,31 @@ class UpdateCardValidationNumOnTokenUnitTest extends \PHPUnit_Framework_TestCase
     public function test_orderIdIsOptional()
     {
         $hash_in = array('id' => 'id',
-                'litleToken'=>'123456789101112',
+                'cnpToken'=>'123456789101112',
                 'cardValidationNum'=>'123');
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
-        ->with($this->matchesRegularExpression('/.*<litleToken>123456789101112.*<cardValidationNum>123.*/'));
+        ->with($this->matchesRegularExpression('/.*<cnpToken>123456789101112.*<cardValidationNum>123.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
         $cnpTest->updateCardValidationNumOnToken($hash_in);
     }
 
-    public function test_litleTokenIsRequired()
+    public function test_cnpTokenIsRequired()
     {
         $hash_in = array('id' => 'id',
                 'cardValidationNum'=>'123');
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /litleToken/");
+        $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /cnpToken/");
         $retOb = $cnpTest->updateCardValidationNumOnToken($hash_in);
     }
 
     public function test_cardValidationNumIsRequired()
     {
         $hash_in = array('id' => 'id',
-                'litleToken'=>'123456789101112');
+                'cnpToken'=>'123456789101112');
         $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /cardValidationNum/");
         $retOb = $cnpTest->updateCardValidationNumOnToken($hash_in);
@@ -81,7 +81,7 @@ class UpdateCardValidationNumOnTokenUnitTest extends \PHPUnit_Framework_TestCase
                 'loggedInUser'=>'gdake',
                 'merchantSdk'=>'PHP;8.14.0',
                 'orderId'=>'1',
-                'litleToken'=>'123456789101112',
+                'cnpToken'=>'123456789101112',
                 'cardValidationNum'=>'123');
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())

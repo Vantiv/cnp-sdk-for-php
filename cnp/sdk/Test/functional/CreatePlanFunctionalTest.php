@@ -40,7 +40,7 @@ class CreatePlanFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $createPlanResponse = $initialize->createPlan($hash_in);
-        $message = XmlParser::getAttribute($createPlanResponse, 'litleOnlineResponse', 'message');
+        $message = XmlParser::getAttribute($createPlanResponse, 'cnpOnlineResponse', 'message');
         $this->assertEquals('Valid Format', $message);
     }
 }

@@ -49,7 +49,7 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
     public function test_authReversal()
     {
         $hash_in = array('id' => '1211',
-            'litleTxnId' => '12345678000', 'amount' => '123',
+            'cnpTxnId' => '12345678000', 'amount' => '123',
             'payPalNotes' => 'Notes');
 
         $cnp = new CnpOnlineRequest($treeResponse = true);
@@ -60,7 +60,7 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
     public function test_capture()
     {
         $hash_in = array('id' => '1211',
-            'litleTxnId' => '1234567891234567891',
+            'cnpTxnId' => '1234567891234567891',
             'amount' => '123');
 
         $cnp = new CnpOnlineRequest($treeResponse = true);
@@ -108,7 +108,7 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
     public function test_echeckCredit()
     {
         $hash_in = array('id' => '1211',
-            'litleTxnId' => '123456789012345678',
+            'cnpTxnId' => '123456789012345678',
             'amount' => '1000');
 
         $cnp = new CnpOnlineRequest($treeResponse = true);
@@ -119,7 +119,7 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
     public function test_echeckRedepoist()
     {
         $hash_in = array('id' => '1211',
-            'litleTxnId' => '123456789012345678',
+            'cnpTxnId' => '123456789012345678',
             'amount' => '123');
 
         $cnp = new CnpOnlineRequest($treeResponse = true);
@@ -159,7 +159,7 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_echeckVoid()
     {
-        $hash_in = array('litleTxnId' => '123456789012345678', 'id' => '1211',);
+        $hash_in = array('cnpTxnId' => '123456789012345678', 'id' => '1211',);
         $cnp = new CnpOnlineRequest($treeResponse = true);
         $response = $cnp->echeckVoidRequest($hash_in);
         $this->assertEquals('000', $response->echeckVoidResponse->response);
@@ -171,7 +171,7 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
             'merchantId' => '101',
             'version' => '8.8',
             'reportGroup' => 'Planets',
-            'litleTxnId' => '123456',
+            'cnpTxnId' => '123456',
             'orderId' => '12344',
             'amount' => '106',
             'orderSource' => 'ecommerce',
@@ -188,7 +188,7 @@ class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_void()
     {
-        $hash_in = array('litleTxnId' => '123456789012345678', 'id' => '1211',);
+        $hash_in = array('cnpTxnId' => '123456789012345678', 'id' => '1211',);
         $cnp = new CnpOnlineRequest($treeResponse = true);
         $response = $cnp->voidRequest($hash_in);
         $this->assertEquals('0', $response['response']);

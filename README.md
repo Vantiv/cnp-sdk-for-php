@@ -131,7 +131,7 @@ $saleResponse = $initialize->saleRequest($hash_in);
 
 // Display Result 
 echo ("Message: " . XMLParser::getNode($saleResponse,'message') . "<br>");
-echo ("Vantiv eCommerce Transaction ID: " . XMLParser::getNode($saleResponse,'litleTxnId'));
+echo ("Vantiv eCommerce Transaction ID: " . XMLParser::getNode($saleResponse,'cnpTxnId'));
 ```
 
 As of 8.13.1, you may also use a tree-oriented style to get the response values:
@@ -154,7 +154,7 @@ $saleResponse = $initialize->saleRequest($hash_in);
 
 // Display Result 
 echo ("Message: " . $saleResponse->saleResponse->message . "<br>");
-echo ("Vantiv eCommerce Transaction ID: " . $saleResponse->saleResponse->litleTxnId);
+echo ("Vantiv eCommerce Transaction ID: " . $saleResponse->saleResponse->cnpTxnId);
 ```
 
 

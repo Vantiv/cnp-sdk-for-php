@@ -92,7 +92,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
 
         //test 6a
         $hash = array('id' => '1211',
-            'litleTxnId' => (XmlParser::getNode($response, 'litleTxnId')),
+            'cnpTxnId' => (XmlParser::getNode($response, 'cnpTxnId')),
             'reportGroup' => 'planets');
         $initialize = new CnpOnlineRequest();
         $response = $initialize->voidRequest($hash);

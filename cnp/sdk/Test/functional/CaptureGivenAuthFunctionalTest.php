@@ -60,7 +60,7 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'token' => array(
                 'type' => 'VI',
-                'litleToken' => '123456789101112',
+                'cnpToken' => '123456789101112',
                 'expDate' => '1210'));
 
         $initialize = new CnpOnlineRequest();

@@ -327,7 +327,7 @@ class XmlFields
     {
         if (isset($hash_in)) {
             $hash_out = array(
-                        "litleToken"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "litleToken"))),
+                        "cnpToken"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "cnpToken"))),
                         "expDate"=>XmlFields::returnArrayValue($hash_in, "expDate"),
                         "cardValidationNum"=>XmlFields::returnArrayValue($hash_in, "cardValidationNum"),
                         "type"=>XmlFields::returnArrayValue($hash_in, "type")
@@ -460,7 +460,7 @@ class XmlFields
     {
         if (isset($hash_in)) {
             $hash_out = array(
-                        "litleToken"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "litleToken"))),
+                        "cnpToken"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "cnpToken"))),
                         "routingNum" =>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "routingNum"))),
                         "accType" =>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "accType"))),
                         "checkNum" =>XmlFields::returnArrayValue($hash_in, "checkNum")
@@ -506,7 +506,7 @@ class XmlFields
         }
     }
 
-    public static function litleInternalRecurringRequestType($hash_in)
+    public static function cnpInternalRecurringRequestType($hash_in)
     {
         if (isset($hash_in)) {
             $hash_out = array(

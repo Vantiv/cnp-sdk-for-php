@@ -247,7 +247,7 @@ class FundingInstructionOnlineFunctionalTest extends \PHPUnit_Framework_TestCase
     public function test_funding_instruction_void()
     {
         $hash_in = array('id' => 'id',
-            'litleTxnId' => '966284951598164000',
+            'cnpTxnId' => '966284951598164000',
         );
         $initialize = new CnpOnlineRequest();
         $fundingInstructionVoid = $initialize->fundingInstructionVoid($hash_in);
@@ -258,7 +258,7 @@ class FundingInstructionOnlineFunctionalTest extends \PHPUnit_Framework_TestCase
     public function test_funding_instruction_void_already_settled()
     {
         $hash_in = array('id' => 'id',
-            'litleTxnId' => '966284951598164362',
+            'cnpTxnId' => '966284951598164362',
         );
         $initialize = new CnpOnlineRequest();
         $fundingInstructionVoid = $initialize->fundingInstructionVoid($hash_in);

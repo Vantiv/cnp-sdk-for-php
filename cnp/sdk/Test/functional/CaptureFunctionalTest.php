@@ -32,19 +32,19 @@ class CaptureFunctionalTest extends \PHPUnit_Framework_TestCase
     public function test_simple_capture()
     {
         $hash_in = array('id' => 'id',
-            'litleTxnId' => '1234567891234567891',
+            'cnpTxnId' => '1234567891234567891',
             'amount' => '123');
 
         $initialize = new CnpOnlineRequest();
         $captureResponse = $initialize->captureRequest($hash_in);
-        $message = XmlParser::getAttribute($captureResponse, 'litleOnlineResponse', 'response');
+        $message = XmlParser::getAttribute($captureResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('0', $message);
     }
 
     public function test_complex_capture()
     {
         $hash_in = array('id' => 'id',
-            'litleTxnId' => '1234567891234567891',
+            'cnpTxnId' => '1234567891234567891',
             'amount' => '123', 'enhancedData' => array(
                 'customerReference' => 'Litle',
                 'salesTax' => '50',
@@ -53,32 +53,32 @@ class CaptureFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $captureResponse = $initialize->captureRequest($hash_in);
-        $message = XmlParser::getAttribute($captureResponse, 'litleOnlineResponse', 'response');
+        $message = XmlParser::getAttribute($captureResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('0', $message);
     }
 
     public function test_simple_capture_with_partial()
     {
         $hash_in = array('id' => 'id',
-            'litleTxnId' => '1234567891234567891',
+            'cnpTxnId' => '1234567891234567891',
             'patial' => 'true',
             'amount' => '123');
 
         $initialize = new CnpOnlineRequest();
         $captureResponse = $initialize->captureRequest($hash_in);
-        $message = XmlParser::getAttribute($captureResponse, 'litleOnlineResponse', 'response');
+        $message = XmlParser::getAttribute($captureResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('0', $message);
     }
 
     public function test_simple_capture_with_pin()
     {
         $hash_in = array('id' => 'id',
-            'litleTxnId' => '1234567891234567891',
+            'cnpTxnId' => '1234567891234567891',
             'amount' => '123', 'pin' => '2139');
 
         $initialize = new CnpOnlineRequest();
         $captureResponse = $initialize->captureRequest($hash_in);
-        $message = XmlParser::getAttribute($captureResponse, 'litleOnlineResponse', 'response');
+        $message = XmlParser::getAttribute($captureResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('0', $message);
     }
 

@@ -32,7 +32,7 @@ class EcheckRedepositFunctionalTest extends \PHPUnit_Framework_TestCase
     public function test_simple_echeckRedeposit()
     {
         $hash_in = array('id' => 'id',
-            'litleTxnId' => '123456789012345678',
+            'cnpTxnId' => '123456789012345678',
             'amount' => '123');
 
         $initialize = new CnpOnlineRequest();
@@ -47,7 +47,7 @@ class EcheckRedepositFunctionalTest extends \PHPUnit_Framework_TestCase
             'amount' => '123456',
             'verify' => 'true',
             'orderId' => '12345',
-            'litleTxnId' => '123456789012345678',
+            'cnpTxnId' => '123456789012345678',
             'orderSource' => 'ecommerce',
             'echeck' => array('accType' => 'Checking', 'accNum' => '12345657890', 'routingNum' => '123456789', 'checkNum' => '123455'),
             'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'));
@@ -64,9 +64,9 @@ class EcheckRedepositFunctionalTest extends \PHPUnit_Framework_TestCase
             'amount' => '123456',
             'verify' => 'true',
             'orderId' => '12345',
-            'litleTxnId' => '123456789012345678',
+            'cnpTxnId' => '123456789012345678',
             'orderSource' => 'ecommerce',
-            'echeckToken' => array('accType' => 'Checking', 'litleToken' => '1234565789012', 'routingNum' => '123456789', 'checkNum' => '123455'),
+            'echeckToken' => array('accType' => 'Checking', 'cnpToken' => '1234565789012', 'routingNum' => '123456789', 'checkNum' => '123455'),
             'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'));
 
         $initialize = new CnpOnlineRequest();
@@ -75,18 +75,18 @@ class EcheckRedepositFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('000', $response);
     }
 
-    public function test_echeckRedeposit_missing_litleTxnId()
+    public function test_echeckRedeposit_missing_cnpTxnId()
     {
         $hash_in = array('id' => 'id',
             'amount' => '123456',
             'verify' => 'true',
             'orderId' => '12345',
             'orderSource' => 'ecommerce',
-            'echeckToken' => array('accType' => 'Checking', 'litleToken' => '1234565789012', 'routingNum' => '123456789', 'checkNum' => '123455'),
+            'echeckToken' => array('accType' => 'Checking', 'cnpToken' => '1234565789012', 'routingNum' => '123456789', 'checkNum' => '123455'),
             'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'));
 
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException', 'Missing Required Field: /litleTxnId/');
+        $this->setExpectedException('InvalidArgumentException', 'Missing Required Field: /cnpTxnId/');
         $retOb = $cnpTest->echeckRedepositRequest($hash_in);
     }
 
