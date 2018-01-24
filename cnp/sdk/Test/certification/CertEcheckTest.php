@@ -47,9 +47,8 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $echeckVerificationResponse = $initialize->echeckVerificationRequest($echeck_hash);
-        //TODO: Getting 001 as response
-        //$this->assertEquals('301', XMLParser::getNode($echeckVerificationResponse, 'response'));
-        //$this->assertEquals('Invalid Account Number', XMLParser::getNode($echeckVerificationResponse, 'message'));
+        $this->assertEquals('301', XMLParser::getNode($echeckVerificationResponse, 'response'));
+        $this->assertEquals('Invalid Account Number', XMLParser::getNode($echeckVerificationResponse, 'message'));
     }
 
     public function test_38()
@@ -91,9 +90,8 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $echeckVerificationResponse = $initialize->echeckVerificationRequest($echeck_hash);
-        //TODO: Getting 000 as response
-       // $this->assertEquals('950', XMLParser::getNode($echeckVerificationResponse, 'response'));
-        //$this->assertEquals('Decline - Negative Information on File',XMLParser::getNode($echeckVerificationResponse,'message'));
+        $this->assertEquals('950', XMLParser::getNode($echeckVerificationResponse, 'response'));
+        $this->assertEquals('Decline - Negative Information on File',XMLParser::getNode($echeckVerificationResponse,'message'));
     }
 
     public function test_40()
@@ -114,9 +112,8 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $echeckVerificationResponse = $initialize->echeckVerificationRequest($echeck_hash);
-        //TODO: Getting 000 as response
-       // $this->assertEquals('951', XMLParser::getNode($echeckVerificationResponse, 'response'));
-       // $this->assertEquals('Absolute Decline', XMLParser::getNode($echeckVerificationResponse, 'message'));
+        $this->assertEquals('951', XMLParser::getNode($echeckVerificationResponse, 'response'));
+        $this->assertEquals('Absolute Decline', XMLParser::getNode($echeckVerificationResponse, 'message'));
     }
 
     #41-44 echecksales
@@ -137,9 +134,8 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $echeckSaleResponse = $initialize->echeckSaleRequest($echeck_hash);
-        //TODO: Getting 000 as response
-        //$this->assertEquals('301', XMLParser::getNode($echeckSaleResponse, 'response'));
-        //$this->assertEquals('Invalid Account Number', XMLParser::getNode($echeckSaleResponse, 'message'));
+        $this->assertEquals('301', XMLParser::getNode($echeckSaleResponse, 'response'));
+        $this->assertEquals('Invalid Account Number', XMLParser::getNode($echeckSaleResponse, 'message'));
     }
 
     public function test_42()
@@ -200,9 +196,8 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $echeckSaleResponse = $initialize->echeckSaleRequest($echeck_hash);
-        //TODO: Getting 000 as response
-        //$this->assertEquals('900', XMLParser::getNode($echeckSaleResponse, 'response'));
-        //$this->assertEquals('Invalid Bank Routing Number', XMLParser::getNode($echeckSaleResponse, 'message'));
+        $this->assertEquals('900', XMLParser::getNode($echeckSaleResponse, 'response'));
+        $this->assertEquals('Invalid Bank Routing Number', XMLParser::getNode($echeckSaleResponse, 'message'));
     }
 
     #test 45- 49 echeckCredit
@@ -222,7 +217,8 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $echeckCreditResponse = $initialize->echeckCreditRequest($echeck_hash);
-        $this->assertEquals('000', XMLParser::getNode($echeckCreditResponse, 'response'));
+        $this->assertEquals('301', XMLParser::getNode($echeckCreditResponse, 'response'));
+        $this->assertEquals('Invalid Account Number', XMLParser::getNode($echeckCreditResponse, 'message'));
     }
 
     public function test_46()

@@ -200,47 +200,6 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertRegExp('/Error validating xml data against the schema/', $message);
     }
 
-    public function test_amexAggregatorData()
-    {
-        $hash_in = array('merchantId' => '101', 'id' => '1211',
-            'version' => '8.8',
-            'reportGroup' => 'Planets',
-            'orderId' => '12344',
-            'amount' => '106',
-            'card' => array(
-                'type' => 'VI',
-                'number' => '4100000000000000',
-                'expDate' => '1210'),
-            'orderSource' => 'ecommerce',
-            'amexAggregatorData' => array('sellerMerchantCategoryCode' => '1234', 'sellerId' => '1234Id'));
-
-        $initialize = new CnpOnlineRequest();
-        $creditResponse = $initialize->creditRequest($hash_in);
-        $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'message');
-        $this->assertEquals("Valid Format", $message);
-    }
-
-    public function test_amexAggregatorData_missing_sellerId()
-    {
-        $hash_in = array(
-            'merchantId' => '101', 'id' => '1211',
-            'version' => '8.8',
-            'reportGroup' => 'Planets',
-            'orderId' => '12344',
-            'amount' => '106',
-            'orderSource' => 'ecommerce',
-            'card' => array(
-                'type' => 'VI',
-                'number' => '4100000000000000',
-                'expDate' => '1210'),
-            'amexAggregatorData' => array('sellerMerchantCategoryCode' => '1234'));
-
-        $initialize = new CnpOnlineRequest();
-        $creditResponse = $initialize->creditRequest($hash_in);
-        $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'message');
-        $this->assertRegExp('/Error validating xml data against the schema/', $message);
-    }
-
     public function test_simple_enhancedData()
     {
         $hash_in = array('merchantId' => '101', 'id' => '1211',
