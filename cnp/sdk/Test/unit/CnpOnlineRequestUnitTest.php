@@ -54,7 +54,7 @@ class CnpOnlineRequestUnitTest extends \PHPUnit_Framework_TestCase
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
-        ->with($this->matchesRegularExpression('/.*merchantSdk="PHP;11.*/'));
+        ->with($this->matchesRegularExpression('/.*merchantSdk="PHP;12.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;

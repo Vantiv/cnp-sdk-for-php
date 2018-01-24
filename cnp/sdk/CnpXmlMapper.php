@@ -32,9 +32,7 @@ class CnpXmlMapper
 
     public function request($request,$hash_config=NULL,$useSimpleXml)
     {
-        echo ($request);
         $response = Communication::httpRequest($request,$hash_config);
-        echo ($response);
         if ($useSimpleXml) {
             $respObj = simplexml_load_string($response);
         } else {
