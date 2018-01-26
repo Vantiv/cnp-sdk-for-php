@@ -84,7 +84,9 @@ class TokenFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $cnpTest = new CnpOnlineRequest();
         $this->setExpectedException('InvalidArgumentException', 'Missing Required Field: /accNum/');
-        $retOb = $cnpTest->registerTokenRequest($hash_in);
+        $registerTokenResponse = $cnpTest->registerTokenRequest($hash_in);
+        $message = XmlParser::getAttribute($registerTokenResponse, 'cnpOnlineResponse', 'message');
+        $this->assertEquals('Valid Format', $message);
     }
 
     public function test_simple_token_applepay()

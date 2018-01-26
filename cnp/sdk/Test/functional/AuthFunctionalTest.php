@@ -317,7 +317,6 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
     public function test_simple_auth_with_enhancedAuthResponse()
     {
         $hash_in = array(
-            'id' => 'id',
             'card' => array(
                 'type' => 'VI',
                 'number' => '4100800000000000',
@@ -351,7 +350,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_simple_auth_with_card_pin()
     {
-        $hash_in = array('id' => 'id',
+        $hash_in = array(
             'card' => array('type' => 'VI',
                 'number' => '4100000000000000',
                 'expDate' => '1213',
@@ -373,7 +372,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_simple_auth_with_card_Id_restrictions()
     {
-        $hash_in = array('id' => 'id',
+        $hash_in = array(
             'card' => array('type' => 'VI',
                 'number' => '4100000000000000',
                 'expDate' => '1213',

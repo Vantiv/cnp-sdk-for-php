@@ -39,7 +39,7 @@ class QueryTransactionFunctionalTest extends \PHPUnit_Framework_TestCase
         $initialize = new CnpOnlineRequest();
         $queryTransactionResponse = $initialize->queryTransaction($hash_in);
         $response = XmlParser::getNode($queryTransactionResponse, 'response');
-        $this->assertEquals('000', $response);
+        $this->assertEquals('150', $response);
         $matchCount = XmlParser::getNode($queryTransactionResponse, 'matchCount');
         $this->assertEquals('1', $matchCount);
         $resultsMax10 = XmlParser::getNodeWithChildren($queryTransactionResponse, 'results_max10');
@@ -47,7 +47,7 @@ class QueryTransactionFunctionalTest extends \PHPUnit_Framework_TestCase
             $childResponse = XmlParser::getNode($child, 'response');
             $childMessage = XmlParser::getNode($child, 'message');
             $childOrderId = XmlParser::getNode($child, 'orderId');
-            $this->assertEquals('000', $childResponse);
+            $this->assertEquals('150', $childResponse);
             $this->assertEquals('Original transaction found', $childMessage);
             $this->assertEquals('GenericOrderId', $childOrderId);
         }
@@ -79,14 +79,14 @@ class QueryTransactionFunctionalTest extends \PHPUnit_Framework_TestCase
         $queryTransactionResponse = $initialize->queryTransaction($hash_in);
         $response = XmlParser::getNode($queryTransactionResponse, 'response');
         $matchCount = XmlParser::getNode($queryTransactionResponse, 'matchCount');
-        $this->assertEquals('000', $response);
+        $this->assertEquals('150', $response);
         $this->assertEquals('2', $matchCount);
         $resultsMax10 = XmlParser::getNodeWithChildren($queryTransactionResponse, 'results_max10');
         foreach ($resultsMax10->getElementsByTagName('authorizationResponse') as $child) {
             $childResponse = XmlParser::getNode($child, 'response');
             $childMessage = XmlParser::getNode($child, 'message');
             $childOrderId = XmlParser::getNode($child, 'orderId');
-            $this->assertEquals('000', $childResponse);
+            $this->assertEquals('150', $childResponse);
             $this->assertEquals('Original transaction found', $childMessage);
             $this->assertEquals('GenericOrderId', $childOrderId);
         }
