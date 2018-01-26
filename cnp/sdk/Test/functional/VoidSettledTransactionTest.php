@@ -46,9 +46,9 @@ class VoidSettledTransactionTest extends \PHPUnit_Framework_TestCase
 
         $capture_hash = array('cnpTxnId' => (XmlParser::getNode($authorizationResponse, 'cnpTxnId')), 'id' => '1211');
         $captureResponse = $initialize->captureRequest($capture_hash);
-        //echo $captureResponse;
+
         $this->assertEquals('000', XmlParser::getNode($captureResponse, 'response'));
-        $void_hash1 = array('cnpTxnId' => 362, 'id' => '1211');
+        $void_hash1 = array('cnpTxnId' => '362', 'id' => '1211');
 
         $voidResponse1 = $initialize->voidRequest($void_hash1);
         $this->assertEquals('362', XmlParser::getNode($voidResponse1, 'response'));

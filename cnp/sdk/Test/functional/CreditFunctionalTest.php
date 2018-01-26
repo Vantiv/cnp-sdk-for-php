@@ -95,25 +95,6 @@ class CreditFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('000', $response);
     }
 
-    public function test_amexAggregator()
-    {
-        $hash_in = array('id' => 'id',
-            'amount' => '2000',
-            'orderId' => '12344',
-            'orderSource' => 'ecommerce',
-            'processingInstuctions' => array('bypassVelocityCheck' => 'yes'),
-            'card' => array(
-                'type' => 'VI',
-                'number' => '4100000000000000',
-                'expDate' => '1210'),
-            'amexAggregatorData' => array('sellerMerchantCategoryCode' => '1234', 'sellerId' => '1234Id'));
-
-        $initialize = new CnpOnlineRequest();
-        $creditResponse = $initialize->creditRequest($hash_in);
-        $response = XmlParser::getNode($creditResponse, 'response');
-        $this->assertEquals('000', $response);
-    }
-
     public function test_simple_credit_with_secondary_amount()
     {
         $hash_in = array('id' => 'id',

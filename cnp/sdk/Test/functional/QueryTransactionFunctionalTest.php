@@ -48,12 +48,12 @@ class QueryTransactionFunctionalTest extends \PHPUnit_Framework_TestCase
             $childMessage = XmlParser::getNode($child, 'message');
             $childOrderId = XmlParser::getNode($child, 'orderId');
             $this->assertEquals('000', $childResponse);
-            $this->assertEquals('Approved', $childMessage);
+            $this->assertEquals('Original transaction found', $childMessage);
             $this->assertEquals('GenericOrderId', $childOrderId);
         }
     }
 
-    public function testSimpleQueryTransaction_notFound()
+    public function testSimpleQueryTransaction_responseUnavailable()
     {
         $hash_in = array(
             'id' => 'id',
@@ -87,12 +87,12 @@ class QueryTransactionFunctionalTest extends \PHPUnit_Framework_TestCase
             $childMessage = XmlParser::getNode($child, 'message');
             $childOrderId = XmlParser::getNode($child, 'orderId');
             $this->assertEquals('000', $childResponse);
-            $this->assertEquals('Approved', $childMessage);
+            $this->assertEquals('Original transaction found', $childMessage);
             $this->assertEquals('GenericOrderId', $childOrderId);
         }
     }
 
-    public function testSimpleQueryTransaction_responseUnavailable()
+    public function testSimpleQueryTransaction_notFound()
     {
         $hash_in = array(
             'id' => 'id',
@@ -102,7 +102,9 @@ class QueryTransactionFunctionalTest extends \PHPUnit_Framework_TestCase
         $initialize = new CnpOnlineRequest();
         $queryTransactionResponse = $initialize->queryTransaction($hash_in);
         $response = XmlParser::getNode($queryTransactionResponse, 'response');
+        echo(XmlParser::getDomDocumentAsString($queryTransactionResponse));
         $message = XmlParser::getNode($queryTransactionResponse, 'message');
+        echo ($message);
         $this->assertEquals('151', $response);
         $this->assertEquals('Original transaction not found', $message);
     }
