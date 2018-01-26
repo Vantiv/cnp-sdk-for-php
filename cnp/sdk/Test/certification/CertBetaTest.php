@@ -53,11 +53,10 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $response = $initialize->authorizationRequest($hash);
-        //        TODO: run against for certification
-//        $this->assertEquals('110', XmlParser::getNode($response, 'response'));
-//        $this->assertEquals('Insufficient Funds', XmlParser::getNode($response, 'message'));
-//        $this->assertEquals('34', XmlParser::getNode($response, 'avsResult'));
-//        $this->assertEquals('P', XmlParser::getNode($response, 'cardValidationResult'));
+        $this->assertEquals('110', XmlParser::getNode($response, 'response'));
+        $this->assertEquals('Insufficient Funds', XmlParser::getNode($response, 'message'));
+        $this->assertEquals('34', XmlParser::getNode($response, 'avsResult'));
+        $this->assertEquals('P', XmlParser::getNode($response, 'cardValidationResult'));
     }
 
     function test_6_sale()
@@ -84,11 +83,10 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $response = $initialize->saleRequest($hash);
-        //        TODO: run against for certification
-//        $this->assertEquals('110', XmlParser::getNode($response, 'response'));
-//        $this->assertEquals('Insufficient Funds', XmlParser::getNode($response, 'message'));
-//        $this->assertEquals('34', XmlParser::getNode($response, 'avsResult'));
-//        $this->assertEquals('P', XmlParser::getNode($response, 'cardValidationResult'));
+        $this->assertEquals('110', XmlParser::getNode($response, 'response'));
+        $this->assertEquals('Insufficient Funds', XmlParser::getNode($response, 'message'));
+        $this->assertEquals('34', XmlParser::getNode($response, 'avsResult'));
+        $this->assertEquals('P', XmlParser::getNode($response, 'cardValidationResult'));
 
         //test 6a
         $hash = array('id' => '1211',
@@ -96,9 +94,8 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
             'reportGroup' => 'planets');
         $initialize = new CnpOnlineRequest();
         $response = $initialize->voidRequest($hash);
-        //        TODO: run against for certification
-//        $this->assertEquals('000', XmlParser::getNode($response, 'response'));
-//        $this->assertEquals('Approved', XmlParser::getNode($response, 'message'));
+        $this->assertEquals('000', XmlParser::getNode($response, 'response'));
+        $this->assertEquals('Approved', XmlParser::getNode($response, 'message'));
     }
 
     function test_7_auth()
@@ -125,11 +122,10 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $response = $initialize->authorizationRequest($hash);
-        //        TODO: run against for certification
-//        $this->assertEquals('301', XmlParser::getNode($response, 'response'));
-//        $this->assertEquals('Invalid Account Number', XmlParser::getNode($response, 'message'));
-//        $this->assertEquals('34', XmlParser::getNode($response, 'avsResult'));
-//        $this->assertEquals('N', XmlParser::getNode($response, 'cardValidationResult'));
+        $this->assertEquals('301', XmlParser::getNode($response, 'response'));
+        $this->assertEquals('Invalid Account Number', XmlParser::getNode($response, 'message'));
+        $this->assertEquals('34', XmlParser::getNode($response, 'avsResult'));
+        $this->assertEquals('N', XmlParser::getNode($response, 'cardValidationResult'));
     }
 
     function test_7_avs()
@@ -156,11 +152,10 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $response = $initialize->authorizationRequest($hash);
-        //        TODO: run against for certification
-//        $this->assertEquals('301', XmlParser::getNode($response, 'response'));
-//        $this->assertEquals('Invalid Account Number', XmlParser::getNode($response, 'message'));
-//        $this->assertEquals('34', XmlParser::getNode($response, 'avsResult'));
-//        $this->assertEquals('N', XmlParser::getNode($response, 'cardValidationResult'));
+        $this->assertEquals('301', XmlParser::getNode($response, 'response'));
+        $this->assertEquals('Invalid Account Number', XmlParser::getNode($response, 'message'));
+        $this->assertEquals('34', XmlParser::getNode($response, 'avsResult'));
+        $this->assertEquals('N', XmlParser::getNode($response, 'cardValidationResult'));
     }
 
     function test_7_sale()
@@ -187,11 +182,10 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $response = $initialize->saleRequest($hash);
-        //        TODO: run against for certification
-//        $this->assertEquals('301', XmlParser::getNode($response, 'response'));
-//        $this->assertEquals('Invalid Account Number', XmlParser::getNode($response, 'message'));
-//        $this->assertEquals('34', XmlParser::getNode($response, 'avsResult'));
-//        $this->assertEquals('N', XmlParser::getNode($response, 'cardValidationResult'));
+        $this->assertEquals('301', XmlParser::getNode($response, 'response'));
+        $this->assertEquals('Invalid Account Number', XmlParser::getNode($response, 'message'));
+        $this->assertEquals('34', XmlParser::getNode($response, 'avsResult'));
+        $this->assertEquals('N', XmlParser::getNode($response, 'cardValidationResult'));
     }
 
     function test_8_auth()
@@ -218,11 +212,10 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $response = $initialize->authorizationRequest($hash);
-        //        TODO: run against for certification
-//        $this->assertEquals('123', XmlParser::getNode($response, 'response'));
-//        $this->assertEquals('Call Discover', XmlParser::getNode($response, 'message'));
-//        $this->assertEquals('34', XmlParser::getNode($response, 'avsResult'));
-//        $this->assertEquals('P', XmlParser::getNode($response, 'cardValidationResult'));
+        $this->assertEquals('123', XmlParser::getNode($response, 'response'));
+        $this->assertEquals('Call Discover', XmlParser::getNode($response, 'message'));
+        $this->assertEquals('34', XmlParser::getNode($response, 'avsResult'));
+        $this->assertEquals('P', XmlParser::getNode($response, 'cardValidationResult'));
     }
 
 
@@ -250,11 +243,10 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $response = $initialize->authorizationRequest($hash);
-        //        TODO: run against for certification
-//        $this->assertEquals('123', XmlParser::getNode($response, 'response'));
-//        $this->assertEquals('Call Discover', XmlParser::getNode($response, 'message'));
-//        $this->assertEquals('34', XmlParser::getNode($response, 'avsResult'));
-//        $this->assertEquals('P', XmlParser::getNode($response, 'cardValidationResult'));
+        $this->assertEquals('123', XmlParser::getNode($response, 'response'));
+        $this->assertEquals('Call Discover', XmlParser::getNode($response, 'message'));
+        $this->assertEquals('34', XmlParser::getNode($response, 'avsResult'));
+        $this->assertEquals('P', XmlParser::getNode($response, 'cardValidationResult'));
     }
 
     function test_8_sale()
@@ -281,11 +273,10 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $response = $initialize->saleRequest($hash);
-        //        TODO: run against prelive for certification
-//        $this->assertEquals('123', XmlParser::getNode($response, 'response'));
-//        $this->assertEquals('Call Discover', XmlParser::getNode($response, 'message'));
-//        $this->assertEquals('34', XmlParser::getNode($response, 'avsResult'));
-//        $this->assertEquals('P', XmlParser::getNode($response, 'cardValidationResult'));
+        $this->assertEquals('123', XmlParser::getNode($response, 'response'));
+        $this->assertEquals('Call Discover', XmlParser::getNode($response, 'message'));
+        $this->assertEquals('34', XmlParser::getNode($response, 'avsResult'));
+        $this->assertEquals('P', XmlParser::getNode($response, 'cardValidationResult'));
     }
 
     function test_9_auth()
@@ -312,11 +303,10 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $response = $initialize->authorizationRequest($hash);
-        //        TODO: run against prelive for certification
-        //$this->assertEquals('303', XmlParser::getNode($response, 'response'));
-        //$this->assertEquals('Pick Up Card', XmlParser::getNode($response, 'message'));
-        //$this->assertEquals('34', XmlParser::getNode($response, 'avsResult'));
-        //$this->assertEquals('P', XmlParser::getNode($response, 'cardValidationResult'));
+        $this->assertEquals('303', XmlParser::getNode($response, 'response'));
+        $this->assertEquals('Pick Up Card', XmlParser::getNode($response, 'message'));
+        $this->assertEquals('34', XmlParser::getNode($response, 'avsResult'));
+        $this->assertEquals('P', XmlParser::getNode($response, 'cardValidationResult'));
     }
 
     function test_9_avs()
@@ -343,11 +333,10 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $response = $initialize->authorizationRequest($hash);
-        //        TODO: run against prelive for certification
-        //$this->assertEquals('303', XmlParser::getNode($response, 'response'));
-        //$this->assertEquals('Pick Up Card', XmlParser::getNode($response, 'message'));
-        //$this->assertEquals('34', XmlParser::getNode($response, 'avsResult'));
-        //$this->assertEquals('P', XmlParser::getNode($response, 'cardValidationResult'));
+        $this->assertEquals('303', XmlParser::getNode($response, 'response'));
+        $this->assertEquals('Pick Up Card', XmlParser::getNode($response, 'message'));
+        $this->assertEquals('34', XmlParser::getNode($response, 'avsResult'));
+        $this->assertEquals('P', XmlParser::getNode($response, 'cardValidationResult'));
     }
 
     function test_9_sale()
@@ -374,11 +363,10 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $response = $initialize->saleRequest($hash);
-        //        TODO: run against prelive for certification
-        //$this->assertEquals('303', XmlParser::getNode($response, 'response'));
-        //$this->assertEquals('Pick Up Card', XmlParser::getNode($response, 'message'));
-        //$this->assertEquals('34', XmlParser::getNode($response, 'avsResult'));
-        //$this->assertEquals('P', XmlParser::getNode($response, 'cardValidationResult'));
+        $this->assertEquals('303', XmlParser::getNode($response, 'response'));
+        $this->assertEquals('Pick Up Card', XmlParser::getNode($response, 'message'));
+        $this->assertEquals('34', XmlParser::getNode($response, 'avsResult'));
+        $this->assertEquals('P', XmlParser::getNode($response, 'cardValidationResult'));
     }
 
     function test_10_auth()
@@ -398,10 +386,9 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $response = $initialize->authorizationRequest($hash);
-        //        TODO: run against prelive for certification
-//        $this->assertEquals('010', XmlParser::getNode($response, 'response'));
-//        $this->assertEquals('Partially Approved', XmlParser::getNode($response, 'message'));
-//        $this->assertEquals(32000, XmlParser::getNode($response, 'approvedAmount'));
+        $this->assertEquals('010', XmlParser::getNode($response, 'response'));
+        $this->assertEquals('Partially Approved', XmlParser::getNode($response, 'message'));
+        $this->assertEquals(32000, XmlParser::getNode($response, 'approvedAmount'));
     }
 
     function test_11_auth()
@@ -421,10 +408,9 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $response = $initialize->authorizationRequest($hash);
-        //        TODO: run against prelive for certification
-//        $this->assertEquals('010', XmlParser::getNode($response, 'response'));
-//        $this->assertEquals('Partially Approved', XmlParser::getNode($response, 'message'));
-//        $this->assertEquals(48000, XmlParser::getNode($response, 'approvedAmount'));
+        $this->assertEquals('010', XmlParser::getNode($response, 'response'));
+        $this->assertEquals('Partially Approved', XmlParser::getNode($response, 'message'));
+        $this->assertEquals(48000, XmlParser::getNode($response, 'approvedAmount'));
     }
 
     function test_12_auth()
@@ -444,10 +430,9 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $response = $initialize->authorizationRequest($hash);
-//      TODO: run against prelive for certification
-        //$this->assertEquals('010', XmlParser::getNode($response, 'response'));
-        //$this->assertEquals('Partially Approved', XmlParser::getNode($response, 'message'));
-        //$this->assertEquals(40000, XmlParser::getNode($response, 'approvedAmount'));
+        $this->assertEquals('010', XmlParser::getNode($response, 'response'));
+        $this->assertEquals('Partially Approved', XmlParser::getNode($response, 'message'));
+        $this->assertEquals(40000, XmlParser::getNode($response, 'approvedAmount'));
     }
 
     function test_13_auth()
@@ -463,14 +448,12 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
                 'expDate' => '0821',
                 'type' => 'DI'
             ),
-//            'url' => 'https://prelive.litle.com/vap/communicator/online'
         );
 
         $initialize = new CnpOnlineRequest();
         $response = $initialize->authorizationRequest($hash);
-//        TODO: run against prelive for certification
-//        $this->assertEquals('010', XmlParser::getNode($response, 'response'));
-//        $this->assertEquals('Partially Approved', XmlParser::getNode($response, 'message'));
-//        $this->assertEquals(12000, XmlParser::getNode($response, 'approvedAmount'));
+        $this->assertEquals('010', XmlParser::getNode($response, 'response'));
+        $this->assertEquals('Partially Approved', XmlParser::getNode($response, 'message'));
+        $this->assertEquals(12000, XmlParser::getNode($response, 'approvedAmount'));
     }
 }

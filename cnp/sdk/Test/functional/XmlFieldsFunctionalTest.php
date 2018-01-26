@@ -83,8 +83,6 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderId' => '12344',
             'amount' => '106',
             'orderSource' => 'ecommerce',
-            'billMeLaterRequest' => array('bmlMerchantId' => '12345', 'preapprovalNumber' => '12345678909023',
-                'customerPhoneChnaged' => 'False', 'itemCategoryCode' => '2'),
             'card' => array(
                 'type' => 'VI',
                 'number' => '4100000000000000',

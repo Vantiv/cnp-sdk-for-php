@@ -94,7 +94,7 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
                 'cardValidationNum' => '261',
                 'type' => 'MC'),
             //TODO 3-D Secure transaction not supported by merchant
-            //'cardholderAuthentication' => array('authenticationValue' => 'BwABBJQ1AgAAAAAgJDUCAAAAAAA=')
+            'cardholderAuthentication' => array('authenticationValue' => 'BwABBJQ1AgAAAAAgJDUCAAAAAAA=')
         );
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
@@ -169,11 +169,11 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
                 'type' => 'AX'));
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
+        $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
+        $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
         //TODO Processing Network Unavailable
-        //$this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
-        //$this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
-        //$this->assertEquals('44444', XmlParser::getNode($authorizationResponse, 'authCode'));
-        //$this->assertEquals('12', XmlParser::getNode($authorizationResponse, 'avsResult'));
+//        $this->assertEquals('44444', XmlParser::getNode($authorizationResponse, 'authCode'));
+//        $this->assertEquals('12', XmlParser::getNode($authorizationResponse, 'avsResult'));
 
         //test 35A
         $capture_hash = array('id' => '1211',
@@ -205,9 +205,8 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
                 'type' => 'AX'));
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
-        //TODO Processing Network Unavailable
-        //$this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
-        //$this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
+        $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
+        $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
 
         //test 33A
         $authReversal_hash = array('id' => '1211',
