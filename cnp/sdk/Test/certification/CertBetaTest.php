@@ -49,6 +49,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
                 'cardValidationNum' => '992',
                 'type' => 'VI'
             ),
+            'url' => 'https://payments.vantivprelive.com/vap/communicator/online'
         );
 
         $initialize = new CnpOnlineRequest();
@@ -79,6 +80,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
                 'cardValidationNum' => '992',
                 'type' => 'VI'
             ),
+            'url' => 'https://payments.vantivprelive.com/vap/communicator/online'
         );
 
         $initialize = new CnpOnlineRequest();
@@ -91,7 +93,8 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
         //test 6a
         $hash = array('id' => '1211',
             'cnpTxnId' => (XmlParser::getNode($response, 'cnpTxnId')),
-            'reportGroup' => 'planets');
+            'reportGroup' => 'planets',
+            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
         $initialize = new CnpOnlineRequest();
         $response = $initialize->voidRequest($hash);
         $this->assertEquals('000', XmlParser::getNode($response, 'response'));
@@ -118,6 +121,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
                 'cardValidationNum' => '251',
                 'type' => 'MC'
             ),
+            'url' => 'https://payments.vantivprelive.com/vap/communicator/online'
         );
 
         $initialize = new CnpOnlineRequest();
@@ -148,6 +152,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
                 'cardValidationNum' => '251',
                 'type' => 'MC'
             ),
+            'url' => 'https://payments.vantivprelive.com/vap/communicator/online'
         );
 
         $initialize = new CnpOnlineRequest();
@@ -178,6 +183,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
                 'cardValidationNum' => '251',
                 'type' => 'MC'
             ),
+            'url' => 'https://payments.vantivprelive.com/vap/communicator/online'
         );
 
         $initialize = new CnpOnlineRequest();
@@ -208,6 +214,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
                 'cardValidationNum' => '184',
                 'type' => 'DI'
             ),
+            'url' => 'https://payments.vantivprelive.com/vap/communicator/online'
         );
 
         $initialize = new CnpOnlineRequest();
@@ -239,6 +246,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
                 'cardValidationNum' => '184',
                 'type' => 'DI'
             ),
+            'url' => 'https://payments.vantivprelive.com/vap/communicator/online'
         );
 
         $initialize = new CnpOnlineRequest();
@@ -269,6 +277,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
                 'cardValidationNum' => '184',
                 'type' => 'DI'
             ),
+            'url' => 'https://payments.vantivprelive.com/vap/communicator/online'
         );
 
         $initialize = new CnpOnlineRequest();
@@ -299,6 +308,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
                 'cardValidationNum' => '0421',
                 'type' => 'AX'
             ),
+            'url' => 'https://payments.vantivprelive.com/vap/communicator/online'
         );
 
         $initialize = new CnpOnlineRequest();
@@ -329,6 +339,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
                 'cardValidationNum' => '0421',
                 'type' => 'AX'
             ),
+            'url' => 'https://payments.vantivprelive.com/vap/communicator/online'
         );
 
         $initialize = new CnpOnlineRequest();
@@ -359,6 +370,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
                 'cardValidationNum' => '0421',
                 'type' => 'AX'
             ),
+            'url' => 'https://payments.vantivprelive.com/vap/communicator/online'
         );
 
         $initialize = new CnpOnlineRequest();
@@ -382,6 +394,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
                 'expDate' => '0921',
                 'type' => 'VI'
             ),
+            'url' => 'https://payments.vantivprelive.com/vap/communicator/online'
         );
 
         $initialize = new CnpOnlineRequest();
@@ -404,6 +417,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
                 'expDate' => '1121',
                 'type' => 'MC'
             ),
+            'url' => 'https://payments.vantivprelive.com/vap/communicator/online'
         );
 
         $initialize = new CnpOnlineRequest();
@@ -426,6 +440,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
                 'expDate' => '0421',
                 'type' => 'AX'
             ),
+            'url' => 'https://payments.vantivprelive.com/vap/communicator/online'
         );
 
         $initialize = new CnpOnlineRequest();
@@ -448,6 +463,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
                 'expDate' => '0821',
                 'type' => 'DI'
             ),
+            'url' => 'https://payments.vantivprelive.com/vap/communicator/online'
         );
 
         $initialize = new CnpOnlineRequest();

@@ -47,7 +47,8 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
                 'number' => '4457010000000009',
                 'expDate' => '0112',
                 'cardValidationNum' => '349',
-                'type' => 'VI'));
+                'type' => 'VI'),
+            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
@@ -59,7 +60,8 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
         //test 32A
         $capture_hash = array(
             'cnpTxnId' => (XmlParser::getNode($authorizationResponse, 'cnpTxnId')),
-            'reportGroup' => 'planets', 'id' => '1211',);
+            'reportGroup' => 'planets', 'id' => '1211',
+            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
         $initialize = new CnpOnlineRequest();
         $captureResponse = $initialize->captureRequest($capture_hash);
         $this->assertEquals('000', XmlParser::getNode($captureResponse, 'response'));
@@ -67,7 +69,8 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
         //test32B
         $authReversal_hash = array('id' => '1211',
             'cnpTxnId' => (XmlParser::getNode($authorizationResponse, 'cnpTxnId')),
-            'reportGroup' => 'planets', 'amount' => '5005');
+            'reportGroup' => 'planets', 'amount' => '5005',
+            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
         $initialize = new CnpOnlineRequest();
         $authReversalResponse = $initialize->authReversalRequest($authReversal_hash);
         $this->assertEquals('000', XmlParser::getNode($authReversalResponse, 'response'));
@@ -94,7 +97,8 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
                 'cardValidationNum' => '261',
                 'type' => 'MC'),
             //TODO 3-D Secure transaction not supported by merchant
-            'cardholderAuthentication' => array('authenticationValue' => 'BwABBJQ1AgAAAAAgJDUCAAAAAAA=')
+            'cardholderAuthentication' => array('authenticationValue' => 'BwABBJQ1AgAAAAAgJDUCAAAAAAA='),
+            'url' => 'https://payments.vantivprelive.com/vap/communicator/online'
         );
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
@@ -107,7 +111,8 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
         //test 33A
         $authReversal_hash = array('id' => '1211',
             'cnpTxnId' => (XmlParser::getNode($authorizationResponse, 'cnpTxnId')),
-            'reportGroup' => 'planets');
+            'reportGroup' => 'planets',
+            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
         $initialize = new CnpOnlineRequest();
         $authReversalResponse = $initialize->authReversalRequest($authReversal_hash);
         $this->assertEquals('000', XmlParser::getNode($authReversalResponse, 'response'));
@@ -131,7 +136,8 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
                 'number' => '6011010000000003',
                 'expDate' => '0312',
                 'cardValidationNum' => '758',
-                'type' => 'DI'));
+                'type' => 'DI'),
+            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
@@ -143,7 +149,8 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
         //test 34A
         $authReversal_hash = array('id' => '1211',
             'cnpTxnId' => (XmlParser::getNode($authorizationResponse, 'cnpTxnId')),
-            'reportGroup' => 'planets');
+            'reportGroup' => 'planets',
+            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
         $initialize = new CnpOnlineRequest();
         $authReversalResponse = $initialize->authReversalRequest($authReversal_hash);
         $this->assertEquals('000', XmlParser::getNode($authReversalResponse, 'response'));
@@ -166,7 +173,8 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
             'card' => array(
                 'number' => '375001000000005',
                 'expDate' => '0412',
-                'type' => 'AX'));
+                'type' => 'AX'),
+            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
@@ -178,7 +186,8 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
         //test 35A
         $capture_hash = array('id' => '1211',
             'cnpTxnId' => (XmlParser::getNode($authorizationResponse, 'cnpTxnId')),
-            'reportGroup' => 'planets', 'amount' => '20020');
+            'reportGroup' => 'planets', 'amount' => '20020',
+            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
         $initialize = new CnpOnlineRequest();
         $captureResponse = $initialize->captureRequest($capture_hash);
         $this->assertEquals('000', XmlParser::getNode($captureResponse, 'response'));
@@ -186,7 +195,8 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
         //test35B
         $authReversal_hash = array('id' => '1211',
             'cnpTxnId' => (XmlParser::getNode($authorizationResponse, 'cnpTxnId')),
-            'reportGroup' => 'planets', 'amount' => '20020');
+            'reportGroup' => 'planets', 'amount' => '20020',
+            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
         $initialize = new CnpOnlineRequest();
         $authReversalResponse = $initialize->authReversalRequest($authReversal_hash);
         $this->assertEquals('000', XmlParser::getNode($authReversalResponse, 'response'));
@@ -202,7 +212,8 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
             'card' => array(
                 'number' => '375000026600004',
                 'expDate' => '0512',
-                'type' => 'AX'));
+                'type' => 'AX'),
+            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
@@ -211,7 +222,8 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
         //test 33A
         $authReversal_hash = array('id' => '1211',
             'cnpTxnId' => (XmlParser::getNode($authorizationResponse, 'cnpTxnId')),
-            'reportGroup' => 'planets', 'amount' => '10000');
+            'reportGroup' => 'planets', 'amount' => '10000',
+            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
         $initialize = new CnpOnlineRequest();
         $authReversalResponse = $initialize->authReversalRequest($authReversal_hash);
         $this->assertEquals('000', XmlParser::getNode($authReversalResponse, 'response'));
