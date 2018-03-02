@@ -4,6 +4,7 @@ namespace cnp\sdk;
 
 class CnpResponseProcessor {
 	private $xml_reader;
+    public static $deleteBatchFiles = "false";
 	
 	/*
 	 * $response_file is a string corresponding to the path of the response file to be processed.
@@ -19,6 +20,15 @@ class CnpResponseProcessor {
 			$msg = $this->xml_reader->getAttribute ( 'message' );
 			throw new \RuntimeException ( "Response file $response_file indicates error: $msg" );
 		}
+
+        if(self::$deleteBatchFiles){
+            if(file_exists($response_file)){
+                unlink($response_file);
+            }
+            if(file_exists($response_file.".encrypted")){
+                unlink($response_file.".encrypted");
+            }
+        }
 	}
 	public function getXmlReader() {
 		return $this->xml_reader;
@@ -70,7 +80,9 @@ class CnpResponseProcessor {
 				"fraudCheckResponse",
 				"giftCardAuthReversalResponse",
 				"giftCardCreditResponse",
-				"giftCardCaptureResponse"
+				"giftCardCaptureResponse",
+                "fundingInstructionVoidResponse",
+                "fastAccessFundingResponse"
 		);
 		
 		if (in_array ( $this->xml_reader->localName, $tracked_elements_names ) && $this->xml_reader->nodeType != \XMLReader::END_ELEMENT) {

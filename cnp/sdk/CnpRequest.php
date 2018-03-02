@@ -14,7 +14,7 @@ class CnpRequest
     private $config;
 
     public $num_batch_requests = 0;
-    # note that a single litle request cannot hold more than 500,000 transactions
+    # note that a single cnp request cannot hold more than 500,000 transactions
     public $total_transactions = 0;
 
     public $closed = false;
@@ -27,6 +27,10 @@ class CnpRequest
 
         $this->config= $config;
         $request_dir = $config['cnp_requests_path'];
+
+        if (!is_dir($request_dir)) {
+            mkdir($request_dir);
+        }
 
         if (substr($request_dir, -1, 1) != DIRECTORY_SEPARATOR) {
             $request_dir = $request_dir . DIRECTORY_SEPARATOR;
@@ -161,11 +165,30 @@ class CnpRequest
             $this->closeRequest();
         }
 
+        $requestFilename = $this->request_file;
+        $useEncryption = $this->config['useEncryption'];
+        if($useEncryption){
+            $publicKey = $this->config['vantivPublicKeyID'];
+            $requestFilename = $this->request_file . ".encrypted";
+            PgpHelper::encrypt($this->request_file, $requestFilename, $publicKey);
+        }
+
         $session = $this->createSFTPSession();
         # with extension .prg
-        $session->put('/inbound/' . basename($this->request_file) . '.prg', $this->request_file, \phpseclib\Net\SFTP::SOURCE_LOCAL_FILE);
+        $session->put('/inbound/' . basename($this->request_file) . '.prg', $requestFilename, \phpseclib\Net\SFTP::SOURCE_LOCAL_FILE);
         # rename when the file upload is complete
         $session->rename('/inbound/' . basename($this->request_file) . '.prg', '/inbound/' . basename($this->request_file) . '.asc');
+
+        $deleteBatchFiles = $this->config['deleteBatchFiles'];
+        CnpResponseProcessor::$deleteBatchFiles = $deleteBatchFiles;
+        if($deleteBatchFiles){
+            if(file_exists($this->request_file)){
+                unlink($this->request_file);
+            }
+            if(file_exists($requestFilename)){
+                unlink($requestFilename);
+            }
+        }
 
         $this->retrieveFromCnpSFTP($session);
     }
@@ -187,7 +210,12 @@ class CnpRequest
 
             if (in_array(basename($this->request_file) . '.asc', $files)) {
                 $this->downloadFromCnpSFTP($session,$time_spent, $sftp_timeout);
-
+                $useEncryption = $this->config['useEncryption'];
+                if($useEncryption){
+                    $passphrase = $this->config['gpgPassphrase'];
+                    rename($this->response_file, $this->response_file.".encrypted");
+                    PgpHelper::decrypt($this->response_file.".encrypted", $this->response_file, $passphrase);
+                }
                 return;
             }
 

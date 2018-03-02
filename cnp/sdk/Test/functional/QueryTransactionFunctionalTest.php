@@ -102,9 +102,7 @@ class QueryTransactionFunctionalTest extends \PHPUnit_Framework_TestCase
         $initialize = new CnpOnlineRequest();
         $queryTransactionResponse = $initialize->queryTransaction($hash_in);
         $response = XmlParser::getNode($queryTransactionResponse, 'response');
-        echo(XmlParser::getDomDocumentAsString($queryTransactionResponse));
         $message = XmlParser::getNode($queryTransactionResponse, 'message');
-        echo ($message);
         $this->assertEquals('151', $response);
         $this->assertEquals('Original transaction not found', $message);
     }
