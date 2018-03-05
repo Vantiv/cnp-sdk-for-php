@@ -162,27 +162,54 @@ class XmlFields
         }
     }
 
-    public static function healthcareAmounts($hash_in)
-    {
-        if (isset($hash_in)) {
-            $hash_out = array(
-                        "totalHealthcareAmount"=>XmlFields::returnArrayValue($hash_in, "totalHealthcareAmount"),
-                        "RxAmount"=>XmlFields::returnArrayValue($hash_in, "RxAmount"),
-                        "visionAmount"=>XmlFields::returnArrayValue($hash_in, "visionAmount"),
-                        "clinicOtherAmount"=>XmlFields::returnArrayValue($hash_in, "clinicOtherAmount"),
-                        "dentalAmount"=>XmlFields::returnArrayValue($hash_in, "dentalAmount")
-            );
-
-            return $hash_out;
-        }
-    }
-
     public static function healthcareIIAS($hash_in)
     {
         if (isset($hash_in)) {
             $hash_out = array(
                         "healthcareAmounts"=>(XmlFields::healthcareAmounts(XmlFields::returnArrayValue($hash_in, "healthcareAmounts"))),
                         "IIASFlag"=>XmlFields::returnArrayValue($hash_in, "IIASFlag")
+            );
+
+            return $hash_out;
+        }
+    }
+
+    public static function healthcareAmounts($hash_in)
+    {
+        if (isset($hash_in)) {
+            $hash_out = array(
+                "totalHealthcareAmount"=>XmlFields::returnArrayValue($hash_in, "totalHealthcareAmount"),
+                "RxAmount"=>XmlFields::returnArrayValue($hash_in, "RxAmount"),
+                "visionAmount"=>XmlFields::returnArrayValue($hash_in, "visionAmount"),
+                "clinicOtherAmount"=>XmlFields::returnArrayValue($hash_in, "clinicOtherAmount"),
+                "dentalAmount"=>XmlFields::returnArrayValue($hash_in, "dentalAmount")
+            );
+
+            return $hash_out;
+        }
+    }
+
+    public static function wallet($hash_in)
+    {
+        if (isset($hash_in)) {
+            $hash_out = array(
+                "walletSourceType"=>XmlFields::returnArrayValue($hash_in, "walletSourceType"),
+                "walletSourceTypeId"=>XmlFields::returnArrayValue($hash_in, "walletSourceTypeId")
+            );
+
+            return $hash_out;
+        }
+    }
+
+    public static function walletSourceType($hash_in)
+    {
+        if (isset($hash_in)) {
+            $hash_out = array(
+                "totalHealthcareAmount"=>XmlFields::returnArrayValue($hash_in, "totalHealthcareAmount"),
+                "RxAmount"=>XmlFields::returnArrayValue($hash_in, "RxAmount"),
+                "visionAmount"=>XmlFields::returnArrayValue($hash_in, "visionAmount"),
+                "clinicOtherAmount"=>XmlFields::returnArrayValue($hash_in, "clinicOtherAmount"),
+                "dentalAmount"=>XmlFields::returnArrayValue($hash_in, "dentalAmount")
             );
 
             return $hash_out;

@@ -112,7 +112,7 @@ class CnpOnlineRequest
             );
         }
         $choice_hash = array(XmlFields::returnArrayValue($hash_out,'card'),XmlFields::returnArrayValue($hash_out,'paypal'),XmlFields::returnArrayValue($hash_out,'token'),XmlFields::returnArrayValue($hash_out,'paypage'),XmlFields::returnArrayValue($hash_out,'applepay'),XmlFields::returnArrayValue($hash_out,'mpos'));
-                $authorizationResponse = $this->processRequest($hash_out,$hash_in,'authorization',$choice_hash);
+        $authorizationResponse = $this->processRequest($hash_out,$hash_in,'authorization',$choice_hash);
 
         return $authorizationResponse;
     }
@@ -158,10 +158,11 @@ class CnpOnlineRequest
             'cnpInternalRecurringRequest'=>XmlFields::cnpInternalRecurringRequestType(XmlFields::returnArrayValue($hash_in,'cnpInternalRecurringRequest')),
             'debtRepayment'=>XmlFields::returnArrayValue($hash_in,'debtRepayment'),
             'advancedFraudChecks'=>XmlFields::advancedFraudChecksType(XmlFields::returnArrayValue($hash_in,'advancedFraudChecks')),
-        	'processingType' => XmlFields::returnArrayValue ( $hash_in, 'processingType' ),
+            'wallet' => XmlFields::wallet( XmlFields::returnArrayValue ( $hash_in, 'wallet' )),
+            'processingType' => XmlFields::returnArrayValue ( $hash_in, 'processingType' ),
         	'originalNetworkTransactionId' => XmlFields::returnArrayValue ( $hash_in, 'originalNetworkTransactionId' ),
         	'originalTransactionAmount' => XmlFields::returnArrayValue ( $hash_in, 'originalTransactionAmount' ),
-
+            'routingPreference' => XmlFields::returnArrayValue ( $hash_in, 'routingPreference' )
         );
 
         $choice_hash = array($hash_out['card'],$hash_out['paypal'],$hash_out['token'],$hash_out['paypage'],$hash_out['applepay'],$hash_out['mpos']);
@@ -819,6 +820,21 @@ class CnpOnlineRequest
         );
         $fundingInstructionVoidResponse = $this ->processRequest($hash_out, $hash_in, "fundingInstructionVoid");
         return $fundingInstructionVoidResponse;
+    }
+
+    public function fastAccessFunding($hash_in)
+    {
+        $hash_out = array (
+            'fundingSubmerchantId' => XmlFields::returnArrayValue ( $hash_in, 'fundingSubmerchantId' ),
+            'submerchantName' => XmlFields::returnArrayValue ( $hash_in, 'submerchantName' ),
+            'fundsTransferId' => XmlFields::returnArrayValue (  $hash_in, 'fundsTransferId'  ),
+            'amount' =>  XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
+            'card'=> (XmlFields::cardType(XmlFields::returnArrayValue($hash_in,'card'))),
+            'token'=>(XmlFields::cardTokenType(XmlFields::returnArrayValue($hash_in,'token'))),
+            'paypage'=>(XmlFields::cardPaypageType(XmlFields::returnArrayValue($hash_in,'paypage'))),
+        );
+        $fastAccessFunding = $this ->processRequest($hash_out, $hash_in, "fastAccessFunding");
+        return $fastAccessFunding;
     }
 
     private static function overrideConfig($hash_in)

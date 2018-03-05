@@ -652,4 +652,27 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
     	$cnpTest->newXML = $mock;
     	$cnpTest->saleRequest($hash_in);
     }
+
+    public function test_sale_with_routingPreference()
+    {
+        $hash_in = array(
+            'card'=>array('type'=>'VI',
+                'number'=>'4100000000000001',
+                'expDate'=>'1213',
+                'cardValidationNum' => '1213'),
+            'id'=>'654',
+            'orderId'=> '2111',
+            'orderSource'=>'ecommerce',
+            'amount'=>'123',
+            'routingPreference' => 'pinlessDebitOnly'
+        );
+        $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
+        $mock->expects($this->once())
+            ->method('request')
+            ->with($this->matchesRegularExpression('/.*<card><type>VI.*<number>4100000000000001.*<expDate>1213.*<cardValidationNum>1213.*<routingPreference>pinlessDebitOnly.*/'));
+
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->saleRequest($hash_in);
+    }
 }
