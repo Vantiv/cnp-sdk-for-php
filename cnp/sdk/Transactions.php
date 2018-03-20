@@ -557,4 +557,26 @@ class Transactions {
 
         return $hash_out;
     }
+
+    public static function createFundingInstructionVoidHash($hash_in) {
+        $hash_out = array (
+            'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
+            'cnpTxnId' => XmlFields::returnArrayValue ( $hash_in, 'cnpTxnId' )
+        );
+        return $hash_out;
+    }
+
+    public static function createFastAccessFundingHash($hash_in) {
+        $hash_out = array (
+            'fundingSubmerchantId' => XmlFields::returnArrayValue ( $hash_in, 'fundingSubmerchantId' ),
+            'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
+            'submerchantName' => XmlFields::returnArrayValue ( $hash_in, 'submerchantName' ),
+            'fundsTransferId' => XmlFields::returnArrayValue (  $hash_in, 'fundsTransferId'  ),
+            'amount' =>  XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
+            'card' => XmlFields::cardType ( XmlFields::returnArrayValue ( $hash_in, 'card' ) ),
+            'token' => XmlFields::cardTokenType ( XmlFields::returnArrayValue ( $hash_in, 'token' ) ),
+            'paypage' => XmlFields::cardPaypageType ( XmlFields::returnArrayValue ( $hash_in, 'paypage' ) )
+        );
+        return $hash_out;
+    }
 }

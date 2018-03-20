@@ -162,6 +162,14 @@ class BatchRequest
             'physicalCheckDebit' => array(
                 'count' => 0,
                 'amount' => 0
+            ),
+            'fundingInstructionVoid' => array(
+                'count' => 0,
+                'amount' => 0
+            ),
+            'fastAccessFunding' => array(
+                'count' => 0,
+                'amount' => 0
             )
         );
 
@@ -588,6 +596,21 @@ class BatchRequest
         $this->addTransaction($hash_out, $hash_in, 'physicalCheckDebit');
         $this->counts_and_amounts ['physicalCheckDebit'] ['count'] += 1;
         $this->counts_and_amounts ['physicalCheckDebit'] ['amount'] += $hash_out ['amount'];
+    }
+
+    public function addFundingInstructionVoid($hash_in)
+    {
+        $hash_out = Transactions::createFundingInstructionVoidHash($hash_in);
+        $this->addTransaction($hash_out, $hash_in, 'fundingInstructionVoid');
+        $this->counts_and_amounts ['fundingInstructionVoid'] ['count'] += 1;
+    }
+
+    public function addFastAccessFunding($hash_in)
+    {
+        $hash_out = Transactions::createFastAccessFundingHash($hash_in);
+        $this->addTransaction($hash_out, $hash_in, 'fastAccessFunding');
+        $this->counts_and_amounts ['fastAccessFunding'] ['count'] += 1;
+        $this->counts_and_amounts ['fastAccessFunding'] ['amount'] += $hash_out ['amount'];
     }
 
     /*

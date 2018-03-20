@@ -402,7 +402,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'fraudFilterOverride' => 'true',
             'recurringRequest' => array(
-                'subscription' => array(
+                'createSubscription' => array(
                     'planCode' => 'abc123',
                     'numberOfPayments' => 12
                 )

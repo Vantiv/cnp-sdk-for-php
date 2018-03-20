@@ -212,6 +212,9 @@ class Obj2xml
         $xml->addAttribute('numVendorDebit', $counts_and_amounts['vendorDebit']['count']);
         $xml->addAttribute('physicalCheckDebitAmount', $counts_and_amounts['physicalCheckDebit']['amount']);
         $xml->addAttribute('numPhysicalCheckDebit', $counts_and_amounts['physicalCheckDebit']['count']);
+        $xml->addAttribute('numFundingInstructionVoid', $counts_and_amounts['fundingInstructionVoid']['count']);
+        $xml->addAttribute('numFastAccessFunding', $counts_and_amounts['fastAccessFunding']['count']);
+        $xml->addAttribute('fastAccessFundingAmount', $counts_and_amounts['fastAccessFunding']['amount']);
 
         return str_replace("/>", ">", str_replace("<?xml version=\"1.0\"?>\n", "", $xml->asXML()));
     }

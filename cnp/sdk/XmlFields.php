@@ -512,7 +512,7 @@ class XmlFields
     {
         if (isset($hash_in)) {
             $hash_out = array(
-                    "subscription"=>(XmlFields::recurringSubscriptionType(XmlFields::returnArrayValue($hash_in,"subscription")))
+                    "createSubscription"=>(XmlFields::recurringSubscriptionType(XmlFields::returnArrayValue($hash_in,"createSubscription")))
             );
 
             return $hash_out;
@@ -527,6 +527,36 @@ class XmlFields
                     "numberOfPayments"=>(XmlFields::returnArrayValue($hash_in, "numberOfPayments")),
                     "startDate"=>(XmlFields::returnArrayValue($hash_in, "startDate")),
                     "amount"=>(XmlFields::returnArrayValue($hash_in, "amount")),
+                    "createDiscount"=>(XmlFields::createDiscountType(XmlFields::returnArrayValue($hash_in, "createDiscount"))),
+                    "createAddOn"=>(XmlFields::createAddOnType(XmlFields::returnArrayValue($hash_in, "createAddOn"))),
+            );
+
+            return $hash_out;
+        }
+    }
+
+    public static function createDiscountType($hash_in){
+        if (isset($hash_in)) {
+            $hash_out = array(
+                "discountCode"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "discountCode"))),
+                "name"=>(XmlFields::returnArrayValue($hash_in, "name")),
+                "amount"=>(XmlFields::returnArrayValue($hash_in, "amount")),
+                "startDate"=>(XmlFields::returnArrayValue($hash_in, "startDate")),
+                "endDate"=>(XmlFields::returnArrayValue($hash_in, "endDate")),
+            );
+
+            return $hash_out;
+        }
+    }
+
+    public static function createAddOnType($hash_in){
+        if (isset($hash_in)) {
+            $hash_out = array(
+                "addOnCode"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "addOnCode"))),
+                "name"=>(XmlFields::returnArrayValue($hash_in, "name")),
+                "amount"=>(XmlFields::returnArrayValue($hash_in, "amount")),
+                "startDate"=>(XmlFields::returnArrayValue($hash_in, "startDate")),
+                "endDate"=>(XmlFields::returnArrayValue($hash_in, "endDate")),
             );
 
             return $hash_out;
