@@ -347,7 +347,7 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
                 'orderSource'=>'ecommerce',
                 'fraudFilterOverride'=>'true',
                 'recurringRequest'=>array(
-                        'subscription'=>array(
+                        'createSubscription'=>array(
                                 'planCode'=>'abc123',
                                 'numberOfPayments'=>'12'
                         )
@@ -357,7 +357,7 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
         $mock
         ->expects($this->once())
         ->method('request')
-        ->with($this->matchesRegularExpression('/.*<fraudFilterOverride>true<\/fraudFilterOverride><recurringRequest><subscription><planCode>abc123<\/planCode><numberOfPayments>12<\/numberOfPayments><\/subscription><\/recurringRequest>.*/'));
+        ->with($this->matchesRegularExpression('/.*<fraudFilterOverride>true<\/fraudFilterOverride><recurringRequest><createSubscription><planCode>abc123<\/planCode><numberOfPayments>12<\/numberOfPayments><\/createSubscription><\/recurringRequest>.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
