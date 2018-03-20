@@ -470,7 +470,7 @@ class XmlFieldsTest extends \PHPUnit_Framework_TestCase
     {
         $hash_in = array(
             'recurringRequest'=>array(
-                'subscription'=>array(
+                'createSubscription'=>array(
                     'planCode'=>'abc123',
                     'numberOfPayments'=>'10',
                     'startDate'=>'07/25/2013',
@@ -479,42 +479,42 @@ class XmlFieldsTest extends \PHPUnit_Framework_TestCase
             ),
         );
         $hash_out = XmlFields::recurringRequestType(XmlFields::returnArrayValue($hash_in,'recurringRequest'));
-        $this->assertEquals($hash_out['subscription']['planCode'], "abc123");
-        $this->assertEquals($hash_out['subscription']['numberOfPayments'], "10");
-        $this->assertEquals($hash_out['subscription']['startDate'], "07/25/2013");
-        $this->assertEquals($hash_out['subscription']['amount'], "102");
+        $this->assertEquals($hash_out['createSubscription']['planCode'], "abc123");
+        $this->assertEquals($hash_out['createSubscription']['numberOfPayments'], "10");
+        $this->assertEquals($hash_out['createSubscription']['startDate'], "07/25/2013");
+        $this->assertEquals($hash_out['createSubscription']['amount'], "102");
     }
 
     public function test_recurringRequest_onlyRequired()
     {
         $hash_in = array (
                 'recurringRequest' => array (
-                        'subscription' => array (
+                        'createSubscription' => array (
                                 'planCode' => 'abc123',
                         )
                 )
         );
         $hash_out = XmlFields::recurringRequestType ( XmlFields::returnArrayValue ( $hash_in, 'recurringRequest' ) );
-        $this->assertEquals ( $hash_out ['subscription'] ['planCode'], "abc123" );
-        $this->assertEquals ( $hash_out ['subscription'] ['numberOfPayments'], NULL );
-        $this->assertEquals ( $hash_out ['subscription'] ['startDate'], NULL );
-        $this->assertEquals ( $hash_out ['subscription'] ['amount'], NULL );
+        $this->assertEquals ( $hash_out ['createSubscription'] ['planCode'], "abc123" );
+        $this->assertEquals ( $hash_out ['createSubscription'] ['numberOfPayments'], NULL );
+        $this->assertEquals ( $hash_out ['createSubscription'] ['startDate'], NULL );
+        $this->assertEquals ( $hash_out ['createSubscription'] ['amount'], NULL );
     }
 
     public function test_recurringRequest_missingRequired()
     {
         $hash_in = array (
                 'recurringRequest' => array (
-                        'subscription' => array (
+                        'createSubscription' => array (
                                 'numberOfPayments' => '10',
                         )
                 )
         );
         $hash_out = XmlFields::recurringRequestType ( XmlFields::returnArrayValue ( $hash_in, 'recurringRequest' ) );
-        $this->assertEquals ( $hash_out ['subscription'] ['planCode'], "REQUIRED" );
-        $this->assertEquals ( $hash_out ['subscription'] ['numberOfPayments'], '10' );
-        $this->assertEquals ( $hash_out ['subscription'] ['startDate'], NULL );
-        $this->assertEquals ( $hash_out ['subscription'] ['amount'], NULL );
+        $this->assertEquals ( $hash_out ['createSubscription'] ['planCode'], "REQUIRED" );
+        $this->assertEquals ( $hash_out ['createSubscription'] ['numberOfPayments'], '10' );
+        $this->assertEquals ( $hash_out ['createSubscription'] ['startDate'], NULL );
+        $this->assertEquals ( $hash_out ['createSubscription'] ['amount'], NULL );
     }
 
     public function test_pos_has_optional_catLevel()
