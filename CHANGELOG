@@ -1,6 +1,10 @@
 = CnpOnline CHANGELOG
 
-==Version 12.0.1 (May 16, 2017)
+==Version 12.1.0 (March 26, 2018)
+* Feature: Added support for Visa card on file transactions
+* Feature: Added fastAccessFunding transaction
+
+==Version 12.0.1 (March 16, 2018)
 * Feature: PGP support for batches
 
 ==Version 11.0.1 (May 4, 2017)

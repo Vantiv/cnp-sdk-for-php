@@ -200,6 +200,90 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('110', $response);
     }
 
+    public function test_sale_with_processingType()
+    {
+        $hash_in = array(
+            'card'=>array('type'=>'VI',
+                'number'=>'4100200300011000',
+                'expDate'=>'0521',),
+            'id' => '1211',
+            'orderId'=> '2111',
+            'amount'=>'4999',
+            'orderSource' => 'ecommerce',
+            'processingType' => 'initialRecurring');
+        $initilaize = new CnpOnlineRequest();
+        $saleResponse = $initilaize->saleRequest($hash_in);
+        $response = XmlParser::getNode($saleResponse,'response');
+        $this->assertEquals('000',$response);
+        $message = XmlParser::getNode($saleResponse,'message');
+        $this->assertEquals('Approved',$message);
+        $networkTransactionId = XmlParser::getNode($saleResponse,'networkTransactionId');
+        $this->assertNotNull($networkTransactionId);
+    }
+
+    public function test_sale_with_processingTypeCOF()
+    {
+        $hash_in = array(
+            'card'=>array('type'=>'VI',
+                'number'=>'4100200300011000',
+                'expDate'=>'0521',),
+            'id' => '1211',
+            'orderId'=> '2111',
+            'amount'=>'4999',
+            'orderSource' => 'ecommerce',
+            'processingType' => 'initialCOF');
+        $initilaize = new CnpOnlineRequest();
+        $saleResponse = $initilaize->saleRequest($hash_in);
+        $response = XmlParser::getNode($saleResponse,'response');
+        $this->assertEquals('000',$response);
+        $message = XmlParser::getNode($saleResponse,'message');
+        $this->assertEquals('Approved',$message);
+        $networkTransactionId = XmlParser::getNode($saleResponse,'networkTransactionId');
+        $this->assertNotNull($networkTransactionId);
+    }
+
+    public function test_sale_with_processingTypeCOF1()
+    {
+        $hash_in = array(
+            'card'=>array('type'=>'VI',
+                'number'=>'4100200300011000',
+                'expDate'=>'0521',),
+            'id' => '1211',
+            'orderId'=> '2111',
+            'amount'=>'4999',
+            'orderSource' => 'ecommerce',
+            'processingType' => 'merchantInitiatedCOF');
+        $initilaize = new CnpOnlineRequest();
+        $saleResponse = $initilaize->saleRequest($hash_in);
+        $response = XmlParser::getNode($saleResponse,'response');
+        $this->assertEquals('000',$response);
+        $message = XmlParser::getNode($saleResponse,'message');
+        $this->assertEquals('Approved',$message);
+        $networkTransactionId = XmlParser::getNode($saleResponse,'networkTransactionId');
+        $this->assertNotNull($networkTransactionId);
+    }
+
+    public function test_sale_with_processingTypeCOF2()
+    {
+        $hash_in = array(
+            'card'=>array('type'=>'VI',
+                'number'=>'4100200300011000',
+                'expDate'=>'0521',),
+            'id' => '1211',
+            'orderId'=> '2111',
+            'amount'=>'4999',
+            'orderSource' => 'ecommerce',
+            'processingType' => 'cardholderInitiatedCOF');
+        $initilaize = new CnpOnlineRequest();
+        $saleResponse = $initilaize->saleRequest($hash_in);
+        $response = XmlParser::getNode($saleResponse,'response');
+        $this->assertEquals('000',$response);
+        $message = XmlParser::getNode($saleResponse,'message');
+        $this->assertEquals('Approved',$message);
+        $networkTransactionId = XmlParser::getNode($saleResponse,'networkTransactionId');
+        $this->assertNotNull($networkTransactionId);
+    }
+
     public function test_simple_sale_with_AdvancedFraudCheckWithCustomAttribute()
     {
         $hash_in = array(

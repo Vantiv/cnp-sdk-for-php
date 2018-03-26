@@ -1329,6 +1329,35 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(0, $response);
     }
 
+//    public function test_fastAccessFundingSFTP()
+//    {
+//        $request = new CnpRequest();
+//
+//        $batch = new BatchRequest();
+//
+//        $hash_in = array(
+//            'card'=>array('type'=>'VI',
+//                'number'=>'4100000000000001',
+//                'expDate'=>'1213',
+//                'cardValidationNum' => '1213'),
+//            'id'=>'654',
+//            'customerId'=> '2111',
+//            'reportGroup' => 'Planets',
+//            'fundingSubmerchantId'=>'2111',
+//            'submerchantName'=>'submerchant',
+//            'fundsTransferId'=>'1234567891111111',
+//            'amount'=>'123');
+//        $batch->addFastAccessFunding($hash_in);
+//        $request->addBatchRequest($batch);
+//
+//        $resp = new CnpResponseProcessor($request->sendToCnp());
+//
+//        $message = $resp->getXmlReader()->getAttribute("message");
+//        $response = $resp->getXmlReader()->getAttribute("response");
+//        $this->assertEquals("Valid Format", $message);
+//        $this->assertEquals(0, $response);
+//    }
+
     public function test_sendToCnpStream()
     {
         $sale_info = array(
