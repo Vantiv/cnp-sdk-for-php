@@ -169,14 +169,14 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
             'orderId' => '59',
             'amount' => '15000',
             'orderSource' => 'ecommerce',
-            'token' => array('cnpToken' => '1712990000040196', 'expDate' => '1112'),
+            'token' => array('cnpToken' => '1111000100092332', 'expDate' => '1121'),
             'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
 
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($token_hash);
 
-//        $this->assertEquals('822', XMLParser::getNode($authorizationResponse, 'response'));
-//        $this->assertEquals('Token was not found', XMLParser::getNode($authorizationResponse, 'message'));
+        $this->assertEquals('822', XMLParser::getNode($authorizationResponse, 'response'));
+        $this->assertEquals('Token was not found', XMLParser::getNode($authorizationResponse, 'message'));
     }
 
     public function test_60()
@@ -185,14 +185,14 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
             'orderId' => '60',
             'amount' => '15000',
             'orderSource' => 'ecommerce',
-            'token' => array('cnpToken' => '1712999999999999', 'expDate' => '1112'),
+            'token' => array('cnpToken' => '1112000100000085', 'expDate' => '1121'),
             'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
 
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($token_hash);
 
-//        $this->assertEquals('823', XMLParser::getNode($authorizationResponse, 'response'));
-//        $this->assertEquals('Token was invalid', XMLParser::getNode($authorizationResponse, 'message'));
+        $this->assertEquals('823', XMLParser::getNode($authorizationResponse, 'response'));
+        $this->assertEquals('Token was invalid', XMLParser::getNode($authorizationResponse, 'message'));
     }
 
     # test 61-64 need echecksale to support token. merchantid not authoried.

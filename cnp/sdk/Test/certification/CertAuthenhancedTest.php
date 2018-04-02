@@ -44,11 +44,10 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
-        // TODO the information being passes doesn't match up with the expected response
-//        $this->assertEquals('PREPAID',XmlParser::getNode($authorizationResponse,'type'));
-//        $this->assertEquals('2000',XmlParser::getNode($authorizationResponse,'availableBalance'));
-//        $this->assertEquals('NO',XmlParser::getNode($authorizationResponse,'reloadable'));
-//        $this->assertEquals('GIFT',XmlParser::getNode($authorizationResponse,'prepaidCardType'));
+        $this->assertEquals('PREPAID',XmlParser::getNode($authorizationResponse,'type'));
+        $this->assertEquals('2000',XmlParser::getNode($authorizationResponse,'availableBalance'));
+        $this->assertEquals('NO',XmlParser::getNode($authorizationResponse,'reloadable'));
+        $this->assertEquals('GIFT',XmlParser::getNode($authorizationResponse,'prepaidCardType'));
 
     }
 
@@ -67,11 +66,10 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
-        // TODO the information being passes doesn't match up with the expected response
-//         $this->assertEquals('PREPAID',XmlParser::getNode($authorizationResponse,'type'));
-//         $this->assertEquals('2000',XmlParser::getNode($authorizationResponse,'availableBalance'));
-//         $this->assertEquals('YES',XmlParser::getNode($authorizationResponse,'reloadable'));
-//         $this->assertEquals('PAYROLL',XmlParser::getNode($authorizationResponse,'prepaidCardType'));
+        $this->assertEquals('PREPAID',XmlParser::getNode($authorizationResponse,'type'));
+        $this->assertEquals('2000',XmlParser::getNode($authorizationResponse,'availableBalance'));
+        $this->assertEquals('YES',XmlParser::getNode($authorizationResponse,'reloadable'));
+        $this->assertEquals('PAYROLL',XmlParser::getNode($authorizationResponse,'prepaidCardType'));
 
     }
 
@@ -90,11 +88,10 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
-        // TODO enhancedAuthResponse is empty
-//         $this->assertEquals('PREPAID',XmlParser::getNode($authorizationResponse,'type'));
-//         $this->assertEquals('0',XmlParser::getNode($authorizationResponse,'availableBalance'));
-//         $this->assertEquals('YES',XmlParser::getNode($authorizationResponse,'reloadable'));
-//         $this->assertEquals('PAYROLL',XmlParser::getNode($authorizationResponse,'prepaidCardType'));
+        $this->assertEquals('PREPAID',XmlParser::getNode($authorizationResponse,'type'));
+        $this->assertEquals('0',XmlParser::getNode($authorizationResponse,'availableBalance'));
+        $this->assertEquals('YES',XmlParser::getNode($authorizationResponse,'reloadable'));
+        $this->assertEquals('PAYROLL',XmlParser::getNode($authorizationResponse,'prepaidCardType'));
 
     }
 
@@ -113,11 +110,10 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
-        // TODO enhancedAuthResponse is empty
-        // $this->assertEquals('PREPAID',XmlParser::getNode($authorizationResponse,'type'));
-        // $this->assertEquals('6500',XmlParser::getNode($authorizationResponse,'availableBalance'));
-        // $this->assertEquals('YES',XmlParser::getNode($authorizationResponse,'reloadable'));
-        // $this->assertEquals('PAYROLL',XmlParser::getNode($authorizationResponse,'prepaidCardType'));
+        $this->assertEquals('PREPAID',XmlParser::getNode($authorizationResponse,'type'));
+        $this->assertEquals('6500',XmlParser::getNode($authorizationResponse,'availableBalance'));
+        $this->assertEquals('YES',XmlParser::getNode($authorizationResponse,'reloadable'));
+        $this->assertEquals('PAYROLL',XmlParser::getNode($authorizationResponse,'prepaidCardType'));
 
     }
 
@@ -136,11 +132,10 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
-        // TODO enhancedAuthResponse is empty
-        // $this->assertEquals('PREPAID',XmlParser::getNode($authorizationResponse,'type'));
-        // $this->assertEquals('12200',XmlParser::getNode($authorizationResponse,'availableBalance'));
-        // $this->assertEquals('YES',XmlParser::getNode($authorizationResponse,'reloadable'));
-        // $this->assertEquals('PAYROLL',XmlParser::getNode($authorizationResponse,'prepaidCardType'));
+        $this->assertEquals('PREPAID',XmlParser::getNode($authorizationResponse,'type'));
+        $this->assertEquals('12200',XmlParser::getNode($authorizationResponse,'availableBalance'));
+        $this->assertEquals('YES',XmlParser::getNode($authorizationResponse,'reloadable'));
+        $this->assertEquals('PAYROLL',XmlParser::getNode($authorizationResponse,'prepaidCardType'));
 
     }
 
@@ -159,11 +154,10 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
-        // TODO enhancedAuthResponse is empty
-//         $this->assertEquals('PREPAID',XmlParser::getNode($authorizationResponse,'type'));
-//         $this->assertEquals('20000',XmlParser::getNode($authorizationResponse,'availableBalance'));
-//         $this->assertEquals('YES',XmlParser::getNode($authorizationResponse,'reloadable'));
-//         $this->assertEquals('PAYROLL',XmlParser::getNode($authorizationResponse,'prepaidCardType'));
+        $this->assertEquals('PREPAID',XmlParser::getNode($authorizationResponse,'type'));
+        $this->assertEquals('20000',XmlParser::getNode($authorizationResponse,'availableBalance'));
+        $this->assertEquals('YES',XmlParser::getNode($authorizationResponse,'reloadable'));
+        $this->assertEquals('PAYROLL',XmlParser::getNode($authorizationResponse,'prepaidCardType'));
 
     }
 
@@ -182,11 +176,10 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
-        // TODO enhancedAuthResponse is empty
-        // $this->assertEquals('PREPAID',XmlParser::getNode($authorizationResponse,'type'));
-        // $this->assertEquals('10050',XmlParser::getNode($authorizationResponse,'availableBalance'));
-        // $this->assertEquals('YES',XmlParser::getNode($authorizationResponse,'reloadable'));
-        // $this->assertEquals('PAYROLL',XmlParser::getNode($authorizationResponse,'prepaidCardType'));
+        $this->assertEquals('PREPAID',XmlParser::getNode($authorizationResponse,'type'));
+        $this->assertEquals('10050',XmlParser::getNode($authorizationResponse,'availableBalance'));
+        $this->assertEquals('YES',XmlParser::getNode($authorizationResponse,'reloadable'));
+        $this->assertEquals('PAYROLL',XmlParser::getNode($authorizationResponse,'prepaidCardType'));
 
     }
 
@@ -205,8 +198,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
-        // TODO enhancedAuthResponse is empty
-        // $this->assertEquals('AFFLUENT',XmlParser::getNode($authorizationResponse,'affluence'));
+        $this->assertEquals('AFFLUENT',XmlParser::getNode($authorizationResponse,'affluence'));
 
     }
 
@@ -225,8 +217,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
-        // TODO enhancedAuthResponse is empty
-        // $this->assertEquals('MASS AFFLUENT',XmlParser::getNode($authorizationResponse,'affluence'));
+        $this->assertEquals('MASS AFFLUENT',XmlParser::getNode($authorizationResponse,'affluence'));
 
     }
 
@@ -245,8 +236,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
-        // TODO enhancedAuthResponse is empty
-        // $this->assertEquals('AFFLUENT',XmlParser::getNode($authorizationResponse,'affluence'));
+        $this->assertEquals('AFFLUENT',XmlParser::getNode($authorizationResponse,'affluence'));
 
     }
 
@@ -265,8 +255,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
-        // TODO enhancedAuthResponse is empty
-        // $this->assertEquals('MASS AFFLUENT',XmlParser::getNode($authorizationResponse,'affluence'));
+        $this->assertEquals('MASS AFFLUENT',XmlParser::getNode($authorizationResponse,'affluence'));
 
     }
 
@@ -285,8 +274,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
-        // TODO enhancedAuthResponse is empty
-        // $this->assertEquals('BRA',XmlParser::getNode($authorizationResponse,'issuerCountry'));
+        $this->assertEquals('BRA',XmlParser::getNode($authorizationResponse,'issuerCountry'));
 
     }
 }

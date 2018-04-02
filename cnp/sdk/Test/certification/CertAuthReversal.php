@@ -179,9 +179,8 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals('Approved', XmlParser::getNode($authorizationResponse, 'message'));
-        //TODO Processing Network Unavailable
-//        $this->assertEquals('44444', XmlParser::getNode($authorizationResponse, 'authCode'));
-//        $this->assertEquals('12', XmlParser::getNode($authorizationResponse, 'avsResult'));
+        $this->assertEquals('44444', XmlParser::getNode($authorizationResponse, 'authCode'));
+        $this->assertEquals('12', XmlParser::getNode($authorizationResponse, 'avsResult'));
 
         //test 35A
         $capture_hash = array('id' => '1211',
