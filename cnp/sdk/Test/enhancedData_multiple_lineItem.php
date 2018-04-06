@@ -49,7 +49,7 @@ $sale_info = array(
                   )
               ),
             );
-$initialize = &new CnpOnlineRequest();
+$initialize = new CnpOnlineRequest();
 $saleResponse = $initialize->saleRequest($sale_info);
 #display results
 echo ("Response: " . (XmlParser::getNode($saleResponse,'response'))) . "\n";
