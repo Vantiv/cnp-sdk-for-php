@@ -390,5 +390,57 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('000', $response);
     }
 
+    public function test_sale_with_Ideal()
+    {
+        $hash_in = array(
+            'ideal' => array('preferredLanguage' => 'AD'),
+            'id' => '1211',
+            'orderId' => '2111',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '123');
+
+        $initialize = new CnpOnlineRequest();
+        $saleResponse = $initialize->saleRequest($hash_in);
+        $response = XmlParser::getNode($saleResponse, 'response');
+        $this->assertEquals('000', $response);
+        $this->assertEquals('http://redirect.url.vantiv.com', XmlParser::getNode($saleResponse, 'redirectUrl'));
+    }
+
+    public function test_sale_with_Giropay()
+    {
+        $hash_in = array(
+            'giropay' => array('preferredLanguage' => 'AD'),
+            'id' => '1211',
+            'orderId' => '2111',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '123');
+
+        $initialize = new CnpOnlineRequest();
+        $saleResponse = $initialize->saleRequest($hash_in);
+        $response = XmlParser::getNode($saleResponse, 'response');
+        $this->assertEquals('000', $response);
+        // re-implement when sandbox supports this payment type
+//        $this->assertEquals('http://redirect.url.vantiv.com', XmlParser::getNode($saleResponse, 'redirectUrl'));
+    }
+
+    public function test_sale_with_Sofort()
+    {
+        $hash_in = array(
+            'sofort' => array('preferredLanguage' => 'AD'),
+            'id' => '1211',
+            'orderId' => '2111',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '123');
+
+        $initialize = new CnpOnlineRequest();
+        $saleResponse = $initialize->saleRequest($hash_in);
+        $response = XmlParser::getNode($saleResponse, 'response');
+        $this->assertEquals('000', $response);
+        // re-implement when sandbox supports this payment type
+//        $this->assertEquals('http://redirect.url.vantiv.com', XmlParser::getNode($saleResponse, 'redirectUrl'));
+    }
 
 }
