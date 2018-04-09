@@ -28,6 +28,8 @@ namespace cnp\sdk\Test\certification;
 use cnp\sdk\CnpOnlineRequest;
 USE cnp\sdk\XmlParser;
 
+define('PRELIVE_URL', 'https://payments.vantivprelive.com/vap/communicator/online');
+
 class CertEcheckTest extends \PHPUnit_Framework_TestCase
 {
     #37-40 echeckVerification
@@ -44,7 +46,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
                 'accNum' => '10@BC99999',
                 'accType' => 'Checking',
                 'routingNum' => '053100300'),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
 
         $initialize = new CnpOnlineRequest();
         $echeckVerificationResponse = $initialize->echeckVerificationRequest($echeck_hash);
@@ -66,7 +68,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
                 'accNum' => '1099999999',
                 'accType' => 'Checking',
                 'routingNum' => '053000219'),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
 
         $echeckVerificationResponse = $initialize->echeckVerificationRequest($echeck_hash);
@@ -89,7 +91,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
                 'accNum' => '3099999999',
                 'accType' => 'Corporate',
                 'routingNum' => '053100300'),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
 
         $initialize = new CnpOnlineRequest();
         $echeckVerificationResponse = $initialize->echeckVerificationRequest($echeck_hash);
@@ -112,7 +114,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
                 'accNum' => '8099999999',
                 'accType' => 'Corporate',
                 'routingNum' => '063102152'),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
 
         $initialize = new CnpOnlineRequest();
         $echeckVerificationResponse = $initialize->echeckVerificationRequest($echeck_hash);
@@ -135,7 +137,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
                 'accNum' => '10@BC99999',
                 'accType' => 'Checking',
                 'routingNum' => '053100300'),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
 
         $initialize = new CnpOnlineRequest();
         $echeckSaleResponse = $initialize->echeckSaleRequest($echeck_hash);
@@ -156,7 +158,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
                 'accNum' => '4099999992',
                 'accType' => 'Checking',
                 'routingNum' => '211370545'),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
 
         $initialize = new CnpOnlineRequest();
         $echeckSaleResponse = $initialize->echeckSaleRequest($echeck_hash);
@@ -178,7 +180,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
                 'accNum' => '6099999992',
                 'accType' => 'Corporate',
                 'routingNum' => '211370545'),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
 
         $initialize = new CnpOnlineRequest();
         $echeckSaleResponse = $initialize->echeckSaleRequest($echeck_hash);
@@ -200,7 +202,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
                 'accNum' => '9099999992',
                 'accType' => 'Corporate',
                 'routingNum' => '053133052'),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
 
         $initialize = new CnpOnlineRequest();
         $echeckSaleResponse = $initialize->echeckSaleRequest($echeck_hash);
@@ -222,7 +224,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
                 'accNum' => '10@BC99999',
                 'accType' => 'Checking',
                 'routingNum' => '053100300'),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
 
         $initialize = new CnpOnlineRequest();
         $echeckCreditResponse = $initialize->echeckCreditRequest($echeck_hash);
@@ -244,7 +246,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
                 'accNum' => '3099999999',
                 'accType' => 'Corporate',
                 'routingNum' => '063102152'),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
 
         $initialize = new CnpOnlineRequest();
         $echeckCreditResponse = $initialize->echeckCreditRequest($echeck_hash);
@@ -266,7 +268,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
                 'accNum' => '6099999993',
                 'accType' => 'Corporate',
                 'routingNum' => '211370545'),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
 
         $initialize = new CnpOnlineRequest();
         $echeckCreditResponse = $initialize->echeckCreditRequest($echeck_hash);
@@ -277,7 +279,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
     public function test_48()
     {
         $echeck_hash = array('cnpTxnId' => '430000000000000001', 'id' => 'id',
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
 
         $initialize = new CnpOnlineRequest();
         $echeckCreditResponse = $initialize->echeckCreditRequest($echeck_hash);
@@ -288,7 +290,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
     public function test_49()
     {
         $echeck_hash = array('cnpTxnId' => '2', 'id' => 'id',
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
 
         $initialize = new CnpOnlineRequest();
         $echeckCreditResponse = $initialize->echeckCreditRequest($echeck_hash);

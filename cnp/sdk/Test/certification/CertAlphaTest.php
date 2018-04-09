@@ -30,6 +30,8 @@ use cnp\sdk\XmlParser;
 
 require_once realpath(__DIR__) . '/../../../../vendor/autoload.php';
 
+define('PRELIVE_URL', 'https://payments.vantivprelive.com/vap/communicator/online');
+
 class CertAlphaTest extends \PHPUnit_Framework_TestCase
 {
     function test_1_Auth()
@@ -51,7 +53,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'expDate' => '0112',
                 'cardValidationNum' => '349',
                 'type' => 'VI'),
-        'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+        'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
@@ -64,7 +66,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         $capture_hash = array(
             'cnpTxnId' => (XmlParser::getNode($authorizationResponse, 'cnpTxnId')),
             'reportGroup' => 'planets', 'id' => '1211',
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $captureResponse = $initialize->captureRequest($capture_hash);
         $this->assertEquals('000', XmlParser::getNode($captureResponse, 'response'));
@@ -74,7 +76,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         $credit_hash = array(
             'cnpTxnId' => (XmlParser::getNode($captureResponse, 'cnpTxnId')),
             'reportGroup' => 'planets', 'id' => '1211',
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($credit_hash);
         $this->assertEquals('000', XmlParser::getNode($creditResponse, 'response'));
@@ -84,7 +86,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         $void_hash = array(
             'cnpTxnId' => (XmlParser::getNode($creditResponse, 'cnpTxnId')),
             'reportGroup' => 'planets', 'id' => '1211',
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $voidResponse = $initialize->voidRequest($void_hash);
         $this->assertEquals('000', XmlParser::getNode($voidResponse, 'response'));
@@ -109,7 +111,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'expDate' => '0112',
                 'cardValidationNum' => '349',
                 'type' => 'VI'),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
@@ -137,7 +139,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'expDate' => '0112',
                 'cardValidationNum' => '349',
                 'type' => 'VI'),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($sale_hash);
         $this->assertEquals('000', XmlParser::getNode($saleResponse, 'response'));
@@ -149,7 +151,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         $credit_hash = array(
             'cnpTxnId' => (XmlParser::getNode($saleResponse, 'cnpTxnId')),
             'reportGroup' => 'planets', 'id' => '1211',
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($credit_hash);
         $this->assertEquals('000', XmlParser::getNode($creditResponse, 'response'));
@@ -158,7 +160,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         $void_hash = array(
             'cnpTxnId' => (XmlParser::getNode($creditResponse, 'cnpTxnId')),
             'reportGroup' => 'planets', 'id' => '1211',
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $voidResponse = $initialize->voidRequest($void_hash);
         $this->assertEquals('000', XmlParser::getNode($voidResponse, 'response'));
@@ -184,7 +186,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'expDate' => '0212',
                 'cardValidationNum' => '261',
                 'type' => 'MC'),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online'
+            'url' => PRELIVE_URL
             //TODO 3-D Secure transaction not supported by merchant
             //'cardholderAuthentication' => array('authenticationValue'=>'BwABBJQ1AgAAAAAgJDUCAAAAAAA=' )
         );
@@ -201,7 +203,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         $capture_hash = array('id' => '1211',
             'cnpTxnId' => (XmlParser::getNode($authorizationResponse, 'cnpTxnId')),
             'reportGroup' => 'planets',
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $captureResponse = $initialize->captureRequest($capture_hash);
         $this->assertEquals('000', XmlParser::getNode($captureResponse, 'response'));
@@ -211,7 +213,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         $credit_hash = array('id' => '1211',
             'cnpTxnId' => (XmlParser::getNode($captureResponse, 'cnpTxnId')),
             'reportGroup' => 'planets',
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($credit_hash);
         $this->assertEquals('000', XmlParser::getNode($creditResponse, 'response'));
@@ -221,7 +223,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         $void_hash = array('id' => '1211',
             'cnpTxnId' => (XmlParser::getNode($creditResponse, 'cnpTxnId')),
             'reportGroup' => 'planets',
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $voidResponse = $initialize->voidRequest($void_hash);
         $this->assertEquals('000', XmlParser::getNode($voidResponse, 'response'));
@@ -247,7 +249,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'expDate' => '0212',
                 'cardValidationNum' => '261',
                 'type' => 'MC'),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online'
+            'url' => PRELIVE_URL
             //TODO run against prelive for certification
             //'cardholderAuthentication' => array('authenticationValue'=>'BwABBJQ1AgAAAAAgJDUCAAAAAAA=' )
         );
@@ -281,7 +283,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'cardValidationNum' => '261',
                 'type' => 'MC'),
             'cardholderAuthentication' => array('authenticationValue' => 'BwABBJQ1AgAAAAAgJDUCAAAAAAA='),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
 
         $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($sale_hash);
@@ -296,7 +298,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         $credit_hash = array('id' => '1211',
             'cnpTxnId' => (XmlParser::getNode($saleResponse, 'cnpTxnId')),
             'reportGroup' => 'planets',
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($credit_hash);
         $this->assertEquals('000', XmlParser::getNode($creditResponse, 'response'));
@@ -306,7 +308,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         $void_hash = array('id' => '1211',
             'cnpTxnId' => (XmlParser::getNode($creditResponse, 'cnpTxnId')),
             'reportGroup' => 'planets',
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $voidResponse = $initialize->voidRequest($void_hash);
         $this->assertEquals('000', XmlParser::getNode($voidResponse, 'response'));
@@ -331,7 +333,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'expDate' => '0312',
                 'type' => 'DI',
                 'cardValidationNum' => '758'),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
 
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
@@ -345,7 +347,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         $capture_hash = array('id' => '1211',
             'cnpTxnId' => (XmlParser::getNode($authorizationResponse, 'cnpTxnId')),
             'reportGroup' => 'planets', 'id' => '1211',
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $captureResponse = $initialize->captureRequest($capture_hash);
         $this->assertEquals('000', XmlParser::getNode($captureResponse, 'response'));
@@ -355,7 +357,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         $credit_hash = array('id' => '1211',
             'cnpTxnId' => (XmlParser::getNode($captureResponse, 'cnpTxnId')),
             'reportGroup' => 'planets',
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($credit_hash);
         $this->assertEquals('000', XmlParser::getNode($creditResponse, 'response'));
@@ -365,7 +367,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         $void_hash = array('id' => '1211',
             'cnpTxnId' => (XmlParser::getNode($creditResponse, 'cnpTxnId')),
             'reportGroup' => 'planets',
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $voidResponse = $initialize->voidRequest($void_hash);
         $this->assertEquals('000', XmlParser::getNode($voidResponse, 'response'));
@@ -390,7 +392,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'expDate' => '0312',
                 'type' => 'DI',
                 'cardValidationNum' => '758'),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
@@ -418,7 +420,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'expDate' => '0312',
                 'type' => 'DI',
                 'cardValidationNum' => '758'),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
 
         $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($sale_hash);
@@ -432,7 +434,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         $credit_hash = array('id' => '1211',
             'cnpTxnId' => (XmlParser::getNode($saleResponse, 'cnpTxnId')),
             'reportGroup' => 'planets',
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($credit_hash);
         $this->assertEquals('000', XmlParser::getNode($creditResponse, 'response'));
@@ -442,7 +444,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         $void_hash = array('id' => '1211',
             'cnpTxnId' => (XmlParser::getNode($creditResponse, 'cnpTxnId')),
             'reportGroup' => 'planets',
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $voidResponse = $initialize->voidRequest($void_hash);
         $this->assertEquals('000', XmlParser::getNode($voidResponse, 'response'));
@@ -466,7 +468,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'number' => '375001000000005',
                 'expDate' => '0412',
                 'type' => 'AX'),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
 
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
@@ -480,7 +482,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         $capture_hash = array('id' => '1211',
             'cnpTxnId' => (XmlParser::getNode($authorizationResponse, 'cnpTxnId')),
             'reportGroup' => 'planets',
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $captureResponse = $initialize->captureRequest($capture_hash);
         $this->assertEquals('000',XmlParser::getNode($captureResponse,'response'));
@@ -490,7 +492,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         $credit_hash = array('id' => '1211',
             'cnpTxnId' => (XmlParser::getNode($captureResponse, 'cnpTxnId')),
             'reportGroup' => 'planets',
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($credit_hash);
         $this->assertEquals('000', XmlParser::getNode($creditResponse, 'response'));
@@ -500,7 +502,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         $void_hash = array('id' => '1211',
             'cnpTxnId' => (XmlParser::getNode($creditResponse, 'cnpTxnId')),
             'reportGroup' => 'planets',
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $voidResponse = $initialize->voidRequest($void_hash);
         $this->assertEquals('000', XmlParser::getNode($voidResponse, 'response'));
@@ -524,7 +526,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'number' => '375001000000005',
                 'expDate' => '0412',
                 'type' => 'AX'),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
 
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
@@ -552,7 +554,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'number' => '375001000000005',
                 'expDate' => '0412',
                 'type' => 'AX'),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
 
         $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($sale_hash);
@@ -567,7 +569,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         $credit_hash = array('id' => '1211',
             'cnpTxnId' => (XmlParser::getNode($saleResponse, 'cnpTxnId')),
             'reportGroup' => 'planets',
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($credit_hash);
         $this->assertEquals('000', XmlParser::getNode($creditResponse, 'response'));
@@ -577,7 +579,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         $void_hash = array('id' => '1211',
             'cnpTxnId' => (XmlParser::getNode($creditResponse, 'cnpTxnId')),
             'reportGroup' => 'planets',
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $voidResponse = $initialize->voidRequest($void_hash);
         $this->assertEquals('000', XmlParser::getNode($voidResponse, 'response'));
@@ -596,7 +598,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'cardValidationNum' => '463',
                 'type' => 'VI'),
             'cardholderAuthentication' => array('authenticationValue'=> 'BwABBJQ1AgAAAAAgJDUCAAAAAAA='),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online'
+            'url' => PRELIVE_URL
         );
 
         $initialize = new CnpOnlineRequest();
@@ -611,7 +613,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         $capture_hash = array('id' => '1211',
             'cnpTxnId' => (XmlParser::getNode($authorizationResponse, 'cnpTxnId')),
             'reportGroup' => 'planets',
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $captureResponse = $initialize->captureRequest($capture_hash);
         $this->assertEquals('000', XmlParser::getNode($captureResponse, 'response'));
@@ -621,7 +623,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         $credit_hash = array('id' => '1211',
             'cnpTxnId' => (XmlParser::getNode($captureResponse, 'cnpTxnId')),
             'reportGroup' => 'planets',
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($credit_hash);
         $this->assertEquals('000', XmlParser::getNode($creditResponse, 'response'));
@@ -631,7 +633,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         $void_hash = array('id' => '1211',
             'cnpTxnId' => (XmlParser::getNode($creditResponse, 'cnpTxnId')),
             'reportGroup' => 'planets',
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $voidResponse = $initialize->voidRequest($void_hash);
         $this->assertEquals('000', XmlParser::getNode($voidResponse, 'response'));
@@ -650,7 +652,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'cardValidationNum' => '463',
                 'type' => 'VI'),
             'cardholderAuthentication' => array('authenticationValue'=> 'BwABBJQ1AgAAAAAgJDUCAAAAAAA='),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online'
+            'url' => PRELIVE_URL
         );
 
         $initialize = new CnpOnlineRequest();
@@ -674,7 +676,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'cardValidationNum' => '463',
                 'type' => 'VI'),
             'cardholderAuthentication' => array('authenticationValue'=> 'BwABBJQ1AgAAAAAgJDUCAAAAAAA='),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online'
+            'url' => PRELIVE_URL
         );
 
         $initialize = new CnpOnlineRequest();
@@ -689,7 +691,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         $credit_hash = array('id' => '1211',
             'cnpTxnId' => (XmlParser::getNode($saleResponse, 'cnpTxnId')),
             'reportGroup' => 'planets',
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($credit_hash);
         $this->assertEquals('000', XmlParser::getNode($creditResponse, 'response'));
@@ -699,7 +701,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         $void_hash = array('id' => '1211',
             'cnpTxnId' => (XmlParser::getNode($creditResponse, 'cnpTxnId')),
             'reportGroup' => 'planets',
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online');
+            'url' => PRELIVE_URL);
         $initialize = new CnpOnlineRequest();
         $voidResponse = $initialize->voidRequest($void_hash);
         $this->assertEquals('000', XmlParser::getNode($voidResponse, 'response'));
@@ -718,7 +720,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'country' => 'NL'
             ),
             'ideal' => array(),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online'
+            'url' => PRELIVE_URL
         );
 
         $initialize = new CnpOnlineRequest();
@@ -739,7 +741,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'country' => 'US'
             ),
             'ideal' => array(),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online'
+            'url' => PRELIVE_URL
         );
 
         $initialize = new CnpOnlineRequest();
@@ -760,7 +762,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'country' => 'DE'
             ),
             'giropay' => array(),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online'
+            'url' => PRELIVE_URL
         );
 
         $initialize = new CnpOnlineRequest();
@@ -781,7 +783,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'country' => 'US'
             ),
             'giropay' => array(),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online'
+            'url' => PRELIVE_URL
         );
 
         $initialize = new CnpOnlineRequest();
@@ -800,7 +802,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'country' => 'NL'
             ),
             'sofort' => array(),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online'
+            'url' => PRELIVE_URL
         );
 
         $initialize = new CnpOnlineRequest();
@@ -821,7 +823,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'country' => 'US'
             ),
             'sofort' => array(),
-            'url' => 'https://payments.vantivprelive.com/vap/communicator/online'
+            'url' => PRELIVE_URL
         );
 
         $initialize = new CnpOnlineRequest();
