@@ -42,7 +42,7 @@ If you are using a composer to manage your dependencies, you can do the followin
 > php Setup.php
 
 4) Run the attached sample:
-```
+```php
 <?php
 require_once _DIR_.'/vendor/autoload.php';
 #sale
