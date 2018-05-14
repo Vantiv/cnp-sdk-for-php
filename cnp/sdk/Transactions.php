@@ -35,6 +35,7 @@ class Transactions {
             'amexAggregatorData' => XmlFields::amexAggregatorData ( XmlFields::returnArrayValue ( $hash_in, 'amexAggregatorData' ) ),
             'allowPartialAuth' => XmlFields::returnArrayValue ( $hash_in, 'allowPartialAuth' ),
             'healthcareIIAS' => XmlFields::healthcareIIAS ( XmlFields::returnArrayValue ( $hash_in, 'healthcareIIAS' ) ),
+            'lodgingInfo' => XmlFields::lodgingInfo(XmlFields::returnArrayValue($hash_in, 'lodgingInfo')),
             'filtering' => XmlFields::filteringType ( XmlFields::returnArrayValue ( $hash_in, 'filtering' ) ),
             'merchantData' => XmlFields::merchantData ( XmlFields::returnArrayValue ( $hash_in, 'merchantData' ) ),
             'recyclingRequest' => XmlFields::recyclingRequestType ( XmlFields::returnArrayValue ( $hash_in, 'recyclingRequest' ) ),
@@ -47,8 +48,7 @@ class Transactions {
             'processingType' => XmlFields::returnArrayValue ( $hash_in, 'processingType' ),
             'originalNetworkTransactionId' => XmlFields::returnArrayValue ( $hash_in, 'originalNetworkTransactionId' ),
             'originalTransactionAmount' => XmlFields::returnArrayValue ( $hash_in, 'originalTransactionAmount' ),
-            'pinlessDebitRequest' => XmlFields::pinlessDebitRequest(XmlFields::returnArrayValue ( $hash_in, 'pinlessDebitRequest' )),
-            'lodgingInfo' => XmlFields::lodgingInfo(XmlFields::returnArrayValue($hash_in, 'lodgingInfo'))
+            'pinlessDebitRequest' => XmlFields::pinlessDebitRequest(XmlFields::returnArrayValue ( $hash_in, 'pinlessDebitRequest' ))
         );
 
         return $hash_out;
@@ -79,14 +79,14 @@ class Transactions {
             'amexAggregatorData' => (XmlFields::amexAggregatorData ( XmlFields::returnArrayValue ( $hash_in, 'amexAggregatorData' ) )),
             'allowPartialAuth' => XmlFields::returnArrayValue ( $hash_in, 'allowPartialAuth' ),
             'healthcareIIAS' => (XmlFields::healthcareIIAS ( XmlFields::returnArrayValue ( $hash_in, 'healthcareIIAS' ) )),
+            'lodgingInfo' => XmlFields::lodgingInfo(XmlFields::returnArrayValue($hash_in, 'lodgingInfo')),
             'filtering' => (XmlFields::filteringType ( XmlFields::returnArrayValue ( $hash_in, 'filtering' ) )),
             'merchantData' => (XmlFields::merchantData ( XmlFields::returnArrayValue ( $hash_in, 'merchantData' ) )),
             'recyclingRequest' => (XmlFields::recyclingRequestType ( XmlFields::returnArrayValue ( $hash_in, 'recyclingRequest' ) )),
             'fraudFilterOverride' => XmlFields::returnArrayValue ( $hash_in, 'fraudFilterOverride' ),
             'recurringRequest' => XmlFields::recurringRequestType ( XmlFields::returnArrayValue ( $hash_in, 'recurringRequest' ) ),
             'debtRepayment' => XmlFields::returnArrayValue ( $hash_in, 'debtRepayment' ),
-            'advancedFraudChecks'=>XmlFields::advancedFraudChecksType(XmlFields::returnArrayValue($hash_in,'advancedFraudChecks')),
-            'lodgingInfo' => XmlFields::lodgingInfo(XmlFields::returnArrayValue($hash_in, 'lodgingInfo'))
+            'advancedFraudChecks'=>XmlFields::advancedFraudChecksType(XmlFields::returnArrayValue($hash_in,'advancedFraudChecks'))
         );
 
         return $hash_out;
@@ -135,12 +135,12 @@ class Transactions {
             'taxBilling' => XmlFields::taxBilling ( XMLFields::returnArrayValue ( $hash_in, 'taxBilling' ) ),
             'billMeLaterRequest' => XmlFields::billMeLaterRequest ( XMLFields::returnArrayValue ( $hash_in, 'billMeLaterRequest' ) ),
             'enhancedData' => XmlFields::enhancedData ( XMLFields::returnArrayValue ( $hash_in, 'enhancedData' ) ),
+            'lodgingInfo' => XmlFields::lodgingInfo(XmlFields::returnArrayValue($hash_in, 'lodgingInfo')),
             'processingInstructions' => XmlFields::processingInstructions ( XMLFields::returnArrayValue ( $hash_in, 'processingInstructions' ) ),
             'pos' => XmlFields::pos ( XMLFields::returnArrayValue ( $hash_in, 'pos' ) ),
             'amexAggregatorData' => XmlFields::amexAggregatorData ( XMLFields::returnArrayValue ( $hash_in, 'amexAggregatorData' ) ),
             'payPalNotes' => XmlFields::returnArrayValue ( $hash_in, 'payPalNotes' ),
-            'actionReason' => XmlFields::returnArrayValue ( $hash_in, 'actionReason' ),
-            'lodgingInfo' => XmlFields::lodgingInfo(XmlFields::returnArrayValue($hash_in, 'lodgingInfo'))
+            'actionReason' => XmlFields::returnArrayValue ( $hash_in, 'actionReason' )
         );
 
         return $hash_out;
@@ -185,12 +185,12 @@ class Transactions {
             'customBilling' => XmlFields::customBilling ( XmlFields::returnArrayValue ( $hash_in, 'customBilling' ) ),
             'taxBilling' => XmlFields::taxBilling ( XmlFields::returnArrayValue ( $hash_in, 'taxBilling' ) ),
             'enhancedData' => XmlFields::enhancedData ( XmlFields::returnArrayValue ( $hash_in, 'enhancedData' ) ),
+            'lodgingInfo' => XmlFields::lodgingInfo(XmlFields::returnArrayValue($hash_in, 'lodgingInfo')),
             'processingInstructions' => XmlFields::processingInstructions ( XmlFields::returnArrayValue ( $hash_in, 'processingInstructions' ) ),
             'pos' => XmlFields::pos ( XmlFields::returnArrayValue ( $hash_in, 'pos' ) ),
             'amexAggregatorData' => XmlFields::amexAggregatorData ( XmlFields::returnArrayValue ( $hash_in, 'amexAggregatorData' ) ),
             'merchantData' => (XmlFields::merchantData ( XmlFields::returnArrayValue ( $hash_in, 'merchantData' ) )),
-            'debtRepayment' => XmlFields::returnArrayValue ( $hash_in, 'debtRepayment' ),
-            'lodgingInfo' => XmlFields::lodgingInfo(XmlFields::returnArrayValue($hash_in, 'lodgingInfo'))
+            'debtRepayment' => XmlFields::returnArrayValue ( $hash_in, 'debtRepayment' )
         );
 
         return $hash_out;
@@ -206,7 +206,8 @@ class Transactions {
             'processingInstructions' => XmlFields::processingInstructions ( XmlFields::returnArrayValue ( $hash_in, 'processingInstructions' ) ),
             'payPalOrderComplete' => XmlFields::returnArrayValue ( $hash_in, 'payPalOrderComplete' ),
             'payPalNotes' => XmlFields::returnArrayValue ( $hash_in, 'payPalNotes' ),
-            'lodgingInfo' => XmlFields::lodgingInfo(XmlFields::returnArrayValue($hash_in, 'lodgingInfo'))
+            'lodgingInfo' => XmlFields::lodgingInfo(XmlFields::returnArrayValue($hash_in, 'lodgingInfo')),
+            'pin' => XmlFields::returnArrayValue($hash_in, 'pin', 12)
         );
 
         return $hash_out;
@@ -242,12 +243,12 @@ class Transactions {
             'taxBilling' => XmlFields::taxBilling ( XmlFields::returnArrayValue ( $hash_in, 'taxBilling' ) ),
             'billMeLaterRequest' => XmlFields::billMeLaterRequest ( XmlFields::returnArrayValue ( $hash_in, 'billMeLaterRequest' ) ),
             'enhancedData' => XmlFields::enhancedData ( XmlFields::returnArrayValue ( $hash_in, 'enhancedData' ) ),
+            'lodgingInfo' => XmlFields::lodgingInfo(XmlFields::returnArrayValue($hash_in, 'lodgingInfo')),
             'processingInstructions' => XmlFields::processingInstructions ( XmlFields::returnArrayValue ( $hash_in, 'processingInstructions' ) ),
             'pos' => XmlFields::pos ( XmlFields::returnArrayValue ( $hash_in, 'pos' ) ),
             'amexAggregatorData' => XmlFields::amexAggregatorData ( XmlFields::returnArrayValue ( $hash_in, 'amexAggregatorData' ) ),
             'merchantData' => (XmlFields::merchantData ( XmlFields::returnArrayValue ( $hash_in, 'merchantData' ) )),
-            'debtRepayment' => XmlFields::returnArrayValue ( $hash_in, 'debtRepayment' ),
-            'lodgingInfo' => XmlFields::lodgingInfo(XmlFields::returnArrayValue($hash_in, 'lodgingInfo'))
+            'debtRepayment' => XmlFields::returnArrayValue ( $hash_in, 'debtRepayment' )
         );
 
         return $hash_out;
