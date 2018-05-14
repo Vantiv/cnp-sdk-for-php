@@ -310,8 +310,8 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
-        $response = XmlParser::getNode($authorizationResponse, 'networkTransactionId');
-        $this->assertEquals('63225578415568556365452427825', $response);
+        $this->assertEquals("000", XmlParser::getNode($authorizationResponse, 'response'));
+        $this->assertEquals("Approved", XmlParser::getNode($authorizationResponse, 'message'));
     }
 
     public function test_simple_auth_with_enhancedAuthResponse()
