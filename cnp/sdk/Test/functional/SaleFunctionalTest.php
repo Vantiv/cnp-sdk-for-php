@@ -350,8 +350,8 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($hash_in);
-        $response = XmlParser::getNode($saleResponse, 'networkTransactionId');
-        $this->assertEquals('63225578415568556365452427825', $response);
+        $this->assertEquals("000", XmlParser::getNode($saleResponse, 'response'));
+        $this->assertEquals("Approved", XmlParser::getNode($saleResponse, 'message'));
     }
 
     public function test_sale_with_detail_tax_multiple()
