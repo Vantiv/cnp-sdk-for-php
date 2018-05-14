@@ -56,6 +56,9 @@ class BatchRequest
                 'count' => 0,
                 'amount' => 0
             ),
+            'translateToLowValueTokenRequest' => array(
+                'count' => 0
+            ),
             'capture' => array(
                 'count' => 0,
                 'amount' => 0
@@ -556,6 +559,13 @@ class BatchRequest
         $this->addTransaction($hash_out, $hash_in, 'physicalCheckCredit');
         $this->counts_and_amounts ['physicalCheckCredit'] ['count'] += 1;
         $this->counts_and_amounts ['physicalCheckCredit'] ['amount'] += $hash_out ['amount'];
+    }
+
+    public function addTranslateToLowValueTokenRequest($hash_in)
+    {
+        $hash_out = Transactions::createTranslateToLowValueTokenHash($hash_in);
+        $this->addTransaction($hash_out, $hash_in, 'translateToLowValueTokenRequest');
+        $this->counts_and_amounts ['translateToLowValueTokenRequest'] ['count'] += 1;
     }
 
     public function addSubmerchantDebit($hash_in)

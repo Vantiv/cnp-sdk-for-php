@@ -389,6 +389,32 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertRegExp('/Error validating xml data against the schema/', $message);
     }
 
+    public function test_simple_auth_with_lodging()
+    {
+        $hash_in = array(
+            'card' => array('type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1213',
+                'cardValidationNum' => '1213'),
+            'id' => '1231234',
+            'orderId' => '2111',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '0',
+            'lodgingInfo' => array(
+                'roomRate' => '1234',
+                'roomTax' => '12',
+                'numAdults' => '5',
+                'lodgingCharge0' => array('name' => 'OTHER'),
+                'lodgingCharge1' => array('name' => 'GIFTSHOP')
+            ));
+
+        $initialize = new CnpOnlineRequest();
+        $authorizationResponse = $initialize->authorizationRequest($hash_in);
+        $response = XmlParser::getAttribute($authorizationResponse, 'cnpOnlineResponse', 'response');
+        $this->assertEquals('000', $response);
+    }
+
     public function test_recurring_request()
     {
         $hash_in = array('id' => 'id',

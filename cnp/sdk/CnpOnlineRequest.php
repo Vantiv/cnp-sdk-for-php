@@ -108,7 +108,7 @@ class CnpOnlineRequest
 			'advancedFraudChecks' => XmlFields::advancedFraudChecksType ( XmlFields::returnArrayValue ( $hash_in, 'advancedFraudChecks' ) ),
 			'processingType' => XmlFields::returnArrayValue ( $hash_in, 'processingType' ),
 			'originalNetworkTransactionId' => XmlFields::returnArrayValue ( $hash_in, 'originalNetworkTransactionId' ),
-			'originalTransactionAmount' => XmlFields::returnArrayValue ( $hash_in, 'originalTransactionAmount' ),		
+			'originalTransactionAmount' => XmlFields::returnArrayValue ( $hash_in, 'originalTransactionAmount' ), 'lodgingInfo' => XmlFields::lodgingInfo(XmlFields::returnArrayValue($hash_in, 'lodgingInfo'))
             );
         }
         $choice_hash = array(XmlFields::returnArrayValue($hash_out,'card'),XmlFields::returnArrayValue($hash_out,'paypal'),XmlFields::returnArrayValue($hash_out,'token'),XmlFields::returnArrayValue($hash_out,'paypage'),XmlFields::returnArrayValue($hash_out,'applepay'),XmlFields::returnArrayValue($hash_out,'mpos'));
@@ -165,7 +165,8 @@ class CnpOnlineRequest
             'processingType' => XmlFields::returnArrayValue ( $hash_in, 'processingType' ),
         	'originalNetworkTransactionId' => XmlFields::returnArrayValue ( $hash_in, 'originalNetworkTransactionId' ),
         	'originalTransactionAmount' => XmlFields::returnArrayValue ( $hash_in, 'originalTransactionAmount' ),
-            'routingPreference' => XmlFields::returnArrayValue ( $hash_in, 'routingPreference' )
+            'pinlessDebitRequest' => XmlFields::pinlessDebitRequest(XmlFields::returnArrayValue ( $hash_in, 'pinlessDebitRequest' )),
+            'lodgingInfo' => XmlFields::lodgingInfo(XmlFields::returnArrayValue($hash_in, 'lodgingInfo'))
         );
 
         $choice_hash = array($hash_out['card'],$hash_out['paypal'],$hash_out['token'],$hash_out['paypage'],$hash_out['applepay'],$hash_out['mpos']);
@@ -246,7 +247,8 @@ class CnpOnlineRequest
                     'pos'=>XmlFields::pos(XMLFields::returnArrayValue($hash_in, 'pos')),
                     'amexAggregatorData'=>XmlFields::amexAggregatorData(XMLFields::returnArrayValue($hash_in, 'amexAggregatorData')),
                     'payPalNotes' =>XmlFields::returnArrayValue($hash_in, 'payPalNotes'),
-                    'actionReason'=>XmlFields::returnArrayValue($hash_in, 'actionReason')
+                    'actionReason'=>XmlFields::returnArrayValue($hash_in, 'actionReason'),
+                    'lodgingInfo' => XmlFields::lodgingInfo(XmlFields::returnArrayValue($hash_in, 'lodgingInfo'))
         );
 
         $choice_hash = array($hash_out['card'],$hash_out['paypal'],$hash_out['token'],$hash_out['paypage'],$hash_out['mpos']);
@@ -311,7 +313,8 @@ class CnpOnlineRequest
             'amexAggregatorData'=>XmlFields::amexAggregatorData(XmlFields::returnArrayValue($hash_in,'amexAggregatorData')),
             'merchantData'=>(XmlFields::merchantData(XmlFields::returnArrayValue($hash_in,'merchantData'))),
             'debtRepayment'=>XmlFields::returnArrayValue($hash_in,'debtRepayment'),
-        	'processingType'=>XmlFields::returnArrayValue($hash_in,'processingType')
+        	'processingType'=>XmlFields::returnArrayValue($hash_in,'processingType'),
+            'lodgingInfo' => XmlFields::lodgingInfo(XmlFields::returnArrayValue($hash_in, 'lodgingInfo'))
         );
 
         $choice_hash = array(XmlFields::returnArrayValue($hash_out,'card'),XmlFields::returnArrayValue($hash_out,'paypal'),XmlFields::returnArrayValue($hash_out,'token'),XmlFields::returnArrayValue($hash_out,'paypage'),XmlFields::returnArrayValue($hash_out,'mpos'));
@@ -332,7 +335,8 @@ class CnpOnlineRequest
         'processingInstructions'=>XmlFields::processingInstructions(XmlFields::returnArrayValue($hash_in,'processingInstructions')),
         'payPalOrderComplete'=>XmlFields::returnArrayValue($hash_in,'payPalOrderComplete'),
         'payPalNotes' =>XmlFields::returnArrayValue($hash_in,'payPalNotes'),
-        'pin' =>XmlFields::returnArrayValue($hash_in,'pin')
+        'pin' =>XmlFields::returnArrayValue($hash_in,'pin'),
+        'lodgingInfo' => XmlFields::lodgingInfo(XmlFields::returnArrayValue($hash_in, 'lodgingInfo'))
         );
         $captureResponse = $this->processRequest($hash_out,$hash_in,'capture');
 
@@ -366,7 +370,8 @@ class CnpOnlineRequest
             'debtRepayment'=>XmlFields::returnArrayValue($hash_in,'debtRepayment'),
         	'processingType' => XmlFields::returnArrayValue ( $hash_in, 'processingType' ),
         	'originalNetworkTransactionId' => XmlFields::returnArrayValue ( $hash_in, 'originalNetworkTransactionId' ),
-        	'originalTransactionAmount' => XmlFields::returnArrayValue ( $hash_in, 'originalTransactionAmount' )
+        	'originalTransactionAmount' => XmlFields::returnArrayValue ( $hash_in, 'originalTransactionAmount' ),
+            'lodgingInfo' => XmlFields::lodgingInfo(XmlFields::returnArrayValue($hash_in, 'lodgingInfo'))
         );
 
         $choice_hash = array($hash_out['card'],$hash_out['token'],$hash_out['paypage'],$hash_out['mpos']);
@@ -534,6 +539,20 @@ class CnpOnlineRequest
 
         return $response;
     }
+
+
+    public function translateToLowValueTokenRequest($hash_in)
+    {
+        $hash_out = array(
+                'orderId' => XmlFields::returnArrayValue($hash_in, 'orderId', 25),
+                'token' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'token', 512))
+        );
+        $response = $this->processRequest($hash_out, $hash_in, 'translateToLowValueTokenRequest');
+
+        return $response;
+    }
+
+
     public function deactivateReversalRequest($hash_in)
     {
         $hash_out = array(
@@ -670,7 +689,8 @@ class CnpOnlineRequest
     			'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
     			'origId'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'origId')),
     			'origActionType'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'origActionType')),
-    			'origLitleTxnId'=>XmlFields::returnArrayValue($hash_in,'origLitleTxnId')
+    			'origLitleTxnId'=>XmlFields::returnArrayValue($hash_in,'origLitleTxnId'),
+                'showStatusOnly' => XmlFields::returnArrayValue($hash_in, 'showStatusOnly')
     	);
     	$queryTransactionResponse = $this->processRequest($hash_out,$hash_in,"queryTransaction");
     
@@ -684,7 +704,10 @@ class CnpOnlineRequest
     			'advancedFraudChecks'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'advancedFraudChecks')),
     			'billToAddress' => XmlFields::contact ( XmlFields::returnArrayValue ( $hash_in, 'billToAddress' ) ),
     			'shipToAddress' => XmlFields::contact ( XmlFields::returnArrayValue ( $hash_in, 'shipToAddress' ) ),
-    			'amount' => ( XmlFields::returnArrayValue ( $hash_in, 'amount' ) )
+    			'amount' => ( XmlFields::returnArrayValue ( $hash_in, 'amount' ) ),
+                'eventType' => XmlFields::returnArrayValue( $hash_in, 'eventType'),
+                'accountLogin' => XmlFields::returnArrayValue($hash_in, 'accountLogin'),
+                'accountPasshash' => XmlFields::returnArrayValue($hash_in, 'accountPasshash')
     	);
     	$fraudCheckResponse = $this->processRequest($hash_out,$hash_in,"fraudCheck");
     	

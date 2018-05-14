@@ -63,7 +63,7 @@ class Obj2xml
             }
         };
         unset($data['id']);
-        
+
         Obj2xml::iterateChildren($data,$transacType);
 
         return $xml->asXML();
@@ -139,6 +139,8 @@ class Obj2xml
         $xml->addAttribute('numGiftCardCredits', $counts_and_amounts['giftCardCredit']['count']);
 
         $xml->addAttribute('numTokenRegistrations', $counts_and_amounts['tokenRegistration']['count']);
+
+        $xml->addAttribute('numTranslateToLowValueTokenRequests', $counts_and_amounts['translateToLowValueTokenRequest']['count']);
 
         $xml->addAttribute('captureGivenAuthAmount', $counts_and_amounts['captureGivenAuth']['amount']);
         $xml->addAttribute('numCaptureGivenAuths', $counts_and_amounts['captureGivenAuth']['count']);
@@ -237,6 +239,7 @@ class Obj2xml
     {
 
         foreach ($data as $key => $value) {
+            //print $key . " " . $value . "\n";
             if ($value === "REQUIRED") {
                 throw new \InvalidArgumentException("Missing Required Field: /$key/");
             } elseif (substr($key, 0, 12) === 'lineItemData') {
@@ -245,6 +248,30 @@ class Obj2xml
             } elseif (substr($key,0,-1) == 'detailTax') {
                 $temp_node = $transacType->addChild('detailTax');
                 Obj2xml::iterateChildren($value,$temp_node);
+            } elseif (substr($key,0,14) == 'createDiscount' and $value != null) {
+                $temp_node = $transacType->addChild('createDiscount');
+                Obj2xml::iterateChildren($value,$temp_node);
+            } elseif (substr($key,0,14) == 'updateDiscount') {
+                $temp_node = $transacType->addChild('updateDiscount');
+                Obj2xml::iterateChildren($value,$temp_node);
+            } elseif (substr($key,0,14) == 'deleteDiscount') {
+                $temp_node = $transacType->addChild('deleteDiscount');
+                Obj2xml::iterateChildren($value,$temp_node);
+            } elseif (substr($key,0,11) == 'createAddOn' and $value != null) {
+                $temp_node = $transacType->addChild('createAddOn');
+                Obj2xml::iterateChildren($value,$temp_node);
+            } elseif (substr($key,0,11) == 'updateAddOn') {
+                $temp_node = $transacType->addChild('updateAddOn');
+                Obj2xml::iterateChildren($value,$temp_node);
+            } elseif (substr($key,0,11) == 'deleteAddOn') {
+                $temp_node = $transacType->addChild('deleteAddOn');
+                Obj2xml::iterateChildren($value,$temp_node);
+            } elseif (substr($key,0,-1) == 'lodgingCharge') {
+                $temp_node = $transacType->addChild('lodgingCharge');
+                Obj2xml::iterateChildren($value,$temp_node);
+            } elseif (substr($key,0,16) == 'debitNetworkName') {
+                //$temp_node = $transacType->addChild('debitNetworkName');
+                $transacType->addChild('debitNetworkName',str_replace('&','&amp;',$value));
             } elseif (((is_string($value)) || is_numeric($value))) {
                 $transacType->addChild($key,str_replace('&','&amp;',$value));
             } elseif (is_array($value)) {

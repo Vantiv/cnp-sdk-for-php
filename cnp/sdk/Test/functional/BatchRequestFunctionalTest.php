@@ -5,12 +5,14 @@ namespace cnp\sdk\Test\functional;
 use cnp\sdk\BatchRequest;
 use cnp\sdk\CnpRequest;
 use cnp\sdk\CnpResponseProcessor;
+use cnp\sdk\Obj2xml;
 
 require_once realpath(dirname(__FILE__)) . '../../../CnpOnline.php';
 
 class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 {
     private $direct;
+    private $config;
 
     public function setUp()
     {
@@ -18,6 +20,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         if (!file_exists($this->direct)) {
             mkdir($this->direct);
         }
+        $this->config = Obj2xml::getConfig(array(
+            'batch_requests_path' => $this->direct,
+            'cnp_requests_path' => $this->direct
+        ));
     }
 
     public function test_simpleAddTransaction()
@@ -747,10 +753,28 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
                 'expDate' => '1213',
                 'cardValidationNum' => '1213'
             ),
-            'billingDate' => '2013-12-17'
+            'billingDate' => '2013-12-17',
+            'updateDiscount0' => array(
+                'discountCode' => 'qwertyui',
+                'name' => 'asdfg',
+                'amount' => '123',
+                'startDate' => '2018-05-11',
+                'endDate' => '2018-06-11'
+            ),
+            'updateDiscount1' => array(
+                'discountCode' => 'dis1',
+                'name' => 'asdfg2',
+                'amount' => '1234',
+                'startDate' => '2018-05-15',
+                'endDate' => '2018-06-16'
+            )
         );
         $batch_request = new BatchRequest ($this->direct);
+        //$request = new CnpRequest ($this->config);
         $batch_request->addUpdateSubscription($hash_in);
+        $batch_request->closeRequest();
+        //$request->addBatchRequest($batch_request);
+        //$request->closeRequest();
 
         $this->assertTrue(file_exists($batch_request->batch_file));
         $this->assertEquals(1, $batch_request->total_txns);
@@ -1069,7 +1093,14 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         );
         $batch->addUpdateCardValidationNumOnToken($hash_in);
 
-        $this->assertEquals(13, $batch->total_txns);
+        $hash_in = array('id' => 'id',
+            'reportGroup' => 'Planets',
+            'orderId' => '1',
+            'token' => 'fhsdjkffyriof093909'
+        );
+        $batch->addTranslateToLowValueTokenRequest($hash_in);
+
+        $this->assertEquals(14, $batch->total_txns);
         $cts = $batch->getCountsAndAmounts();
         $this->assertEquals(1, $cts ['sale'] ['count']);
         $this->assertEquals(1, $cts ['auth'] ['count']);
@@ -1082,6 +1113,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1, $cts ['echeckCredit'] ['count']);
         $this->assertEquals(1, $cts ['echeckVerification'] ['count']);
         $this->assertEquals(1, $cts ['updateCardValidationNumOnToken'] ['count']);
+        $this->assertEquals(1, $cts ['translateToLowValueTokenRequest'] ['count']);
 
         $this->assertEquals(123, $cts ['sale'] ['amount']);
         $this->assertEquals(123, $cts ['auth'] ['amount']);

@@ -676,7 +676,7 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
         $cnpTest->saleRequest($hash_in);
     }
 
-    public function test_sale_with_routingPreference()
+    public function test_sale_with_PinlessDebit()
     {
         $hash_in = array(
             'card'=>array('type'=>'VI',
@@ -687,12 +687,18 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
             'orderId'=> '2111',
             'orderSource'=>'ecommerce',
             'amount'=>'123',
-            'routingPreference' => 'pinlessDebitOnly'
+            'pinlessDebitRequest' => array(
+                'routingPreference' => 'pinlessDebitOnly',
+                'preferredDebitNetworks' => array(
+                    'debitNetworkName0' => 'VI',
+                    'debitNetworkName1' => 'MC'
+                )
+            )
         );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
             ->method('request')
-            ->with($this->matchesRegularExpression('/.*<card><type>VI.*<number>4100000000000001.*<expDate>1213.*<cardValidationNum>1213.*<routingPreference>pinlessDebitOnly.*/'));
+            ->with($this->matchesRegularExpression('/.*<card><type>VI.*<number>4100000000000001.*<expDate>1213.*<cardValidationNum>1213.*<pinlessDebitRequest>.*<routingPreference>pinlessDebitOnly.*<debitNetworkName>VI.*<debitNetworkName>MC.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;

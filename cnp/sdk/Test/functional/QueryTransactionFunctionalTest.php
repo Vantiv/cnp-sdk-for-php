@@ -53,6 +53,34 @@ class QueryTransactionFunctionalTest extends \PHPUnit_Framework_TestCase
         }
     }
 
+
+    public function testSimpleQueryTransaction_with_showStatusOnly()
+    {
+        $hash_in = array(
+            'id' => 'id',
+            'origId' => '2111',
+            'origActionType' => 'A',
+            'origCnpTxnId' => '1234',
+            'showStatusOnly' => 'Y'
+        );
+
+        $initialize = new CnpOnlineRequest();
+        $queryTransactionResponse = $initialize->queryTransaction($hash_in);
+        $response = XmlParser::getNode($queryTransactionResponse, 'response');
+        $this->assertEquals('150', $response);
+        $matchCount = XmlParser::getNode($queryTransactionResponse, 'matchCount');
+        $this->assertEquals('1', $matchCount);
+        $resultsMax10 = XmlParser::getNodeWithChildren($queryTransactionResponse, 'results_max10');
+        foreach ($resultsMax10->getElementsByTagName('authorizationResponse') as $child) {
+            $childResponse = XmlParser::getNode($child, 'response');
+            $childMessage = XmlParser::getNode($child, 'message');
+            $childOrderId = XmlParser::getNode($child, 'orderId');
+            $this->assertEquals('150', $childResponse);
+            $this->assertEquals('Original transaction found', $childMessage);
+            $this->assertEquals('GenericOrderId', $childOrderId);
+        }
+    }
+
     public function testSimpleQueryTransaction_responseUnavailable()
     {
         $hash_in = array(

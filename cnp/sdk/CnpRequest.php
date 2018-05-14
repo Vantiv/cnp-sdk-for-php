@@ -141,6 +141,15 @@ class CnpRequest
             unlink($this->batches_file);
             unset($this->batches_file);
             $this->closed = true;
+            if (isset($this->config['print_xml']) and $this->config['print_xml']){
+                $handle = @fopen($this->request_file,"r");
+                print "Request is:\n";
+                while (($buffer = fgets($handle, 4096)) !== false) {
+                    print $buffer;
+                }
+                print "\n\n";
+                fclose($handle);
+            }
         } else {
             throw new \RuntimeException("Could not open batches file at $this->batches_file. Please check your privilege.");
         }
@@ -270,6 +279,15 @@ class CnpRequest
                 $this->response_file = str_replace("request", "response", $this->response_file);
                 unset ($session);
 
+                if (isset($this->config['print_xml']) and $this->config['print_xml']){
+                    $handle = @fopen($this->response_file,"r");
+                    print "Response is :\n";
+                    while (($buffer = fgets($handle, 4096)) !== false) {
+                        print $buffer;
+                    }
+                    print "\n\n";
+                    fclose($handle);
+                }
                 return;
             } catch (\Exception $exception) {
                 $message = $exception->getMessage();

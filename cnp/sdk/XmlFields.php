@@ -306,6 +306,88 @@ class XmlFields
         }
     }
 
+
+    public static function createDiscount($hash_in)
+    {
+        if (isset($hash_in)){
+            $hash_out = array(
+                'discountCode' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, "discountCode", 25)),
+                'name' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'name', 100)),
+                'amount' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'amount', 12)),
+                'startDate' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'startDate')),
+                'endDate' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'endDate'))
+            );
+            return $hash_out;
+        }
+    }
+
+
+    public static function updateDiscount($hash_in)
+    {
+        if (isset($hash_in)){
+            $hash_out = array(
+                'discountCode' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, "discountCode", 25)),
+                'name' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'name', 100)),
+                'amount' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'amount', 12)),
+                'startDate' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'startDate')),
+                'endDate' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'endDate'))
+            );
+            return $hash_out;
+        }
+    }
+
+
+    public static function deleteDiscount($hash_in)
+    {
+        if (isset($hash_in)){
+            $hash_out = array(
+                'discountCode' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, "discountCode", 25))
+            );
+            return $hash_out;
+        }
+    }
+
+
+    public static function createAddOn($hash_in)
+    {
+        if (isset($hash_in)){
+            $hash_out = array(
+                'addOnCode'=> Checker::requiredField(XmlFields::returnArrayValue($hash_in, "addOnCode", 25)),
+                'name' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'name', 100)),
+                'amount' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'amount', 12)),
+                'startDate' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'startDate')),
+                'endDate' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'endDate'))
+            );
+            return $hash_out;
+        }
+    }
+
+    public static function updateAddOn($hash_in)
+    {
+        if (isset($hash_in)){
+            $hash_out = array(
+                'addOnCode' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, "addOnCode", 25)),
+                'name' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'name', 100)),
+                'amount' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'amount', 12)),
+                'startDate' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'startDate')),
+                'endDate' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'endDate'))
+            );
+            return $hash_out;
+        }
+    }
+
+
+    public static function deleteAddOn($hash_in)
+    {
+        if (isset($hash_in)){
+            $hash_out = array(
+                'addOnCode' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, "addOnCode", 25))
+            );
+            return $hash_out;
+        }
+    }
+
+
     public static function amexAggregatorData($hash_in)
     {
         if (isset($hash_in)) {
@@ -329,6 +411,82 @@ class XmlFields
                         "cardValidationNum"=>XmlFields::returnArrayValue($hash_in, "cardValidationNum"),
             			"pin"=>XmlFields::returnArrayValue($hash_in, "pin")
             );
+
+            return $hash_out;
+        }
+    }
+
+    public static function lodgingCharge($hash_in)
+    {
+        if (isset($hash_in)) {
+            $hash_out = array(
+                        "name" => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'name'))
+            );
+
+            return $hash_out;
+        }
+    }
+
+
+    public static function lodgingInfo($hash_in)
+    {
+        if (isset($hash_in)){
+            $hash_out = array(
+                        "hotelFolioNumber" => XmlFields::returnArrayValue($hash_in, 'hotelFolioNumber', 25),
+                        "checkInDate" => XmlFields::returnArrayValue($hash_in, 'checkInDate'),
+                        "checkOutDate" => XmlFields::returnArrayValue($hash_in, 'checkOutDate'),
+                        "duration" => XmlFields::returnArrayValue($hash_in, 'duration', 4),
+                        "customerServicePhone" => XmlFields::returnArrayValue($hash_in, 'customerServicePhone', 17),
+                        "programCode" => XmlFields::returnArrayValue($hash_in, 'programCode'),
+                        "roomRate" => XmlFields::returnArrayValue($hash_in, 'roomRate', 12),
+                        "roomTax" => XmlFields::returnArrayValue($hash_in, 'roomTax', 12),
+                        "numAdults" => XmlFields::returnArrayValue($hash_in, 'numAdults', 2),
+                        "propertyLocalPhone" => XmlFields::returnArrayValue($hash_in, 'propertyLocalPhone', 17),
+                        "fireSafetyIndicator" => XmlFields::returnArrayValue($hash_in, 'fireSafetyIndicator'),
+            );
+
+            $lodgingCharge = array();
+            foreach ($hash_in as $key => $value) {
+                if (($key == 'lodgingCharge' || $key == ('lodgingCharge' . count($lodgingCharge))) && $key != NULL) {
+                    $lodgingCharge[] = $value;
+                }
+            }
+            for ($j=0; $j<count($lodgingCharge) and $j < 6; $j++) {
+                $outIndex = ('lodgingCharge') . (string) $j;
+                $hash_out[$outIndex] = XmlFields::lodgingCharge(XmlFields::returnArrayValue($lodgingCharge,$j));
+            }
+
+            return $hash_out;
+        }
+    }
+
+    public static function pinlessDebitRequest($hash_in)
+    {
+        if (isset($hash_in)) {
+            $hash_out = array(
+                    "routingPreference" => XmlFields::returnArrayValue($hash_in, 'routingPreference'),
+                    'preferredDebitNetworks' => XmlFields::preferredDebitNetworks(XmlFields::returnArrayValue($hash_in, 'preferredDebitNetworks'))
+            );
+
+            return $hash_out;
+        }
+    }
+
+    public static function preferredDebitNetworks($hash_in)
+    {
+        if (isset($hash_in)) {
+            $hash_out = array();
+
+            $debitNetworkName = array();
+            foreach ($hash_in as $key => $value) {
+                if (($key == 'debitNetworkName' || $key == ('debitNetworkName' . count($debitNetworkName))) && $key != NULL) {
+                    $debitNetworkName[] = $value;
+                }
+            }
+            for ($j=0; $j<count($debitNetworkName) and $j < 12; $j++) {
+                $outIndex = ('debitNetworkName') . (string) $j;
+                $hash_out[$outIndex] = XmlFields::returnArrayValue($debitNetworkName,$j);
+            }
 
             return $hash_out;
         }
@@ -584,7 +742,8 @@ class XmlFields
             	"customAttribute2"=>(XmlFields::returnArrayValue($hash_in, "customAttribute2")),
             	"customAttribute3"=>(XmlFields::returnArrayValue($hash_in, "customAttribute3")),
             	"customAttribute4"=>(XmlFields::returnArrayValue($hash_in, "customAttribute4")),
-            	"customAttribute5"=>(XmlFields::returnArrayValue($hash_in, "customAttribute5"))
+            	"customAttribute5"=>(XmlFields::returnArrayValue($hash_in, "customAttribute5")),
+                "webSessionId"=>(XmlFields::returnArrayValue($hash_in, "webSessionId"))
             );
 
             return $hash_out;

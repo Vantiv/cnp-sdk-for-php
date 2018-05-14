@@ -59,6 +59,45 @@ class FraudCheckFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('pass', $message);
     }
 
+    public function test_one_webSessionId()
+    {
+        $hash_in = array(
+            'id' => 'id',
+            'advancedFraudChecks' => array(
+                'threatMetrixSessionId' => 128,
+                'webSessionId' => 'dgagudgqfjeufu17281797',
+                'customAttribute1' => 'abc'
+                )
+        );
+
+        $initialize = new CnpOnlineRequest();
+        $fraudCheckResponse = $initialize->fraudCheck($hash_in);
+        $message = XmlParser::getNode($fraudCheckResponse, 'deviceReviewStatus');
+        $this->assertEquals('pass', $message);
+    }
+
+
+    public function test_fraudCheck_with_eventType_accLogin_passhash()
+    {
+        $passhash = str_repeat ( '3' , 56 );
+        $hash_in = array(
+            'id' => 'id',
+            'advancedFraudChecks' => array(
+                'threatMetrixSessionId' => 128,
+                'webSessionId' => 'dgagudgqfjeufu17281797',
+                'customAttribute1' => 'abc'
+            ),
+            'eventType' => 'login',
+            'accountLogin' => 'thisIsLogin',
+            'accountPasshash' => $passhash
+        );
+
+        $initialize = new CnpOnlineRequest();
+        $fraudCheckResponse = $initialize->fraudCheck($hash_in);
+        $message = XmlParser::getNode($fraudCheckResponse, 'deviceReviewStatus');
+        $this->assertEquals('pass', $message);
+    }
+
     public function test_two_customAttributes()
     {
         $hash_in = array(

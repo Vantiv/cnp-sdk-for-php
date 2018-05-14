@@ -47,7 +47,8 @@ class Transactions {
             'processingType' => XmlFields::returnArrayValue ( $hash_in, 'processingType' ),
             'originalNetworkTransactionId' => XmlFields::returnArrayValue ( $hash_in, 'originalNetworkTransactionId' ),
             'originalTransactionAmount' => XmlFields::returnArrayValue ( $hash_in, 'originalTransactionAmount' ),
-            'routingPreference' => XmlFields::returnArrayValue ( $hash_in, 'routingPreference' )
+            'pinlessDebitRequest' => XmlFields::pinlessDebitRequest(XmlFields::returnArrayValue ( $hash_in, 'pinlessDebitRequest' )),
+            'lodgingInfo' => XmlFields::lodgingInfo(XmlFields::returnArrayValue($hash_in, 'lodgingInfo'))
         );
 
         return $hash_out;
@@ -84,8 +85,8 @@ class Transactions {
             'fraudFilterOverride' => XmlFields::returnArrayValue ( $hash_in, 'fraudFilterOverride' ),
             'recurringRequest' => XmlFields::recurringRequestType ( XmlFields::returnArrayValue ( $hash_in, 'recurringRequest' ) ),
             'debtRepayment' => XmlFields::returnArrayValue ( $hash_in, 'debtRepayment' ),
-            'advancedFraudChecks'=>XmlFields::advancedFraudChecksType(XmlFields::returnArrayValue($hash_in,'advancedFraudChecks'))
-
+            'advancedFraudChecks'=>XmlFields::advancedFraudChecksType(XmlFields::returnArrayValue($hash_in,'advancedFraudChecks')),
+            'lodgingInfo' => XmlFields::lodgingInfo(XmlFields::returnArrayValue($hash_in, 'lodgingInfo'))
         );
 
         return $hash_out;
@@ -138,7 +139,8 @@ class Transactions {
             'pos' => XmlFields::pos ( XMLFields::returnArrayValue ( $hash_in, 'pos' ) ),
             'amexAggregatorData' => XmlFields::amexAggregatorData ( XMLFields::returnArrayValue ( $hash_in, 'amexAggregatorData' ) ),
             'payPalNotes' => XmlFields::returnArrayValue ( $hash_in, 'payPalNotes' ),
-            'actionReason' => XmlFields::returnArrayValue ( $hash_in, 'actionReason' )
+            'actionReason' => XmlFields::returnArrayValue ( $hash_in, 'actionReason' ),
+            'lodgingInfo' => XmlFields::lodgingInfo(XmlFields::returnArrayValue($hash_in, 'lodgingInfo'))
         );
 
         return $hash_out;
@@ -187,7 +189,8 @@ class Transactions {
             'pos' => XmlFields::pos ( XmlFields::returnArrayValue ( $hash_in, 'pos' ) ),
             'amexAggregatorData' => XmlFields::amexAggregatorData ( XmlFields::returnArrayValue ( $hash_in, 'amexAggregatorData' ) ),
             'merchantData' => (XmlFields::merchantData ( XmlFields::returnArrayValue ( $hash_in, 'merchantData' ) )),
-            'debtRepayment' => XmlFields::returnArrayValue ( $hash_in, 'debtRepayment' )
+            'debtRepayment' => XmlFields::returnArrayValue ( $hash_in, 'debtRepayment' ),
+            'lodgingInfo' => XmlFields::lodgingInfo(XmlFields::returnArrayValue($hash_in, 'lodgingInfo'))
         );
 
         return $hash_out;
@@ -202,7 +205,8 @@ class Transactions {
             'enhancedData' => XmlFields::enhancedData ( XmlFields::returnArrayValue ( $hash_in, 'enhancedData' ) ),
             'processingInstructions' => XmlFields::processingInstructions ( XmlFields::returnArrayValue ( $hash_in, 'processingInstructions' ) ),
             'payPalOrderComplete' => XmlFields::returnArrayValue ( $hash_in, 'payPalOrderComplete' ),
-            'payPalNotes' => XmlFields::returnArrayValue ( $hash_in, 'payPalNotes' )
+            'payPalNotes' => XmlFields::returnArrayValue ( $hash_in, 'payPalNotes' ),
+            'lodgingInfo' => XmlFields::lodgingInfo(XmlFields::returnArrayValue($hash_in, 'lodgingInfo'))
         );
 
         return $hash_out;
@@ -242,7 +246,8 @@ class Transactions {
             'pos' => XmlFields::pos ( XmlFields::returnArrayValue ( $hash_in, 'pos' ) ),
             'amexAggregatorData' => XmlFields::amexAggregatorData ( XmlFields::returnArrayValue ( $hash_in, 'amexAggregatorData' ) ),
             'merchantData' => (XmlFields::merchantData ( XmlFields::returnArrayValue ( $hash_in, 'merchantData' ) )),
-            'debtRepayment' => XmlFields::returnArrayValue ( $hash_in, 'debtRepayment' )
+            'debtRepayment' => XmlFields::returnArrayValue ( $hash_in, 'debtRepayment' ),
+            'lodgingInfo' => XmlFields::lodgingInfo(XmlFields::returnArrayValue($hash_in, 'lodgingInfo'))
         );
 
         return $hash_out;
@@ -339,6 +344,14 @@ class Transactions {
             'accountInfo' => XmlFields::echeckType ( XmlFields::returnArrayValue ( $hash_in, 'accountInfo' ) ) ,
             'customIdentifier' =>  XmlFields::returnArrayValue ( $hash_in, 'customIdentifier' )
 
+        );
+        return $hash_out;
+    }
+    public static function createTranslateToLowValueTokenHash($hash_in) {
+        $hash_out = array(
+            'id'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'id')),
+            'orderId' => XmlFields::returnArrayValue($hash_in, 'orderId', 25),
+            'token' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'token', 512))
         );
         return $hash_out;
     }
@@ -454,8 +467,59 @@ class Transactions {
             'billingDate' => XmlFields::returnArrayValue ( $hash_in, 'billingDate' )
         );
 
+        $createDiscount = array();
+        $updateDiscount = array();
+        $deleteDiscount = array();
+        $createAddOn = array();
+        $updateAddon = array();
+        $deleteAddOn = array();
+
+
+        foreach ($hash_in as $key => $value) {
+            if (($key == 'createDiscount' || $key == ('createDiscount'.count($createDiscount))) && $key != NULL) {
+                $createDiscount[] = $value;
+            } elseif (($key == 'updateDiscount' || $key == ('updateDiscount'.count($updateDiscount))) && $key != NULL) {
+                $updateDiscount[] = $value;
+            } elseif (($key == 'deleteDiscount' || $key == ('deleteDiscount'.count($deleteDiscount))) && $key != NULL) {
+                $deleteDiscount[] = $value;
+            } elseif (($key == 'createAddOn' || $key == ('createAddOn'.count($createAddOn))) && $key != NULL) {
+                $createAddOn[] = $value;
+            } elseif (($key == 'updateAddon' || $key == ('updateAddon'.count($updateAddon))) && $key != NULL) {
+                $updateAddon[] = $value;
+            } elseif (($key == 'deleteAddOn' || $key == ('deleteAddOn'.count($deleteAddOn))) && $key != NULL) {
+                $deleteAddOn[] = $value;
+            }
+        }
+
+        for ($j=0; $j<count($createDiscount); $j++) {
+            $outIndex = ('createDiscount') . (string) $j;
+            $hash_out[$outIndex] = XmlFields::createDiscount(XmlFields::returnArrayValue($createDiscount,$j));
+        }
+        for ($j=0; $j<count($updateDiscount); $j++) {
+            $outIndex = ('updateDiscount') . (string) $j;
+            $hash_out[$outIndex] = XmlFields::updateDiscount(XmlFields::returnArrayValue($updateDiscount,$j));
+        }
+        for ($j=0; $j<count($deleteDiscount); $j++) {
+            $outIndex = ('deleteDiscount') . (string) $j;
+            $hash_out[$outIndex] = XmlFields::deleteDiscount(XmlFields::returnArrayValue($deleteDiscount,$j));
+        }
+        for ($j=0; $j<count($createAddOn); $j++) {
+            $outIndex = ('createAddOn') . (string) $j;
+            $hash_out[$outIndex] = XmlFields::createAddOn(XmlFields::returnArrayValue($createAddOn,$j));
+        }
+        for ($j=0; $j<count($updateAddon); $j++) {
+            $outIndex = ('updateAddon') . (string) $j;
+            $hash_out[$outIndex] = XmlFields::updateAddon(XmlFields::returnArrayValue($updateAddon,$j));
+        }
+        for ($j=0; $j<count($deleteAddOn); $j++) {
+            $outIndex = ('deleteAddOn') . (string) $j;
+            $hash_out[$outIndex] = XmlFields::deleteAddOn(XmlFields::returnArrayValue($deleteAddOn,$j));
+        }
+
         return $hash_out;
     }
+
+
     public static function createCancelSubscriptionHash($hash_in) {
         $hash_out = array (
             'subscriptionId' => Checker::requiredField ( XmlFields::returnArrayValue ( $hash_in, 'subscriptionId' ) ),
@@ -556,7 +620,10 @@ class Transactions {
             'advancedFraudChecks'=>Checker::requiredField(XmlFields::returnArrayValue($hash_in,'advancedFraudChecks')),
             'billToAddress' => XmlFields::contact ( XmlFields::returnArrayValue ( $hash_in, 'billToAddress' ) ),
             'shipToAddress' => XmlFields::contact ( XmlFields::returnArrayValue ( $hash_in, 'shipToAddress' ) ),
-            'amount' => ( XmlFields::returnArrayValue ( $hash_in, 'amount' ) )
+            'amount' => ( XmlFields::returnArrayValue ( $hash_in, 'amount' ) ),
+            'eventType' => XmlFields::returnArrayValue( $hash_in, 'eventType'),
+            'accountLogin' => XmlFields::returnArrayValue($hash_in, 'accountLogin'),
+            'accountPasshash' => XmlFields::returnArrayValue($hash_in, 'accountPasshash')
         );
 
         return $hash_out;
