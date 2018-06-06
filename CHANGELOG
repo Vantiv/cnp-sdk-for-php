@@ -1,5 +1,14 @@
 = CnpOnline CHANGELOG
 
+==Version 12.3.0 (May 14, 2018)
+* Feature: Added support for lodging information in authorization, sale, capture, captureGivenAuth, forceCapture and credit
+* Feature: Added translateToLowValueToken transaction type
+* Feature: Replaced routingPreference with pinlessDebitRequest in sale
+* Feature: Added support for showStatusOnly in queryTransaction
+* Feature: Added eventType, accountLogin and accountPasshash to fraudCheck
+* Bug Fix: Added createDiscount, updateDiscount, deleteDiscount, createAddOn, updateAddOn and deleteAddOn 
+           fields to recurring transactions.
+
 ==Version 12.1.0 (March 26, 2018)
 * Feature: Added support for Visa card on file transactions
 * Feature: Added fastAccessFunding transaction
