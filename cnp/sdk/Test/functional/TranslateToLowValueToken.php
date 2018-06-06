@@ -42,6 +42,6 @@ class TranslateToLowValueToken extends \PHPUnit_Framework_TestCase
         $initialize = new CnpOnlineRequest();
         $response = $initialize->translateToLowValueTokenRequest($hash_in);
         $message = XmlParser::getAttribute($response, 'cnpOnlineResponse', 'message');
-        $this->assertEquals('Approved', $message);
+        $this->assertEquals('Valid Format', $message);
     }
 }
