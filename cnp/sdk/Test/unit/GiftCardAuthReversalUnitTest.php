@@ -43,7 +43,7 @@ use cnp\sdk\CnpOnlineRequest;
 				),
 				'originalRefCode' => '101',
 				'originalAmount' => '34561',
-				//'originalTxnTime' => '2017-01-24T09:00:00',
+				'originalTxnTime' => '2017-01-24T09:00:00',
 				'originalSystemTraceId' => '33',
 				'originalSequenceNumber' => '111111' 
 		);

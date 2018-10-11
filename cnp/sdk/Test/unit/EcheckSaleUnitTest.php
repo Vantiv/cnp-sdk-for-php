@@ -46,7 +46,7 @@ class EcheckSaleUnitTest extends \PHPUnit_Framework_TestCase
         'echeckToken' => array('accType'=>'Checking','routingNum'=>'123123','cnpToken'=>'1234565789012','checkNum'=>'123455'),
         'echeck' => array('accType'=>'Checking','routingNum'=>'123123','accNum'=>'12345657890','checkNum'=>'123455'));
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->echeckSaleRequest($hash_in);
     }
 
@@ -69,18 +69,20 @@ class EcheckSaleUnitTest extends \PHPUnit_Framework_TestCase
     
     public function test_echeck_sale_secondaryAmount()
     {
-    	$hash_in = array('amount' => '5000',
-    			'id' => 'id',
+    	$hash_in = array(
+                'id' => 'id',
+    			'orderId' => '12',
+                'amount' => '5000',
     			'secondaryAmount' => '2000',
     			'orderSource'=>'ecommerce',
     			'billToAddress' => array(),
-    			'echeck' => array('accType'=>'Checking','routingNum'=>'123123','accNum'=>'12345657890','checkNum'=>'123455'));
+    			'echeck' => array('accType'=>'Checking','routingNum'=>'123123123','accNum'=>'12345657890','checkNum'=>'123455'));
     	
     	$mock = $this->getMock('cnp\sdk\CnpXmlMapper');
     	$mock->expects($this->once())
     	->method('request')
-    	->with($this->matchesRegularExpression('/.*<amount>5000.*<orderSource>ecommerce.*<accType>Checking.*<accNum>12345657890.*<routingNum>123123.*<checkNum>123455.*/'));
-    	
+    	->with($this->matchesRegularExpression('/.*<secondaryAmount>2000.*<accType>Checking.*<accNum>12345657890.*<routingNum>123123123.*<checkNum>123455.*/'));
+    	//'/.*<cnpTxnId>12.*<orderSource>ecommerce.*<accType>Checking.*<accNum>12345657890.*<routingNum>123123.*<checkNum>123455.*/'
     	$cnpTest = new CnpOnlineRequest();
     	$cnpTest->newXML = $mock;
     	$cnpTest->echeckSaleRequest($hash_in);

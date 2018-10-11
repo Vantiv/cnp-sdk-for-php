@@ -43,7 +43,7 @@ class EcheckRedepositUnitTest extends \PHPUnit_Framework_TestCase
     {
         $hash_in = array('reportGroup'=>'Planets','id' => 'id');
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /cnpTxnId/");
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->echeckRedepositRequest($hash_in);
     }
 
@@ -52,7 +52,7 @@ class EcheckRedepositUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array('reportGroup'=>'Planets','cnpTxnId'=>'123456','id' => 'id',
          'echeck' => array('accType'=>'Checking','accNum'=>'12345657890','checkNum'=>'123455'));
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /routingNum/");
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->echeckRedepositRequest($hash_in);
     }
 
@@ -61,7 +61,7 @@ class EcheckRedepositUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array('reportGroup'=>'Planets','cnpTxnId'=>'123456','id' => 'id',
         'echeckToken' => array('accType'=>'Checking','cnpToken'=>'1234565789012','checkNum'=>'123455'));
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /routingNum/");
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->echeckRedepositRequest($hash_in);
     }
 
@@ -71,7 +71,7 @@ class EcheckRedepositUnitTest extends \PHPUnit_Framework_TestCase
         'echeckToken' => array('accType'=>'Checking','routingNum'=>'123123','cnpToken'=>'1234565789012','checkNum'=>'123455'),
         'echeck' => array('accType'=>'Checking','routingNum'=>'123123','accNum'=>'12345657890','checkNum'=>'123455'));
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->echeckRedepositRequest($hash_in);
     }
 

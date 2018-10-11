@@ -92,7 +92,7 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
           'expDate' =>'1210')
         );
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /orderId/");
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->saleRequest($hash_in);
     }
 
@@ -110,7 +110,7 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
           'expDate' =>'1210')
         );
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /amount/");
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->saleRequest($hash_in);
     }
 
@@ -128,7 +128,7 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
           'expDate' =>'1210')
         );
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /orderSource/");
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->saleRequest($hash_in);
     }
 
@@ -151,7 +151,7 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
           'transactionId'=>'123456')
         );
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->saleRequest($hash_in);
     }
 
@@ -179,7 +179,7 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
           'transactionId'=>'123456')
         );
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->saleRequest($hash_in);
     }
 
@@ -215,7 +215,7 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
           'type'=>'VI')
         );
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->saleRequest($hash_in);
     }
 
@@ -225,6 +225,11 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
                     'orderId'=> '2111','id' => 'id',
                     'orderSource'=>'ecommerce',
                     'amount'=>'123',
+            'token'=> array(
+                'cnpToken'=>'1234567890123',
+                'expDate'=>'1210',
+                'cardValidationNum'=>'555',
+                'type'=>'VI'),
                     'merchantData'=>array(
                         'affiliate'=>'bar'
         )
@@ -391,25 +396,29 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
     public function test_cnpInternalRecurringRequest()
     {
         $hash_in = array(
+            'orderId'=>'12344',
+            'id' => 'id',
+            'amount'=>'2',
+            'orderSource'=>'ecommerce',
             'card'=>array(
                     'type'=>'VI',
                     'number'=>'4100000000000001',
                     'expDate'=>'1213'
             ),
-            'orderId'=>'12344','id' => 'id',
-            'amount'=>'2',
-            'orderSource'=>'ecommerce',
+
+            'fraudCheck'=>array(),
             'fraudFilterOverride'=>'true',
             'cnpInternalRecurringRequest'=>array(
                     'subscriptionId'=>'123',
-                    'recurringTxnId'=>'456'
+                    'recurringTxnId'=>'456',
+                    'finalPayment'=>'true'
             )
         );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock
         ->expects($this->once())
         ->method('request')
-        ->with($this->matchesRegularExpression('/.*<fraudFilterOverride>true<\/fraudFilterOverride><cnpInternalRecurringRequest><subscriptionId>123<\/subscriptionId><recurringTxnId>456<\/recurringTxnId><\/cnpInternalRecurringRequest>.*/'));
+        ->with($this->matchesRegularExpression('/.*<fraudFilterOverride>true<\/fraudFilterOverride><cnpInternalRecurringRequest><subscriptionId>123<\/subscriptionId><recurringTxnId>456<\/recurringTxnId><finalPayment>true<\/finalPayment><\/cnpInternalRecurringRequest>.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
@@ -444,14 +453,24 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
     public function test_debtRepayment_true()
     {
         $hash_in = array(
-                'amount'=>'2','id' => 'id',
-                'orderSource'=>'ecommerce',
-                'orderId'=>'3',
-                'cnpInternalRecurringRequest'=>array(
-                        'subscriptionId'=>'123',
-                        'recurringTxnId'=>'456'
-                ),
-                'debtRepayment'=>'true'
+            'orderId'=>'12344',
+            'id' => 'id',
+            'amount'=>'2',
+            'orderSource'=>'ecommerce',
+            'card'=>array(
+                'type'=>'VI',
+                'number'=>'4100000000000001',
+                'expDate'=>'1213'
+            ),
+
+            'fraudCheck'=>array(),
+            'fraudFilterOverride'=>'true',
+            'cnpInternalRecurringRequest'=>array(
+                'subscriptionId'=>'123',
+                'recurringTxnId'=>'456',
+                'finalPayment'=>'true'
+            ),
+            'debtRepayment'=>'true'
         );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock
@@ -467,13 +486,23 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
     public function test_debtRepayment_false()
     {
         $hash_in = array(
-                'amount'=>'2',
-                'orderSource'=>'ecommerce',
-                'orderId'=>'3','id' => 'id',
-                'cnpInternalRecurringRequest'=>array(
-                        'subscriptionId'=>'123',
-                        'recurringTxnId'=>'456'
-                ),
+            'orderId'=>'12344',
+            'id' => 'id',
+            'amount'=>'2',
+            'orderSource'=>'ecommerce',
+            'card'=>array(
+                'type'=>'VI',
+                'number'=>'4100000000000001',
+                'expDate'=>'1213'
+            ),
+
+            'fraudCheck'=>array(),
+            'fraudFilterOverride'=>'true',
+            'cnpInternalRecurringRequest'=>array(
+                'subscriptionId'=>'123',
+                'recurringTxnId'=>'456',
+                'finalPayment'=>'true'
+            ),
                 'debtRepayment'=>'false'
         );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
@@ -490,13 +519,23 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
     public function test_debtRepayment_optional()
     {
         $hash_in = array(
-                'amount'=>'2',
-                'orderSource'=>'ecommerce',
-                'orderId'=>'3','id' => 'id',
-                'cnpInternalRecurringRequest'=>array(
-                        'subscriptionId'=>'123',
-                        'recurringTxnId'=>'456'
-                ),
+            'orderId'=>'12344',
+            'id' => 'id',
+            'amount'=>'2',
+            'orderSource'=>'ecommerce',
+            'card'=>array(
+                'type'=>'VI',
+                'number'=>'4100000000000001',
+                'expDate'=>'1213'
+            ),
+
+            'fraudCheck'=>array(),
+            'fraudFilterOverride'=>'true',
+            'cnpInternalRecurringRequest'=>array(
+                'subscriptionId'=>'123',
+                'recurringTxnId'=>'456',
+                'finalPayment'=>'true'
+            )
         );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock
@@ -535,29 +574,29 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
         $cnpTest->saleRequest($hash_in);
     }
 
-    public function test_advancedFraudChecks_withoutThreatMetrixSessionId()
-    {
-        //In 8.23, threatMetrixSessionId is optional, but really should be required.
-        //It will be required in 8.24, so I'm making it required here in the schema.
-        //There is no good reason to send an advancedFraudChecks element without a threatMetrixSessionId.
-        $hash_in = array(
-            'card'=>array(
-                'type'=>'VI',
-                'number'=>'4100000000000001',
-                'expDate'=>'1213'
-            ),
-            'orderId'=>'12344','id' => 'id',
-            'amount'=>'2',
-            'orderSource'=>'ecommerce',
-            'debtRepayment'=>'true',
-            'advancedFraudChecks'=>array(
-            )
-        );
-
-        $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException','Missing Required Field: /threatMetrixSessionId/');
-        $retOb = $cnpTest->saleRequest($hash_in);
-    }
+//    public function test_advancedFraudChecks_withoutThreatMetrixSessionId()
+//    {
+//        //In 8.23, threatMetrixSessionId is optional, but really should be required.
+//        //It will be required in 8.24, so I'm making it required here in the schema.
+//        //There is no good reason to send an advancedFraudChecks element without a threatMetrixSessionId.
+//        $hash_in = array(
+//            'card'=>array(
+//                'type'=>'VI',
+//                'number'=>'4100000000000001',
+//                'expDate'=>'1213'
+//            ),
+//            'orderId'=>'12344','id' => 'id',
+//            'amount'=>'2',
+//            'orderSource'=>'ecommerce',
+//            'debtRepayment'=>'true',
+//            'advancedFraudChecks'=>array(
+//            )
+//        );
+//
+//        $cnpTest = new CnpOnlineRequest();
+//        $this->setExpectedException('InvalidArgumentException','Missing Required Field: /threatMetrixSessionId/');
+//        $retOb = $cnpTest->saleRequest($hash_in);
+//    }
     
     public function test_sale_with_card_secondaryAmount()
     {
@@ -586,7 +625,11 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
     	$hash_in = array(
     			'applepay'=>array(
     					'data'=>'string data here',
-    					'header'=> 'header stuff here',
+    					'header'=> array(
+    					    'ephemeralPublicKey'=>"123",
+                            'publicKeyHash'=>'123',
+                            'transactionId'=>'123'
+                        ),
     					'signature'=>'signature',
     					'version' => 'version 1'),
     			'orderId'=> '2111',
@@ -596,7 +639,7 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
     	$mock = $this->getMock('cnp\sdk\CnpXmlMapper');
     	$mock	->expects($this->once())
     	->method('request')
-    	->with($this->matchesRegularExpression('/.*<applepay><data>string data here.*<header>header stuff here.*<signature>signature.*<version>version 1.*/'));
+    	->with($this->matchesRegularExpression('/.*<applepay><data>string data here.*<header>.*<signature>signature.*<version>version 1.*/'));
     
     	$cnpTest = new CnpOnlineRequest();
     	$cnpTest->newXML = $mock;

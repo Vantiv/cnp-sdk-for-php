@@ -23,27 +23,14 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 namespace cnp\sdk;
+use DOMDocument;
+
 class Checker
 {
-    public static function requiredField($value)
-    {
-        if ($value != null) {
-            return $value;
-        } else {
-            return "REQUIRED";
-        }
-    }
-
-    public static function choice($choiceArray)
-    {
-        $i= 0;
-        for ($y=0;$y<count($choiceArray);$y++) {
-            if (isset($choiceArray[$y])) {
-                $i++;
-            }
-        }
-        if ($i > 1) {
-            throw new \InvalidArgumentException("Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
-        }
+    public static function validateXML($request){
+        $xml = new DOMDocument();
+        $xml->loadXML($request);
+        $filepath =  __DIR__."/schema/SchemaCombined_v12.5.xsd";
+        return $xml->schemaValidate( $filepath);
     }
 }

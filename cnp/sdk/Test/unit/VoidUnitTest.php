@@ -42,7 +42,7 @@ class VoidUnitTest extends \PHPUnit_Framework_TestCase
     {
         $hash_in = array('reportGroup'=>'Planets','id' => 'id');
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /cnpTxnId/");
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->voidRequest($hash_in);
     }
 

@@ -66,7 +66,7 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
        'number' =>'4100000000000001',
        'expDate' =>'1210'));
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException("InvalidArgumentException","Missing Required Field: /amount/");
+        $this->setExpectedException("PHPUnit_Framework_Error_Warning");
         $retOb = $cnpTest->captureGivenAuthRequest($hash_in);
     }
 
@@ -91,7 +91,7 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
         'number' =>'4100000000000001',
         'expDate' =>'1210'));
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->captureGivenAuthRequest($hash_in);
     }
 
@@ -121,7 +121,7 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
                   'cardValidationNum'=>'555',
                   'type'=>'VI'));
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->captureGivenAuthRequest($hash_in);
     }
 
@@ -155,17 +155,25 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
     public function test_surchargeAmount()
     {
         $hash_in = array(
+            'orderId'=>'3',
+            'authInformation' => array(
+                'authDate'=>'2002-10-09','authCode'=>'543216',
+                'authAmount'=>'12345'),
             'amount'=>'2',
-        	'id'=> 'id',
-            'surchargeAmount'=>'1',
             'orderSource'=>'ecommerce',
-            'orderId'=>'3'
+            'card'=>array(
+                'type'=>'VI',
+                'number' =>'4100000000000001',
+                'expDate' =>'1210'),
+            'surchargeAmount'=>'1',
+            'id'=>'id'
         );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock
             ->expects($this->once())
             ->method('request')
             ->with($this->matchesRegularExpression('/.*<amount>2<\/amount><surchargeAmount>1<\/surchargeAmount><orderSource>ecommerce<\/orderSource>.*/'));
+
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
@@ -175,10 +183,17 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
     public function test_surchargeAmount_optional()
     {
         $hash_in = array(
-                'amount'=>'2',
-        		'id'=> 'id',
-                'orderSource'=>'ecommerce',
-                'orderId'=>'3'
+            'orderId'=>'3',
+            'authInformation' => array(
+                'authDate'=>'2002-10-09','authCode'=>'543216',
+                'authAmount'=>'12345'),
+            'amount'=>'2',
+            'orderSource'=>'ecommerce',
+            'card'=>array(
+                'type'=>'VI',
+                'number' =>'4100000000000001',
+                'expDate' =>'1210'),
+            'id'=>'id'
         );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock
@@ -193,6 +208,7 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
 
     public function test_debtRepayment_true()
     {
+
         $hash_in = array(
                 'amount'=>'2',
         		'id'=> 'id',
@@ -201,6 +217,13 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
                 'merchantData'=>array(
                     'campaign'=>'foo',
                 ),
+                'card'=>array(
+                    'type'=>'VI',
+                    'number' =>'4100000000000001',
+                'expDate' =>'1210'),
+                 'authInformation' => array(
+                    'authDate'=>'2002-10-09','authCode'=>'543216',
+                    'authAmount'=>'12345'),
                 'debtRepayment'=>'true'
         );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
@@ -224,6 +247,13 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
                 'merchantData'=>array(
                     'campaign'=>'foo',
                 ),
+                'card'=>array(
+                    'type'=>'VI',
+                    'number' =>'4100000000000001',
+                    'expDate' =>'1210'),
+                'authInformation' => array(
+                    'authDate'=>'2002-10-09','authCode'=>'543216',
+                    'authAmount'=>'12345'),
                 'debtRepayment'=>'false'
         );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
@@ -247,6 +277,13 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
                 'merchantData'=>array(
                         'campaign'=>'foo',
                 ),
+                'card'=>array(
+                    'type'=>'VI',
+                    'number' =>'4100000000000001',
+                    'expDate' =>'1210'),
+                'authInformation' => array(
+                    'authDate'=>'2002-10-09','authCode'=>'543216',
+                    'authAmount'=>'12345'),
         );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock

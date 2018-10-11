@@ -138,8 +138,8 @@ class XmlFields
     {
         if (isset($hash_in)) {
             $hash_out = array(
-                        "authDate"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "authDate"))),
-                        "authCode"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "authCode"))),
+                        "authDate"=>XmlFields::returnArrayValue($hash_in, "authDate"),
+                        "authCode"=>XmlFields::returnArrayValue($hash_in, "authCode"),
                         "fraudResult"=>XmlFields::fraudResult(XmlFields::returnArrayValue($hash_in,"fraudResult")),
                         "authAmount"=>XmlFields::returnArrayValue($hash_in,'authAmount')
             );
@@ -220,9 +220,9 @@ class XmlFields
     {
         if (isset($hash_in)) {
             $hash_out = array(
-                        "capability"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "capability"))),
-                        "entryMode"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "entryMode"))),
-                        "cardholderId"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "cardholderId"))),
+                        "capability"=>XmlFields::returnArrayValue($hash_in, "capability"),
+                        "entryMode"=>XmlFields::returnArrayValue($hash_in, "entryMode"),
+                        "cardholderId"=>XmlFields::returnArrayValue($hash_in, "cardholderId"),
                         "terminalId"=>XmlFields::returnArrayValue($hash_in,"terminalId"),
                         "catLevel"=>XmlFields::returnArrayValue($hash_in,"catLevel"),
             );
@@ -311,11 +311,11 @@ class XmlFields
     {
         if (isset($hash_in)){
             $hash_out = array(
-                'discountCode' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, "discountCode", 25)),
-                'name' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'name', 100)),
-                'amount' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'amount', 12)),
-                'startDate' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'startDate')),
-                'endDate' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'endDate'))
+                'discountCode' => XmlFields::returnArrayValue($hash_in, "discountCode", 25),
+                'name' => XmlFields::returnArrayValue($hash_in, 'name', 100),
+                'amount' => XmlFields::returnArrayValue($hash_in, 'amount', 12),
+                'startDate' => XmlFields::returnArrayValue($hash_in, 'startDate'),
+                'endDate' => XmlFields::returnArrayValue($hash_in, 'endDate')
             );
             return $hash_out;
         }
@@ -326,11 +326,11 @@ class XmlFields
     {
         if (isset($hash_in)){
             $hash_out = array(
-                'discountCode' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, "discountCode", 25)),
-                'name' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'name', 100)),
-                'amount' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'amount', 12)),
-                'startDate' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'startDate')),
-                'endDate' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'endDate'))
+                'discountCode' => (XmlFields::returnArrayValue($hash_in, "discountCode", 25)),
+                'name' => (XmlFields::returnArrayValue($hash_in, 'name', 100)),
+                'amount' => (XmlFields::returnArrayValue($hash_in, 'amount', 12)),
+                'startDate' => (XmlFields::returnArrayValue($hash_in, 'startDate')),
+                'endDate' => (XmlFields::returnArrayValue($hash_in, 'endDate'))
             );
             return $hash_out;
         }
@@ -341,7 +341,7 @@ class XmlFields
     {
         if (isset($hash_in)){
             $hash_out = array(
-                'discountCode' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, "discountCode", 25))
+                'discountCode' => (XmlFields::returnArrayValue($hash_in, "discountCode", 25))
             );
             return $hash_out;
         }
@@ -352,11 +352,11 @@ class XmlFields
     {
         if (isset($hash_in)){
             $hash_out = array(
-                'addOnCode'=> Checker::requiredField(XmlFields::returnArrayValue($hash_in, "addOnCode", 25)),
-                'name' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'name', 100)),
-                'amount' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'amount', 12)),
-                'startDate' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'startDate')),
-                'endDate' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'endDate'))
+                'addOnCode'=> (XmlFields::returnArrayValue($hash_in, "addOnCode", 25)),
+                'name' => (XmlFields::returnArrayValue($hash_in, 'name', 100)),
+                'amount' => (XmlFields::returnArrayValue($hash_in, 'amount', 12)),
+                'startDate' => (XmlFields::returnArrayValue($hash_in, 'startDate')),
+                'endDate' => (XmlFields::returnArrayValue($hash_in, 'endDate'))
             );
             return $hash_out;
         }
@@ -366,11 +366,11 @@ class XmlFields
     {
         if (isset($hash_in)){
             $hash_out = array(
-                'addOnCode' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, "addOnCode", 25)),
-                'name' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'name', 100)),
-                'amount' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'amount', 12)),
-                'startDate' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'startDate')),
-                'endDate' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'endDate'))
+                'addOnCode' => (XmlFields::returnArrayValue($hash_in, "addOnCode", 25)),
+                'name' => (XmlFields::returnArrayValue($hash_in, 'name', 100)),
+                'amount' => (XmlFields::returnArrayValue($hash_in, 'amount', 12)),
+                'startDate' => (XmlFields::returnArrayValue($hash_in, 'startDate')),
+                'endDate' => (XmlFields::returnArrayValue($hash_in, 'endDate'))
             );
             return $hash_out;
         }
@@ -381,7 +381,7 @@ class XmlFields
     {
         if (isset($hash_in)){
             $hash_out = array(
-                'addOnCode' => Checker::requiredField(XmlFields::returnArrayValue($hash_in, "addOnCode", 25))
+                'addOnCode' => (XmlFields::returnArrayValue($hash_in, "addOnCode", 25))
             );
             return $hash_out;
         }
@@ -420,7 +420,7 @@ class XmlFields
     {
         if (isset($hash_in)) {
             $hash_out = array(
-                        "name" => Checker::requiredField(XmlFields::returnArrayValue($hash_in, 'name'))
+                        "name" => (XmlFields::returnArrayValue($hash_in, 'name'))
             );
 
             return $hash_out;
@@ -512,7 +512,7 @@ class XmlFields
     {
         if (isset($hash_in)) {
             $hash_out = array(
-                        "cnpToken"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "cnpToken"))),
+                        "cnpToken"=>XmlFields::returnArrayValue($hash_in, "cnpToken"),
                         "expDate"=>XmlFields::returnArrayValue($hash_in, "expDate"),
                         "cardValidationNum"=>XmlFields::returnArrayValue($hash_in, "cardValidationNum"),
                         "type"=>XmlFields::returnArrayValue($hash_in, "type")
@@ -526,7 +526,7 @@ class XmlFields
     {
         if (isset($hash_in)) {
             $hash_out = array(
-                        "paypageRegistrationId"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "paypageRegistrationId"))),
+                        "paypageRegistrationId"=>XmlFields::returnArrayValue($hash_in, "paypageRegistrationId"),
                         "expDate"=>XmlFields::returnArrayValue($hash_in, "expDate"),
                         "cardValidationNum"=>XmlFields::returnArrayValue($hash_in, "cardValidationNum"),
                         "type"=>XmlFields::returnArrayValue($hash_in, "type")
@@ -540,9 +540,9 @@ class XmlFields
     {
         if (isset($hash_in)) {
             $hash_out = array(
-                        "payerId"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "payerId"))),
+                        "payerId"=>XmlFields::returnArrayValue($hash_in, "payerId"),
                         "token"=>XmlFields::returnArrayValue($hash_in, "token"),
-                        "transactionId"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "transactionId")))
+                        "transactionId"=>XmlFields::returnArrayValue($hash_in, "transactionId")
             );
 
             return $hash_out;
@@ -554,8 +554,8 @@ class XmlFields
     {
         if (isset($hash_in)) {
             $hash_out = array(
-                        "payerId"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "payerId"))),
-                        "payerEmail" =>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "payerEmail")))
+                        "payerId"=>XmlFields::returnArrayValue($hash_in, "payerId"),
+                        "payerEmail" =>XmlFields::returnArrayValue($hash_in, "payerEmail")
             );
 
             return $hash_out;
@@ -580,9 +580,9 @@ class XmlFields
     {
         if (isset($hash_in)) {
             $hash_out = array(
-                        "taxAuthority"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "taxAuthority"))),
-                        "state" =>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "state"))),
-                        "govtTxnType" =>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "govtTxnType")))
+                        "taxAuthority"=>XmlFields::returnArrayValue($hash_in, "taxAuthority"),
+                        "state" =>XmlFields::returnArrayValue($hash_in, "state"),
+                        "govtTxnType" =>XmlFields::returnArrayValue($hash_in, "govtTxnType")
             );
 
             return $hash_out;
@@ -604,8 +604,8 @@ class XmlFields
     {
         if (isset($hash_in)) {
             $hash_out = array(
-                        "accNum"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "accNum"))),
-                        "routingNum" =>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "routingNum")))
+                        "accNum"=>XmlFields::returnArrayValue($hash_in, "accNum"),
+                        "routingNum" =>XmlFields::returnArrayValue($hash_in, "routingNum")
             );
 
             return $hash_out;
@@ -629,9 +629,9 @@ class XmlFields
     {
         if (isset($hash_in)) {
             $hash_out = array(
-                        "accType"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "accType"))),
-                        "accNum" =>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "accNum"))),
-                        "routingNum" =>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "routingNum"))),
+                        "accType"=>XmlFields::returnArrayValue($hash_in, "accType"),
+                        "accNum" =>XmlFields::returnArrayValue($hash_in, "accNum"),
+                        "routingNum" =>XmlFields::returnArrayValue($hash_in, "routingNum"),
                         "checkNum" =>XmlFields::returnArrayValue($hash_in, "checkNum"),
             			"ccdPaymentInformation" =>XmlFields::returnArrayValue($hash_in, "ccdPaymentInformation")
             		
@@ -645,9 +645,9 @@ class XmlFields
     {
         if (isset($hash_in)) {
             $hash_out = array(
-                        "cnpToken"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "cnpToken"))),
-                        "routingNum" =>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "routingNum"))),
-                        "accType" =>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "accType"))),
+                        "cnpToken"=>XmlFields::returnArrayValue($hash_in, "cnpToken"),
+                        "routingNum" =>XmlFields::returnArrayValue($hash_in, "routingNum"),
+                        "accType" =>XmlFields::returnArrayValue($hash_in, "accType"),
                         "checkNum" =>XmlFields::returnArrayValue($hash_in, "checkNum")
             );
 
@@ -659,7 +659,7 @@ class XmlFields
     {
         if (isset($hash_in)) {
             $hash_out = array(
-                        "recycleBy"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "recycleBy")))
+                        "recycleBy"=>XmlFields::returnArrayValue($hash_in, "recycleBy")
             );
 
             return $hash_out;
@@ -681,7 +681,7 @@ class XmlFields
     {
         if (isset($hash_in)) {
             $hash_out = array(
-                    "planCode"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "planCode"))),
+                    "planCode"=>XmlFields::returnArrayValue($hash_in, "planCode"),
                     "numberOfPayments"=>(XmlFields::returnArrayValue($hash_in, "numberOfPayments")),
                     "startDate"=>(XmlFields::returnArrayValue($hash_in, "startDate")),
                     "amount"=>(XmlFields::returnArrayValue($hash_in, "amount")),
@@ -696,7 +696,7 @@ class XmlFields
     public static function createDiscountType($hash_in){
         if (isset($hash_in)) {
             $hash_out = array(
-                "discountCode"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "discountCode"))),
+                "discountCode"=>XmlFields::returnArrayValue($hash_in, "discountCode"),
                 "name"=>(XmlFields::returnArrayValue($hash_in, "name")),
                 "amount"=>(XmlFields::returnArrayValue($hash_in, "amount")),
                 "startDate"=>(XmlFields::returnArrayValue($hash_in, "startDate")),
@@ -710,7 +710,7 @@ class XmlFields
     public static function createAddOnType($hash_in){
         if (isset($hash_in)) {
             $hash_out = array(
-                "addOnCode"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "addOnCode"))),
+                "addOnCode"=>XmlFields::returnArrayValue($hash_in, "addOnCode"),
                 "name"=>(XmlFields::returnArrayValue($hash_in, "name")),
                 "amount"=>(XmlFields::returnArrayValue($hash_in, "amount")),
                 "startDate"=>(XmlFields::returnArrayValue($hash_in, "startDate")),
@@ -725,8 +725,9 @@ class XmlFields
     {
         if (isset($hash_in)) {
             $hash_out = array(
-                    "subscriptionId"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "subscriptionId"))),
-                    "recurringTxnId"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "recurringTxnId")))
+                    "subscriptionId"=>XmlFields::returnArrayValue($hash_in, "subscriptionId"),
+                    "recurringTxnId"=>XmlFields::returnArrayValue($hash_in, "recurringTxnId"),
+                    "finalPayment"=>XmlFields::returnArrayValue($hash_in, "finalPayment")
             );
 
             return $hash_out;
@@ -737,7 +738,7 @@ class XmlFields
     {
         if (isset($hash_in)) {
             $hash_out = array(
-                "threatMetrixSessionId"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "threatMetrixSessionId", 128))),
+                "threatMetrixSessionId"=>XmlFields::returnArrayValue($hash_in, "threatMetrixSessionId", 128),
             	"customAttribute1"=>(XmlFields::returnArrayValue($hash_in, "customAttribute1")),
             	"customAttribute2"=>(XmlFields::returnArrayValue($hash_in, "customAttribute2")),
             	"customAttribute3"=>(XmlFields::returnArrayValue($hash_in, "customAttribute3")),
@@ -754,11 +755,11 @@ class XmlFields
     {
         if (isset($hash_in)) {
             $hash_out = array(
-            "ksn"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "ksn", 1028))),
-            "formatId"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "formatId", 1028))),
-            "encryptedTrack"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "encryptedTrack", 1028))),
-            "track1Status"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "track1Status", 1028))),
-            "track2Status"=>(Checker::requiredField(XmlFields::returnArrayValue($hash_in, "track2Status", 1028)))
+            "ksn"=>XmlFields::returnArrayValue($hash_in, "ksn", 1028),
+            "formatId"=>XmlFields::returnArrayValue($hash_in, "formatId", 1028),
+            "encryptedTrack"=>XmlFields::returnArrayValue($hash_in, "encryptedTrack", 1028),
+            "track1Status"=>XmlFields::returnArrayValue($hash_in, "track1Status", 1028),
+            "track2Status"=>XmlFields::returnArrayValue($hash_in, "track2Status", 1028)
             );
 
             return $hash_out;
@@ -771,7 +772,7 @@ class XmlFields
     	if (isset($hash_in)) {
     		$hash_out = array(
     				"data"=>(XmlFields::returnArrayValue($hash_in, "data")),
-    				"header"=>Checker::requiredField(XmlFields::returnArrayValue($hash_in, "header")),
+    				"header"=>(XmlFields::returnArrayValue($hash_in, "header")),
     				"signature"=>XmlFields::returnArrayValue($hash_in, "signature"),
     				"version"=>XmlFields::returnArrayValue($hash_in, "version")
     		);

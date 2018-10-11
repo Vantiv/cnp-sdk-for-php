@@ -50,7 +50,7 @@ class TokenUnitTest extends \PHPUnit_Framework_TestCase
       'accountNumber'=>'1233456789101112',
       'paypageRegistrationId'=>'1233456789101112');
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->registerTokenRequest($hash_in);
 
     }
@@ -64,7 +64,7 @@ class TokenUnitTest extends \PHPUnit_Framework_TestCase
       'echeckForToken'=>array('accNum'=>'12344565','routingNum'=>'123476545'),
       'paypageRegistrationId'=>'1233456789101112');
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->registerTokenRequest($hash_in);
 
     }
@@ -79,7 +79,7 @@ class TokenUnitTest extends \PHPUnit_Framework_TestCase
       'echeckForToken'=>array('accNum'=>'12344565','routingNum'=>'123476545'),
       'paypageRegistrationId'=>'1233456789101112');
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->registerTokenRequest($hash_in);
 
     }
@@ -123,13 +123,17 @@ class TokenUnitTest extends \PHPUnit_Framework_TestCase
     			'orderId'=>'1','id' => 'id',
     			'applepay'=>array(
     					'data'=>'string data here',
-    					'header'=> 'header stuff here',
+                    'header'=> array(
+                        'ephemeralPublicKey'=>"123",
+                        'publicKeyHash'=>'123',
+                        'transactionId'=>'123'
+                    ),
     					'signature'=>'signature',
     					'version' => 'version 1'));
     	$mock = $this->getMock('cnp\sdk\CnpXmlMapper');
     	$mock->expects($this->once())
     	->method('request')
-    	->with($this->matchesRegularExpression('/.*<applepay><data>string data here.*<header>header stuff here.*<signature>signature.*<version>version 1.*/'));
+    	->with($this->matchesRegularExpression('/.*<applepay><data>string data here.*<header>.*<signature>signature.*<version>version 1.*/'));
     
     	$cnpTest = new CnpOnlineRequest();
     	$cnpTest->newXML = $mock;

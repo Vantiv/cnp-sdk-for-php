@@ -62,7 +62,7 @@ class UpdateCardValidationNumOnTokenUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array('id' => 'id',
                 'cardValidationNum'=>'123');
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /cnpToken/");
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->updateCardValidationNumOnToken($hash_in);
     }
 
@@ -71,7 +71,7 @@ class UpdateCardValidationNumOnTokenUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array('id' => 'id',
                 'cnpToken'=>'123456789101112');
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /cardValidationNum/");
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->updateCardValidationNumOnToken($hash_in);
     }
 

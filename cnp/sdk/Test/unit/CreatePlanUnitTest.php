@@ -31,19 +31,18 @@ class CreatePlanUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array(
             'planCode'=>'1',
             'name'=> '2',
-        		'id' => 'id',
             'description'=>'3',
             'intervalType'=>'MONTHLY',
             'amount'=>'1000',
             'numberOfPayments'=>'5',
             'trialNumberOfIntervals'=>'6',
-            'trialIntervalType'=>'WEEKLY',
+            'trialIntervalType'=>'MONTH',
             'active'=>'true'
         );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
-        ->with($this->matchesRegularExpression('/.*planCode.*1.*name.*2.*description.*3.*intervalType.*MONTHLY.*amount.*1000.*numberOfPayments.*5.*trialNumberOfIntervals.*6.*trialIntervalType.*WEEKLY.*active.*true.*/'));
+        ->with($this->matchesRegularExpression('/.*planCode.*1.*name.*2.*description.*3.*intervalType.*MONTHLY.*amount.*1000.*numberOfPayments.*5.*trialNumberOfIntervals.*6.*trialIntervalType.*MONTH.*active.*true.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
@@ -55,12 +54,11 @@ class CreatePlanUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array(
             'planCode'=>'1',
             'name'=> '2',
-        		'id' => 'id',
             'intervalType'=>'MONTHLY',
             'amount'=>'1000',
             'numberOfPayments'=>'5',
             'trialNumberOfIntervals'=>'6',
-            'trialIntervalType'=>'WEEKLY',
+            'trialIntervalType'=>'MONTH',
             'active'=>'true'
         );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
@@ -78,11 +76,10 @@ class CreatePlanUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array(
             'planCode'=>'1',
             'name'=> '2',
-        		'id' => 'id',
             'intervalType'=>'MONTHLY',
             'amount'=>'1000',
             'trialNumberOfIntervals'=>'6',
-            'trialIntervalType'=>'WEEKLY',
+            'trialIntervalType'=>'MONTH',
             'active'=>'true'
         );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
@@ -100,11 +97,10 @@ class CreatePlanUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array(
             'planCode'=>'1',
             'name'=> '2',
-        		'id' => 'id',
             'intervalType'=>'MONTHLY',
             'amount'=>'1000',
             'numberOfPayments'=>'5',
-            'trialIntervalType'=>'WEEKLY',
+            'trialIntervalType'=>'MONTH',
             'active'=>'true'
         );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
@@ -122,7 +118,6 @@ class CreatePlanUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array(
             'planCode'=>'1',
             'name'=> '2',
-        		'id' => 'id',
             'intervalType'=>'MONTHLY',
             'amount'=>'1000',
             'numberOfPayments'=>'5',
@@ -144,12 +139,11 @@ class CreatePlanUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array(
             'planCode'=>'1',
             'name'=> '2',
-        		'id' => 'id',
             'intervalType'=>'MONTHLY',
             'amount'=>'1000',
             'numberOfPayments'=>'5',
             'trialNumberOfIntervals'=>'6',
-            'trialIntervalType'=>'WEEKLY'
+            'trialIntervalType'=>'MONTH'
         );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())

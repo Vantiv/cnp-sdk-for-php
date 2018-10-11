@@ -45,7 +45,7 @@ class EcheckCreditUnitTest extends \PHPUnit_Framework_TestCase
         'echeckToken' => array('accType'=>'Checking','routingNum'=>'123123','cnpToken'=>'1234565789012','checkNum'=>'123455'),
         'echeck' => array('accType'=>'Checking','routingNum'=>'123123','accNum'=>'12345657890','checkNum'=>'123455'));
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->echeckCreditRequest($hash_in);
     }
 
@@ -68,21 +68,18 @@ class EcheckCreditUnitTest extends \PHPUnit_Framework_TestCase
     
     public function test_echeck_credit_secondaryAmount()
     {
-    	$hash_in = array('amount' => '5000',
-    			'id' => 'id',
-    			'secondaryAmount' => '2000',
-    			'orderSource'=>'ecommerce',
-    			'billToAddress' => array(),
-    			'echeck' => array('accType'=>'Checking','routingNum'=>'123123','accNum'=>'12345657890','checkNum'=>'123455'));
-    	 
-    	$mock = $this->getMock('cnp\sdk\CnpXmlMapper');
-    	$mock->expects($this->once())
-    	->method('request')
-    	->with($this->matchesRegularExpression('/.*<amount>5000.*<orderSource>ecommerce.*<accType>Checking.*<accNum>12345657890.*<routingNum>123123.*<checkNum>123455.*/'));
-    	 
-    	$cnpTest = new CnpOnlineRequest();
-    	$cnpTest->newXML = $mock;
-    	$cnpTest->echeckCreditRequest($hash_in);
+        $hash_in = array(
+            'cnpTxnId' =>'123123',
+            'id' => 'id',
+            'secondaryAmount' => '2000');
+        $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
+        $mock->expects($this->once())
+            ->method('request')
+            ->with($this->matchesRegularExpression('/.*<secondaryAmount>2000.*/'));
+
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->echeckCreditRequest($hash_in);
     }
 
 }

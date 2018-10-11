@@ -94,7 +94,7 @@ class XmlFieldsTest extends \PHPUnit_Framework_TestCase
             "authAmount"=>"123");
     $hash_out = XmlFields::authInformation($hash);
     $this->assertEquals($hash_out["authDate"],"123");
-    $this->assertEquals($hash_out["authCode"], "REQUIRED");
+    $this->assertEquals($hash_out["authCode"], "");
     $this->assertEquals($hash_out["fraudResult"]["avsResult"], "1234");
     $this->assertEquals($hash_out["fraudResult"]["authenticationResult"], NULL);
     $this->assertEquals($hash_out["authAmount"],"123");
@@ -145,7 +145,7 @@ class XmlFieldsTest extends \PHPUnit_Framework_TestCase
         $hash_out = XmlFields::pos($hash);
         $this->assertEquals($hash_out["capability"],"123");
         $this->assertEquals($hash_out["entryMode"], "NO");
-        $this->assertEquals($hash_out["cardholderId"],"REQUIRED");
+        $this->assertEquals($hash_out["cardholderId"],"");
     }
 
     public function test_simple_detailTax()
@@ -232,7 +232,7 @@ class XmlFieldsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($hash_out["type"], "VISA");
         $this->assertEquals($hash_out["expDate"], "2013");
         $this->assertEquals($hash_out["cardValidationNum"], "123");
-        $this->assertEquals($hash_out["cnpToken"], "REQUIRED");
+        $this->assertEquals($hash_out["cnpToken"], "");
 
     }
 
@@ -246,7 +246,7 @@ class XmlFieldsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($hash_out["type"], "VISA");
         $this->assertEquals($hash_out["expDate"], "2013");
         $this->assertEquals($hash_out["cardValidationNum"], "123");
-        $this->assertEquals($hash_out["paypageRegistrationId"], "REQUIRED");
+        $this->assertEquals($hash_out["paypageRegistrationId"], "");
 
     }
 
@@ -256,16 +256,16 @@ class XmlFieldsTest extends \PHPUnit_Framework_TestCase
           "token"=>"123");
         $hash_out = XmlFields::paypal($hash);
         $this->assertEquals($hash_out["token"], "123");
-        $this->assertEquals($hash_out["payerId"], "REQUIRED");
-        $this->assertEquals($hash_out["transactionId"], "REQUIRED");
+        $this->assertEquals($hash_out["payerId"], "");
+        $this->assertEquals($hash_out["transactionId"], "");
     }
 
     public function test_simple_credit_paypal()
     {
         $hash = array();
         $hash_out = XmlFields::credit_paypal($hash);
-        $this->assertEquals($hash_out["payerId"], "REQUIRED");
-        $this->assertEquals($hash_out["payerEmail"], "REQUIRED");
+        $this->assertEquals($hash_out["payerId"], "");
+        $this->assertEquals($hash_out["payerEmail"], "");
 
     }
 
@@ -289,7 +289,7 @@ class XmlFieldsTest extends \PHPUnit_Framework_TestCase
         $hash_out = XmlFields::taxBilling($hash);
         $this->assertEquals($hash_out["taxAuthority"], "123");
         $this->assertEquals($hash_out["state"], "MA");
-        $this->assertEquals($hash_out["govtTxnType"], "REQUIRED");
+        $this->assertEquals($hash_out["govtTxnType"], "");
     }
 
     public function test_processingInstructions()
@@ -304,7 +304,7 @@ class XmlFieldsTest extends \PHPUnit_Framework_TestCase
         $hash = array("accNum"=>"1322143124");
         $hash_out = XmlFields::echeckForTokenType($hash);
         $this->assertEquals($hash_out["accNum"], "1322143124");
-        $this->assertEquals($hash_out["routingNum"], "REQUIRED");
+        $this->assertEquals($hash_out["routingNum"], "");
     }
 
     public function test_filteringType()
@@ -325,7 +325,7 @@ class XmlFieldsTest extends \PHPUnit_Framework_TestCase
         "accNum"=>"12431431413");
         $hash_out = XmlFields::echeckType($hash);
         $this->assertEquals($hash_out["accType"], "checking");
-        $this->assertEquals($hash_out["routingNum"], "REQUIRED");
+        $this->assertEquals($hash_out["routingNum"], "");
         $this->assertEquals($hash_out["checkNum"], NUll);
     }
 
@@ -336,7 +336,7 @@ class XmlFieldsTest extends \PHPUnit_Framework_TestCase
         "accType"=>"checking");
         $hash_out = XmlFields::echeckTokenType($hash);
         $this->assertEquals($hash_out["accType"], "checking");
-        $this->assertEquals($hash_out["routingNum"], "REQUIRED");
+        $this->assertEquals($hash_out["routingNum"], "");
         $this->assertEquals($hash_out["checkNum"], NUll);
     }
 
@@ -344,7 +344,7 @@ class XmlFieldsTest extends \PHPUnit_Framework_TestCase
     {
         $hash = array();
         $hash_out = XmlFields::recyclingRequestType($hash);
-        $this->assertEquals($hash_out["recycleBy"], "REQUIRED");
+        $this->assertEquals($hash_out["recycleBy"], "");
     }
     public function test_recyclingRequestType()
     {
@@ -511,7 +511,7 @@ class XmlFieldsTest extends \PHPUnit_Framework_TestCase
                 )
         );
         $hash_out = XmlFields::recurringRequestType ( XmlFields::returnArrayValue ( $hash_in, 'recurringRequest' ) );
-        $this->assertEquals ( $hash_out ['createSubscription'] ['planCode'], "REQUIRED" );
+        $this->assertEquals ( $hash_out ['createSubscription'] ['planCode'], "" );
         $this->assertEquals ( $hash_out ['createSubscription'] ['numberOfPayments'], '10' );
         $this->assertEquals ( $hash_out ['createSubscription'] ['startDate'], NULL );
         $this->assertEquals ( $hash_out ['createSubscription'] ['amount'], NULL );
@@ -526,7 +526,7 @@ class XmlFieldsTest extends \PHPUnit_Framework_TestCase
         $hash_out = XmlFields::pos($hash);
         $this->assertEquals($hash_out["capability"],"123");
         $this->assertEquals($hash_out["entryMode"], "NO");
-        $this->assertEquals($hash_out["cardholderId"],"REQUIRED");
+        $this->assertEquals($hash_out["cardholderId"],"");
         $this->assertEquals($hash_out["catLevel"],"self service");
     }
 

@@ -41,8 +41,8 @@ class GiftCardCaptureUnitTest extends \PHPUnit_Framework_TestCase {
 						'cardValidationNum' => '411',
 						'pin' => '1234'
 						 
-				)
-				,
+				),
+                'originalTxnTime' => '2017-01-24T09:00:00',
 				'originalRefCode' => '101',
 				'originalAmount' => '34561' 
 		);
@@ -60,7 +60,7 @@ class GiftCardCaptureUnitTest extends \PHPUnit_Framework_TestCase {
 				'id' => 'id' 
 		);
 		$cnpTest = new CnpOnlineRequest ();
-		$this->setExpectedException ( 'InvalidArgumentException', 'Missing Required Field: /cnpTxnId/' );
+		$this->setExpectedException ( 'PHPUnit_Framework_Error_Warning' );
 		$cnpTest->captureRequest ( $hash_in );
 	}
 }

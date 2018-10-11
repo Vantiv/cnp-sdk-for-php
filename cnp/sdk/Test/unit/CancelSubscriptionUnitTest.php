@@ -29,8 +29,7 @@ class CancelSubscriptionUnitTest extends \PHPUnit_Framework_TestCase
     public function test_simple()
     {
         $hash_in = array(
-            'subscriptionId'=>'1',
-        	'id'=> 'id');
+            'subscriptionId'=>'1');
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')

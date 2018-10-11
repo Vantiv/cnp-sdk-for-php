@@ -42,7 +42,7 @@ namespace cnp\sdk;
     {
         $hash_in =array('reportGroup'=>'Planets','id' => 'id','amount'=>'106');
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException','Missing Required Field: /cnpTxnId/');
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->authReversalRequest($hash_in);
     }
 

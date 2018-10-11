@@ -32,7 +32,7 @@ class LoadUnitTest extends \PHPUnit_Framework_TestCase
             'orderId'=>'1',
             'amount'=> '2',
         	'id' => 'id',
-            'orderSource'=>'ECOMMERCE',
+            'orderSource'=>'ecommerce',
             'card' => array (
 					'type' => 'GC',
 					'number' => '4100000000000001',
@@ -44,7 +44,7 @@ class LoadUnitTest extends \PHPUnit_Framework_TestCase
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
-        ->with($this->matchesRegularExpression('/.*<orderId>1.*<amount>2.*<orderSource>ECOMMERCE.*<card.*type.*GC.*/'));
+        ->with($this->matchesRegularExpression('/.*<orderId>1.*<amount>2.*<orderSource>ecommerce.*<card.*type.*GC.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;

@@ -58,7 +58,7 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
           'transactionId'=>'123456')
         );
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->creditRequest($hash_in);
     }
 
@@ -86,7 +86,7 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
           'transactionId'=>'123456')
         );
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->creditRequest($hash_in);
 
     }
@@ -123,7 +123,7 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
           'type'=>'VI')
         );
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->creditRequest($hash_in);
     }
 
@@ -134,6 +134,10 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
         		     'id' => 'id',
                     'orderSource'=>'ecommerce',
                     'amount'=>'123',
+                    'card'=>array(
+                        'type'=>'VI',
+                        'number' =>'4100000000000001',
+                        'expDate' =>'1210'),
                     'actionReason'=>'SUSPECT_FRAUD'
         );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
@@ -211,6 +215,10 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
         		'id' => 'id',
                 'surchargeAmount'=>'1',
                 'orderId'=>'3',
+                'card'=>array(
+                    'type'=>'VI',
+                    'number' =>'4100000000000001',
+                    'expDate' =>'1210'),
                 'orderSource'=>'ecommerce',
         );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
@@ -230,6 +238,10 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
                 'amount'=>'2',
         		'id' => 'id',
                 'orderId'=>'3',
+                'card'=>array(
+                    'type'=>'VI',
+                    'number' =>'4100000000000001',
+                    'expDate' =>'1210'),
                 'orderSource'=>'ecommerce',
         );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
@@ -250,9 +262,9 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
         		'id' => 'id',
                 'pos'=>array(
                     'terminalId'=>'abc123',
-                    'capability'=>'a',
-                    'entryMode'=>'b',
-                    'cardholderId'=>'c'
+                    'capability'=>'notused',
+                    'entryMode'=>'notused',
+                    'cardholderId'=>'signature'
                 ),
                 'cnpTxnId'=>'3',
                 'payPalNotes'=>'notes',

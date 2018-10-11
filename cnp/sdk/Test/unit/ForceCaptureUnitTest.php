@@ -61,7 +61,7 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
        'cardValidationNum'=>'555',
        'type'=>'VI'));
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /orderId/");
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->forceCaptureRequest($hash_in);
     }
     public function test_no_orderSource()
@@ -77,7 +77,7 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
            'cardValidationNum'=>'555',
            'type'=>'VI'));
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Missing Required Field: /orderSource/");
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->forceCaptureRequest($hash_in);
     }
     public function test_both_card_and_token()
@@ -101,7 +101,7 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
       'cardValidationNum'=>'555',
       'type'=>'VI'));
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->forceCaptureRequest($hash_in);
     }
     public function test_all_choices()
@@ -130,7 +130,7 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
           'cardValidationNum'=>'555',
           'type'=>'VI'));
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException',"Entered an Invalid Amount of Choices for a Field, please only fill out one Choice!!!!");
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->forceCaptureRequest($hash_in);
     }
 
@@ -161,10 +161,16 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
     public function test_surchargeAmount()
     {
         $hash_in = array(
-            'orderId'=>'3','id' => 'id',
+            'orderId'=>'3',
+            'id' => 'id',
             'amount'=>'2',
             'surchargeAmount'=>'1',
             'orderSource'=>'ecommerce',
+            'token'=> array(
+                'cnpToken'=>'123456789101112',
+                'expDate'=>'1210',
+                'cardValidationNum'=>'555',
+                'type'=>'VI')
         );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock
@@ -183,6 +189,11 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
             'orderId'=>'3','id' => 'id',
             'amount'=>'2',
             'orderSource'=>'ecommerce',
+            'token'=> array(
+                'cnpToken'=>'123456789101112',
+                'expDate'=>'1210',
+                'cardValidationNum'=>'555',
+                'type'=>'VI')
         );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock
@@ -201,6 +212,11 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
                 'amount'=>'2','id' => 'id',
                 'orderSource'=>'ecommerce',
                 'orderId'=>'3',
+            'token'=> array(
+                'cnpToken'=>'123456789101112',
+                'expDate'=>'1210',
+                'cardValidationNum'=>'555',
+                'type'=>'VI'),
                 'merchantData'=>array(
                         'campaign'=>'foo',
                 ),
@@ -223,6 +239,11 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
                 'amount'=>'2','id' => 'id',
                 'orderSource'=>'ecommerce',
                 'orderId'=>'3',
+            'token'=> array(
+                'cnpToken'=>'123456789101112',
+                'expDate'=>'1210',
+                'cardValidationNum'=>'555',
+                'type'=>'VI'),
                 'merchantData'=>array(
                         'campaign'=>'foo',
                 ),
@@ -245,6 +266,11 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
                 'amount'=>'2','id' => 'id',
                 'orderSource'=>'ecommerce',
                 'orderId'=>'3',
+            'token'=> array(
+                'cnpToken'=>'123456789101112',
+                'expDate'=>'1210',
+                'cardValidationNum'=>'555',
+                'type'=>'VI'),
                 'merchantData'=>array(
                         'campaign'=>'foo',
                 ),

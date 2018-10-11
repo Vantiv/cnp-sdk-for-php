@@ -269,19 +269,15 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_simple_auth_with_card_processingType_originalNetworkTransactionId_originalTransactionAmount()
     {
-        $hash_in = array('id' => 'id',
+        $hash_in = array(
+            'id' => '1211',
+            'orderId' => '2111',
+            'amount' => '0',
+            'orderSource' => 'ecommerce',
             'card' => array('type' => 'VI',
                 'number' => '4100000000000000',
                 'expDate' => '1213',
-                'cardValidationNum' => '1213'),
-            'id' => '1211',
-            'orderId' => '2111',
-            'reportGroup' => 'Planets',
-            'orderSource' => 'ecommerce',
-            'amount' => '0',
-            'processingType' => 'initialRecurring',
-            'originalNetworkTransactionId' => 'abcdefghijklmnopqrstuvwxyz',
-            'originalTransactionAmount' => '1000'
+                'cardValidationNum' => '1213')
         );
 
         $initialize = new CnpOnlineRequest();

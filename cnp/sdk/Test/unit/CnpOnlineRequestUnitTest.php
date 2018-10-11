@@ -29,11 +29,17 @@ class CnpOnlineRequestUnitTest extends \PHPUnit_Framework_TestCase
     public function test_set_merchant_sdk_integration()
     {
         $hash_in = array(
+            'id'=>'654',
             'merchantSdk'=>'Magento;8.14.3',
             'orderId'=> '2111',
-            'id'=>'654',
+            'amount'=>'123',
             'orderSource'=>'ecommerce',
-            'amount'=>'123');
+            'card'=>array(
+                'type'=>'VI',
+                'number' =>'4100000000000001',
+                'expDate' =>'1210')
+
+            );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
@@ -50,7 +56,12 @@ class CnpOnlineRequestUnitTest extends \PHPUnit_Framework_TestCase
                 'orderId'=> '2111',
                 'id'=>'654',
                 'orderSource'=>'ecommerce',
-                'amount'=>'123');
+                'amount'=>'123',
+                'card'=>array(
+                    'type'=>'VI',
+                    'number' =>'4100000000000001',
+                    'expDate' =>'1210')
+            );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')

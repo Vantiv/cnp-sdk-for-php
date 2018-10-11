@@ -30,7 +30,7 @@ class BalanceInquiryUnitTest extends \PHPUnit_Framework_TestCase
     {
         $hash_in = array(
             'orderId'=>'1',
-            'orderSource'=>'ECOMMERCE',
+            'orderSource'=>'ecommerce',
         	'id' => 'id',
             'card' => array (
 					'type' => 'GC',
@@ -43,7 +43,7 @@ class BalanceInquiryUnitTest extends \PHPUnit_Framework_TestCase
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
         ->method('request')
-        ->with($this->matchesRegularExpression('/.*<orderId>1.*<orderSource>ECOMMERCE.*<card.*type.*GC.*/'));
+        ->with($this->matchesRegularExpression('/.*<orderId>1.*<orderSource>ecommerce.*<card.*type.*GC.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
