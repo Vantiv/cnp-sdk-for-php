@@ -86,7 +86,7 @@ class EcheckRedepositFunctionalTest extends \PHPUnit_Framework_TestCase
             'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'));
 
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException', 'Missing Required Field: /cnpTxnId/');
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->echeckRedepositRequest($hash_in);
     }
 

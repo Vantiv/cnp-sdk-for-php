@@ -15,7 +15,8 @@ class CnpResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->direct = sys_get_temp_dir() . '/test';
+//        $this->direct = sys_get_temp_dir() . '/test';
+        $this->direct = __DIR__ . '/../../batchRequest';
         if (!file_exists($this->direct)) {
             mkdir($this->direct);
         }
@@ -86,6 +87,7 @@ class CnpResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
         $batch->addAuth($hash_in);
 
         $request->addBatchRequest($batch);
+//        print_r ($request);
 
         $resp = $request->sendToCnpStream();
         $proc = new CnpResponseProcessor ($resp);

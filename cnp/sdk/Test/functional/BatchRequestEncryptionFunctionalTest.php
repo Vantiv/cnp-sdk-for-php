@@ -2,6 +2,7 @@
 
 namespace cnp\sdk\Test\functional;
 
+use cnp\sdk\Obj2xml;
 use cnp\sdk\BatchRequest;
 use cnp\sdk\CnpRequest;
 use cnp\sdk\CnpResponseProcessor;
@@ -14,6 +15,7 @@ class BatchRequestEncryptionFunctionalTest extends \PHPUnit_Framework_TestCase
     private $sftpUsername;
     private $sftpPassword;
     private $merchantId;
+    private $config;
 
     public function setUp()
     {
@@ -22,11 +24,22 @@ class BatchRequestEncryptionFunctionalTest extends \PHPUnit_Framework_TestCase
             mkdir($this->direct);
         }
 
-        $this->username = $_SERVER['encUsername'];
-        $this->password = $_SERVER['encPassword'];
-        $this->sftpUsername = $_SERVER['encSftpUsername'];
-        $this->sftpPassword = $_SERVER['encSftpPassword'];
-        $this->merchantId = $_SERVER['encMerchantId'];
+        $this->config = Obj2xml::getConfig(array(
+            'batch_requests_path' => $this->direct,
+            'cnp_requests_path' => $this->direct
+        ));
+
+//        $this->username = $_SERVER['encUsername'];
+//        $this->password = $_SERVER['encPassword'];
+//        $this->sftpUsername = $_SERVER['encSftpUsername'];
+//        $this->sftpPassword = $_SERVER['encSftpPassword'];
+//        $this->merchantId = $_SERVER['encMerchantId'];
+
+        $this->username = $this->config['user'];
+        $this->password = $this->config['password'];
+        $this->sftpUsername = $this->config['sftp_username'];
+        $this->sftpPassword = $this->config['sftp_password'];
+        $this->merchantId = $this->config['merchantId'];
     }
 
     public function test_configuredCnpBatchRequestsManually()

@@ -81,12 +81,10 @@ class TokenFunctionalTest extends \PHPUnit_Framework_TestCase
             'reportGroup' => 'Planets',
             'orderId' => '12344',
             'echeckForToken' => array('routingNum' => '132344565'));
-
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('InvalidArgumentException', 'Missing Required Field: /accNum/');
         $registerTokenResponse = $cnpTest->registerTokenRequest($hash_in);
         $message = XmlParser::getAttribute($registerTokenResponse, 'cnpOnlineResponse', 'message');
-        $this->assertEquals('Valid Format', $message);
     }
 
     public function test_simple_token_applepay()

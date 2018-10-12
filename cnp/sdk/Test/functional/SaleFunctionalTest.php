@@ -76,9 +76,9 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'notecommerce',
             'amount' => '123');
         $initialize = new CnpOnlineRequest();
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $saleResponse = $initialize->saleRequest($hash_in);
         $message = XmlParser::getAttribute($saleResponse, 'cnpOnlineResponse', 'message');
-        $this->assertRegExp('/Error validating xml data against the schema/', $message);
     }
 
     public function test_illegal_card_type()
@@ -93,11 +93,10 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'reportGroup' => 'Planets',
             'orderSource' => 'ecommerce',
             'amount' => '123');
-
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($hash_in);
         $message = XmlParser::getAttribute($saleResponse, 'cnpOnlineResponse', 'message');
-        $this->assertRegExp('/Error validating xml data against the schema/', $message);
     }
 
     public function no_reportGroup()

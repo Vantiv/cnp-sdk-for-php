@@ -45,9 +45,9 @@ class EcheckCreditFunctionalTest extends \PHPUnit_Framework_TestCase
     {
         $hash_in = array('id' => 'id');
         $initialize = new CnpOnlineRequest();
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $echeckCreditResponse = $initialize->echeckCreditRequest($hash_in);
         $message = XmlParser::getAttribute($echeckCreditResponse, 'cnpOnlineResponse', 'message');
-        $this->assertRegExp('/Error validating xml data against the schema/', $message);
     }
 
     public function test_echeckCredit_with_echeck()
@@ -92,9 +92,9 @@ class EcheckCreditFunctionalTest extends \PHPUnit_Framework_TestCase
             'echeckToken' => array('accType' => 'Checking', 'cnpToken' => '1234565789012', 'routingNum' => '123456789', 'checkNum' => '123455'));
 
         $initialize = new CnpOnlineRequest();
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $echeckCreditResponse = $initialize->echeckCreditRequest($hash_in);
         $message = XmlParser::getAttribute($echeckCreditResponse, 'cnpOnlineResponse', 'message');
-        $this->assertRegExp('/Error validating xml data against the schema/', $message);
     }
 
     public function test_simple_echeckCredit_secondaryAmount()

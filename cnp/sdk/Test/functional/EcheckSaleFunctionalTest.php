@@ -72,9 +72,9 @@ class EcheckSaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'));
 
         $initialize = new CnpOnlineRequest();
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $echeckSaleResponse = $initialize->echeckSaleRequest($hash_in);
         $message = XmlParser::getAttribute($echeckSaleResponse, 'cnpOnlineResponse', 'message');
-        $this->assertRegExp('/Error validating xml data against the schema/', $message);
     }
 
     public function test_echeckSale_with_shipto()
@@ -137,9 +137,9 @@ class EcheckSaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'));
 
         $initialize = new CnpOnlineRequest();
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $echeckSaleResponse = $initialize->echeckSaleRequest($hash_in);
         $message = XmlParser::getAttribute($echeckSaleResponse, 'cnpOnlineResponse', 'message');
-        $this->assertRegExp('/Error validating xml data against the schema/', $message);
     }
 
     public function test_simple_echeckSale_with_merchantData_customIdentifier()

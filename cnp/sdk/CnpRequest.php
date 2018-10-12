@@ -74,6 +74,7 @@ class CnpRequest
      */
     public function addBatchRequest($batch_request)
     {
+
         if ($this->wouldFill($batch_request->total_txns)) {
             throw new \RuntimeException("Couldn't add the batch to the Cnp Request. The total number of transactions would exceed the maximum allowed for a request.");
         }
@@ -137,6 +138,8 @@ class CnpRequest
             }
             fclose($handle);
             file_put_contents($this->request_file, "</cnpRequest>", FILE_APPEND);
+
+
 
             unlink($this->batches_file);
             unset($this->batches_file);
@@ -311,9 +314,9 @@ class CnpRequest
         }
 
         $tcp_url = $this->config['batch_url'];
-        $tcp_port = $this->config['tcp_port'];
+        $tcp_port = (float) $this->config['tcp_port'];
         $tcp_ssl = (int) $this->config['tcp_ssl'];
-        $tcp_timeout = $this->config['tcp_timeout'];;
+        $tcp_timeout = (float)$this->config['tcp_timeout'];;
 
         if ($tcp_ssl) {
             $tcp_url = 'ssl://' . $tcp_url;

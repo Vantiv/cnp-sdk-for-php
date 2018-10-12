@@ -60,9 +60,9 @@ class CreditFunctionalTest extends \PHPUnit_Framework_TestCase
             'amount' => '123');
 
         $initialize = new CnpOnlineRequest();
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $creditResponse = $initialize->creditRequest($hash_in);
         $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'message');
-        $this->assertRegExp('/Error validating xml data against the schema/', $message);
     }
 
     public function test_simple_credit_with_cnpTxnId()

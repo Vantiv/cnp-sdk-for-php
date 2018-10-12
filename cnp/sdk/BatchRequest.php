@@ -190,6 +190,9 @@ class BatchRequest
         $filename = $request_dir . "batch_" . $ts . "_txns";
         $batch_filename = $request_dir . "batch_" . $ts;
 
+        print $request_dir."\n";
+        print $batch_filename."\n";
+
         if (!is_dir($request_dir)) {
             mkdir($request_dir);
         }
@@ -237,15 +240,8 @@ class BatchRequest
     public function addAuth($hash_in)
     {
         $hash_out = Transactions::createAuthHash($hash_in);
-
-        $choice_hash = array(
-            XmlFields::returnArrayValue($hash_out, 'card'),
-            XmlFields::returnArrayValue($hash_out, 'paypal'),
-            XmlFields::returnArrayValue($hash_out, 'token'),
-            XmlFields::returnArrayValue($hash_out, 'paypage')
-        );
-
-        $this->addTransaction($hash_out, $hash_in, 'authorization', $choice_hash);
+//        print_r ($hash_out);
+        $this->addTransaction($hash_out, $hash_in, 'authorization');
         $this->counts_and_amounts ['auth'] ['count'] += 1;
         $this->counts_and_amounts ['auth'] ['amount'] += $hash_out ['amount'];
     }
@@ -647,8 +643,6 @@ class BatchRequest
             $report_group = $conf ['reportGroup'];
         }
 
-        Checker::choice($choice1);
-        Checker::choice($choice2);
 
         $request = Obj2xml::transactionToXml($hash_out, $type, $report_group);
 

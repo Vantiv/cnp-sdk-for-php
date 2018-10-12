@@ -35,6 +35,7 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
             'merchantId' => '101',
             'version' => '8.8',
             'reportGroup' => 'Planets',
+
             'cnpTxnId' => '123456',
             'orderId' => '12344',
             'amount' => '106',
@@ -44,11 +45,9 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
                 'expDate' => '1210',
                 'cardValidationNum' => '123'
             ));
-
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($hash_in);
-        $message = XmlParser::getAttribute($saleResponse, 'cnpOnlineResponse', 'message');
-        $this->assertRegExp('/Error validating xml data against the schema/', $message);
     }
 
     public function test_simple_customBilling()
@@ -191,11 +190,10 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
                 'type' => 'VI',
                 'number' => '4100000000000000',
                 'expDate' => '1210'));
-
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($hash_in);
         $message = XmlParser::getAttribute($saleResponse, 'cnpOnlineResponse', 'message');
-        $this->assertRegExp('/Error validating xml data against the schema/', $message);
     }
 
     public function test_simple_enhancedData()
@@ -245,10 +243,10 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
                 'shipFromPostalCode' => '01741',
                 'destinationPostalCode' => '01742'));
 
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($hash_in);
         $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'message');
-        $this->assertRegExp('/Error validating xml data against the schema/', $message);
     }
 
     public function test_enhancedData_with_detailtax()
@@ -346,10 +344,10 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
                 'cardValidationNum' => '555',
                 'type' => 'VI'));
 
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($hash_in);
         $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'message');
-        $this->assertRegExp('/Error validating xml data against the schema/', $message);
     }
 
     public function test_token_missing_expDat_and_validationNum()
