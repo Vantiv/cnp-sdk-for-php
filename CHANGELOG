@@ -1,5 +1,12 @@
 = CnpOnline CHANGELOG
 
+==Version 12.5.0 (Oct 11, 2018)
+* Feature: Full functions for XML v12.5
+* Feature: add a new type: encryptedCcAccountNumberType
+* Feature: add support for encryption on registerTokenRequestType
+* Feature: add paymentAccountReferenceNumber in authorizationResponse and saleResponse
+* Feature: add disbursementTypeEnum in fastAccessFunding
+
 ==Version 12.3.0 (May 14, 2018)
 * Feature: Added support for lodging information in authorization, sale, capture, captureGivenAuth, forceCapture and credit
 * Feature: Added translateToLowValueToken transaction type
