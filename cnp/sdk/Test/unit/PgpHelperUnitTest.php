@@ -28,7 +28,7 @@ class PgpHelperUnitTest extends \PHPUnit_Framework_TestCase
         $input = "This is the text to be encrypted. PHP SDK V11";
         file_put_contents($this->requestFilename, $input);
         $this->encryptedRequestFilename = $this->direct."/test.asc";
-        $this->publicKey = $config['testPublicKeyID'];
+        $this->publicKey = $config['merchantPublicKeyID'];
         $this->responseFilename = $this->direct."/test.asc";
         $this->decryptedResponseFilename = $this->direct."/test2.txt";
         $this->passphrase = $config['gpgPassphrase'];
