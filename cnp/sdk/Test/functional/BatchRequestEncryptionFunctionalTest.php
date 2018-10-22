@@ -105,13 +105,22 @@ class BatchRequestEncryptionFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_mechaBatch()
     {
+
+        $username_local = $_SERVER['encUsername'];
+        $password_local = $_SERVER['encPassword'];
+        $sftpUsername_local = $_SERVER['encSftpUsername'];
+        $sftpPassword_local = $_SERVER['encSftpPassword'];
+        $merchantId_local = $_SERVER['encMerchantId'];
+
+
         $config_hash = array(
-            'user' => $this->username,
-            'password' => $this->password,
-            'merchantId' => $this->merchantId,
-            'sftp_username' => $this->sftpUsername,
-            'sftp_password' => $this->sftpPassword,
+            'user' => $username_local,
+            'password' => $password_local,
+            'merchantId' => $merchantId_local,
+            'sftp_username' => $sftpUsername_local,
+            'sftp_password' => $sftpPassword_local,
             'useEncryption' => 'true',
+            'batch_url' => 'prelive.litle.com',
         );
         $request = new CnpRequest($config_hash);
 
