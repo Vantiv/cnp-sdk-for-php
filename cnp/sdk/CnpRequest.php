@@ -146,11 +146,8 @@ class CnpRequest
             $this->closed = true;
             if (isset($this->config['print_xml']) and $this->config['print_xml']){
                 $handle = @fopen($this->request_file,"r");
-                print "Request is:\n";
                 while (($buffer = fgets($handle, 4096)) !== false) {
-                    print $buffer;
                 }
-                print "\n\n";
                 fclose($handle);
             }
         } else {
@@ -284,11 +281,8 @@ class CnpRequest
 
                 if (isset($this->config['print_xml']) and $this->config['print_xml']){
                     $handle = @fopen($this->response_file,"r");
-                    print "Response is :\n";
                     while (($buffer = fgets($handle, 4096)) !== false) {
-                        print $buffer;
                     }
-                    print "\n\n";
                     fclose($handle);
                 }
                 return;

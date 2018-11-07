@@ -190,9 +190,6 @@ class BatchRequest
         $filename = $request_dir . "batch_" . $ts . "_txns";
         $batch_filename = $request_dir . "batch_" . $ts;
 
-        print $request_dir."\n";
-        print $batch_filename."\n";
-
         if (!is_dir($request_dir)) {
             mkdir($request_dir);
         }
