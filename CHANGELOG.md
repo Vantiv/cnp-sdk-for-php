@@ -1,5 +1,8 @@
 = CnpOnline CHANGELOG
 
+==Version 12.5.1 (Nov 7, 2018)
+* BugFix: Removed debug statements
+
 ==Version 12.5.0 (Oct 11, 2018)
 * Feature: Full functions for XML v12.5
 * Feature: add a new type: encryptedCcAccountNumberType
