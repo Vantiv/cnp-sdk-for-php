@@ -918,11 +918,8 @@ class CnpOnlineRequest
     {
         $hash_config = CnpOnlineRequest::overrideConfig($hash_in);
         $hash = CnpOnlineRequest::getOptionalAttributes($hash_in,$hash_out);
-        print ("\ngenerating request .......\n");
         $request = Obj2xml::toXml($hash,$hash_config, $type);
-        print $request;
         if(Checker::validateXML($request)){
-            print("\nvalid schema...\n");
             $cnpOnlineResponse = $this->newXML->request($request,$hash_config,$this->useSimpleXml);
         }
 
