@@ -31,6 +31,10 @@ class Checker
         $xml = new DOMDocument();
         $xml->loadXML($request);
         $filepath =  __DIR__."/schema/SchemaCombined_v12.5.xsd";
-        return $xml->schemaValidate( $filepath);
+        $result =  $xml->schemaValidate( $filepath);
+
+        if(!$result)
+            throw new \PHPUnit_Framework_Error_Warning("Fatal ERROR: Invalid XML Request!!!");
+        return $result;
     }
 }

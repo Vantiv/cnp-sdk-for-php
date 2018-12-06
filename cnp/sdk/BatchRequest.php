@@ -182,11 +182,11 @@ class BatchRequest
             $request_dir = $conf ['batch_requests_path'];
         }
 
-        if (substr($request_dir, -1, 1) != DIRECTORY_SEPARATOR) {
+        if (mb_substr($request_dir, -1, 1) != DIRECTORY_SEPARATOR) {
             $request_dir = $request_dir . DIRECTORY_SEPARATOR;
         }
 
-        $ts = str_replace(" ", "", substr(microtime(), 2));
+        $ts = str_replace(" ", "", mb_substr(microtime(), 2));
         $filename = $request_dir . "batch_" . $ts . "_txns";
         $batch_filename = $request_dir . "batch_" . $ts;
 

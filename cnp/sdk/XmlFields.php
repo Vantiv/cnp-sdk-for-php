@@ -31,7 +31,7 @@ class XmlFields
     {
         $retVal = array_key_exists($key, $hash_in)? $hash_in[$key] : null;
         if ($maxlength && !is_null($retVal)) {
-            $retVal = substr($retVal, 0, $maxlength);
+            $retVal = mb_substr($retVal, 0, $maxlength);
         }
 
         return $retVal;

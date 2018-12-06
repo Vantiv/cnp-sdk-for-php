@@ -32,11 +32,11 @@ class CnpRequest
             mkdir($request_dir);
         }
 
-        if (substr($request_dir, -1, 1) != DIRECTORY_SEPARATOR) {
+        if (mb_substr($request_dir, -1, 1) != DIRECTORY_SEPARATOR) {
             $request_dir = $request_dir . DIRECTORY_SEPARATOR;
         }
 
-        $ts = str_replace(" ", "", substr(microtime(), 2));
+        $ts = str_replace(" ", "", mb_substr(microtime(), 2));
         $batches_filename = $request_dir . "request_" . $ts . "_batches";
         $request_filename = $request_dir . "request_" . $ts;
         $response_filename = $request_dir . "response_" . $ts;
