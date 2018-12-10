@@ -1,5 +1,9 @@
 = CnpOnline CHANGELOG
 
+==Version 12.5.2 (Dec 10, 2018)
+* Feature: Multibyte encoding support for XML requests
+* BugFix: Validation to terminate current execution of script
+
 ==Version 12.5.1 (Nov 7, 2018)
 * BugFix: Removed debug statements
 
