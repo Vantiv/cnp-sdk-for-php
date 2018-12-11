@@ -1,5 +1,8 @@
 = CnpOnline CHANGELOG
 
+==Version 12.5.4 (Dec 11, 2018)
+* Feature: User Exception handling support.
+
 ==Version 12.5.3 (Dec 11, 2018)
 * BugFix: Created custom exception handler replacing a test framework
 
