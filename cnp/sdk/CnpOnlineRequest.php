@@ -919,8 +919,12 @@ class CnpOnlineRequest
         $hash_config = CnpOnlineRequest::overrideConfig($hash_in);
         $hash = CnpOnlineRequest::getOptionalAttributes($hash_in,$hash_out);
         $request = Obj2xml::toXml($hash,$hash_config, $type);
-        if(Checker::validateXML($request)){
-            $cnpOnlineResponse = $this->newXML->request($request,$hash_config,$this->useSimpleXml);
+        try {
+            if (Checker::validateXML($request)) {
+                $cnpOnlineResponse = $this->newXML->request($request, $hash_config, $this->useSimpleXml);
+            }
+        } catch (exceptions\cnpSDKException $e) {
+            exit($e->getMessage());
         }
 
         return $cnpOnlineResponse;

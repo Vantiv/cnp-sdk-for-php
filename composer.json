@@ -24,6 +24,7 @@
         "test": "phpunit"
     },
     "autoload":{
-     	"psr-0":{"cnp\\sdk" : "."}
+     	"psr-0":{"cnp\\sdk" : "."},
+        "classmap": ["cnp/"]
     }
 }

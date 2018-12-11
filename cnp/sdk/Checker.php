@@ -23,6 +23,7 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 namespace cnp\sdk;
+use cnp\sdk\exceptions\cnpSDKException;
 use DOMDocument;
 
 class Checker
@@ -34,7 +35,7 @@ class Checker
         $result =  $xml->schemaValidate( $filepath);
 
         if(!$result)
-            throw new \PHPUnit_Framework_Error_Warning("Fatal ERROR: Invalid XML Request!!!");
+            throw new cnpSDKException("Fatal ERROR: Invalid XML Request!!!");
         return $result;
     }
 }
