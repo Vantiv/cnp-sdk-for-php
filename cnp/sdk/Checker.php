@@ -28,6 +28,11 @@ use DOMDocument;
 
 class Checker
 {
+    /**
+     * @param $request
+     * @return bool
+     * @throws cnpSDKException
+     */
     public static function validateXML($request){
         $xml = new DOMDocument();
         $xml->loadXML($request);
@@ -35,7 +40,9 @@ class Checker
         $result =  $xml->schemaValidate( $filepath);
 
         if(!$result)
-            throw new cnpSDKException("Fatal ERROR: Invalid XML Request!!!");
+            throw new cnpSDKException("Fatal ERROR: Invalid XML Request!");
+
+
         return $result;
     }
 }

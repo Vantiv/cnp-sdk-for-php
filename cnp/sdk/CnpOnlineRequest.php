@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection ALL */
 
 /*
  * Copyright (c) 2011 Vantiv eCommerce Inc.
@@ -36,6 +36,10 @@ class CnpOnlineRequest
         $this->newXML = new CnpXmlMapper();
     }
 
+    /**
+     * @param $code
+     * @return mixed|string
+     */
     public static function getAddressResponse($code)
     {
         $codes = array("00" => "5-Digit zip and address match",
@@ -57,6 +61,10 @@ class CnpOnlineRequest
         return (isset($codes[$code]) ? $codes[$code] : "Unknown Address Response");
     }
 
+    /**
+     * @param $code
+     * @return mixed|string
+     */
     public static function getCardResponse($code)
     {
         $codes = array("M" => "Match",
@@ -69,6 +77,11 @@ class CnpOnlineRequest
         return (isset($codes[$code]) ? $codes[$code] : "Unknown Address Response");
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function authorizationRequest($hash_in)
     {
         if (isset($hash_in['cnpTxnId'])) {
@@ -119,6 +132,11 @@ class CnpOnlineRequest
         return $authorizationResponse;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function saleRequest($hash_in)
     {
         $hash_out = array(
@@ -178,6 +196,11 @@ class CnpOnlineRequest
         return $saleResponse;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function authReversalRequest($hash_in)
     {
         $hash_out = array(
@@ -191,7 +214,12 @@ class CnpOnlineRequest
 
         return $authReversalResponse;
     }
-    
+
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function giftCardAuthReversalRequest($hash_in)
     {
     	$hash_out = array( 
@@ -205,10 +233,15 @@ class CnpOnlineRequest
     			'originalSequenceNumber'=>XmlFields::returnArrayValue($hash_in,'originalSequenceNumber')
     	);
     	$giftCardAuthReversalResponse = $this->processRequest($hash_out,$hash_in,'giftCardAuthReversal');
-    
+
     	return $giftCardAuthReversalResponse;
     }
-        		
+
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function giftCardCaptureRequest($hash_in) {
 		$hash_out = array (
 				'cnpTxnId' =>  ( XmlFields::returnArrayValue ( $hash_in, 'cnpTxnId' ) ),
@@ -220,10 +253,15 @@ class CnpOnlineRequest
 				'originalTxnTime' => XmlFields::returnArrayValue ( $hash_in, 'originalTxnTime' )
 		);
 		$giftCardCaptureResponse = $this->processRequest ( $hash_out, $hash_in, 'giftCardCapture' );
-	
+
 		return $giftCardCaptureResponse;
 	}
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function creditRequest($hash_in)
     {
         $hash_out = array(
@@ -258,7 +296,12 @@ class CnpOnlineRequest
 
         return $creditResponse;
     }
-    
+
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function giftCardCreditRequest($hash_in)
     {
     	$hash_out = array(
@@ -269,12 +312,17 @@ class CnpOnlineRequest
     			'orderSource'=>XmlFields::returnArrayValue($hash_in, 'orderSource'),
     			'card'=>XmlFields::giftCardCardType(XMLFields::returnArrayValue($hash_in, 'card'))
     	);
-    
+
     	$giftCardCreditResponse = $this->processRequest($hash_out,$hash_in,'giftCardCredit');
-    
+
     	return $giftCardCreditResponse;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function registerTokenRequest($hash_in)
     {
         $hash_out = array(
@@ -305,6 +353,11 @@ class CnpOnlineRequest
         return $registerTokenResponse;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function forceCaptureRequest($hash_in)
     {
         $hash_out = array(
@@ -337,6 +390,11 @@ class CnpOnlineRequest
         return $forceCaptureResponse;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function captureRequest($hash_in)
     {
         $hash_out = array(
@@ -357,6 +415,11 @@ class CnpOnlineRequest
         return $captureResponse;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function captureGivenAuthRequest($hash_in)
     {
         $hash_out = array(
@@ -394,6 +457,11 @@ class CnpOnlineRequest
         return $captureGivenAuthResponse;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function echeckRedepositRequest($hash_in)
     {
         $hash_out = array(
@@ -411,6 +479,11 @@ class CnpOnlineRequest
         return $echeckRedepositResponse;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function echeckSaleRequest($hash_in)
     {
         $hash_out = array(
@@ -437,10 +510,11 @@ class CnpOnlineRequest
         return $echeckSaleResponse;
     }
 
-    //public function echeckSaleRequestObject(EcheckSale $echeckSale) {
-        //TODO Can I overload?  What are php's rules?
-    //}
-
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function echeckCreditRequest($hash_in)
     {
         $hash_out = array(
@@ -463,6 +537,11 @@ class CnpOnlineRequest
         return $echeckCreditResponse;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function echeckVerificationRequest($hash_in)
     {
 
@@ -483,6 +562,11 @@ class CnpOnlineRequest
         return $echeckVerificationResponse;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function voidRequest($hash_in)
     {
         $hash_out = array(
@@ -494,6 +578,11 @@ class CnpOnlineRequest
         return $voidResponse;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function echeckVoidRequest($hash_in)
     {
         $hash_out = array(
@@ -505,6 +594,11 @@ class CnpOnlineRequest
         return $echeckVoidResponse;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function depositReversalRequest($hash_in)
     {
         $hash_out = array(
@@ -521,6 +615,12 @@ class CnpOnlineRequest
 
         return $response;
     }
+
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function refundReversalRequest($hash_in)
     {
         $hash_out = array(
@@ -537,6 +637,12 @@ class CnpOnlineRequest
 
         return $response;
     }
+
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function activateReversalRequest($hash_in)
     {
         $hash_out = array(
@@ -554,7 +660,11 @@ class CnpOnlineRequest
         return $response;
     }
 
-
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function translateToLowValueTokenRequest($hash_in)
     {
         $hash_out = array(
@@ -566,7 +676,11 @@ class CnpOnlineRequest
         return $response;
     }
 
-
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function deactivateReversalRequest($hash_in)
     {
         $hash_out = array(
@@ -582,6 +696,12 @@ class CnpOnlineRequest
 
         return $response;
     }
+
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function loadReversalRequest($hash_in)
     {
         $hash_out = array(
@@ -598,6 +718,12 @@ class CnpOnlineRequest
 
         return $response;
     }
+
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function unloadReversalRequest($hash_in)
     {
         $hash_out = array(
@@ -615,6 +741,11 @@ class CnpOnlineRequest
         return $response;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function updateCardValidationNumOnToken($hash_in)
     {
         $hash_out = array(
@@ -628,6 +759,11 @@ class CnpOnlineRequest
         return $updateCardValidationNumOnTokenResponse;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function updateSubscription($hash_in)
     {
         $hash_out = Transactions::createUpdateSubscriptionHash($hash_in);
@@ -637,6 +773,11 @@ class CnpOnlineRequest
         return $updateSubscriptionResponse;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function cancelSubscription($hash_in)
     {
         $hash_out = Transactions::createCancelSubscriptionHash($hash_in);
@@ -645,6 +786,11 @@ class CnpOnlineRequest
         return $cancelSubscriptionResponse;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function updatePlan($hash_in)
     {
         $hash_out = Transactions::createUpdatePlanHash($hash_in);
@@ -653,6 +799,11 @@ class CnpOnlineRequest
         return $updatePlanResponse;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function createPlan($hash_in)
     {
         $hash_out = Transactions::createCreatePlanHash($hash_in);
@@ -661,6 +812,11 @@ class CnpOnlineRequest
         return $createPlanResponse;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function activate($hash_in)
     {
         $hash_out = Transactions::createActivateHash($hash_in);
@@ -668,6 +824,12 @@ class CnpOnlineRequest
 
         return $txnResponse;
     }
+
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function deactivate($hash_in)
     {
         $hash_out = Transactions::createDeactivateHash($hash_in);
@@ -675,6 +837,12 @@ class CnpOnlineRequest
 
         return $txnResponse;
     }
+
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function load($hash_in)
     {
         $hash_out = Transactions::createLoadHash($hash_in);
@@ -682,6 +850,12 @@ class CnpOnlineRequest
 
         return $txnResponse;
     }
+
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function unload($hash_in)
     {
         $hash_out = Transactions::createUnloadHash($hash_in);
@@ -689,6 +863,12 @@ class CnpOnlineRequest
 
         return $txnResponse;
     }
+
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function balanceInquiry($hash_in)
     {
         $hash_out = Transactions::createBalanceInquiryHash($hash_in);
@@ -696,7 +876,12 @@ class CnpOnlineRequest
 
         return $txnResponse;
     }
-    
+
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function queryTransaction($hash_in)
     {
     	$hash_out = array(
@@ -707,10 +892,15 @@ class CnpOnlineRequest
                 'showStatusOnly' => XmlFields::returnArrayValue($hash_in, 'showStatusOnly')
     	);
     	$queryTransactionResponse = $this->processRequest($hash_out,$hash_in,"queryTransaction");
-    
+
     	return $queryTransactionResponse;
     }
-    
+
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function fraudCheck($hash_in)
     {
     	$hash_out = array(
@@ -724,10 +914,15 @@ class CnpOnlineRequest
                 'accountPasshash' => XmlFields::returnArrayValue($hash_in, 'accountPasshash')
     	);
     	$fraudCheckResponse = $this->processRequest($hash_out,$hash_in,"fraudCheck");
-    	
+
     	return $fraudCheckResponse;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function subMerchantCredit($hash_in)
     {
         $hash_out = array (
@@ -744,6 +939,11 @@ class CnpOnlineRequest
         return $subMerchantCreditResponse;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function subMerchantDebit($hash_in)
     {
         $hash_out = array (
@@ -760,6 +960,11 @@ class CnpOnlineRequest
         return $subMerchantDebitResponse;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function payFacDebit($hash_in)
     {
         $hash_out = array (
@@ -771,6 +976,11 @@ class CnpOnlineRequest
         return $payfacDebitResponse;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function payFacCredit($hash_in)
     {
         $hash_out = array (
@@ -782,6 +992,11 @@ class CnpOnlineRequest
         return $payfacCreditResponse;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function reserveCredit($hash_in)
     {
         $hash_out = array (
@@ -793,6 +1008,11 @@ class CnpOnlineRequest
         return $reserveCreditResponse;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function reserveDebit($hash_in)
     {
         $hash_out = array (
@@ -804,6 +1024,11 @@ class CnpOnlineRequest
         return $reserveDebitResponse;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function physicalCheckDebit($hash_in)
     {
         $hash_out = array (
@@ -815,6 +1040,11 @@ class CnpOnlineRequest
         return $physicalCheckDebitResponse;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function physicalCheckCredit($hash_in)
     {
         $hash_out = array (
@@ -826,6 +1056,11 @@ class CnpOnlineRequest
         return $physicalCheckCreditResponse;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function vendorCredit($hash_in)
     {
         $hash_out = array (
@@ -839,6 +1074,11 @@ class CnpOnlineRequest
         return $vendorCreditResponse;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function vendorDebit($hash_in)
     {
         $hash_out = array (
@@ -853,6 +1093,11 @@ class CnpOnlineRequest
     }
 
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function fundingInstructionVoid($hash_in)
     {
         $hash_out = array (
@@ -862,6 +1107,11 @@ class CnpOnlineRequest
         return $fundingInstructionVoidResponse;
     }
 
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function fastAccessFunding($hash_in)
     {
         $hash_out = array (
@@ -880,6 +1130,10 @@ class CnpOnlineRequest
         return $fastAccessFunding;
     }
 
+    /**
+     * @param $hash_in
+     * @return array
+     */
     private static function overrideConfig($hash_in)
     {
         $hash_config = array();
@@ -894,6 +1148,11 @@ class CnpOnlineRequest
         return $hash_config;
     }
 
+    /**
+     * @param $hash_in
+     * @param $hash_out
+     * @return mixed
+     */
     private static function getOptionalAttributes($hash_in,$hash_out)
     {
         if (isset($hash_in['merchantSdk'])) {
@@ -914,17 +1173,22 @@ class CnpOnlineRequest
         return $hash_out;
     }
 
+    /**
+     * @param $hash_out
+     * @param $hash_in
+     * @param $type
+     * @param null $choice1
+     * @param null $choice2
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     private function processRequest($hash_out, $hash_in, $type, $choice1 = null, $choice2 = null)
     {
         $hash_config = CnpOnlineRequest::overrideConfig($hash_in);
         $hash = CnpOnlineRequest::getOptionalAttributes($hash_in,$hash_out);
         $request = Obj2xml::toXml($hash,$hash_config, $type);
-        try {
-            if (Checker::validateXML($request)) {
-                $cnpOnlineResponse = $this->newXML->request($request, $hash_config, $this->useSimpleXml);
-            }
-        } catch (exceptions\cnpSDKException $e) {
-            exit($e->getMessage());
+        if(Checker::validateXML($request)){
+            $cnpOnlineResponse = $this->newXML->request($request,$hash_config,$this->useSimpleXml);
         }
 
         return $cnpOnlineResponse;
