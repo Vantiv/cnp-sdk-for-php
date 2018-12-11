@@ -1,5 +1,8 @@
 = CnpOnline CHANGELOG
 
+==Version 12.5.3 (Dec 11, 2018)
+* BugFix: Created custom exception handler replacing a test framework
+
 ==Version 12.5.2 (Dec 10, 2018)
 * Feature: Multibyte encoding support for XML requests
 * BugFix: Validation to terminate current execution of script
