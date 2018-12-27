@@ -1,5 +1,10 @@
 = CnpOnline CHANGELOG
 
+==Version 12.7.0 (Dec 27, 2018)
+* Feature: Full functions for XML v12.7
+* Feature: add support for new type: echeckTypeCtx
+* Feature: add 4 new types in cnpBatch: vendorCreditCtx, vendorDebitCtx, submerchantCreditCtx, submerchantDebitCtx
+
 ==Version 12.5.4 (Dec 11, 2018)
 * Feature: User Exception handling support
 

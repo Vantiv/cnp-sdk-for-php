@@ -644,6 +644,23 @@ class XmlFields
         }
     }
 
+    public static function echeckTypeCtx($hash_in)
+    {
+        if (isset($hash_in)) {
+            $hash_out = array(
+                "accType"=>XmlFields::returnArrayValue($hash_in, "accType"),
+                "accNum" =>XmlFields::returnArrayValue($hash_in, "accNum"),
+                "routingNum" =>XmlFields::returnArrayValue($hash_in, "routingNum"),
+                "checkNum" =>XmlFields::returnArrayValue($hash_in, "checkNum"),
+                "ccdPaymentInformation" =>XmlFields::returnArrayValue($hash_in, "ccdPaymentInformation"),
+                "ctxPaymentInformation" =>XmlFields::returnArrayValue($hash_in, "ctxPaymentInformation")
+
+            );
+
+            return $hash_out;
+        }
+    }
+
     public static function echeckTokenType($hash_in)
     {
         if (isset($hash_in)) {

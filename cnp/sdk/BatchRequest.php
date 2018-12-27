@@ -522,6 +522,14 @@ class BatchRequest
         $this->counts_and_amounts ['submerchantCredit'] ['amount'] += $hash_out ['amount'];
     }
 
+    public function addSubmerchantCreditCtx($hash_in)
+    {
+        $hash_out = Transactions::createSubmerchantCreditCtxHash($hash_in);
+        $this->addTransaction($hash_out, $hash_in, 'submerchantCreditCtx');
+        $this->counts_and_amounts ['submerchantCredit'] ['count'] += 1;
+        $this->counts_and_amounts ['submerchantCredit'] ['amount'] += $hash_out ['amount'];
+    }
+
     public function addPayFacCredit($hash_in)
     {
         $hash_out = Transactions::createPayFacCreditHash($hash_in);
@@ -542,6 +550,14 @@ class BatchRequest
     {
         $hash_out = Transactions::createVendorCreditHash($hash_in);
         $this->addTransaction($hash_out, $hash_in, 'vendorCredit');
+        $this->counts_and_amounts ['vendorCredit'] ['count'] += 1;
+        $this->counts_and_amounts ['vendorCredit'] ['amount'] += $hash_out ['amount'];
+    }
+
+    public function addVendorCreditCtx($hash_in)
+    {
+        $hash_out = Transactions::createVendorCreditCtxHash($hash_in);
+        $this->addTransaction($hash_out, $hash_in, 'vendorCreditCtx');
         $this->counts_and_amounts ['vendorCredit'] ['count'] += 1;
         $this->counts_and_amounts ['vendorCredit'] ['amount'] += $hash_out ['amount'];
     }
@@ -569,6 +585,14 @@ class BatchRequest
         $this->counts_and_amounts ['submerchantDebit'] ['amount'] += $hash_out ['amount'];
     }
 
+    public function addSubmerchantDebitCtx($hash_in)
+    {
+        $hash_out = Transactions::createSubmerchantDebitCtxHash($hash_in);
+        $this->addTransaction($hash_out, $hash_in, 'submerchantDebitCtx');
+        $this->counts_and_amounts ['submerchantDebit'] ['count'] += 1;
+        $this->counts_and_amounts ['submerchantDebit'] ['amount'] += $hash_out ['amount'];
+    }
+
     public function addPayFacDebit($hash_in)
     {
         $hash_out = Transactions::createPayFacDebitHash($hash_in);
@@ -589,6 +613,14 @@ class BatchRequest
     {
         $hash_out = Transactions::createVendorDebitHash($hash_in);
         $this->addTransaction($hash_out, $hash_in, 'vendorDebit');
+        $this->counts_and_amounts ['vendorDebit'] ['count'] += 1;
+        $this->counts_and_amounts ['vendorDebit'] ['amount'] += $hash_out ['amount'];
+    }
+
+    public function addVendorDebitCtx($hash_in)
+    {
+        $hash_out = Transactions::createVendorDebitCtxHash($hash_in);
+        $this->addTransaction($hash_out, $hash_in, 'vendorDebitCtx');
         $this->counts_and_amounts ['vendorDebit'] ['count'] += 1;
         $this->counts_and_amounts ['vendorDebit'] ['amount'] += $hash_out ['amount'];
     }

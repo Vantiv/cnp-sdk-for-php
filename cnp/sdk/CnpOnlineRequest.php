@@ -939,6 +939,22 @@ class CnpOnlineRequest
         return $subMerchantCreditResponse;
     }
 
+    public function subMerchantCreditCtx($hash_in)
+    {
+        $hash_out = array (
+            'fundingSubmerchantId' => XmlFields::returnArrayValue ( $hash_in, 'fundingSubmerchantId' ),
+            'id'=>XmlFields::returnArrayValue($hash_in,'id'),
+            'submerchantName' => XmlFields::returnArrayValue ( $hash_in, 'submerchantName' ),
+            'fundsTransferId' => XmlFields::returnArrayValue (  $hash_in, 'fundsTransferId'  ),
+            'amount' =>  XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
+            'accountInfo' => XmlFields::echeckTypeCtx ( XmlFields::returnArrayValue ( $hash_in, 'accountInfo' ) ) ,
+            'customIdentifier' =>  XmlFields::returnArrayValue ( $hash_in, 'customIdentifier' )
+
+        );
+        $subMerchantCreditResponse = $this ->processRequest($hash_out, $hash_in, "submerchantCreditCtx");
+        return $subMerchantCreditResponse;
+    }
+
     /**
      * @param $hash_in
      * @return \DOMDocument|\SimpleXMLElement
@@ -957,6 +973,22 @@ class CnpOnlineRequest
 
         );
         $subMerchantDebitResponse = $this ->processRequest($hash_out, $hash_in, "submerchantDebit");
+        return $subMerchantDebitResponse;
+    }
+
+    public function subMerchantDebitCtx($hash_in)
+    {
+        $hash_out = array (
+            'fundingSubmerchantId' => XmlFields::returnArrayValue ( $hash_in, 'fundingSubmerchantId' ),
+            'id'=>XmlFields::returnArrayValue($hash_in,'id'),
+            'submerchantName' => XmlFields::returnArrayValue ( $hash_in, 'submerchantName' ),
+            'fundsTransferId' => XmlFields::returnArrayValue (  $hash_in, 'fundsTransferId'  ),
+            'amount' =>  XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
+            'accountInfo' => XmlFields::echeckTypeCtx ( XmlFields::returnArrayValue ( $hash_in, 'accountInfo' ) ) ,
+            'customIdentifier' =>  XmlFields::returnArrayValue ( $hash_in, 'customIdentifier' )
+
+        );
+        $subMerchantDebitResponse = $this ->processRequest($hash_out, $hash_in, "submerchantDebitCtx");
         return $subMerchantDebitResponse;
     }
 
@@ -1074,6 +1106,19 @@ class CnpOnlineRequest
         return $vendorCreditResponse;
     }
 
+    public function vendorCreditCtx($hash_in)
+    {
+        $hash_out = array (
+            'fundingSubmerchantId' => XmlFields::returnArrayValue ( $hash_in, 'fundingSubmerchantId' ),
+            'vendorName' => XmlFields::returnArrayValue ( $hash_in, 'vendorName' ),
+            'fundsTransferId' => XmlFields::returnArrayValue (  $hash_in, 'fundsTransferId'  ),
+            'amount' =>  XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
+            'accountInfo' => XmlFields::echeckTypeCtx ( XmlFields::returnArrayValue ( $hash_in, 'accountInfo' ) ) ,
+        );
+        $vendorCreditResponse = $this ->processRequest($hash_out, $hash_in, "vendorCreditCtx");
+        return $vendorCreditResponse;
+    }
+
     /**
      * @param $hash_in
      * @return \DOMDocument|\SimpleXMLElement
@@ -1092,6 +1137,18 @@ class CnpOnlineRequest
         return $vendorDebitResponse;
     }
 
+    public function vendorDebitCtx($hash_in)
+    {
+        $hash_out = array (
+            'fundingSubmerchantId' => XmlFields::returnArrayValue ( $hash_in, 'fundingSubmerchantId' ),
+            'vendorName' => XmlFields::returnArrayValue ( $hash_in, 'vendorName' ),
+            'fundsTransferId' => XmlFields::returnArrayValue (  $hash_in, 'fundsTransferId'  ),
+            'amount' =>  XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
+            'accountInfo' => XmlFields::echeckTypeCtx ( XmlFields::returnArrayValue ( $hash_in, 'accountInfo' ) ) ,
+        );
+        $vendorDebitResponse = $this ->processRequest($hash_out, $hash_in, "vendorDebitCtx");
+        return $vendorDebitResponse;
+    }
 
     /**
      * @param $hash_in
@@ -1187,10 +1244,16 @@ class CnpOnlineRequest
         $hash_config = CnpOnlineRequest::overrideConfig($hash_in);
         $hash = CnpOnlineRequest::getOptionalAttributes($hash_in,$hash_out);
         $request = Obj2xml::toXml($hash,$hash_config, $type);
+
         if(Checker::validateXML($request)){
+            $request = str_replace ("submerchantDebitCtx","submerchantDebit",$request);
+            $request = str_replace ("submerchantCreditCtx","submerchantCredit",$request);
+            $request = str_replace ("vendorCreditCtx","vendorCredit",$request);
+            $request = str_replace ("vendorDebitCtx","vendorDebit",$request);
+            print $request;
+
             $cnpOnlineResponse = $this->newXML->request($request,$hash_config,$this->useSimpleXml);
         }
-
         return $cnpOnlineResponse;
     }
     

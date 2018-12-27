@@ -475,6 +475,33 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(13, $cts ['submerchantCredit'] ['amount']);
     }
 
+    public function test_addSubmerchantCreditCtx()
+    {
+        $hash_in = array('id' => 'id',
+            'fundingSubmerchantId' => '2111',
+            'submerchantName' => '001',
+            'fundsTransferId' => '12345678',
+            'amount' => '13',
+            'accountInfo' => array(
+                'accType' => 'Checking',
+                'accNum' => '12345657890',
+                'routingNum' => '123456789',
+                'checkNum' => '123455',
+                'ctxPaymentInformation' => array('payment info 1', 'payment info 2')
+            ),
+            'customIdentifier' => 'Identifier'
+        );
+        $batch_request = new BatchRequest ($this->direct);
+        $batch_request->addSubmerchantCreditCtx($hash_in);
+
+        $this->assertTrue(file_exists($batch_request->batch_file));
+        $this->assertEquals(1, $batch_request->total_txns);
+
+        $cts = $batch_request->getCountsAndAmounts();
+        $this->assertEquals(1, $cts ['submerchantCredit'] ['count']);
+        $this->assertEquals(13, $cts ['submerchantCredit'] ['amount']);
+    }
+
     public function test_addVendorCredit()
     {
         $hash_in = array('id' => 'id',
@@ -492,6 +519,33 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         );
         $batch_request = new BatchRequest ($this->direct);
         $batch_request->addVendorCredit($hash_in);
+
+        $this->assertTrue(file_exists($batch_request->batch_file));
+        $this->assertEquals(1, $batch_request->total_txns);
+
+        $cts = $batch_request->getCountsAndAmounts();
+        $this->assertEquals(1, $cts ['vendorCredit'] ['count']);
+        $this->assertEquals(13, $cts ['vendorCredit'] ['amount']);
+    }
+
+    public function test_addVendorCreditCtx()
+    {
+        $hash_in = array('id' => 'id',
+            'fundingSubmerchantId' => '2111',
+            'vendorName' => '001',
+            'fundsTransferId' => '12345678',
+            'amount' => '13',
+            'accountInfo' => array(
+                'accType' => 'Checking',
+                'accNum' => '12345657890',
+                'routingNum' => '123456789',
+                'checkNum' => '123455',
+                'ctxPaymentInformation' => array('payment info 1', 'payment info 2')
+            )
+
+        );
+        $batch_request = new BatchRequest ($this->direct);
+        $batch_request->addVendorCreditCtx($hash_in);
 
         $this->assertTrue(file_exists($batch_request->batch_file));
         $this->assertEquals(1, $batch_request->total_txns);
@@ -581,6 +635,33 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(13, $cts ['submerchantDebit'] ['amount']);
     }
 
+    public function test_addSubmerchantDebitCtx()
+    {
+        $hash_in = array('id' => 'id',
+            'fundingSubmerchantId' => '2111',
+            'submerchantName' => '001',
+            'fundsTransferId' => '12345678',
+            'amount' => '13',
+            'accountInfo' => array(
+                'accType' => 'Checking',
+                'accNum' => '12345657890',
+                'routingNum' => '123456789',
+                'checkNum' => '123455',
+                'ctxPaymentInformation' => array('payment info 1', 'payment info 2')
+
+            ),
+            'customIdentifier' => 'Identifier'
+        );
+        $batch_request = new BatchRequest ($this->direct);
+        $batch_request->addSubmerchantDebitCtx($hash_in);
+        $this->assertTrue(file_exists($batch_request->batch_file));
+        $this->assertEquals(1, $batch_request->total_txns);
+
+        $cts = $batch_request->getCountsAndAmounts();
+        $this->assertEquals(1, $cts ['submerchantDebit'] ['count']);
+        $this->assertEquals(13, $cts ['submerchantDebit'] ['amount']);
+    }
+
     public function test_addVendorDebit()
     {
         $hash_in = array('id' => 'id',
@@ -597,6 +678,32 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         );
         $batch_request = new BatchRequest ($this->direct);
         $batch_request->addVendorDebit($hash_in);
+
+        $this->assertTrue(file_exists($batch_request->batch_file));
+        $this->assertEquals(1, $batch_request->total_txns);
+
+        $cts = $batch_request->getCountsAndAmounts();
+        $this->assertEquals(1, $cts ['vendorDebit'] ['count']);
+        $this->assertEquals(13, $cts ['vendorDebit'] ['amount']);
+    }
+
+    public function test_addVendorDebitCtx()
+    {
+        $hash_in = array('id' => 'id',
+            'fundingSubmerchantId' => '2111',
+            'vendorName' => '001',
+            'fundsTransferId' => '12345678',
+            'amount' => '13',
+            'accountInfo' => array(
+                'accType' => 'Checking',
+                'accNum' => '12345657890',
+                'routingNum' => '123456789',
+                'checkNum' => '123455',
+                'ctxPaymentInformation' => array('payment info 1', 'payment info 2')
+            )
+        );
+        $batch_request = new BatchRequest ($this->direct);
+        $batch_request->addVendorDebitCtx($hash_in);
 
         $this->assertTrue(file_exists($batch_request->batch_file));
         $this->assertEquals(1, $batch_request->total_txns);

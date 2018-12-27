@@ -354,6 +354,19 @@ class Transactions {
         );
         return $hash_out;
     }
+    public static function createSubmerchantCreditCtxHash($hash_in) {
+        $hash_out = array (
+            'fundingSubmerchantId' => XmlFields::returnArrayValue ( $hash_in, 'fundingSubmerchantId' ),
+            'id'=>XmlFields::returnArrayValue($hash_in,'id'),
+            'submerchantName' => XmlFields::returnArrayValue ( $hash_in, 'submerchantName' ),
+            'fundsTransferId' => XmlFields::returnArrayValue (  $hash_in, 'fundsTransferId'  ),
+            'amount' =>  XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
+            'accountInfo' => XmlFields::echeckTypeCtx ( XmlFields::returnArrayValue ( $hash_in, 'accountInfo' ) ) ,
+            'customIdentifier' =>  XmlFields::returnArrayValue ( $hash_in, 'customIdentifier' )
+
+        );
+        return $hash_out;
+    }
     public static function createSubmerchantDebitHash($hash_in) {
         $hash_out = array (
             'fundingSubmerchantId' => XmlFields::returnArrayValue ( $hash_in, 'fundingSubmerchantId' ),
@@ -362,6 +375,19 @@ class Transactions {
             'fundsTransferId' => XmlFields::returnArrayValue (  $hash_in, 'fundsTransferId'  ),
             'amount' =>  XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
             'accountInfo' => XmlFields::echeckType ( XmlFields::returnArrayValue ( $hash_in, 'accountInfo' ) ) ,
+            'customIdentifier' =>  XmlFields::returnArrayValue ( $hash_in, 'customIdentifier' )
+
+        );
+        return $hash_out;
+    }
+    public static function createSubmerchantDebitCtxHash($hash_in) {
+        $hash_out = array (
+            'fundingSubmerchantId' => XmlFields::returnArrayValue ( $hash_in, 'fundingSubmerchantId' ),
+            'id'=>XmlFields::returnArrayValue($hash_in,'id'),
+            'submerchantName' => XmlFields::returnArrayValue ( $hash_in, 'submerchantName' ),
+            'fundsTransferId' => XmlFields::returnArrayValue (  $hash_in, 'fundsTransferId'  ),
+            'amount' =>  XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
+            'accountInfo' => XmlFields::echeckTypeCtx ( XmlFields::returnArrayValue ( $hash_in, 'accountInfo' ) ) ,
             'customIdentifier' =>  XmlFields::returnArrayValue ( $hash_in, 'customIdentifier' )
 
         );
@@ -383,6 +409,17 @@ class Transactions {
             'fundsTransferId' => XmlFields::returnArrayValue ( $hash_in, 'amount' ),
             'amount' => XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
             'accountInfo' => XmlFields::echeckType ( XmlFields::returnArrayValue ( $hash_in, 'accountInfo' ) )
+        );
+        return $hash_out;
+    }
+    public static function createVendorCreditCtxHash($hash_in) {
+        $hash_out = array (
+            'fundingSubmerchantId' => XmlFields::returnArrayValue ( $hash_in, 'fundingSubmerchantId' ),
+            'id'=>XmlFields::returnArrayValue($hash_in,'id'),
+            'vendorName' => XmlFields::returnArrayValue ( $hash_in, 'vendorName' ),
+            'fundsTransferId' => XmlFields::returnArrayValue ( $hash_in, 'amount' ),
+            'amount' => XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
+            'accountInfo' => XmlFields::echeckTypeCtx ( XmlFields::returnArrayValue ( $hash_in, 'accountInfo' ) )
         );
         return $hash_out;
     }
@@ -421,6 +458,17 @@ class Transactions {
             'fundsTransferId' => XmlFields::returnArrayValue ( $hash_in, 'amount' ),
             'amount' => XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
             'accountInfo' => XmlFields::echeckType ( XmlFields::returnArrayValue ( $hash_in, 'accountInfo' ) )
+        );
+        return $hash_out;
+    }
+    public static function createVendorDebitCtxHash($hash_in) {
+        $hash_out = array (
+            'fundingSubmerchantId' => XmlFields::returnArrayValue ( $hash_in, 'fundingSubmerchantId' ),
+            'id'=>XmlFields::returnArrayValue($hash_in,'id'),
+            'vendorName' => XmlFields::returnArrayValue ( $hash_in, 'vendorName' ),
+            'fundsTransferId' => XmlFields::returnArrayValue ( $hash_in, 'amount' ),
+            'amount' => XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
+            'accountInfo' => XmlFields::echeckTypeCtx ( XmlFields::returnArrayValue ( $hash_in, 'accountInfo' ) )
         );
         return $hash_out;
     }
