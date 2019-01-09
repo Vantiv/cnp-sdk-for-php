@@ -50,28 +50,6 @@ class FundingInstructionOnlineFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('000', $response);
     }
 
-    public function test_submerchant_credit_ctx()
-    {
-        $hash_in = array('id' => 'id',
-            'fundingSubmerchantId' => '2111',
-            'submerchantName' => '001',
-            'fundsTransferId' => '12345678',
-            'amount' => '13',
-            'accountInfo' => array(
-                'accType' => 'Checking',
-                'accNum' => '12345657890',
-                'routingNum' => '123456789',
-                'checkNum' => '123455',
-                'ctxPaymentInformation' => array('payment info 1', 'payment info 2')
-            ),
-            'customIdentifier' => 'Identifier'
-        );
-        $initialize = new CnpOnlineRequest();
-        $subMerchantCreditResponse = $initialize->subMerchantCreditCtx($hash_in);
-        $response = XmlParser::getNode($subMerchantCreditResponse, 'response');
-        $this->assertEquals('000', $response);
-    }
-
     public function test_submerchant_credit_negative()
     {
         $hash_in = array('id' => 'id',
@@ -110,28 +88,6 @@ class FundingInstructionOnlineFunctionalTest extends \PHPUnit_Framework_TestCase
         );
         $initialize = new CnpOnlineRequest();
         $subMerchantDebitResponse = $initialize->subMerchantDebit($hash_in);
-        $response = XmlParser::getNode($subMerchantDebitResponse, 'response');
-        $this->assertEquals('000', $response);
-    }
-
-    public function test_submerchant_debitCtx()
-    {
-        $hash_in = array('id' => 'id',
-            'fundingSubmerchantId' => '2111',
-            'submerchantName' => '001',
-            'fundsTransferId' => '12345678',
-            'amount' => '13',
-            'accountInfo' => array(
-                'accType' => 'Checking',
-                'accNum' => '12345657890',
-                'routingNum' => '123456789',
-                'checkNum' => '123455',
-                'ctxPaymentInformation' => array('payment info 1','payment info 2')
-            ),
-            'customIdentifier' => 'Identifier'
-        );
-        $initialize = new CnpOnlineRequest();
-        $subMerchantDebitResponse = $initialize->subMerchantDebitCtx($hash_in);
         $response = XmlParser::getNode($subMerchantDebitResponse, 'response');
         $this->assertEquals('000', $response);
     }
@@ -268,27 +224,6 @@ class FundingInstructionOnlineFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('000', $response);
     }
 
-    public function test_vendor_debitCtx()
-    {
-        $hash_in = array('id' => 'id',
-            'fundingSubmerchantId' => '2111',
-            'vendorName' => 'Super Secret Tech Inc.',
-            'fundsTransferId' => '12345678',
-            'amount' => '13',
-            'accountInfo' => array(
-                'accType' => 'Checking',
-                'accNum' => '12345657890',
-                'routingNum' => '123456789',
-                'checkNum' => '123455',
-                'ctxPaymentInformation' => array('payment info 1', 'payment info 2')
-            ),
-        );
-        $initialize = new CnpOnlineRequest();
-        $vendorDebitResponse = $initialize->vendorDebitCtx($hash_in);
-        $response = XmlParser::getNode($vendorDebitResponse, 'response');
-        $this->assertEquals('000', $response);
-    }
-
     public function test_vendor_credit()
     {
         $hash_in = array('id' => 'id',
@@ -305,27 +240,6 @@ class FundingInstructionOnlineFunctionalTest extends \PHPUnit_Framework_TestCase
         );
         $initialize = new CnpOnlineRequest();
         $vendorCreditResponse = $initialize->vendorCredit($hash_in);
-        $response = XmlParser::getNode($vendorCreditResponse, 'response');
-        $this->assertEquals('000', $response);
-    }
-
-    public function test_vendor_creditCtx()
-    {
-        $hash_in = array('id' => 'id',
-            'fundingSubmerchantId' => '2111',
-            'vendorName' => 'Super Secret Tech Inc.',
-            'fundsTransferId' => '12345678',
-            'amount' => '1000',
-            'accountInfo' => array(
-                'accType' => 'Checking',
-                'accNum' => '12345657890',
-                'routingNum' => '123456789',
-                'checkNum' => '123455',
-                'ctxPaymentInformation' => array('payment info 1', 'payment info 2')
-            ),
-        );
-        $initialize = new CnpOnlineRequest();
-        $vendorCreditResponse = $initialize->vendorCreditCtx($hash_in);
         $response = XmlParser::getNode($vendorCreditResponse, 'response');
         $this->assertEquals('000', $response);
     }

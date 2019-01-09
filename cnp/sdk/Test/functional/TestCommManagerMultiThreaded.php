@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jhilliar
- * Date: 1/7/19
- * Time: 4:29 PM
- */
 
 namespace cnp\sdk\Test\functional;
 
