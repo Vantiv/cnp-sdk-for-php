@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: jhilliar
- * Date: 12/28/18
- * Time: 10:45 AM
- */
 
 namespace cnp\sdk;
 
