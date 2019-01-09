@@ -36,7 +36,9 @@ class Communication
         curl_setopt($ch, CURLOPT_PROXY, $config['proxy']);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: text/xml; charset=UTF-8','Expect: '));
-        curl_setopt($ch, CURLOPT_URL, $config['url']);
+        $commManager = CommManager::instance($config);
+        $requestTarget = $commManager->findUrl();
+        curl_setopt($ch, CURLOPT_URL, $requestTarget['targetUrl']);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $req);
         curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, true);
         curl_setopt($ch, CURLOPT_TIMEOUT, $config['timeout']);
@@ -47,13 +49,19 @@ class Communication
         $output = curl_exec($ch);
         $responseCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         if (! $output) {
+            if ($responseCode == CURLE_OPERATION_TIMEDOUT){
+                $commManager->reportResult($requestTarget,CommManager::$REQUEST_RESULT_RESPONSE_TIMEOUT,0);
+            }
+            else {
+                $commManager->reportResult($requestTarget, CommManager::$REQUEST_RESULT_CONNECTION_FAILED, 0);
+            }
             throw new \Exception (curl_error($ch));
         } else {
             curl_close($ch);
             if ((int) $config['print_xml']) {
                 echo $output;
             }
-
+            $commManager->reportResult($requestTarget,CommManager::$REQUEST_RESULT_RESPONSE_RECEIVED,$responseCode);
             return $output;
         }
 

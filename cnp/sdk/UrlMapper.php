@@ -37,19 +37,19 @@ class UrlMapper
     {
         $cnpOnlineCtx = 'vap/communicator/online';
         if ($cnpEnv == UrlMapper::SANDBOX)
-            return 'https://www.testvantivcnp.com/sandbox/communicator/online';
+            return array('https://www.testvantivcnp.com/sandbox/communicator/online','https://www.testvantivcnp.com/sandbox/new/sandbox/communicator/online','https://www.testvantivcnp.com/sandbox/new/sandbox/communicator/online');
+        elseif ($cnpEnv == UrlMapper::PRELIVE)
+            return array('https://payments.vantivprelive.com/vap/communicator/online', 'https://payments.east.vantivprelive.com/vap/communicator/online','https://payments.west.vantivprelive.com/vap/communicator/online');
         elseif ($cnpEnv == UrlMapper::POSTLIVE)
-            return 'https://payments.vantivpostlive.com/' . $cnpOnlineCtx;
+            return array('https://payments.vantivpostlive.com/vap/communicator/online', 'https://payments.east.vantivpostlive.com/vap/communicator/online', 'https://payments.west.vantivpostlive.com/vap/communicator/online');
         elseif ($cnpEnv == UrlMapper::PRODUCTION)
-            return 'https://payments.vantivcnp.com/' . $cnpOnlineCtx;
+            return array('https://payments.vantivcnp.com/vap/communicator/online', 'https://payments.east.vantivcnp.com/vap/communicator/online', 'https://payments.west.vantivcnp.com/vap/communicator/online');
         elseif ($cnpEnv == UrlMapper::TRANSACT_PRODUCTION)
             return 'https://transact.vantivcnp.com/' . $cnpOnlineCtx;
         elseif ($cnpEnv == UrlMapper::TRANSACT_PRELIVE)
             return 'https://transact.vantivprelive.com/' . $cnpOnlineCtx;
         elseif ($cnpEnv == UrlMapper::TRANSACT_POSTLIVE)
             return 'https://transact.vantivpostlive.com/' . $cnpOnlineCtx;
-        elseif ($cnpEnv == UrlMapper::PRELIVE)
-            return 'https://payments.vantivprelive.com/' . $cnpOnlineCtx;
         else
             return 'https://www.testvantivcnp.com/sandbox/communicator/online';
     }

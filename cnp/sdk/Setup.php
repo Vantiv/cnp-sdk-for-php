@@ -54,16 +54,23 @@ function initialize()
         print "Please input your merchantId: ";
         $line['currency_merchant_map ']['DEFAULT'] = formatConfigValue(STDIN);
         print "Please choose Cnp url from the following list (example: 'sandbox') or directly input another URL: \n" .
-            "sandbox => https://www.testvantivcnp.com/sandbox/communicator/online \n" .
-            "postlive => https://payments.vantivpostlive.com/vap/communicator/online \n" .
+            "sandbox => 'https://www.testvantivcnp.com/sandbox/communicator/online https://www.testvantivcnp.com/sandbox/new/sandbox/communicator/online https://www.testvantivcnp.com/sandbox/new/sandbox/communicator/online' \n" .
+            "postlive => https://payments.vantivpostlive.com/vap/communicator/online https://payments.east.vantivpostlive.com/vap/communicator/online https://payments.west.vantivpostlive.com/vap/communicator/online \n" .
             "transact-postlive => https://transact.vantivpostlive.com/vap/communicator/online \n" .
-            "production => https://payments.vantivcnp.com/vap/communicator/online \n" .
+            "production => https://payments.vantivcnp.com/vap/communicator/online https://payments.east.vantivcnp.com/vap/communicator/online https://payments.west.vantivcnp.com/vap/communicator/online \n" .
             "production-transact => https://transact.vantivcnp.com/vap/communicator/online \n" .
-            "prelive => https://payments.vantivprelive.com/vap/communicator/online \n" .
+            "prelive => https://payments.vantivprelive.com/vap/communicator/online https://payments.east.vantivprelive.com/vap/communicator/online https://payments.west.vantivprelive.com/vap/communicator/online \n" .
             "transact-prelive => https://transact.vantivprelive.com/vap/communicator/online" . PHP_EOL;
         $url = UrlMapper::getUrl(trim(fgets(STDIN)));
-	
-        $line['url'] = $url;
+
+
+        if (is_array($url)){
+            $line['url'] = $url[0];
+            $line['multiSiteUrl1'] = $url[1];
+            $line['multiSiteUrl2'] = $url[2];
+        }else {
+            $line['url'] = $url;
+        }
         print "Please input the proxy, if no proxy hit enter key: ";
         $line['proxy'] = formatConfigValue(STDIN);
 
@@ -113,6 +120,12 @@ function initialize()
             $line['gpgPassphrase'] = "";
         }
 
+        $line['multiSiteUrl1'] = "";
+        $line['multiSiteUrl2'] = "";
+        $line['multiSite'] = "false";
+        $line['printMultiSiteDebug'] = "false";
+        $line['multiSiteErrorThreshold'] = '5';
+        $line['maxHoursWithoutSwitch'] = '48';
         $line['deleteBatchFiles'] = "";
         writeConfig($line,$handle);
         #default http timeout set to 500 ms
