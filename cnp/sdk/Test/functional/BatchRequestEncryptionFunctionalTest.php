@@ -2,6 +2,7 @@
 
 namespace cnp\sdk\Test\functional;
 
+use cnp\sdk\CommManager;
 use cnp\sdk\Obj2xml;
 use cnp\sdk\BatchRequest;
 use cnp\sdk\CnpRequest;
@@ -16,6 +17,13 @@ class BatchRequestEncryptionFunctionalTest extends \PHPUnit_Framework_TestCase
     private $sftpPassword;
     private $merchantId;
     private $config;
+
+
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
+    }
+
 
     public function setUp()
     {

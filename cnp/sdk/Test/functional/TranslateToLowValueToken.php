@@ -25,12 +25,18 @@
 namespace cnp\sdk\Test\functional;
 
 use cnp\sdk\CnpOnlineRequest;
+use cnp\sdk\CommManager;
 use cnp\sdk\XmlParser;
 
 require_once realpath(__DIR__) . '/../../../../vendor/autoload.php';
 
 class TranslateToLowValueToken extends \PHPUnit_Framework_TestCase
 {
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
+    }
+
     public function test_simple()
     {
         $hash_in = array('id' => 'id',

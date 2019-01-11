@@ -1,8 +1,14 @@
 <?php
 namespace cnp\sdk\Test\unit;
+use cnp\sdk\CommManager;
 use cnp\sdk\Transactions;
 class TransactionsUnitTest extends \PHPUnit_Framework_TestCase
 {
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
+    }
+
     public function test_auth_with_card()
     {
         $hash_in = array(

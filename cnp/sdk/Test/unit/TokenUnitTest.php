@@ -24,8 +24,15 @@
  */
 namespace cnp\sdk\Test\unit;
 use cnp\sdk\CnpOnlineRequest;
+use cnp\sdk\CommManager;
+
 class TokenUnitTest extends \PHPUnit_Framework_TestCase
 {
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
+    }
+
     public function test_token()
     {
         $hash_in = array(

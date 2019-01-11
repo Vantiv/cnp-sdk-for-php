@@ -25,10 +25,16 @@
 namespace cnp\sdk\Test\functional;
 
 use cnp\sdk\CnpOnlineRequest;
+use cnp\sdk\CommManager;
 use cnp\sdk\XmlParser;
 
 class TokenFunctionalTest extends \PHPUnit_Framework_TestCase
 {
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
+    }
+
     public function test_simple_token()
     {
         $hash_in = array('id' => '1211',

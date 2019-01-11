@@ -24,9 +24,15 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 namespace cnp\sdk\Test\unit;
+use cnp\sdk\CommManager;
 use cnp\sdk\XmlFields;
 class XmlFieldsTest extends \PHPUnit_Framework_TestCase
 {
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
+    }
+
     public function test_simple_contact()
     {
         $hash = array(

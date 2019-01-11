@@ -24,8 +24,15 @@
  */
 namespace cnp\sdk\Test\unit;
 use cnp\sdk\CnpOnlineRequest;
+use cnp\sdk\CommManager;
+
 class EcheckCreditUnitTest extends \PHPUnit_Framework_TestCase
 {
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
+    }
+
     public function test_simple_echeckCredit()
     {
         $hash_in = array('cnpTxnId' =>'123123','id' => 'id');

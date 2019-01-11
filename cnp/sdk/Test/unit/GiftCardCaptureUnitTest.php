@@ -26,9 +26,16 @@
 namespace cnp\sdk\Test\unit;
 
 use cnp\sdk\CnpOnlineRequest;
+use cnp\sdk\CommManager;
 
 class GiftCardCaptureUnitTest extends \PHPUnit_Framework_TestCase {
-	public function test_simple_GiftCardCapture() {
+
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
+    }
+
+    public function test_simple_GiftCardCapture() {
 		$hash_in = array (
 				'cnpTxnId' => '1234567890',
 				'id' => 'id',

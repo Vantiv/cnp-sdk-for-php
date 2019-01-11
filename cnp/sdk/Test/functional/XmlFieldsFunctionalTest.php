@@ -25,10 +25,16 @@
 namespace cnp\sdk\Test\functional;
 
 use cnp\sdk\CnpOnlineRequest;
+use cnp\sdk\CommManager;
 use cnp\sdk\XmlParser;
 
 class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
 {
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
+    }
+
     public function test_card_no_type_or_track()
     {
         $hash_in = array('id' => '1211',

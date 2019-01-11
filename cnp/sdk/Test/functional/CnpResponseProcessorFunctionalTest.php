@@ -2,6 +2,7 @@
 
 namespace cnp\sdk\Test\functional;
 
+use cnp\sdk\CommManager;
 use cnp\sdk\Obj2xml;
 use cnp\sdk\CnpResponseProcessor;
 use cnp\sdk\CnpRequest;
@@ -12,6 +13,12 @@ class CnpResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
     private $direct;
     private $config;
     private $sale;
+
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
+    }
+
 
     public function setUp()
     {

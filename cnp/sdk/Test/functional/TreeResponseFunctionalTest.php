@@ -25,9 +25,15 @@
 namespace cnp\sdk\Test\functional;
 
 use cnp\sdk\CnpOnlineRequest;
+use cnp\sdk\CommManager;
 
 class TreeResponseFunctionalTest extends \PHPUnit_Framework_TestCase
 {
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
+    }
+
     public function test_auth()
     {
         $hash_in = array(

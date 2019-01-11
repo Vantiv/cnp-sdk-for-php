@@ -24,8 +24,15 @@
 */
 namespace cnp\sdk\Test\unit;
 use cnp\sdk\CnpOnlineRequest;
+use cnp\sdk\CommManager;
+
 class CreditUnitTest extends \PHPUnit_Framework_TestCase
 {
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
+    }
+
     public function test_credit()
     {
         $hash_in = array('cnpTxnId'=> '12312312','reportGroup'=>'Planets', 'amount'=>'123','id' => 'id',);

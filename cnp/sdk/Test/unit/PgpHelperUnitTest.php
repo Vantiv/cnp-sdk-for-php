@@ -2,6 +2,7 @@
 
 namespace cnp\sdk\Test\unit;
 
+use cnp\sdk\CommManager;
 use cnp\sdk\Obj2xml;
 use cnp\sdk\PgpHelper;
 
@@ -14,6 +15,11 @@ class PgpHelperUnitTest extends \PHPUnit_Framework_TestCase
     private $responseFilename;
     private $decryptedResponseFilename;
     private $passphrase;
+
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
+    }
 
     public function setUp()
     {

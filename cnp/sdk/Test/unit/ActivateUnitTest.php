@@ -24,9 +24,16 @@
  */
 namespace cnp\sdk\Test\unit;
 use cnp\sdk\CnpOnlineRequest;
+use cnp\sdk\CommManager;
+
 require_once realpath(__DIR__). '/../../../../vendor/autoload.php';
 class ActivateUnitTest extends \PHPUnit_Framework_TestCase
 {
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
+    }
+
     public function test_simple()
     {
         $hash_in = array(

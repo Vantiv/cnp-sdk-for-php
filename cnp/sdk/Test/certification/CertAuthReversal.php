@@ -26,12 +26,18 @@
 namespace cnp\sdk\Test\certification;
 
 use cnp\sdk\CnpOnlineRequest;
+use cnp\sdk\CommManager;
 USE cnp\sdk\XmlParser;
 
 define('PRELIVE_URL', 'https://payments.vantivprelive.com/vap/communicator/online');
 
 class CertAuthReversal extends \PHPUnit_Framework_TestCase
 {
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
+    }
+
     public function test_32()
     {
         $auth_hash = array('id' => '1211',

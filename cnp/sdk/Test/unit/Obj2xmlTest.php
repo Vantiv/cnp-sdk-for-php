@@ -24,9 +24,15 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 namespace cnp\sdk\Test\unit;
+use cnp\sdk\CommManager;
 use cnp\sdk\Obj2xml;
 class Obj2xmlTest extends \PHPUnit_Framework_TestCase
 {
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
+    }
+
     public function test_enhanced_data_more_than_10_line_items()
     {
         $hash=

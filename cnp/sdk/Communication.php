@@ -29,6 +29,7 @@ class Communication
     {
         $config = Obj2xml::getConfig($hash_config);
 
+
         if ((int) $config['print_xml']) {
             echo $req;
         }

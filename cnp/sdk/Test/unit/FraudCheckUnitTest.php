@@ -24,9 +24,16 @@
 */
 namespace cnp\sdk\Test\unit;
 use cnp\sdk\CnpOnlineRequest;
+use cnp\sdk\CommManager;
+
 class FraudCheckUnitTest extends \PHPUnit_Framework_TestCase
 {
-	public function test_no_customAttributes()
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
+    }
+
+    public function test_no_customAttributes()
 	{
 		$hash_in = array(
 				'id' => 'id',

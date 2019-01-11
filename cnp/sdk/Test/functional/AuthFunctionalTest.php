@@ -25,10 +25,18 @@
 namespace cnp\sdk\Test\functional;
 
 use cnp\sdk\CnpOnlineRequest;
+use cnp\sdk\CommManager;
 use cnp\sdk\XmlParser;
+
 
 class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
 {
+
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
+    }
+
     public function test_simple_auth_with_card()
     {
         $hash_in = array('id' => 'id',

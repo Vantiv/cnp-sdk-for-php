@@ -24,9 +24,15 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 namespace cnp\sdk\Test\unit;
+use cnp\sdk\CommManager;
 use cnp\sdk\XmlParser;
 class XmlParserTest extends \PHPUnit_Framework_TestCase
 {
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
+    }
+
     public function test_round_trip_xml_to_dom_and_back()
     {
         $orig = '<foo>bar</foo>';

@@ -29,7 +29,7 @@ class CommManager
     }
 
     static function reset(){
-        $manager = null;
+        static::$manager = null;
     }
 
     function __construct($config){
@@ -38,7 +38,7 @@ class CommManager
         $this->doMultiSite = $this->configuration['multiSite'];
         $this->printDebug = $this->configuration['printMultiSiteDebug'];
 
-        if ($this->doMultiSite){
+        if ($this->doMultiSite === 'true'){
             for ($i = 1; $i <3; $i++){
                 $siteUrl = $this->configuration['multiSiteUrl' . $i];
                 if ($siteUrl == null){
@@ -97,7 +97,7 @@ class CommManager
 
     function findUrlHandler(){
         $url = $this->legacyUrl;
-        if ($this->doMultiSite) {
+        if ($this->doMultiSite === 'true') {
             $switchSite = false;
             $switchReason = "";
             $currentUrl = $this->multiSiteUrls[$this->currentMultiSiteUrlIndex];

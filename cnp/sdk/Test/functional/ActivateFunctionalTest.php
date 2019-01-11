@@ -25,12 +25,18 @@
 namespace cnp\sdk\Test\functional;
 
 use cnp\sdk\CnpOnlineRequest;
+use cnp\sdk\CommManager;
 use cnp\sdk\XmlParser;
 
 require_once realpath(__DIR__) . '/../../../../vendor/autoload.php';
 
 class ActivateFunctionalTest extends \PHPUnit_Framework_TestCase
 {
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
+    }
+
     public function test_simple()
     {
         $hash_in = array('id' => 'id',
@@ -42,8 +48,8 @@ class ActivateFunctionalTest extends \PHPUnit_Framework_TestCase
                 'number' => '4100000000000001',
                 'expDate' => '0118',
                 'pin' => '1234',
-                'cardValidationNum' => '411'
-            )
+                'cardValidationNum' => '411'),
+
         );
 
         $initialize = new CnpOnlineRequest();

@@ -5,6 +5,7 @@ namespace cnp\sdk\Test\functional;
 use cnp\sdk\BatchRequest;
 use cnp\sdk\CnpRequest;
 use cnp\sdk\CnpResponseProcessor;
+use cnp\sdk\CommManager;
 use cnp\sdk\Obj2xml;
 
 require_once realpath(dirname(__FILE__)) . '../../../CnpOnline.php';
@@ -13,6 +14,12 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 {
     private $direct;
     private $config;
+
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
+    }
+
 
     public function setUp()
     {

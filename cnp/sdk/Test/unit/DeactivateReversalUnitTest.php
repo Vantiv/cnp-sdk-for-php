@@ -25,7 +25,15 @@
 namespace cnp\sdk;
  class DeactivateReversalUnitTest extends \PHPUnit_Framework_TestCase
 {
-    public function test_simple()
+     /**
+      *
+      */
+     public static function setUpBeforeClass()
+     {
+         CommManager::reset();
+     }
+
+     public function test_simple()
     {
         $hash_in = array (
 				'cnpTxnId' => '1234567890',

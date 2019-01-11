@@ -26,12 +26,18 @@
 namespace cnp\sdk\Test\certification;
 
 use cnp\sdk\CnpOnlineRequest;
+use cnp\sdk\CommManager;
 USE cnp\sdk\XmlParser;
 
 define('PRELIVE_URL', 'https://payments.vantivprelive.com/vap/communicator/online');
 
 class CertEcheckTest extends \PHPUnit_Framework_TestCase
 {
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
+    }
+
     #37-40 echeckVerification
     public function test_37()
     {

@@ -24,8 +24,15 @@
  */
 namespace cnp\sdk\Test\unit;
 use cnp\sdk\CnpOnlineRequest;
+use cnp\sdk\CommManager;
+
 class VoidUnitTest extends \PHPUnit_Framework_TestCase
 {
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
+    }
+
     public function test_simple_echeckRedeposit()
     {
         $hash_in = array('cnpTxnId' =>'123123','reportGroup'=>'Planets','id' => 'id',);

@@ -24,8 +24,15 @@
 */
 namespace cnp\sdk\Test\unit;
 use cnp\sdk\CnpOnlineRequest;
+use cnp\sdk\CommManager;
+
 class CaptureUnitTest extends \PHPUnit_Framework_TestCase
 {
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
+    }
+
     public function test_simple_capture()
     {
         $hash_in = array('cnpTxnId'=> '12312312', 'amount'=>'123', 'id' => 'id');

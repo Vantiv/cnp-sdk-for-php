@@ -25,12 +25,18 @@
 namespace cnp\sdk\Test\certification;
 
 use cnp\sdk\CnpOnlineRequest;
+use cnp\sdk\CommManager;
 USE cnp\sdk\XmlParser;
 
 define('PRELIVE_URL', 'https://payments.vantivprelive.com/vap/communicator/online');
 
 class CertBetaTest extends \PHPUnit_Framework_TestCase
 {
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
+    }
+
     function test_6_auth()
     {
         $hash = array('id' => '1211',

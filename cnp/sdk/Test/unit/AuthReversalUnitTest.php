@@ -25,7 +25,12 @@
 namespace cnp\sdk;
  class AuthReversalUnitTest extends \PHPUnit_Framework_TestCase
 {
-    public function test_capture()
+     public static function setUpBeforeClass()
+     {
+         CommManager::reset();
+     }
+
+     public function test_capture()
     {
         $hash_in = array('cnpTxnId'=> '1234567890','reportGroup'=>'Planets', 'amount'=>'5000','id' => 'id',);
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');

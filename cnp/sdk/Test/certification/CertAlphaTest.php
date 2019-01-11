@@ -26,6 +26,7 @@
 namespace cnp\sdk\Test\certification;
 
 use cnp\sdk\CnpOnlineRequest;
+use cnp\sdk\CommManager;
 use cnp\sdk\XmlParser;
 
 require_once realpath(__DIR__) . '/../../../../vendor/autoload.php';
@@ -34,6 +35,11 @@ define('PRELIVE_URL', 'https://payments.vantivprelive.com/vap/communicator/onlin
 
 class CertAlphaTest extends \PHPUnit_Framework_TestCase
 {
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
+    }
+
     function test_1_Auth()
     {
         $auth_hash = array('id' => '1211',

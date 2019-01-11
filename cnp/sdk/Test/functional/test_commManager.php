@@ -10,6 +10,11 @@ require_once realpath(__DIR__) . '/../../../../vendor/autoload.php';
 
 class test_commManager extends \PHPUnit_Framework_TestCase
 {
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
+    }
+
     public $siteUrl1 = 'https://multisite1.com';
     public $siteUrl2 = 'https://multisite2.com';
     public $legacyUrl = 'https://legacy.com';
