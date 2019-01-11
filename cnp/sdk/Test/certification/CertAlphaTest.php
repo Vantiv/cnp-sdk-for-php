@@ -39,10 +39,10 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         $auth_hash = array('id' => '1211',
             #'user'=> '12312',
             'orderId' => '1',
-            'amount' => '10010',
+            'amount' => '10100',
             'orderSource' => 'ecommerce',
             'billToAddress' => array(
-                'name' => 'John Smith',
+                'name' => 'John & Mary Smith',
                 'addressLine1' => '1 Main St.',
                 'city' => 'Burlington',
                 'state' => 'MA',
@@ -50,7 +50,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'country' => 'US'),
             'card' => array(
                 'number' => '4457010000000009',
-                'expDate' => '0112',
+                'expDate' => '0121',
                 'cardValidationNum' => '349',
                 'type' => 'VI'),
         'url' => PRELIVE_URL);
@@ -100,7 +100,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
             'amount' => '0',
             'orderSource' => 'ecommerce',
             'billToAddress' => array(
-                'name' => 'John Smith',
+                'name' => 'John & Mary Smith',
                 'addressLine1' => '1 Main St.',
                 'city' => 'Burlington',
                 'state' => 'MA',
@@ -108,7 +108,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'country' => 'US'),
             'card' => array(
                 'number' => '4457010000000009',
-                'expDate' => '0112',
+                'expDate' => '0121',
                 'cardValidationNum' => '349',
                 'type' => 'VI'),
             'url' => PRELIVE_URL);
@@ -125,10 +125,10 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
     {
         $sale_hash = array('id' => '1211',
             'orderId' => '1',
-            'amount' => '10010',
+            'amount' => '10100',
             'orderSource' => 'ecommerce',
             'billToAddress' => array(
-                'name' => 'John Smith',
+                'name' => 'John & Mary Smith',
                 'addressLine1' => '1 Main St.',
                 'city' => 'Burlington',
                 'state' => 'MA',
@@ -136,7 +136,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'country' => 'US'),
             'card' => array(
                 'number' => '4457010000000009',
-                'expDate' => '0112',
+                'expDate' => '0121',
                 'cardValidationNum' => '349',
                 'type' => 'VI'),
             'url' => PRELIVE_URL);
@@ -171,7 +171,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
     {
         $auth_hash = array('id' => '1211',
             'orderId' => '2',
-            'amount' => '20020',
+            'amount' => '20200',
             'orderSource' => 'ecommerce',
             'billToAddress' => array(
                 'name' => 'Mike J. Hammer',
@@ -183,7 +183,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'country' => 'US'),
             'card' => array(
                 'number' => '5112010000000003',
-                'expDate' => '0212',
+                'expDate' => '0221',
                 'cardValidationNum' => '261',
                 'type' => 'MC'),
             'url' => PRELIVE_URL
@@ -246,7 +246,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'country' => 'US'),
             'card' => array(
                 'number' => '5112010000000003',
-                'expDate' => '0212',
+                'expDate' => '0221',
                 'cardValidationNum' => '261',
                 'type' => 'MC'),
             'url' => PRELIVE_URL
@@ -267,7 +267,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
     {
         $sale_hash = array('id' => '1211',
             'orderId' => '2',
-            'amount' => '20020',
+            'amount' => '20200',
             'orderSource' => 'ecommerce',
             'billToAddress' => array(
                 'name' => 'Mike J. Hammer',
@@ -279,7 +279,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'country' => 'US'),
             'card' => array(
                 'number' => '5112010000000003',
-                'expDate' => '0212',
+                'expDate' => '0221',
                 'cardValidationNum' => '261',
                 'type' => 'MC'),
             'cardholderAuthentication' => array('authenticationValue' => 'BwABBJQ1AgAAAAAgJDUCAAAAAAA='),
@@ -319,7 +319,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
     {
         $auth_hash = array(
             'orderId' => '3', 'id' => '1211',
-            'amount' => '30030',
+            'amount' => '30300',
             'orderSource' => 'ecommerce',
             'billToAddress' => array(
                 'name' => 'Eileen Jones',
@@ -330,7 +330,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'country' => 'US'),
             'card' => array(
                 'number' => '6011010000000003',
-                'expDate' => '0312',
+                'expDate' => '0321',
                 'type' => 'DI',
                 'cardValidationNum' => '758'),
             'url' => PRELIVE_URL);
@@ -389,7 +389,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'country' => 'US'),
             'card' => array(
                 'number' => '6011010000000003',
-                'expDate' => '0312',
+                'expDate' => '0321',
                 'type' => 'DI',
                 'cardValidationNum' => '758'),
             'url' => PRELIVE_URL);
@@ -406,7 +406,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
     {
         $sale_hash = array('id' => '1211',
             'orderId' => '3',
-            'amount' => '30030',
+            'amount' => '30300',
             'orderSource' => 'ecommerce',
             'billToAddress' => array(
                 'name' => 'Eileen Jones',
@@ -417,7 +417,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'country' => 'US'),
             'card' => array(
                 'number' => '6011010000000003',
-                'expDate' => '0312',
+                'expDate' => '0321',
                 'type' => 'DI',
                 'cardValidationNum' => '758'),
             'url' => PRELIVE_URL);
@@ -466,7 +466,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'country' => 'US'),
             'card' => array(
                 'number' => '375001000000005',
-                'expDate' => '0412',
+                'expDate' => '0421',
                 'type' => 'AX'),
             'url' => PRELIVE_URL);
 
@@ -524,7 +524,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'country' => 'US'),
             'card' => array(
                 'number' => '375001000000005',
-                'expDate' => '0412',
+                'expDate' => '0421',
                 'type' => 'AX'),
             'url' => PRELIVE_URL);
 
@@ -552,7 +552,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'country' => 'US'),
             'card' => array(
                 'number' => '375001000000005',
-                'expDate' => '0412',
+                'expDate' => '0421',
                 'type' => 'AX'),
             'url' => PRELIVE_URL);
 
@@ -594,7 +594,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'card' => array(
                 'number' => '4457010200000007',
-                'expDate' => '0512',
+                'expDate' => '0521',
                 'cardValidationNum' => '463',
                 'type' => 'VI'),
             'cardholderAuthentication' => array('authenticationValue'=> 'BwABBJQ1AgAAAAAgJDUCAAAAAAA='),
@@ -648,7 +648,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'card' => array(
                 'number' => '4457010200000007',
-                'expDate' => '0512',
+                'expDate' => '0521',
                 'cardValidationNum' => '463',
                 'type' => 'VI'),
             'cardholderAuthentication' => array('authenticationValue'=> 'BwABBJQ1AgAAAAAgJDUCAAAAAAA='),
@@ -672,7 +672,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
             'orderSource' => 'ecommerce',
             'card' => array(
                 'number' => '4457010200000007',
-                'expDate' => '0512',
+                'expDate' => '0521',
                 'cardValidationNum' => '463',
                 'type' => 'VI'),
             'cardholderAuthentication' => array('authenticationValue'=> 'BwABBJQ1AgAAAAAgJDUCAAAAAAA='),
