@@ -1250,7 +1250,6 @@ class CnpOnlineRequest
             $request = str_replace ("submerchantCreditCtx","submerchantCredit",$request);
             $request = str_replace ("vendorCreditCtx","vendorCredit",$request);
             $request = str_replace ("vendorDebitCtx","vendorDebit",$request);
-            print $request;
 
             $cnpOnlineResponse = $this->newXML->request($request,$hash_config,$this->useSimpleXml);
         }
