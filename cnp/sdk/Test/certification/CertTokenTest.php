@@ -113,7 +113,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
         $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->registerTokenRequest($token_hash);
         $this->assertEquals('900', XMLParser::getNode($registerTokenResponse, 'response'));
-       $this->assertEquals('Invalid Bank Routing Number', XMLParser::getNode($registerTokenResponse, 'message'));
+        $this->assertEquals('Invalid Bank Routing Number', XMLParser::getNode($registerTokenResponse, 'message'));
     }
 
     public function test_55()
@@ -285,6 +285,45 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
         $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->echeckSaleRequest($token_hash);
         //TODO no tokenResponse
+    }
+
+
+    public function test_checkout_id_1()
+    {
+        $token_hash = array('id' => '1211',
+            'merchantId' => '101',
+            'orderId' => '59',
+            'amount' => '15000',
+            'orderSource' => 'ecommerce',
+            'token' => array('cnpToken' => '1111000100092332', 'expDate' => '1121', 'type' => 'VI','checkoutId'=>'201234567891234567'),
+            'url' => 'https://www.testvantivcnp.com/sandbox/communicator/online');
+
+        $initialize = new CnpOnlineRequest();
+        $authorizationResponse = $initialize->authorizationRequest($token_hash);
+
+        echo $authorizationResponse->saveXML();
+        $this->assertEquals('822', XMLParser::getNode($authorizationResponse, 'tokenResponseCode'));
+        $this->assertEquals('Approved', XMLParser::getNode($authorizationResponse, 'cnpTxnId'));
+
+    }
+
+    public function test_checkout_id_2()
+    {
+        $token_hash = array('id' => '1211',
+            'merchantId' => '101',
+            'orderId' => '60',
+            'amount' => '15000',
+            'orderSource' => 'ecommerce',
+            'token' => array('cnpToken' => '1112000100000085', 'expDate' => '1121','checkoutId'=>'201234567891234567'),
+            'url' => 'https://www.testvantivcnp.com/sandbox/communicator/online');
+
+        $initialize = new CnpOnlineRequest();
+        $authorizationResponse = $initialize->authorizationRequest($token_hash);
+        echo $authorizationResponse->saveXML();
+
+
+        $this->assertEquals('823', XMLParser::getNode($authorizationResponse, 'tokenResponseCode'));
+        $this->assertEquals('Token was invalid', XMLParser::getNode($authorizationResponse, 'cnpToken'));
     }
 
 }
