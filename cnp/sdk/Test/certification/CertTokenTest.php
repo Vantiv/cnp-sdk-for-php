@@ -294,7 +294,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
         $token_hash = array('id' => '1211',
             'merchantId' => '101',
             'orderId' => '59',
-            'amount' => '15000',
+            'amount' => '36458',
             'orderSource' => 'ecommerce',
             'token' => array('cnpToken' => '1111000100092332', 'expDate' => '1121', 'type' => 'VI','checkoutId'=>'201234567891234567'),
             'url' => 'https://www.testvantivcnp.com/sandbox/communicator/online');
@@ -314,7 +314,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
         $token_hash = array('id' => '1211',
             'merchantId' => '101',
             'orderId' => '60',
-            'amount' => '15000',
+            'amount' => '36459',
             'orderSource' => 'ecommerce',
             'token' => array('cnpToken' => '1112000100000085', 'expDate' => '1121','checkoutId'=>'201234567891234567'),
             'url' => 'https://www.testvantivcnp.com/sandbox/communicator/online');
