@@ -14,6 +14,11 @@ class CnpResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
     private $config;
     private $sale;
 
+
+    public function test_setgdfg(){
+        $this->assertEquals("Valid Format", "Valid Format");
+    }
+    
 //    public static function setUpBeforeClass()
 //    {
 //        CommManager::reset();
