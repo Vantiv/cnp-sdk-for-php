@@ -430,7 +430,7 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $initialize = new CnpOnlineRequest();
         $creditResponse = $initialize->creditRequest($hash_in);
-        $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'cnpTxnId');
+        $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'message');
         echo print_r("\r\n".$message);
         $this->assertEquals("Valid Format", $message);
     }
