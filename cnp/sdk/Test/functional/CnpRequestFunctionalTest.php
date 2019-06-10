@@ -256,6 +256,7 @@ class CnpRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     }
 
+
     public function test_sendToCnpStream()
     {
         $request = new CnpRequest ($this->config);
