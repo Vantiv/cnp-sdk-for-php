@@ -248,12 +248,13 @@ class XmlFieldsTest extends \PHPUnit_Framework_TestCase
         $hash = array(
             "expDate"=>"2013",
             "cardValidationNum"=>"123",
-            "type"=>"VISA");
+            "type"=>"VISA",
+            "checkoutId" => '234565345435');
         $hash_out = XmlFields::cardTokenType($hash);
         $this->assertEquals($hash_out["type"], "VISA");
         $this->assertEquals($hash_out["expDate"], "2013");
         $this->assertEquals($hash_out["cardValidationNum"], "123");
-        $this->assertEquals($hash_out["cnpToken"], "");
+        $this->assertEquals($hash_out["checkoutId"], "234565345435");
     }
 
 

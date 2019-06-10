@@ -290,6 +290,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
 
     public function test_checkout_id_1()
     {
+        echo "testing Cert Token Test";
         $token_hash = array('id' => '1211',
             'merchantId' => '101',
             'orderId' => '59',
@@ -302,13 +303,14 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($token_hash);
 
         echo $authorizationResponse->saveXML();
-        $this->assertEquals('', XMLParser::getNode($authorizationResponse, 'tokenResponseCode'));
+        $this->assertEquals('822', XMLParser::getNode($authorizationResponse, 'tokenResponseCode'));
       //  $this->assertEquals('Approved', XMLParser::getNode($authorizationResponse, 'cnpTxnId'));
 
     }
 
     public function test_checkout_id_2()
     {
+        echo "testing Cert Token Test";
         $token_hash = array('id' => '1211',
             'merchantId' => '101',
             'orderId' => '60',
@@ -322,8 +324,8 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
         echo $authorizationResponse->saveXML();
 
 
-        $this->assertEquals('', XMLParser::getNode($authorizationResponse, 'tokenResponseCode'));
-      //  $this->assertEquals('Token was invalid', XMLParser::getNode($authorizationResponse, 'cnpToken'));
+        $this->assertEquals('823', XMLParser::getNode($authorizationResponse, 'tokenResponseCode'));
+        $this->assertEquals('Token was invalid', XMLParser::getNode($authorizationResponse, 'cnpToken'));
     }
 
 }

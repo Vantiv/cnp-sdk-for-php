@@ -135,18 +135,4 @@ class TokenFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('2050', $expYear);
     }
 
-    public function test_simple_token_checkoutid()
-    {
-        $hash_in = array('id' => '1211',
-            'merchantId' => '101',
-            'version' => '8.8',
-            'reportGroup' => 'Planets',
-            'orderId' => '12344',
-            'accountNumber' => '1233456789103801');
-
-        $initialize = new CnpOnlineRequest();
-        $registerTokenResponse = $initialize->registerTokenRequest($hash_in);
-        $message = XmlParser::getAttribute($registerTokenResponse, 'cnpOnlineResponse', 'message');
-        $this->assertEquals('Valid Format', $message);
-    }
 }
