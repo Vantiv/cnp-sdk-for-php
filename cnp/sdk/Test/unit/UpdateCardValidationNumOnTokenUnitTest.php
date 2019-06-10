@@ -84,8 +84,6 @@ class UpdateCardValidationNumOnTokenUnitTest extends \PHPUnit_Framework_TestCase
 
     public function test_cardValidationNumIsRequiredWithCheckoutID()
     {
-        echo 'hello';
-
         $hash_in = array('id' => 'id',
             'orderId'=>'1',
             'cnpToken'=>'123456789101112',
