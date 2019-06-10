@@ -50,7 +50,7 @@ class Communication
         $output = curl_exec($ch);
         $responseCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         if (! $output) {
-            if ($responseCode == CURLE_OPERATION_TIMEDOUT){
+            if ($responseCode == 'CURLE_OPERATION_TIMEDOUT'){
                 $commManager->reportResult($requestTarget,CommManager::$REQUEST_RESULT_RESPONSE_TIMEOUT,0);
             }
             else {
