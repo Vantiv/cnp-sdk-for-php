@@ -291,7 +291,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
     public function test_checkout_id_1()
     {
         echo "testing Cert Token Test";
-        $token_hash = array('id' => '1211',
+        $token_hash = array('id' => 'id',
             'merchantId' => '101',
             'orderId' => '59',
             'amount' => '36458',
@@ -311,7 +311,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
     public function test_checkout_id_2()
     {
         echo "testing Cert Token Test";
-        $token_hash = array('id' => '1211',
+        $token_hash = array('id' => 'id',
             'merchantId' => '101',
             'orderId' => '60',
             'amount' => '36459',
