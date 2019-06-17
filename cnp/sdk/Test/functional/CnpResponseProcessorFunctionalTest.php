@@ -13,7 +13,7 @@ class CnpResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
     private $direct;
     private $config;
     private $sale;
-    
+
     public static function setUpBeforeClass()
     {
         CommManager::reset();
