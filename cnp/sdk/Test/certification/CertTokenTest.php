@@ -295,7 +295,11 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
             'orderId' => '59',
             'amount' => '36458',
             'orderSource' => 'ecommerce',
-            'token' => array('cnpToken' => '1111000100092332', 'expDate' => '1121', 'type' => 'VI','checkoutId'=>'201234567891234567'),
+          //  'token' => array('cnpToken' => '5112010000000003', 'expDate' => '1121', 'type' => 'VI','checkoutId'=>'201234567891234567'),
+            'token' => array( 'cnpToken' =>'5112010000000003',
+                'expDate' => '0112',
+                'cardValidationNum' => '349',
+                'type' => 'MC'),
             'url' => PRELIVE_URL);
 
         $initialize = new CnpOnlineRequest();
@@ -314,7 +318,12 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
             'orderId' => '60',
             'amount' => '36459',
             'orderSource' => 'ecommerce',
-            'token' => array('cnpToken' => '1112000100000085', 'expDate' => '1121','checkoutId'=>'201234567891234567'),
+        //    'token' => array('cnpToken' => '5112010000000003', 'expDate' => '1121','checkoutId'=>'201234567891234567'),
+            'token' => array( 'cnpToken' =>'5112010000000003',
+                'expDate' => '0112',
+                'cardValidationNum' => '349',
+                'type' => 'MC'),
+
             'url' => PRELIVE_URL);
 
         $initialize = new CnpOnlineRequest();
