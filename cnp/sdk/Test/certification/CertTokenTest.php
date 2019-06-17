@@ -288,51 +288,38 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
     }
 
 
-    public function test_checkout_id_1()
-    {
-        echo "testing Cert Token Test";
-        $token_hash = array('id' => 'id',
-            'orderId' => '59',
-            'amount' => '36458',
-            'orderSource' => 'ecommerce',
-          //  'token' => array('cnpToken' => '5112010000000003', 'expDate' => '1121', 'type' => 'VI','checkoutId'=>'201234567891234567'),
-            'token' => array( 'cnpToken' =>'5112010000000003',
-                'expDate' => '0112',
-                'cardValidationNum' => '349',
-                'type' => 'MC'),
-            'url' => PRELIVE_URL);
-
-        $initialize = new CnpOnlineRequest();
-        $authorizationResponse = $initialize->authorizationRequest($token_hash);
-
-        echo $authorizationResponse->saveXML();
-        $this->assertEquals('822', XMLParser::getNode($authorizationResponse, 'tokenResponseCode'));
-      //  $this->assertEquals('Approved', XMLParser::getNode($authorizationResponse, 'cnpTxnId'));
-
-    }
-
-    public function test_checkout_id_2()
-    {
-        echo "testing Cert Token Test";
-        $token_hash = array('id' => 'id',
-            'orderId' => '60',
-            'amount' => '36459',
-            'orderSource' => 'ecommerce',
-        //    'token' => array('cnpToken' => '5112010000000003', 'expDate' => '1121','checkoutId'=>'201234567891234567'),
-            'token' => array( 'cnpToken' =>'5112010000000003',
-                'expDate' => '0112',
-                'cardValidationNum' => '349',
-                'type' => 'MC'),
-
-            'url' => PRELIVE_URL);
-
-        $initialize = new CnpOnlineRequest();
-        $authorizationResponse = $initialize->authorizationRequest($token_hash);
-        echo $authorizationResponse->saveXML();
-
-
-        $this->assertEquals('823', XMLParser::getNode($authorizationResponse, 'tokenResponseCode'));
-     //   $this->assertEquals('Token was invalid', XMLParser::getNode($authorizationResponse, 'cnpToken'));
-    }
+//    public function test_checkout_id_1()
+//    {
+//        echo "testing Cert Token Test";
+//        $token_hash = array('id' => 'id',
+//            'orderId' => '59',
+//            'amount' => '36458',
+//            'orderSource' => 'ecommerce',
+//            'token' => array('cnpToken' => '5112010000000003', 'expDate' => '1121', 'type' => 'VI','checkoutId'=>'201234567891234567'),
+//            'url' => PRELIVE_URL);
+//
+//        $initialize = new CnpOnlineRequest();
+//        $authorizationResponse = $initialize->authorizationRequest($token_hash);
+//
+//        echo $authorizationResponse->saveXML();
+//        $this->assertEquals('823', XMLParser::getNode($authorizationResponse, 'response'));
+//        $this->assertEquals('Token was invalid', XMLParser::getNode($authorizationResponse, 'message'));
+//    }
+//
+//    public function test_checkout_id_2()
+//     {
+//         $token_hash = array('id' => 'id',
+//             'orderId' => '59',
+//             'amount' => '15000',
+//             'orderSource' => 'ecommerce',
+//             'token' => array('cnpToken' => '1111000100092332', 'expDate' => '1121','checkoutId'=>'201234567891234567'),
+//             'url' => PRELIVE_URL);
+//
+//         $initialize = new CnpOnlineRequest();
+//         $authorizationResponse = $initialize->authorizationRequest($token_hash);
+//
+//         $this->assertEquals('822', XMLParser::getNode($authorizationResponse, 'response'));
+//         $this->assertEquals('Token was not found', XMLParser::getNode($authorizationResponse, 'message'));
+//     }
 
 }
