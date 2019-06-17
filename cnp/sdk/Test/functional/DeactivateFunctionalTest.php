@@ -35,23 +35,23 @@ class DeactivateFunctionalTest extends \PHPUnit_Framework_TestCase
         CommManager::reset();
     }
 
-//    public function test_simple()
-//    {
-//        $hash_in = array('id' => 'id',
-//            'orderId' => '1',
-//            'orderSource' => 'ecommerce',
-//            'card' => array(
-//                'type' => 'GC',
-//                'number' => '4100000000000001',
-//                'expDate' => '0118',
-//                'pin' => '1234',
-//                'cardValidationNum' => '411'
-//            )
-//        );
-//
-//        $initialize = new CnpOnlineRequest();
-//        $response = $initialize->deactivate($hash_in);
-//        $message = XmlParser::getAttribute($response, 'cnpOnlineResponse', 'message');
-//        $this->assertEquals('Valid Format', $message);
-//    }
+    public function test_simple()
+    {
+        $hash_in = array('id' => 'id',
+            'orderId' => '1',
+            'orderSource' => 'ecommerce',
+            'card' => array(
+                'type' => 'GC',
+                'number' => '4100000000000001',
+                'expDate' => '0118',
+                'pin' => '1234',
+                'cardValidationNum' => '411'
+            )
+        );
+
+        $initialize = new CnpOnlineRequest();
+        $response = $initialize->deactivate($hash_in);
+        $message = XmlParser::getAttribute($response, 'cnpOnlineResponse', 'message');
+        $this->assertEquals('Valid Format', $message);
+    }
 }
