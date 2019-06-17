@@ -34,11 +34,13 @@ class Communication
             echo $req;
         }
         $ch = curl_init();
+
         curl_setopt($ch, CURLOPT_PROXY, $config['proxy']);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: text/xml; charset=UTF-8','Expect: '));
         $commManager = CommManager::instance($config);
         $requestTarget = $commManager->findUrl();
+
         curl_setopt($ch, CURLOPT_URL, $requestTarget['targetUrl']);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $req);
         curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, true);
@@ -47,9 +49,17 @@ class Communication
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,2);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSLVERSION, 6);
-        $output = curl_exec($ch);
+        curl_setopt($ch, CURLINFO_HEADER_OUT, true);
 
-        echo print_r($output);
+        if($requestTarget['targetUrl']=='https://payments.vantivprelive.com/vap/communicator/online'){
+            echo 'Cert test, removing proxy';
+            curl_setopt($ch, CURLOPT_PROXY, '');
+        }
+        $output = curl_exec($ch);
+        $info = curl_getinfo($ch);
+      //  print_r($info);
+
+
         $responseCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         if (! $output) {
             if ($responseCode == 'CURLE_OPERATION_TIMEDOUT'){

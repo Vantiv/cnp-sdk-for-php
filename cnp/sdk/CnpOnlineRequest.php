@@ -1245,6 +1245,7 @@ class CnpOnlineRequest
         $hash = CnpOnlineRequest::getOptionalAttributes($hash_in,$hash_out);
         $request = Obj2xml::toXml($hash,$hash_config, $type);
 
+        echo 'printing request: ';
         echo print_r($request);
         echo "\n";
 
