@@ -737,26 +737,26 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
 //        $this->assertEquals('Dynamically Generated', XmlParser::getNode($saleResponse, 'redirectToken'));
     }
 
-    function test_n10_idealSale()
-    {
-        $sale_hash = array('id' => '1211',
-            'orderId' => 'p1_idealSale',
-            'amount' => '10011',
-            'orderSource' => 'ecommerce',
-            'billToAddress' => array('name' => 'David Berman',
-                'country' => 'US'
-            ),
-            'ideal' => array(),
-            'url' => PRELIVE_URL
-        );
-
-        $initialize = new CnpOnlineRequest();
-        $saleResponse = $initialize->saleRequest($sale_hash);
-        $this->assertEquals('917', XmlParser::getNode($saleResponse, 'response'));
-        $this->assertEquals('Invalid billing country code', XmlParser::getNode($saleResponse, 'message'));
-//        $this->assertEquals('Cert bank page ', XmlParser::getNode($saleResponse, 'redirectUrl'));
-//        $this->assertEquals('Dynamically Generated', XmlParser::getNode($saleResponse, 'redirectToken'));
-    }
+//    function test_n10_idealSale()
+//    {
+//        $sale_hash = array('id' => '1211',
+//            'orderId' => 'p1_idealSale',
+//            'amount' => '10011',
+//            'orderSource' => 'ecommerce',
+//            'billToAddress' => array('name' => 'David Berman',
+//                'country' => 'US'
+//            ),
+//            'ideal' => array(),
+//            'url' => PRELIVE_URL
+//        );
+//
+//        $initialize = new CnpOnlineRequest();
+//        $saleResponse = $initialize->saleRequest($sale_hash);
+//        $this->assertEquals('917', XmlParser::getNode($saleResponse, 'response'));
+//        $this->assertEquals('Invalid billing country code', XmlParser::getNode($saleResponse, 'message'));
+////        $this->assertEquals('Cert bank page ', XmlParser::getNode($saleResponse, 'redirectUrl'));
+////        $this->assertEquals('Dynamically Generated', XmlParser::getNode($saleResponse, 'redirectToken'));
+//    }
 
     function test_p1_giropaySale()
     {
