@@ -779,24 +779,24 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
 //        $this->assertEquals('Dynamically Generated', XmlParser::getNode($saleResponse, 'redirectToken'));
     }
 
-    function test_n10_giropaySale()
-    {
-        $sale_hash = array('id' => '1211',
-            'orderId' => 'n10_giropaySale',
-            'amount' => '20100',
-            'orderSource' => 'ecommerce',
-            'billToAddress' => array('name' => 'David Berman',
-                'country' => 'US'
-            ),
-            'giropay' => array(),
-            'url' => PRELIVE_URL
-        );
-
-        $initialize = new CnpOnlineRequest();
-        $saleResponse = $initialize->saleRequest($sale_hash);
-        $this->assertEquals('917', XmlParser::getNode($saleResponse, 'response'));
-        $this->assertEquals('Invalid billing country code', XmlParser::getNode($saleResponse, 'message'));
-    }
+//    function test_n10_giropaySale()
+//    {
+//        $sale_hash = array('id' => '1211',
+//            'orderId' => 'n10_giropaySale',
+//            'amount' => '20100',
+//            'orderSource' => 'ecommerce',
+//            'billToAddress' => array('name' => 'David Berman',
+//                'country' => 'US'
+//            ),
+//            'giropay' => array(),
+//            'url' => PRELIVE_URL
+//        );
+//
+//        $initialize = new CnpOnlineRequest();
+//        $saleResponse = $initialize->saleRequest($sale_hash);
+//        $this->assertEquals('917', XmlParser::getNode($saleResponse, 'response'));
+//        $this->assertEquals('Invalid billing country code', XmlParser::getNode($saleResponse, 'message'));
+//    }
 
     function test_p1_sofortSale()
     {
