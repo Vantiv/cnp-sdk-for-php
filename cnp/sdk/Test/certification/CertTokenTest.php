@@ -258,7 +258,8 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
                 'firstName' => 'Tom',
                 'lastName' => 'Black'),
             'echeck' => array('accType' => 'Checking', 'accNum' => '1099999999', 'routingNum' => '011100012'),
-            'url' => PRELIVE_URL);
+            'url' => PRELIVE_URL,
+            'proxy'=>'');
 
         $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->echeckSaleRequest($token_hash);

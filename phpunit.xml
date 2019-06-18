@@ -4,11 +4,11 @@
 	<testsuite name="Unit_Test">
             <directory>./cnp/sdk/Test/unit/</directory>
         </testsuite>
-        <!--    <testsuite name="Functional_Test">
+            <testsuite name="Functional_Test">
                <directory>./cnp/sdk/Test/functional/</directory>
-           </testsuite>  -->
-      <!--     <testsuite name="Certification_Test">
+           </testsuite>
+           <testsuite name="Certification_Test">
                <directory>./cnp/sdk/Test/certification/</directory>
-           </testsuite> -->
+           </testsuite>
 	</testsuites>
 </phpunit>
