@@ -24,6 +24,9 @@ class BatchRequestEncryptionFunctionalTest extends \PHPUnit_Framework_TestCase
     {
         CommManager::reset();
     }
+    public function asdf(){
+        $this->assertEquals(0, 0);
+}
 
 
 //    public function setUp()
