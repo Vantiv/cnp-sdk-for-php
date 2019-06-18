@@ -91,7 +91,7 @@ class BatchRequestEncryptionFunctionalTest extends \PHPUnit_Framework_TestCase
             'sftp_username' => $sftpUsername_local,
             'sftp_password' => $sftpPassword_local,
             'useEncryption' => 'true',
-            'batch_url' => 'https://payments.vantivprelive.com/vap/communicator/online',
+            'batch_url' => 'payments.vantivprelive.com',
         );
 
         $cnp_request = new CnpRequest($config_hash);
