@@ -86,25 +86,25 @@ class CnpRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($request->closed);
     }
 
-//    public function test_addBatch_tooBig()
-//    {
-//        $request = new CnpRequest ($this->config);
-//
-//        for ($i = 0; $i < 5; $i++) {
-//            $batch = new BatchRequest ($this->direct);
-//            for ($j = 0; $j < 100000; $j++) {
-//                $batch->addSale($this->sale);
-//            }
-//            $request->addBatchRequest($batch);
-//        }
-//
-//        $this->assertEquals(500000, $request->total_transactions);
-//        $batch = new BatchRequest ($this->direct);
-//        $batch->addSale($this->sale);
-//        $this->setExpectedException('RuntimeException');
-//
-//        $request->addBatchRequest($batch);
-//    }
+    public function test_addBatch_tooBig()
+    {
+        $request = new CnpRequest ($this->config);
+
+        for ($i = 0; $i < 5; $i++) {
+            $batch = new BatchRequest ($this->direct);
+            for ($j = 0; $j < 100000; $j++) {
+                $batch->addSale($this->sale);
+            }
+            $request->addBatchRequest($batch);
+        }
+
+        $this->assertEquals(500000, $request->total_transactions);
+        $batch = new BatchRequest ($this->direct);
+        $batch->addSale($this->sale);
+        $this->setExpectedException('RuntimeException');
+
+        $request->addBatchRequest($batch);
+    }
 
     public function test_addRFRRequest()
     {

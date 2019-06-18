@@ -1444,42 +1444,42 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertNotNull($cts);
     }
 
-//    public function test_mechaBatchSFTP()
-//    {
-//        $request = new CnpRequest();
-//
-//        $batch = new BatchRequest();
-//        $hash_in = array(
-//            'card'=>array('type'=>'VI',
-//                'number'=>'4100000000000001',
-//                'expDate'=>'1213',
-//                'cardValidationNum' => '1213'),
-//            'orderId'=> '2111',
-//            'orderSource'=>'ecommerce',
-//            'id'=>'654',
-//            'amount'=>'123');
-//        $batch->addAuth($hash_in);
-//
-//        $hash_in = array(
-//            'card'=>array('type'=>'VI',
-//                'number'=>'4100000000000001',
-//                'expDate'=>'1213',
-//                'cardValidationNum' => '1213'),
-//            'id'=>'654',
-//            'orderId'=> '2111',
-//            'orderSource'=>'ecommerce',
-//            'amount'=>'123');
-//        $batch->addSale($hash_in);
-//        $request->addBatchRequest($batch);
-//
-//        $resp = new CnpResponseProcessor($request->sendToCnp());
-//
-//        $message = $resp->getXmlReader()->getAttribute("message");
-//        $response = $resp->getXmlReader()->getAttribute("response");
-//        $this->assertEquals("Valid Format", $message);
-//        $this->assertEquals(0, $response);
-//    }
-//
+    public function test_mechaBatchSFTP()
+    {
+        $request = new CnpRequest();
+
+        $batch = new BatchRequest();
+        $hash_in = array(
+            'card'=>array('type'=>'VI',
+                'number'=>'4100000000000001',
+                'expDate'=>'1213',
+                'cardValidationNum' => '1213'),
+            'orderId'=> '2111',
+            'orderSource'=>'ecommerce',
+            'id'=>'654',
+            'amount'=>'123');
+        $batch->addAuth($hash_in);
+
+        $hash_in = array(
+            'card'=>array('type'=>'VI',
+                'number'=>'4100000000000001',
+                'expDate'=>'1213',
+                'cardValidationNum' => '1213'),
+            'id'=>'654',
+            'orderId'=> '2111',
+            'orderSource'=>'ecommerce',
+            'amount'=>'123');
+        $batch->addSale($hash_in);
+        $request->addBatchRequest($batch);
+
+        $resp = new CnpResponseProcessor($request->sendToCnp());
+
+        $message = $resp->getXmlReader()->getAttribute("message");
+        $response = $resp->getXmlReader()->getAttribute("response");
+        $this->assertEquals("Valid Format", $message);
+        $this->assertEquals(0, $response);
+    }
+
 //    public function test_fastAccessFundingSFTP()
 //    {
 //        $request = new CnpRequest();
@@ -1509,48 +1509,48 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 //        $this->assertEquals(0, $response);
 //    }
 
-//    public function test_sendToCnpStream()
-//    {
-//        $sale_info = array(
-//            'id' => '1',
-//            'orderId' => '1',
-//            'amount' => '10010',
-//            'orderSource'=>'ecommerce',
-//            'billToAddress'=>array(
-//                'name' => 'John Smith',
-//                'addressLine1' => '1 Main St.',
-//                'city' => 'Burlington',
-//                'state' => 'MA',
-//                'zip' => '01803-3747',
-//                'country' => 'US'),
-//            'card'=>array(
-//                'number' =>'5112010000000003',
-//                'expDate' => '0112',
-//                'cardValidationNum' => '349',
-//                'type' => 'MC')
-//        );
-//
-//        $cnp_request = new CnpRequest();
-//        $batch_request = new BatchRequest();
-//
-//        # add a sale to the batch
-//        $batch_request->addSale($sale_info);
-//        # close the batch, indicating that we intend to add no more sales
-//        $batch_request->closeRequest();
-//        # add the batch to the cnp request
-//        $cnp_request->addBatchRequest($batch_request);
-//        # close the cnp request, indicating that we intend to add no more batches
-//        $cnp_request->closeRequest();
-//        # send the batch to cnp via SFTP
-//        $response_file = $cnp_request->sendToCnpStream();
-//        # process the response file
-//        $resp = new CnpResponseProcessor($response_file);
-//
-//        $message = $resp->getXmlReader()->getAttribute("message");
-//        $response = $resp->getXmlReader()->getAttribute("response");
-//        $this->assertEquals("Valid Format", $message);
-//        $this->assertEquals(0, $response);
-//    }
+    public function test_sendToCnpStream()
+    {
+        $sale_info = array(
+            'id' => '1',
+            'orderId' => '1',
+            'amount' => '10010',
+            'orderSource'=>'ecommerce',
+            'billToAddress'=>array(
+                'name' => 'John Smith',
+                'addressLine1' => '1 Main St.',
+                'city' => 'Burlington',
+                'state' => 'MA',
+                'zip' => '01803-3747',
+                'country' => 'US'),
+            'card'=>array(
+                'number' =>'5112010000000003',
+                'expDate' => '0112',
+                'cardValidationNum' => '349',
+                'type' => 'MC')
+        );
+
+        $cnp_request = new CnpRequest();
+        $batch_request = new BatchRequest();
+
+        # add a sale to the batch
+        $batch_request->addSale($sale_info);
+        # close the batch, indicating that we intend to add no more sales
+        $batch_request->closeRequest();
+        # add the batch to the cnp request
+        $cnp_request->addBatchRequest($batch_request);
+        # close the cnp request, indicating that we intend to add no more batches
+        $cnp_request->closeRequest();
+        # send the batch to cnp via SFTP
+        $response_file = $cnp_request->sendToCnpStream();
+        # process the response file
+        $resp = new CnpResponseProcessor($response_file);
+
+        $message = $resp->getXmlReader()->getAttribute("message");
+        $response = $resp->getXmlReader()->getAttribute("response");
+        $this->assertEquals("Valid Format", $message);
+        $this->assertEquals(0, $response);
+    }
 
     public function tearDown()
     {

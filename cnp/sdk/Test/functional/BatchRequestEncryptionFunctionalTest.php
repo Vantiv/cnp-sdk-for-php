@@ -91,7 +91,7 @@ class BatchRequestEncryptionFunctionalTest extends \PHPUnit_Framework_TestCase
             'sftp_username' => $sftpUsername_local,
             'sftp_password' => $sftpPassword_local,
             'useEncryption' => 'true',
-            'batch_url' => 'payments.vantivprelive.com',
+            'batch_url' => 'payments.vantivprelive.com'
         );
 
         $cnp_request = new CnpRequest($config_hash);
@@ -115,59 +115,60 @@ class BatchRequestEncryptionFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("Valid Format", $message);
         $this->assertEquals(0, $response);
     }
-//
-//    public function test_mechaBatch()
-//    {
-//
-//        $username_local = $_SERVER['encUsername'];
-//        $password_local = $_SERVER['encPassword'];
-//        $sftpUsername_local = $_SERVER['encSftpUsername'];
-//        $sftpPassword_local = $_SERVER['encSftpPassword'];
-//        $merchantId_local = $_SERVER['encMerchantId'];
-//
-//
-//        $config_hash = array(
-//            'user' => $username_local,
-//            'password' => $password_local,
-//            'merchantId' => $merchantId_local,
-//            'sftp_username' => $sftpUsername_local,
-//            'sftp_password' => $sftpPassword_local,
-//            'useEncryption' => 'true',
-//            'batch_url' => 'payments.vantivprelive.com',
-//        );
-//        $request = new CnpRequest($config_hash);
-//
-//        $batch = new BatchRequest();
-//        $hash_in = array(
-//            'card'=>array('type'=>'VI',
-//                'number'=>'4100000000000001',
-//                'expDate'=>'1213',
-//                'cardValidationNum' => '1213'),
-//            'orderId'=> '2111',
-//            'orderSource'=>'ecommerce',
-//            'id'=>'654',
-//            'amount'=>'123');
-//        $batch->addAuth($hash_in);
-//
-//        $hash_in = array(
-//            'card'=>array('type'=>'VI',
-//                'number'=>'4100000000000001',
-//                'expDate'=>'1213',
-//                'cardValidationNum' => '1213'),
-//            'id'=>'654',
-//            'orderId'=> '2111',
-//            'orderSource'=>'ecommerce',
-//            'amount'=>'123');
-//        $batch->addSale($hash_in);
-//        $request->addBatchRequest($batch);
-//
-//        $resp = new CnpResponseProcessor($request->sendToCnp());
-//
-//        $message = $resp->getXmlReader()->getAttribute("message");
-//        $response = $resp->getXmlReader()->getAttribute("response");
-//        $this->assertEquals("Valid Format", $message);
-//        $this->assertEquals(0, $response);
-//    }
+
+    public function test_mechaBatch()
+    {
+
+        $username_local = $_SERVER['encUsername'];
+        $password_local = $_SERVER['encPassword'];
+        $sftpUsername_local = $_SERVER['encSftpUsername'];
+        $sftpPassword_local = $_SERVER['encSftpPassword'];
+        $merchantId_local = $_SERVER['encMerchantId'];
+
+
+
+        $config_hash = array(
+            'user' => $username_local,
+            'password' => $password_local,
+            'merchantId' => $merchantId_local,
+            'sftp_username' => $sftpUsername_local,
+            'sftp_password' => $sftpPassword_local,
+            'useEncryption' => 'true',
+            'batch_url' => 'payments.vantivprelive.com',
+        );
+        $request = new CnpRequest($config_hash);
+
+        $batch = new BatchRequest();
+        $hash_in = array(
+            'card'=>array('type'=>'VI',
+                'number'=>'4100000000000001',
+                'expDate'=>'1213',
+                'cardValidationNum' => '1213'),
+            'orderId'=> '2111',
+            'orderSource'=>'ecommerce',
+            'id'=>'654',
+            'amount'=>'123');
+        $batch->addAuth($hash_in);
+
+        $hash_in = array(
+            'card'=>array('type'=>'VI',
+                'number'=>'4100000000000001',
+                'expDate'=>'1213',
+                'cardValidationNum' => '1213'),
+            'id'=>'654',
+            'orderId'=> '2111',
+            'orderSource'=>'ecommerce',
+            'amount'=>'123');
+        $batch->addSale($hash_in);
+        $request->addBatchRequest($batch);
+
+        $resp = new CnpResponseProcessor($request->sendToCnp());
+
+        $message = $resp->getXmlReader()->getAttribute("message");
+        $response = $resp->getXmlReader()->getAttribute("response");
+        $this->assertEquals("Valid Format", $message);
+        $this->assertEquals(0, $response);
+    }
 
     public function tearDown()
     {
