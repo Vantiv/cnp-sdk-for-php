@@ -20,40 +20,40 @@ class BatchRequestEncryptionFunctionalTest extends \PHPUnit_Framework_TestCase
 
 
 
-    public static function setUpBeforeClass()
-    {
-        CommManager::reset();
-    }
+//    public static function setUpBeforeClass()
+//    {
+//        CommManager::reset();
+//    }
     public function test_asdf(){
-        echo 'Stating BatchResquestEncryptionFunctional';
+        echo 'Starting BatchResquestEncryptionFunctional';
         $this->assertEquals(0, 0);
     }
 
 
-//    public function setUp()
-//    {
-//        $this->direct = sys_get_temp_dir() . '/test';
-//        if (!file_exists($this->direct)) {
-//            mkdir($this->direct);
-//        }
-//
-//        $this->config = Obj2xml::getConfig(array(
-//            'batch_requests_path' => $this->direct,
-//            'cnp_requests_path' => $this->direct
-//        ));
-//
-////        $this->username = $_SERVER['encUsername'];
-////        $this->password = $_SERVER['encPassword'];
-////        $this->sftpUsername = $_SERVER['encSftpUsername'];
-////        $this->sftpPassword = $_SERVER['encSftpPassword'];
-////        $this->merchantId = $_SERVER['encMerchantId'];
-//
-//        $this->username = $this->config['user'];
-//        $this->password = $this->config['password'];
-//        $this->sftpUsername = $this->config['sftp_username'];
-//        $this->sftpPassword = $this->config['sftp_password'];
-//        $this->merchantId = $this->config['merchantId'];
-//    }
+    public function setUp()
+    {
+        $this->direct = sys_get_temp_dir() . '/test';
+        if (!file_exists($this->direct)) {
+            mkdir($this->direct);
+        }
+
+        $this->config = Obj2xml::getConfig(array(
+            'batch_requests_path' => $this->direct,
+            'cnp_requests_path' => $this->direct
+        ));
+
+//        $this->username = $_SERVER['encUsername'];
+//        $this->password = $_SERVER['encPassword'];
+//        $this->sftpUsername = $_SERVER['encSftpUsername'];
+//        $this->sftpPassword = $_SERVER['encSftpPassword'];
+//        $this->merchantId = $_SERVER['encMerchantId'];
+
+        $this->username = $this->config['user'];
+        $this->password = $this->config['password'];
+        $this->sftpUsername = $this->config['sftp_username'];
+        $this->sftpPassword = $this->config['sftp_password'];
+        $this->merchantId = $this->config['merchantId'];
+    }
 
     public function test_configuredCnpBatchRequestsManually()
     {
