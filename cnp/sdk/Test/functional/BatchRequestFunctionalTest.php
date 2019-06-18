@@ -34,6 +34,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         ));
     }
 
+    public function test_asdf(){
+        $this->assertEquals(0, 0);
+    }
+
 //    public function test_simpleAddTransaction()
 //    {
 //        $hash_in = array(
