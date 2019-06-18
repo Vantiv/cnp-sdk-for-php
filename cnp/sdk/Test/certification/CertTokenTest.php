@@ -43,7 +43,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
         $token_hash = array('id' => 'id',
             'orderId' => '50',
             'accountNumber' => '4457119922390123',
-            'url' => PRELIVE_URL);
+            'url' => PRELIVE_URL, 'proxy'=>'');
 
         $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->registerTokenRequest($token_hash);
@@ -61,7 +61,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
         $token_hash = array('id' => 'id',
             'orderId' => '51',
             'accountNumber' => '4457119999999999',
-            'url' => PRELIVE_URL);
+            'url' => PRELIVE_URL, 'proxy'=>'');
 
         $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->registerTokenRequest($token_hash);
@@ -74,7 +74,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
         $token_hash = array('id' => 'id',
             'orderId' => '52',
             'accountNumber' => '4457119922390123',
-            'url' => PRELIVE_URL);
+            'url' => PRELIVE_URL, 'proxy'=>'');
 
         $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->registerTokenRequest($token_hash);
@@ -91,7 +91,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
         $token_hash = array('id' => 'id',
             'orderId' => '53',
             'echeckForToken' => array('accNum' => '1099999998', 'routingNum' => '114567895'),
-            'url' => PRELIVE_URL);
+            'url' => PRELIVE_URL, 'proxy'=>'');
 
         $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->registerTokenRequest($token_hash);
@@ -108,7 +108,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
         $token_hash = array('id' => 'id',
             'orderId' => '54',
             'echeckForToken' => array('accNum' => '1022222102', 'routingNum' => '1145_7895'),
-            'url' => PRELIVE_URL);
+            'url' => PRELIVE_URL, 'proxy'=>'');
 
         $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->registerTokenRequest($token_hash);
@@ -123,7 +123,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
             'amount' => '15000',
             'orderSource' => 'ecommerce',
             'card' => array('number' => '5435101234510196', 'expDate' => '1112', 'cardValidationNum' => '987', 'type' => 'MC'),
-            'url' => PRELIVE_URL);
+            'url' => PRELIVE_URL, 'proxy'=>'');
 
         $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->authorizationRequest($token_hash);
@@ -143,7 +143,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
             'amount' => '15000',
             'orderSource' => 'ecommerce',
             'card' => array('number' => '5435109999999999', 'expDate' => '1112', 'cardValidationNum' => '987', 'type' => 'MC'),
-            'url' => PRELIVE_URL);
+            'url' => PRELIVE_URL, 'proxy'=>'');
 
         $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->authorizationRequest($token_hash);
@@ -158,7 +158,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
             'amount' => '15000',
             'orderSource' => 'ecommerce',
             'card' => array('number' => '5435101234510196', 'expDate' => '1112', 'cardValidationNum' => '987', 'type' => 'MC'),
-            'url' => PRELIVE_URL);
+            'url' => PRELIVE_URL, 'proxy'=>'');
 
         $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->authorizationRequest($token_hash);
@@ -178,7 +178,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
             'amount' => '15000',
             'orderSource' => 'ecommerce',
             'token' => array('cnpToken' => '1111000100092332', 'expDate' => '1121'),
-            'url' => PRELIVE_URL);
+            'url' => PRELIVE_URL, 'proxy'=>'');
 
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($token_hash);
@@ -194,7 +194,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
             'amount' => '15000',
             'orderSource' => 'ecommerce',
             'token' => array('cnpToken' => '1112000100000085', 'expDate' => '1121'),
-            'url' => PRELIVE_URL);
+            'url' => PRELIVE_URL, 'proxy'=>'');
 
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($token_hash);
@@ -214,7 +214,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
                 'firstName' => 'Tom',
                 'lastName' => 'Black'),
             'echeck' => array('accType' => 'Checking', 'accNum' => '1099999003', 'routingNum' => '011100012'),
-            'url' => PRELIVE_URL);
+            'url' => PRELIVE_URL, 'proxy'=>'');
 
         $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->echeckSaleRequest($token_hash);
@@ -236,7 +236,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
                 'firstName' => 'Tom',
                 'lastName' => 'Black'),
             'echeck' => array('accType' => 'Checking', 'accNum' => '1099999999', 'routingNum' => '011100012'),
-            'url' => PRELIVE_URL);
+            'url' => PRELIVE_URL, 'proxy'=>'');
 
         $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->echeckSaleRequest($token_hash);
@@ -258,8 +258,7 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
                 'firstName' => 'Tom',
                 'lastName' => 'Black'),
             'echeck' => array('accType' => 'Checking', 'accNum' => '1099999999', 'routingNum' => '011100012'),
-            'url' => PRELIVE_URL,
-            'proxy'=>'');
+            'url' => PRELIVE_URL, 'proxy'=>'');
 
         $initialize = new CnpOnlineRequest();
         $registerTokenResponse = $initialize->echeckSaleRequest($token_hash);

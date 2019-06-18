@@ -47,7 +47,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
                 'number' => '4457010200000247',
                 'expDate' => '0812',
                 'type' => 'VI'),
-            'url' => PRELIVE_URL,'proxy'=>'');
+            'url' => PRELIVE_URL, 'proxy'=>'');
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
@@ -69,7 +69,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
                 'number' => '5500000254444445',
                 'expDate' => '0312',
                 'type' => 'MC'),
-            'url' => PRELIVE_URL);
+            'url' => PRELIVE_URL, 'proxy'=>'');
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
@@ -91,7 +91,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
                 'number' => '5592106621450897',
                 'expDate' => '0312',
                 'type' => 'MC'),
-            'url' => PRELIVE_URL);
+            'url' => PRELIVE_URL, 'proxy'=>'');
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
@@ -113,7 +113,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
                 'number' => '5590409551104142',
                 'expDate' => '0312',
                 'type' => 'MC'),
-            'url' => PRELIVE_URL);
+            'url' => PRELIVE_URL, 'proxy'=>'');
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
@@ -135,7 +135,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
                 'number' => '5587755665222179',
                 'expDate' => '0312',
                 'type' => 'MC'),
-            'url' => PRELIVE_URL);
+            'url' => PRELIVE_URL, 'proxy'=>'');
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
@@ -157,7 +157,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
                 'number' => '5445840176552850',
                 'expDate' => '0312',
                 'type' => 'MC'),
-            'url' => PRELIVE_URL);
+            'url' => PRELIVE_URL, 'proxy'=>'');
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
@@ -179,7 +179,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
                 'number' => '5390016478904678',
                 'expDate' => '0312',
                 'type' => 'MC'),
-            'url' => PRELIVE_URL);
+            'url' => PRELIVE_URL, 'proxy'=>'');
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
@@ -201,7 +201,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
                 'number' => '4457010201000246',
                 'expDate' => '0912',
                 'type' => 'VI'),
-            'url' => PRELIVE_URL);
+            'url' => PRELIVE_URL, 'proxy'=>'');
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
@@ -220,7 +220,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
                 'number' => '4457010202000245',
                 'expDate' => '1111',
                 'type' => 'VI'),
-            'url' => PRELIVE_URL);
+            'url' => PRELIVE_URL, 'proxy'=>'');
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
@@ -239,7 +239,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
                 'number' => '5112010201000109',
                 'expDate' => '0412',
                 'type' => 'MC'),
-            'url' => PRELIVE_URL);
+            'url' => PRELIVE_URL, 'proxy'=>'');
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
@@ -258,7 +258,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
                 'number' => '5112010202000108',
                 'expDate' => '0812',
                 'type' => 'MC'),
-            'url' => PRELIVE_URL);
+            'url' => PRELIVE_URL, 'proxy'=>'');
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
@@ -277,7 +277,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
                 'number' => '4100204446270000',
                 'expDate' => '1112',
                 'type' => 'VI'),
-            'url' => PRELIVE_URL);
+            'url' => PRELIVE_URL, 'proxy'=>'');
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
