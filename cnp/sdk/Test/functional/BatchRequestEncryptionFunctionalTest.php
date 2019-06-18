@@ -169,13 +169,13 @@ class BatchRequestEncryptionFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(0, $response);
     }
 
-    public function tearDown()
-    {
-        $files = glob($this->direct . '/*'); // get all file names
-        foreach ($files as $file) { // iterate files
-            if (is_file($file))
-                unlink($file); // delete file
-        }
-        rmdir($this->direct);
-    }
+//    public function tearDown()
+//    {
+//        $files = glob($this->direct . '/*'); // get all file names
+//        foreach ($files as $file) { // iterate files
+//            if (is_file($file))
+//                unlink($file); // delete file
+//        }
+//        rmdir($this->direct);
+//    }
 }
