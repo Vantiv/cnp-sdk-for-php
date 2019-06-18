@@ -91,7 +91,7 @@ class BatchRequestEncryptionFunctionalTest extends \PHPUnit_Framework_TestCase
             'sftp_username' => $sftpUsername_local,
             'sftp_password' => $sftpPassword_local,
             'useEncryption' => 'true',
-            'batch_url' => 'payments.vantivprelive.com ',
+            'batch_url' => 'payments.vantivprelive.com',
         );
 
         $cnp_request = new CnpRequest($config_hash);
@@ -133,7 +133,7 @@ class BatchRequestEncryptionFunctionalTest extends \PHPUnit_Framework_TestCase
             'sftp_username' => $sftpUsername_local,
             'sftp_password' => $sftpPassword_local,
             'useEncryption' => 'true',
-            'batch_url' => 'payments.vantivprelive.com ',
+            'batch_url' => 'payments.vantivprelive.com',
         );
         $request = new CnpRequest($config_hash);
 
