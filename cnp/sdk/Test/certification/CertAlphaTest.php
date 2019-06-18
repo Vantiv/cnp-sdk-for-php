@@ -33,6 +33,8 @@ require_once realpath(__DIR__) . '/../../../../vendor/autoload.php';
 
 define('PRELIVE_URL', 'https://payments.vantivprelive.com/vap/communicator/online');
 
+//comment to see if can commit
+
 class CertAlphaTest extends \PHPUnit_Framework_TestCase
 {
     public static function setUpBeforeClass()
