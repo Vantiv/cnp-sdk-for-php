@@ -47,7 +47,7 @@ class CertAuthenhancedTest extends \PHPUnit_Framework_TestCase
                 'number' => '4457010200000247',
                 'expDate' => '0812',
                 'type' => 'VI'),
-            'url' => PRELIVE_URL);
+            'url' => PRELIVE_URL,'proxy'=>'');
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));

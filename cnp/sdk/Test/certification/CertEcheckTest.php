@@ -164,7 +164,7 @@ class CertEcheckTest extends \PHPUnit_Framework_TestCase
                 'accNum' => '4099999992',
                 'accType' => 'Checking',
                 'routingNum' => '211370545'),
-            'url' => PRELIVE_URL);
+            'url' => PRELIVE_URL, 'proxy'=>'');
 
         $initialize = new CnpOnlineRequest();
         $echeckSaleResponse = $initialize->echeckSaleRequest($echeck_hash);

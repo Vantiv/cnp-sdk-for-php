@@ -57,7 +57,7 @@ class CertBetaTest extends \PHPUnit_Framework_TestCase
                 'cardValidationNum' => '992',
                 'type' => 'VI'
             ),
-            'url' => PRELIVE_URL
+            'url' => PRELIVE_URL , 'proxy'=>''
         );
 
         $initialize = new CnpOnlineRequest();

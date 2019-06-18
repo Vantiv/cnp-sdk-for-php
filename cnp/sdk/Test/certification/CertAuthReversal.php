@@ -56,7 +56,7 @@ class CertAuthReversal extends \PHPUnit_Framework_TestCase
                 'expDate' => '0112',
                 'cardValidationNum' => '349',
                 'type' => 'VI'),
-            'url' => PRELIVE_URL);
+            'url' => PRELIVE_URL, 'proxy'=>'');
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));
