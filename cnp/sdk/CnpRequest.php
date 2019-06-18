@@ -316,6 +316,7 @@ class CnpRequest
             $tcp_url = 'ssl://' . $tcp_url;
         }
 
+
         $sock = fsockopen($tcp_url, $tcp_port, $err_no, $err_str, $tcp_timeout);
 
         if (!$sock) {

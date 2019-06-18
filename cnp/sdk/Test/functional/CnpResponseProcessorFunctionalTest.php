@@ -20,88 +20,88 @@ class CnpResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
     }
 
 
-    public function setUp()
-    {
-//        $this->direct = sys_get_temp_dir() . '/test';
-        $this->direct = __DIR__ . '/../../batchRequest';
-        if (!file_exists($this->direct)) {
-            mkdir($this->direct);
-        }
-        $this->config = Obj2xml::getConfig(array(
-            'batch_requests_path' => $this->direct,
-            'cnp_requests_path' => $this->direct
-        ));
-        $this->sale = array('id' => 'id',
-            'orderId' => '1864',
-            'amount' => '10010',
-            'orderSource' => 'ecommerce',
-            'billToAddress' => array(
-                'name' => 'John Smith',
-                'addressLine1' => '1 Main St.',
-                'city' => 'Burlington',
-                'state' => 'MA',
-                'zip' => '01803-3747',
-                'country' => 'US'
-            ),
-            'card' => array(
-                'number' => '4457010000000009',
-                'expDate' => '0112',
-                'cardValidationNum' => '349',
-                'type' => 'VI'
-            ),
-            'reportGroup' => 'Planets'
-        );
-    }
-
-    public function test_badResponse()
-    {
-        $malformed_resp = '<cnpResponse version="8.20" xmlns="http://www.vantivcnp.com/schema" response="1" message="Test test tes test" cnpSessionId="819799340147507212">
-            <batchResponse cnpBatchId="819799340147507220" merchantId="07103229">
-            <saleResponse reportGroup="Planets">
-                <cnpTxnId>819799340147507238</cnpTxnId>
-                <orderId>1864</orderId>
-                <response>000</response>
-                <responseTime>2013-08-08T13:11:01</responseTime>
-                <message>Approved</message>
-            </saleResponse>
-            </batchResponse>
-            </cnpResponse>';
-
-        file_put_contents($this->direct . '/pizza.tmp', $malformed_resp);
-
-        $this->setExpectedException('RuntimeException', "Response file $this->direct/pizza.tmp indicates error: Test test tes test");
-        $proc = new CnpResponseProcessor ($this->direct . '/pizza.tmp');
-    }
-
-    public function test_processRaw()
-    {
-        $request = new CnpRequest ($this->config);
-
-        // first batch
-        $batch = new BatchRequest ($this->direct);
-        $hash_in = array('id' => '1211',
-            'card' => array(
-                'type' => 'VI',
-                'number' => '4100000000000001',
-                'expDate' => '1213',
-                'cardValidationNum' => '1213'
-            ),
-            'orderId' => '2111',
-            'orderSource' => 'ecommerce',
-            'id' => '654',
-            'amount' => '123'
-        );
-        $batch->addAuth($hash_in);
-
-        $request->addBatchRequest($batch);
-//        print_r ($request);
-
-        $resp = $request->sendToCnpStream();
-        $proc = new CnpResponseProcessor ($resp);
-        $res = $proc->nextTransaction(true);
-        $this->assertTrue(strpos($res, "authorizationResponse") !== FALSE);
-    }
-
+//    public function setUp()
+//    {
+////        $this->direct = sys_get_temp_dir() . '/test';
+//        $this->direct = __DIR__ . '/../../batchRequest';
+//        if (!file_exists($this->direct)) {
+//            mkdir($this->direct);
+//        }
+//        $this->config = Obj2xml::getConfig(array(
+//            'batch_requests_path' => $this->direct,
+//            'cnp_requests_path' => $this->direct
+//        ));
+//        $this->sale = array('id' => 'id',
+//            'orderId' => '1864',
+//            'amount' => '10010',
+//            'orderSource' => 'ecommerce',
+//            'billToAddress' => array(
+//                'name' => 'John Smith',
+//                'addressLine1' => '1 Main St.',
+//                'city' => 'Burlington',
+//                'state' => 'MA',
+//                'zip' => '01803-3747',
+//                'country' => 'US'
+//            ),
+//            'card' => array(
+//                'number' => '4457010000000009',
+//                'expDate' => '0112',
+//                'cardValidationNum' => '349',
+//                'type' => 'VI'
+//            ),
+//            'reportGroup' => 'Planets'
+//        );
+//    }
+//
+//    public function test_badResponse()
+//    {
+//        $malformed_resp = '<cnpResponse version="8.20" xmlns="http://www.vantivcnp.com/schema" response="1" message="Test test tes test" cnpSessionId="819799340147507212">
+//            <batchResponse cnpBatchId="819799340147507220" merchantId="07103229">
+//            <saleResponse reportGroup="Planets">
+//                <cnpTxnId>819799340147507238</cnpTxnId>
+//                <orderId>1864</orderId>
+//                <response>000</response>
+//                <responseTime>2013-08-08T13:11:01</responseTime>
+//                <message>Approved</message>
+//            </saleResponse>
+//            </batchResponse>
+//            </cnpResponse>';
+//
+//        file_put_contents($this->direct . '/pizza.tmp', $malformed_resp);
+//
+//        $this->setExpectedException('RuntimeException', "Response file $this->direct/pizza.tmp indicates error: Test test tes test");
+//        $proc = new CnpResponseProcessor ($this->direct . '/pizza.tmp');
+//    }
+//
+//    public function test_processRaw()
+//    {
+//        $request = new CnpRequest ($this->config);
+//
+//        // first batch
+//        $batch = new BatchRequest ($this->direct);
+//        $hash_in = array('id' => '1211',
+//            'card' => array(
+//                'type' => 'VI',
+//                'number' => '4100000000000001',
+//                'expDate' => '1213',
+//                'cardValidationNum' => '1213'
+//            ),
+//            'orderId' => '2111',
+//            'orderSource' => 'ecommerce',
+//            'id' => '654',
+//            'amount' => '123'
+//        );
+//        $batch->addAuth($hash_in);
+//
+//        $request->addBatchRequest($batch);
+////        print_r ($request);
+//
+//        $resp = $request->sendToCnpStream();
+//        $proc = new CnpResponseProcessor ($resp);
+//        $res = $proc->nextTransaction(true);
+//        $this->assertTrue(strpos($res, "authorizationResponse") !== FALSE);
+//    }
+//
 //    public function test_processMecha()
 //    {
 //        $request = new CnpRequest ($this->config);
@@ -410,7 +410,7 @@ class CnpResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
 //        $this->assertTrue(in_array("unloadResponse", $responses));
 //        $this->assertTrue(in_array("balanceInquiryResponse", $responses));
 //    }
-
+//
 //    public function test_echeckPreNote_all()
 //    {
 //
