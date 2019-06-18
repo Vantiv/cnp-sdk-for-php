@@ -7,8 +7,8 @@
         <testsuite name="Functional_Test">
             <directory>./cnp/sdk/Test/functional/</directory>
         </testsuite>
-        <testsuite name="Certification_Test">
+   <!--     <testsuite name="Certification_Test">
             <directory>./cnp/sdk/Test/certification/</directory>
-        </testsuite>
+        </testsuite> -->
 	</testsuites>
 </phpunit>
