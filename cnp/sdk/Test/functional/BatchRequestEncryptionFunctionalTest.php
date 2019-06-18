@@ -55,66 +55,66 @@ class BatchRequestEncryptionFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->merchantId = $this->config['merchantId'];
     }
 
-//    public function test_configuredCnpBatchRequestsManually()
-//    {
-//        //creating local variables to avoid conflicts with other tests
-//          $username_local = $_SERVER['encUsername'];
-//          $password_local = $_SERVER['encPassword'];
-//          $sftpUsername_local = $_SERVER['encSftpUsername'];
-//          $sftpPassword_local = $_SERVER['encSftpPassword'];
-//          $merchantId_local = $_SERVER['encMerchantId'];
-//
-//        $sale_info = array(
-//            'id' => '1',
-//            'orderId' => '1',
-//            'amount' => '10010',
-//            'orderSource'=>'ecommerce',
-//            'billToAddress'=>array(
-//                'name' => 'John Smith',
-//                'addressLine1' => '1 Main St.',
-//                'city' => 'Burlington',
-//                'state' => 'MA',
-//                'zip' => '01803-3747',
-//                'country' => 'US'),
-//            'card'=>array(
-//                'number' =>'5112010000000003',
-//                'expDate' => '0112',
-//                'cardValidationNum' => '349',
-//                'type' => 'MC')
-//        );
-//
-//
-//        $config_hash = array(
-//            'user' => $username_local,
-//            'password' => $password_local,
-//            'merchantId' => $merchantId_local,
-//            'sftp_username' => $sftpUsername_local,
-//            'sftp_password' => $sftpPassword_local,
-//            'useEncryption' => 'true',
-//            'batch_url' => 'payments.vantivprelive.com',
-//        );
-//
-//        $cnp_request = new CnpRequest($config_hash);
-//        $batch_request = new BatchRequest();
-//
-//        # add a sale to the batch
-//        $batch_request->addSale($sale_info);
-//        # close the batch, indicating that we intend to add no more sales
-//        $batch_request->closeRequest();
-//        # add the batch to the cnp request
-//        $cnp_request->addBatchRequest($batch_request);
-//        # close the cnp request, indicating that we intend to add no more batches
-//        $cnp_request->closeRequest();
-//        # send the batch to cnp via SFTP
-//        $response_file = $cnp_request->sendToCnp();
-//        # process the response file
-//        $resp = new CnpResponseProcessor($response_file);
-//
-//        $message = $resp->getXmlReader()->getAttribute("message");
-//        $response = $resp->getXmlReader()->getAttribute("response");
-//        $this->assertEquals("Valid Format", $message);
-//        $this->assertEquals(0, $response);
-//    }
+    public function test_configuredCnpBatchRequestsManually()
+    {
+        //creating local variables to avoid conflicts with other tests
+          $username_local = $_SERVER['encUsername'];
+          $password_local = $_SERVER['encPassword'];
+          $sftpUsername_local = $_SERVER['encSftpUsername'];
+          $sftpPassword_local = $_SERVER['encSftpPassword'];
+          $merchantId_local = $_SERVER['encMerchantId'];
+
+        $sale_info = array(
+            'id' => '1',
+            'orderId' => '1',
+            'amount' => '10010',
+            'orderSource'=>'ecommerce',
+            'billToAddress'=>array(
+                'name' => 'John Smith',
+                'addressLine1' => '1 Main St.',
+                'city' => 'Burlington',
+                'state' => 'MA',
+                'zip' => '01803-3747',
+                'country' => 'US'),
+            'card'=>array(
+                'number' =>'5112010000000003',
+                'expDate' => '0112',
+                'cardValidationNum' => '349',
+                'type' => 'MC')
+        );
+
+
+        $config_hash = array(
+            'user' => $username_local,
+            'password' => $password_local,
+            'merchantId' => $merchantId_local,
+            'sftp_username' => $sftpUsername_local,
+            'sftp_password' => $sftpPassword_local,
+            'useEncryption' => 'true',
+            'batch_url' => 'https://payments.vantivprelive.com/vap/communicator/online',
+        );
+
+        $cnp_request = new CnpRequest($config_hash);
+        $batch_request = new BatchRequest();
+
+        # add a sale to the batch
+        $batch_request->addSale($sale_info);
+        # close the batch, indicating that we intend to add no more sales
+        $batch_request->closeRequest();
+        # add the batch to the cnp request
+        $cnp_request->addBatchRequest($batch_request);
+        # close the cnp request, indicating that we intend to add no more batches
+        $cnp_request->closeRequest();
+        # send the batch to cnp via SFTP
+        $response_file = $cnp_request->sendToCnp();
+        # process the response file
+        $resp = new CnpResponseProcessor($response_file);
+
+        $message = $resp->getXmlReader()->getAttribute("message");
+        $response = $resp->getXmlReader()->getAttribute("response");
+        $this->assertEquals("Valid Format", $message);
+        $this->assertEquals(0, $response);
+    }
 //
 //    public function test_mechaBatch()
 //    {
