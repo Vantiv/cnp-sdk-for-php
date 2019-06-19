@@ -62,7 +62,7 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
                 'cardValidationNum' => '349',
                 'type' => 'VI'),
         'url' => PRELIVE_URL, 'proxy'=>'');
-        echo 'Test with no proxy manual ......';
+
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($auth_hash);
         $this->assertEquals('000', XmlParser::getNode($authorizationResponse, 'response'));

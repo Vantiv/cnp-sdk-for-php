@@ -94,7 +94,6 @@ class CnpResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
         $batch->addAuth($hash_in);
 
         $request->addBatchRequest($batch);
-//        print_r ($request);
 
         $resp = $request->sendToCnpStream();
         $proc = new CnpResponseProcessor ($resp);

@@ -237,7 +237,6 @@ class BatchRequest
     public function addAuth($hash_in)
     {
         $hash_out = Transactions::createAuthHash($hash_in);
-//        print_r ($hash_out);
         $this->addTransaction($hash_out, $hash_in, 'authorization');
         $this->counts_and_amounts ['auth'] ['count'] += 1;
         $this->counts_and_amounts ['auth'] ['amount'] += $hash_out ['amount'];

@@ -51,15 +51,9 @@ class Communication
         curl_setopt($ch, CURLOPT_SSLVERSION, 6);
         curl_setopt($ch, CURLINFO_HEADER_OUT, true);
 
-//        if($requestTarget['targetUrl']=='https://payments.vantivprelive.com/vap/communicator/online' || $requestTarget['targetUrl']=='payments.vantivprelive.com'){
-                if($requestTarget['targetUrl']=='payments.vantivprelive.com'){
 
-        echo '  Cert test, removing proxy';
-            curl_setopt($ch, CURLOPT_PROXY, '');
-        }
         $output = curl_exec($ch);
-        $info = curl_getinfo($ch);
-      //  print_r($info);
+
 
 
         $responseCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
