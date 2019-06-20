@@ -32,6 +32,7 @@ class BatchRequestEncryptionFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
+        echo 'Starting setup';
         $this->direct = sys_get_temp_dir() . '/test';
         if (!file_exists($this->direct)) {
             mkdir($this->direct);
@@ -53,6 +54,8 @@ class BatchRequestEncryptionFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->sftpUsername = $this->config['sftp_username'];
         $this->sftpPassword = $this->config['sftp_password'];
         $this->merchantId = $this->config['merchantId'];
+        echo 'Finishing setup';
+
     }
 
     public function test_configuredCnpBatchRequestsManually()
