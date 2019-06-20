@@ -57,6 +57,7 @@ class BatchRequestEncryptionFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_configuredCnpBatchRequestsManually()
     {
+        echo "Starting test_configuredCnpBatchRequestsManually";
         //creating local variables to avoid conflicts with other tests
           $username_local = $_SERVER['encUsername'];
           $password_local = $_SERVER['encPassword'];
@@ -114,6 +115,7 @@ class BatchRequestEncryptionFunctionalTest extends \PHPUnit_Framework_TestCase
         $response = $resp->getXmlReader()->getAttribute("response");
         $this->assertEquals("Valid Format", $message);
         $this->assertEquals(0, $response);
+        echo "Finishing test_configuredCnpBatchRequestsManually";
     }
 
     public function test_mechaBatch()
