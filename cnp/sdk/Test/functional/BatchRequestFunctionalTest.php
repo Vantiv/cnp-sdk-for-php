@@ -15,6 +15,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
     private $direct;
     private $config;
 
+
     public static function setUpBeforeClass()
     {
         CommManager::reset();
@@ -31,6 +32,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
             'batch_requests_path' => $this->direct,
             'cnp_requests_path' => $this->direct
         ));
+    }
+
+    public function test_asdf(){
+        $this->assertEquals(0, 0);
     }
 
     public function test_simpleAddTransaction()

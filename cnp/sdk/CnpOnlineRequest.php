@@ -1245,6 +1245,7 @@ class CnpOnlineRequest
         $hash = CnpOnlineRequest::getOptionalAttributes($hash_in,$hash_out);
         $request = Obj2xml::toXml($hash,$hash_config, $type);
 
+
         if(Checker::validateXML($request)){
             $request = str_replace ("submerchantDebitCtx","submerchantDebit",$request);
             $request = str_replace ("submerchantCreditCtx","submerchantCredit",$request);
@@ -1253,6 +1254,7 @@ class CnpOnlineRequest
 
             $cnpOnlineResponse = $this->newXML->request($request,$hash_config,$this->useSimpleXml);
         }
+
         return $cnpOnlineResponse;
     }
     

@@ -19,9 +19,14 @@ class BatchRequestEncryptionFunctionalTest extends \PHPUnit_Framework_TestCase
     private $config;
 
 
+
     public static function setUpBeforeClass()
     {
         CommManager::reset();
+    }
+    public function test_asdf(){
+        echo 'Starting BatchResquestEncryptionFunctional';
+        $this->assertEquals(0, 0);
     }
 
 
@@ -52,13 +57,13 @@ class BatchRequestEncryptionFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_configuredCnpBatchRequestsManually()
     {
-        //creating local variables to avoid conflicts with other tests 
+        //creating local variables to avoid conflicts with other tests
           $username_local = $_SERVER['encUsername'];
           $password_local = $_SERVER['encPassword'];
           $sftpUsername_local = $_SERVER['encSftpUsername'];
           $sftpPassword_local = $_SERVER['encSftpPassword'];
           $merchantId_local = $_SERVER['encMerchantId'];
-        
+
         $sale_info = array(
             'id' => '1',
             'orderId' => '1',
@@ -86,7 +91,7 @@ class BatchRequestEncryptionFunctionalTest extends \PHPUnit_Framework_TestCase
             'sftp_username' => $sftpUsername_local,
             'sftp_password' => $sftpPassword_local,
             'useEncryption' => 'true',
-            'batch_url' => 'prelive.litle.com',
+            'batch_url' => 'payments.vantivprelive.com'
         );
 
         $cnp_request = new CnpRequest($config_hash);
@@ -121,6 +126,7 @@ class BatchRequestEncryptionFunctionalTest extends \PHPUnit_Framework_TestCase
         $merchantId_local = $_SERVER['encMerchantId'];
 
 
+
         $config_hash = array(
             'user' => $username_local,
             'password' => $password_local,
@@ -128,7 +134,7 @@ class BatchRequestEncryptionFunctionalTest extends \PHPUnit_Framework_TestCase
             'sftp_username' => $sftpUsername_local,
             'sftp_password' => $sftpPassword_local,
             'useEncryption' => 'true',
-            'batch_url' => 'prelive.litle.com',
+            'batch_url' => 'payments.vantivprelive.com',
         );
         $request = new CnpRequest($config_hash);
 

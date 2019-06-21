@@ -34,11 +34,13 @@ class Communication
             echo $req;
         }
         $ch = curl_init();
+
         curl_setopt($ch, CURLOPT_PROXY, $config['proxy']);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: text/xml; charset=UTF-8','Expect: '));
         $commManager = CommManager::instance($config);
         $requestTarget = $commManager->findUrl();
+
         curl_setopt($ch, CURLOPT_URL, $requestTarget['targetUrl']);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $req);
         curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, true);
@@ -47,10 +49,16 @@ class Communication
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,2);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSLVERSION, 6);
+        curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+
+
         $output = curl_exec($ch);
+
+
+
         $responseCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         if (! $output) {
-            if ($responseCode == CURLE_OPERATION_TIMEDOUT){
+            if ($responseCode == 'CURLE_OPERATION_TIMEDOUT'){
                 $commManager->reportResult($requestTarget,CommManager::$REQUEST_RESULT_RESPONSE_TIMEOUT,0);
             }
             else {

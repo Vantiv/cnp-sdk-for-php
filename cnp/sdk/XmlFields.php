@@ -515,7 +515,9 @@ class XmlFields
                         "cnpToken"=>XmlFields::returnArrayValue($hash_in, "cnpToken"),
                         "expDate"=>XmlFields::returnArrayValue($hash_in, "expDate"),
                         "cardValidationNum"=>XmlFields::returnArrayValue($hash_in, "cardValidationNum"),
-                        "type"=>XmlFields::returnArrayValue($hash_in, "type")
+                        "type"=>XmlFields::returnArrayValue($hash_in, "type"),
+                        "checkoutId"=>XmlFields::returnArrayValue($hash_in, "checkoutId")
+
             );
 
             return $hash_out;

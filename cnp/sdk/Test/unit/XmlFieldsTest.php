@@ -242,6 +242,22 @@ class XmlFieldsTest extends \PHPUnit_Framework_TestCase
 
     }
 
+
+    public function test_simple_cardTokenTypewithCheckoutID()
+    {
+        $hash = array(
+            "expDate"=>"2013",
+            "cardValidationNum"=>"123",
+            "type"=>"VISA",
+            "checkoutId" => '234565345435');
+        $hash_out = XmlFields::cardTokenType($hash);
+        $this->assertEquals($hash_out["type"], "VISA");
+        $this->assertEquals($hash_out["expDate"], "2013");
+        $this->assertEquals($hash_out["cardValidationNum"], "123");
+        $this->assertEquals($hash_out["checkoutId"], "234565345435");
+    }
+
+
     public function test_simple_cardPaypageType()
     {
         $hash = array(
@@ -545,6 +561,23 @@ class XmlFieldsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($hash_out["encryptedTrack"],"Encrypted Track");
         $this->assertEquals($hash_out["track1Status"],"2");
         $this->assertEquals($hash_out["track2Status"],"1");
+
+    }
+
+    public function test_simple_checkoutid()
+    {
+        $hash = array(
+            "expDate"=>"2013",
+            "cardValidationNum"=>"123",
+            "type"=>"VISA",
+            "checkoutId" => "324324324234"
+        );
+        $hash_out = XmlFields::cardTokenType($hash);
+        $this->assertEquals($hash_out["type"], "VISA");
+        $this->assertEquals($hash_out["expDate"], "2013");
+        $this->assertEquals($hash_out["cardValidationNum"], "123");
+        $this->assertEquals($hash_out["checkoutId"], "324324324234");
+        $this->assertEquals($hash_out["cnpToken"], "");
 
     }
 

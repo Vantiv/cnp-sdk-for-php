@@ -412,4 +412,31 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("Valid Format", $message);
     }
 
+    public function test_simple_token_with_checkout_id()
+    {
+        $hash_in = array('merchantId' => '101', 'id' => '1211',
+            'version' => '8.8',
+            'reportGroup' => 'Planets',
+            'orderId' => '12344',
+            'amount' => '106',
+            'orderSource' => 'ecommerce',
+            'token' => array(
+                'cnpToken' => '123456789101112',
+                'expDate' => '1210',
+                'cardValidationNum' => '555',
+                'type' => 'VI',
+                'checkoutId' => '201234567891234567',
+            ));
+
+        $initialize = new CnpOnlineRequest();
+        $creditResponse = $initialize->creditRequest($hash_in);
+        $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'message');
+
+
+        $this->assertEquals("Valid Format", $message);
+
+      //  $this->assertEquals("801", XmlParser::getAttribute($creditResponse, 'tokenResponse','tokenResponseCode'));
+
+    }
+
 }

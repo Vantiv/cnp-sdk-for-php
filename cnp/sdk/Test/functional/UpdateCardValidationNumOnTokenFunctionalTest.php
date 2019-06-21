@@ -48,6 +48,10 @@ class UpdateCardValidationNumOnTokenFunctionalTest extends \PHPUnit_Framework_Te
         $initialize = new CnpOnlineRequest();
         $updateCardValidationNumOnTokenResponse = $initialize->updateCardValidationNumOnToken($hash_in);
         $message = XmlParser::getAttribute($updateCardValidationNumOnTokenResponse, 'cnpOnlineResponse', 'message');
+
+
         $this->assertEquals('Valid Format', $message);
     }
+
+
 }

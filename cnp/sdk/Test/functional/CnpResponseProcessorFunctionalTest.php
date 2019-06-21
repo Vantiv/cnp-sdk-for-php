@@ -94,7 +94,6 @@ class CnpResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
         $batch->addAuth($hash_in);
 
         $request->addBatchRequest($batch);
-//        print_r ($request);
 
         $resp = $request->sendToCnpStream();
         $proc = new CnpResponseProcessor ($resp);
@@ -509,7 +508,6 @@ class CnpResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($txnCount, 6);
     }
-
 //    public function test_PFIF_instruction_txn()
 //    {
 //
