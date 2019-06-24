@@ -1,5 +1,8 @@
 = CnpOnline CHANGELOG
 
+==Version 12.8.0 (Jun 24, 2019)
+* Feature: TokenUrl Support
+
 ==Version 12.7.3 (Jun 24, 2019)
 * BugFix: Added CheckoutId
 * BugFix: Removed Proxy settings for cert tests
