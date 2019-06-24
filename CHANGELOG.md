@@ -1,5 +1,9 @@
 = CnpOnline CHANGELOG
 
+==Version 12.8.0 (June, 2019)
+* Feature: Added tokenUrl element
+
+
 ==Version 12.7.1 (Jan 14, 2019)
 * BugFix: Removed debug statements
 
