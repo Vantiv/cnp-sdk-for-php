@@ -1,5 +1,10 @@
 = CnpOnline CHANGELOG
 
+==Version 12.7.3 (Jun 24, 2019)
+* BugFix: Added CheckoutId
+* BugFix: Removed Proxy settings for cert tests
+* BugFix: Removed unused unit tests
+
 ==Version 12.7.1 (Jan 14, 2019)
 * BugFix: Removed debug statements
 
