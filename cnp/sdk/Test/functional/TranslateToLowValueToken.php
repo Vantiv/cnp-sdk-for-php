@@ -37,6 +37,9 @@ class TranslateToLowValueToken extends \PHPUnit_Framework_TestCase
         CommManager::reset();
     }
 
+    /**
+     * @throws \cnp\sdk\exceptions\cnpSDKException
+     */
     public function test_simple()
     {
         $hash_in = array('id' => 'id',

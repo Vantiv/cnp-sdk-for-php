@@ -166,5 +166,31 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Approved', $message);
     }
 
+        public function test_simple_capture_given_auth_with_tokenURL()
+        {
+            $hash_in = array(
+            'merchantId' => '101',
+          //  'version'=>'8.8',
+            'id'=>'id',
+            'reportGroup'=>'Planets',
+            'orderId'=>'12344',
+            'authInformation' => array(
+                    'authDate'=>'2002-10-09','authCode'=>'543216', 'processingInstructions' => array ('bypassVelocityCheck'=>'true'),
+            'authAmount'=>'12345'),
+                      'amount'=>'106',
+                      'orderSource'=>'ecommerce',
+                      'token'=> array(
+                          'tokenURL' => 'http://token.com/sales',
+                          'expDate'=>'1210',
+                          'cardValidationNum'=>'555',
+                          'type'=>'VI'
+                      ));
+            $initialize = new CnpOnlineRequest();
+            $captureGivenAuthResponse = $initialize->captureGivenAuthRequest($hash_in);
+            $message = XmlParser::getNode($captureGivenAuthResponse, 'message');
+            $this->assertEquals('Approved', $message);
+
+
+        }
 
 }
