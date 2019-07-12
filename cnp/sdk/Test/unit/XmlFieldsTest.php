@@ -372,7 +372,7 @@ class XmlFieldsTest extends \PHPUnit_Framework_TestCase
     {
         $hash = array(
         "recycleBy" => "recylingbin",
-        "recycleId" => "recyleId");
+        "recycleId" => "recycleId");
         $hash_out = XmlFields::recyclingRequestType($hash);
         $this->assertEquals($hash_out["recycleBy"], "recylingbin");
         $this->assertEquals($hash_out["recycleId"], "recycleId");
