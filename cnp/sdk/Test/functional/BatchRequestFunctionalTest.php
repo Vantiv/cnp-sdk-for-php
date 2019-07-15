@@ -14,6 +14,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 {
     private $direct;
     private $config;
+    private $preliveStatus;
 
 
     public static function setUpBeforeClass()
@@ -25,6 +26,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->direct = sys_get_temp_dir() . '/test';
+        $this->preliveStatus =  $_SERVER['preliveStatus'];
         if (!file_exists($this->direct)) {
             mkdir($this->direct);
         }
@@ -37,6 +39,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_simpleAddTransaction()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array(
             'card' => array(
                 'type' => 'VI',
@@ -63,6 +69,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     function test_addSale()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array(
             'card' => array(
                 'type' => 'VI',
@@ -89,6 +99,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addAuth()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array(
             'card' => array(
                 'type' => 'VI',
@@ -116,6 +130,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addAuthReversal()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array(
             'card' => array(
                 'type' => 'VI',
@@ -143,6 +161,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addGiftCardAuthReversal()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array(
             'id' => 'id',
             'cnpTxnId' => '12345678000',
@@ -173,6 +195,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addCredit()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array(
             'card' => array(
                 'type' => 'VI',
@@ -199,6 +225,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addGiftCardCredit()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array(
             'cnpTxnId' => '12312312',
             'reportGroup' => 'Planets',
@@ -225,6 +255,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addRegisterToken()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array(
             'card' => array(
                 'type' => 'VI',
@@ -250,6 +284,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addForceCapture()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array(
             'card' => array(
                 'type' => 'VI',
@@ -276,6 +314,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addCapture()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array(
             'card' => array(
                 'type' => 'VI',
@@ -303,6 +345,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addGiftCardCapture()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array(
             'id' => 'id',
             'cnpTxnId' => '12345678000',
@@ -331,6 +377,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addCaptureGivenAuth()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array(
             'card' => array(
                 'type' => 'VI',
@@ -357,6 +407,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addEcheckRedeposit()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array(
             'card' => array(
                 'type' => 'VI',
@@ -409,6 +463,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addEcheckPreNoteSale()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array('id' => 'id',
             'orderId' => '2111',
             'orderSource' => 'ecommerce',
@@ -434,6 +492,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addEcheckPreNoteCredit()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array('id' => 'id',
             'orderId' => '2111',
             'orderSource' => 'ecommerce',
@@ -460,6 +522,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
     // TODO: check content
     public function test_addSubmerchantCredit()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array('id' => 'id',
             'fundingSubmerchantId' => '2111',
             'submerchantName' => '001',
@@ -486,6 +552,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addSubmerchantCreditCtx()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array('id' => 'id',
             'fundingSubmerchantId' => '2111',
             'submerchantName' => '001',
@@ -513,6 +583,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addVendorCredit()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array('id' => 'id',
             'fundingSubmerchantId' => '2111',
             'vendorName' => '001',
@@ -539,6 +613,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addVendorCreditCtx()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array('id' => 'id',
             'fundingSubmerchantId' => '2111',
             'vendorName' => '001',
@@ -566,6 +644,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addPayFacCredit()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array('id' => 'id',
             'fundingSubmerchantId' => '2111',
             'fundsTransferId' => '12345678',
@@ -584,6 +666,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addReserveCredit()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array('id' => 'id',
             'fundingSubmerchantId' => '2111',
             'fundsTransferId' => '12345678',
@@ -602,6 +688,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addPhysicalCheckCredit()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array('id' => 'id',
             'fundingSubmerchantId' => '2111',
             'fundsTransferId' => '12345678',
@@ -620,6 +710,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addSubmerchantDebit()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array('id' => 'id',
             'fundingSubmerchantId' => '2111',
             'submerchantName' => '001',
@@ -646,6 +740,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addSubmerchantDebitCtx()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array('id' => 'id',
             'fundingSubmerchantId' => '2111',
             'submerchantName' => '001',
@@ -673,6 +771,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addVendorDebit()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array('id' => 'id',
             'fundingSubmerchantId' => '2111',
             'vendorName' => '001',
@@ -698,6 +800,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addVendorDebitCtx()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array('id' => 'id',
             'fundingSubmerchantId' => '2111',
             'vendorName' => '001',
@@ -724,6 +830,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addPayFacDebit()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array('id' => 'id',
             'fundingSubmerchantId' => '2111',
             'fundsTransferId' => '12345678',
@@ -742,6 +852,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addReserveDebit()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array('id' => 'id',
             'fundingSubmerchantId' => '2111',
             'fundsTransferId' => '12345678',
@@ -760,6 +874,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addPhysicalCheckDebit()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array('id' => 'id',
             'fundingSubmerchantId' => '2111',
             'fundsTransferId' => '12345678',
@@ -778,6 +896,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addEcheckCredit()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array('id' => 'id',
             'card' => array(
                 'type' => 'VI',
@@ -804,6 +926,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addEcheckVerification()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array(
             'card' => array(
                 'type' => 'VI',
@@ -830,6 +956,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addUpdateCardValidationNumOnTokenHash()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array(
             'card' => array(
                 'type' => 'VI',
@@ -857,6 +987,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addUpdateSubscriptionHash()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array(
             'subscriptionId' => '1',
             'planCode' => '2',
@@ -901,6 +1035,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addCancelSubscriptionHash()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array(
             'subscriptionId' => '1'
         );
@@ -916,6 +1054,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addCreatePlanHash()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array(
             'planCode' => '1',
             'name' => '2',
@@ -934,6 +1076,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addUpdatePlanHash()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array(
             'planCode' => '1',
             'active' => 'false'
@@ -950,6 +1096,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addActivateHash()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array('id' => 'id',
             'orderId' => '1',
             'amount' => '2',
@@ -974,6 +1124,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addDeactivateHash()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array('id' => 'id',
             'orderId' => '1',
             'orderSource' => 'ECOMMERCE',
@@ -996,6 +1150,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addLoadHash()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array('id' => 'id',
             'orderId' => '1',
             'amount' => '2',
@@ -1020,6 +1178,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addUnloadHash()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array('id' => 'id',
             'orderId' => '1',
             'amount' => '2',
@@ -1044,6 +1206,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addBalanceInquiryHash()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array('id' => 'id',
             'orderId' => '1',
             'orderSource' => 'ECOMMERCE',
@@ -1066,6 +1232,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_mechaBatch()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $batch = new BatchRequest ($this->direct);
         $hash_in = array('id' => 'id',
             'card' => array(
@@ -1242,6 +1412,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addAccountUpdate()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array(
             'card' => array(
                 'type' => 'VI',
@@ -1265,6 +1439,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addAccountUpdate_negative_with_transaction_before_accountUpdate()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         try {
             $hash_in = array(
                 'card' => array(
@@ -1293,6 +1471,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addAccountUpdate_negative_with_transaction_after_accountUpdate()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         try {
             $hash_in = array(
                 'card' => array(
@@ -1321,6 +1503,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_isFull()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array(
             'card' => array(
                 'type' => 'VI',
@@ -1343,6 +1529,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addTooManyTransactions()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array(
             'card' => array(
                 'type' => 'VI',
@@ -1366,6 +1556,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addToClosedBatch()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array(
             'card' => array(
                 'type' => 'VI',
@@ -1388,6 +1582,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_closeRequest()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array(
             'card' => array(
                 'type' => 'VI',
@@ -1412,6 +1610,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_closeRequest_badFile()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $batch_request = new BatchRequest ($this->direct);
         $batch_request->transaction_file = "/usr/NOPERMS";
 
@@ -1421,6 +1623,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_getCountsAndAmounts()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $hash_in = array(
             'card' => array(
                 'type' => 'VI',
@@ -1443,6 +1649,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_mechaBatchSFTP()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $request = new CnpRequest();
 
         $batch = new BatchRequest();
@@ -1508,6 +1718,10 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_sendToCnpStream()
     {
+        if($this->preliveStatus == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $sale_info = array(
             'id' => '1',
             'orderId' => '1',
