@@ -1,5 +1,8 @@
 = CnpOnline CHANGELOG
 
+==Version 12.7.4 (Jul 16, 2019)
+* BugFix: Added recycleId
+
 ==Version 12.7.3 (Jun 24, 2019)
 * BugFix: Added CheckoutId
 * BugFix: Removed Proxy settings for cert tests
