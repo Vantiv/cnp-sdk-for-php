@@ -75,7 +75,7 @@ class CommManager
 
     //using flock to implement java's "synchronized" keyword
     function synchronized(){
-        $backtrace = debug_backtrace('DEBUG_BACKTRACE_IGNORE_ARGS');
+        $backtrace = defined('DEBUG_BACKTRACE_IGNORE_ARGS') ?  debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS) : debug_backtrace(FALSE);
         $tempname = md5(json_encode($backtrace[0]));
         $filename = sys_get_temp_dir().'/'.$tempname.'lock';
         $file = fopen($filename,'w');
