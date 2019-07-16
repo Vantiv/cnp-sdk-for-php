@@ -513,6 +513,7 @@ class XmlFields
         if (isset($hash_in)) {
             $hash_out = array(
                         "cnpToken"=>XmlFields::returnArrayValue($hash_in, "cnpToken"),
+                        "tokenURL"=>XmlFields::returnArrayValue($hash_in, "tokenURL"),
                         "expDate"=>XmlFields::returnArrayValue($hash_in, "expDate"),
                         "cardValidationNum"=>XmlFields::returnArrayValue($hash_in, "cardValidationNum"),
                         "type"=>XmlFields::returnArrayValue($hash_in, "type"),
