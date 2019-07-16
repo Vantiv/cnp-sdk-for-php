@@ -682,7 +682,8 @@ class XmlFields
     {
         if (isset($hash_in)) {
             $hash_out = array(
-                        "recycleBy"=>XmlFields::returnArrayValue($hash_in, "recycleBy")
+                        "recycleBy"=>XmlFields::returnArrayValue($hash_in, "recycleBy"),
+                        "recycleId"=>XmlFields::returnArrayValue($hash_in, "recycleId")
             );
 
             return $hash_out;
