@@ -55,7 +55,7 @@ class BatchRequestEncryptionFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->sftpUsername = $this->config['sftp_username'];
         $this->sftpPassword = $this->config['sftp_password'];
         $this->merchantId = $this->config['merchantId'];
-        strtolower($this->preliveStatus) = $_SERVER['preliveStatus'];
+        $this->preliveStatus = $_SERVER['preliveStatus'];
         echo 'Finishing setup';
 
     }
