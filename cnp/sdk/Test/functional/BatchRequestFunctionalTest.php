@@ -26,7 +26,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->direct = sys_get_temp_dir() . '/test';
-        strtolower($this->preliveStatus) =  $_SERVER['preliveStatus'];
+        $this->preliveStatus =  $_SERVER['preliveStatus'];
         if (!file_exists($this->direct)) {
             mkdir($this->direct);
         }
