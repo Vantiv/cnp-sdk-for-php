@@ -55,7 +55,7 @@ class BatchRequestEncryptionFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->sftpUsername = $this->config['sftp_username'];
         $this->sftpPassword = $this->config['sftp_password'];
         $this->merchantId = $this->config['merchantId'];
-        $this->preliveStatus = $_SERVER['preliveStatus'];
+        strtolower($this->preliveStatus) = $_SERVER['preliveStatus'];
         echo 'Finishing setup';
 
     }
@@ -70,7 +70,7 @@ class BatchRequestEncryptionFunctionalTest extends \PHPUnit_Framework_TestCase
           $sftpPassword_local = $_SERVER['encSftpPassword'];
           $merchantId_local = $_SERVER['encMerchantId'];
 
-          if($this->preliveStatus == 'down'){
+          if(strtolower($this->preliveStatus) == 'down'){
               $this->markTestSkipped('Prelive is not available');
           }
 
@@ -136,7 +136,7 @@ class BatchRequestEncryptionFunctionalTest extends \PHPUnit_Framework_TestCase
         $sftpPassword_local = $_SERVER['encSftpPassword'];
         $merchantId_local = $_SERVER['encMerchantId'];
 
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 

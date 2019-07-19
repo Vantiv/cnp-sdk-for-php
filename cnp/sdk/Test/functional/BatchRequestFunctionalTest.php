@@ -26,7 +26,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->direct = sys_get_temp_dir() . '/test';
-        $this->preliveStatus =  $_SERVER['preliveStatus'];
+        strtolower($this->preliveStatus) =  $_SERVER['preliveStatus'];
         if (!file_exists($this->direct)) {
             mkdir($this->direct);
         }
@@ -39,7 +39,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_simpleAddTransaction()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -69,7 +69,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     function test_addSale()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -99,7 +99,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addAuth()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -130,7 +130,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addAuthReversal()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -161,7 +161,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addGiftCardAuthReversal()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -195,7 +195,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addCredit()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -225,7 +225,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addGiftCardCredit()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -255,7 +255,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addRegisterToken()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -284,7 +284,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addForceCapture()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -314,7 +314,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addCapture()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -345,7 +345,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addGiftCardCapture()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -377,7 +377,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addCaptureGivenAuth()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -407,7 +407,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addEcheckRedeposit()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -463,7 +463,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addEcheckPreNoteSale()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -492,7 +492,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addEcheckPreNoteCredit()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -522,7 +522,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
     // TODO: check content
     public function test_addSubmerchantCredit()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -552,7 +552,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addSubmerchantCreditCtx()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -583,7 +583,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addVendorCredit()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -613,7 +613,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addVendorCreditCtx()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -644,7 +644,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addPayFacCredit()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -666,7 +666,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addReserveCredit()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -688,7 +688,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addPhysicalCheckCredit()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -710,7 +710,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addSubmerchantDebit()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -740,7 +740,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addSubmerchantDebitCtx()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -771,7 +771,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addVendorDebit()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -800,7 +800,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addVendorDebitCtx()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -830,7 +830,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addPayFacDebit()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -852,7 +852,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addReserveDebit()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -874,7 +874,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addPhysicalCheckDebit()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -896,7 +896,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addEcheckCredit()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -926,7 +926,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addEcheckVerification()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -956,7 +956,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addUpdateCardValidationNumOnTokenHash()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -987,7 +987,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addUpdateSubscriptionHash()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -1035,7 +1035,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addCancelSubscriptionHash()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -1054,7 +1054,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addCreatePlanHash()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -1076,7 +1076,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addUpdatePlanHash()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -1096,7 +1096,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addActivateHash()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -1124,7 +1124,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addDeactivateHash()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -1150,7 +1150,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addLoadHash()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -1178,7 +1178,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addUnloadHash()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -1206,7 +1206,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addBalanceInquiryHash()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -1232,7 +1232,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_mechaBatch()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -1412,7 +1412,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addAccountUpdate()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -1439,7 +1439,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addAccountUpdate_negative_with_transaction_before_accountUpdate()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -1471,7 +1471,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addAccountUpdate_negative_with_transaction_after_accountUpdate()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -1503,7 +1503,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_isFull()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -1529,7 +1529,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addTooManyTransactions()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -1556,7 +1556,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_addToClosedBatch()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -1582,7 +1582,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_closeRequest()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -1610,7 +1610,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_closeRequest_badFile()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -1623,7 +1623,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_getCountsAndAmounts()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -1649,7 +1649,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_mechaBatchSFTP()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -1718,7 +1718,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_sendToCnpStream()
     {
-        if($this->preliveStatus == 'down'){
+        if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
