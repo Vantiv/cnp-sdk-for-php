@@ -3,6 +3,9 @@
 ==Version 12.8.0 (Jun 24, 2019)
 * Feature: TokenURL support
 
+==Version 12.7.5 (Jul 22, 2019)
+* BugFix: Modified debug_backtrace parameter to be compatible with both PHP pre and post 5.4.0
+
 ==Version 12.7.4 (Jul 16, 2019)
 * BugFix: Added recycleId
 
