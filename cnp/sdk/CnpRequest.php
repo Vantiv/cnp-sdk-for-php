@@ -205,8 +205,9 @@ class CnpRequest
     /*
      * Given a timeout (defaults to 7200 seconds - two hours), periodically poll the SFTP directory, looking for the response file for this request.
      */
-    public function retrieveFromCnpSFTP($session, $sftp_timeout=7200)
+    public function retrieveFromCnpSFTP($session)
     {
+        $sftp_timeout = (float) $this->config['sftp_timeout'];
         $time_spent = 0;
         $this->resetSFTPSession($session);
         while ($time_spent < $sftp_timeout) {
@@ -232,7 +233,7 @@ class CnpRequest
             sleep(20);
         }
 
-        throw new \Exception("Response file can not be retrieved because of timeout (Duration : 2 hours)");
+        throw new \Exception("Response file can not be retrieved because of timeout (Duration : " . $sftp_timeout . " seconds)");
 
     }
 
