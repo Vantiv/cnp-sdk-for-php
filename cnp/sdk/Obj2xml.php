@@ -315,7 +315,7 @@ class Obj2xml
                 } elseif ($name == 'timeout') {
                     $config['timeout'] = isset($config_array['timeout'])? $config_array['timeout']:'65';
                 } elseif ($name == 'sftp_timeout') {
-                    $config['sftp_timeout'] = isset($config_array['sftp_timeout'])? $config_array['sftp_timeout']:'720000';
+                    $config['sftp_timeout'] = isset($config_array['sftp_timeout'])? $config_array['sftp_timeout']:'720';
                 } else {
                     if ((!isset($config_array[$name])) and ($name != 'proxy')) {
                         throw new \InvalidArgumentException("Missing Field /$name/");
