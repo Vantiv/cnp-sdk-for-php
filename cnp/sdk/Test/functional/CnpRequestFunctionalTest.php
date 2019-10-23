@@ -15,6 +15,7 @@ class CnpRequestFunctionalTest extends \PHPUnit_Framework_TestCase
     private $direct;
     private $config;
     private $sale;
+    private $preliveStatus;
 
     public static function setUpBeforeClass()
     {
@@ -25,6 +26,7 @@ class CnpRequestFunctionalTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->direct = sys_get_temp_dir() . '/test';
+        $this->preliveStatus =  $_SERVER['preliveStatus'];
         if (!file_exists($this->direct)) {
             mkdir($this->direct);
         }
@@ -186,6 +188,10 @@ class CnpRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_sendToCnp()
     {
+        if(strtolower($this->preliveStatus) == 'down') {
+            $this->markTestSkipped('Prelive is not available');
+        }
+
         $request = new CnpRequest ($this->config);
         $batch = new BatchRequest ($this->direct);
 
