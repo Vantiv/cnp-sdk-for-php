@@ -611,6 +611,36 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(13, $cts ['vendorCredit'] ['amount']);
     }
 
+    public function test_addCustomerCredit()
+    {
+        if(strtolower($this->preliveStatus) == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
+        $hash_in = array('id' => 'id',
+            'fundingCustomerId' => '2111',
+            'customerName' => '001',
+            'fundsTransferId' => '12345678',
+            'amount' => '13',
+            'accountInfo' => array(
+                'accType' => 'Checking',
+                'accNum' => '12345657890',
+                'routingNum' => '123456789',
+                'checkNum' => '123455'
+            )
+
+        );
+        $batch_request = new BatchRequest ($this->direct);
+        $batch_request->addCustomerCredit($hash_in);
+
+        $this->assertTrue(file_exists($batch_request->batch_file));
+        $this->assertEquals(1, $batch_request->total_txns);
+
+        $cts = $batch_request->getCountsAndAmounts();
+        $this->assertEquals(1, $cts ['customerCredit'] ['count']);
+        $this->assertEquals(13, $cts ['customerCredit'] ['amount']);
+    }
+
     public function test_addVendorCreditCtx()
     {
         if(strtolower($this->preliveStatus) == 'down'){
@@ -662,6 +692,28 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         $cts = $batch_request->getCountsAndAmounts();
         $this->assertEquals(1, $cts ['payFacCredit'] ['count']);
         $this->assertEquals(13, $cts ['payFacCredit'] ['amount']);
+    }
+
+    public function test_addPayoutOrgCredit()
+    {
+        if(strtolower($this->preliveStatus) == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
+        $hash_in = array('id' => 'id',
+            'fundingCustomerId' => '2111',
+            'fundsTransferId' => '12345678',
+            'amount' => '13'
+        );
+        $batch_request = new BatchRequest ($this->direct);
+        $batch_request->addPayoutOrgCredit($hash_in);
+
+        $this->assertTrue(file_exists($batch_request->batch_file));
+        $this->assertEquals(1, $batch_request->total_txns);
+
+        $cts = $batch_request->getCountsAndAmounts();
+        $this->assertEquals(1, $cts ['payoutOrgCredit'] ['count']);
+        $this->assertEquals(13, $cts ['payoutOrgCredit'] ['amount']);
     }
 
     public function test_addReserveCredit()
@@ -828,6 +880,35 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(13, $cts ['vendorDebit'] ['amount']);
     }
 
+    public function test_addCustomerDebit()
+    {
+        if(strtolower($this->preliveStatus) == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
+        $hash_in = array('id' => 'id',
+            'fundingCustomerId' => '2111',
+            'customerName' => '001',
+            'fundsTransferId' => '12345678',
+            'amount' => '13',
+            'accountInfo' => array(
+                'accType' => 'Checking',
+                'accNum' => '12345657890',
+                'routingNum' => '123456789',
+                'checkNum' => '123455'
+            )
+        );
+        $batch_request = new BatchRequest ($this->direct);
+        $batch_request->addCustomerDebit($hash_in);
+
+        $this->assertTrue(file_exists($batch_request->batch_file));
+        $this->assertEquals(1, $batch_request->total_txns);
+
+        $cts = $batch_request->getCountsAndAmounts();
+        $this->assertEquals(1, $cts ['customerDebit'] ['count']);
+        $this->assertEquals(13, $cts ['customerDebit'] ['amount']);
+    }
+
     public function test_addPayFacDebit()
     {
         if(strtolower($this->preliveStatus) == 'down'){
@@ -848,6 +929,28 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         $cts = $batch_request->getCountsAndAmounts();
         $this->assertEquals(1, $cts ['payFacDebit'] ['count']);
         $this->assertEquals(13, $cts ['payFacDebit'] ['amount']);
+    }
+
+    public function test_addPayoutOrgDebit()
+    {
+        if(strtolower($this->preliveStatus) == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
+        $hash_in = array('id' => 'id',
+            'fundingCustomerId' => '2111',
+            'fundsTransferId' => '12345678',
+            'amount' => '13'
+        );
+        $batch_request = new BatchRequest ($this->direct);
+        $batch_request->addPayoutOrgDebit($hash_in);
+
+        $this->assertTrue(file_exists($batch_request->batch_file));
+        $this->assertEquals(1, $batch_request->total_txns);
+
+        $cts = $batch_request->getCountsAndAmounts();
+        $this->assertEquals(1, $cts ['payoutOrgDebit'] ['count']);
+        $this->assertEquals(13, $cts ['payoutOrgDebit'] ['amount']);
     }
 
     public function test_addReserveDebit()

@@ -161,7 +161,7 @@ class FundingInstructionOnlineFunctionalTest extends \PHPUnit_Framework_TestCase
     public function test_payoutorg_debit()
     {
         $hash_in = array('id' => 'id',
-            'fundingCustomertId' => '2111',
+            'fundingCustomerId' => '2111',
             'fundsTransferId' => '12345678',
             'amount' => '13',
         );
