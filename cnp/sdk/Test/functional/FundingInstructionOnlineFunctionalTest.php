@@ -158,6 +158,32 @@ class FundingInstructionOnlineFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('000', $response);
     }
 
+    public function test_payoutorg_debit()
+    {
+        $hash_in = array('id' => 'id',
+            'fundingSubmerchantId' => '2111',
+            'fundsTransferId' => '12345678',
+            'amount' => '13',
+        );
+        $initialize = new CnpOnlineRequest();
+        $payoutOrgDebitResponse = $initialize->payoutOrgDebit($hash_in);
+        $response = XmlParser::getNode($payoutOrgDebitResponse, 'response');
+        $this->assertEquals('000', $response);
+    }
+
+    public function test_payoutorg_credit()
+    {
+        $hash_in = array('id' => 'id',
+            'fundingSubmerchantId' => '2111',
+            'fundsTransferId' => '12345678',
+            'amount' => '13',
+        );
+        $initialize = new CnpOnlineRequest();
+        $payoutOrgCreditResponse = $initialize->payoutOrgCredit($hash_in);
+        $response = XmlParser::getNode($payoutOrgCreditResponse, 'response');
+        $this->assertEquals('000', $response);
+    }
+
     public function test_reserve_credit()
     {
         $hash_in = array('id' => 'id',
@@ -247,6 +273,46 @@ class FundingInstructionOnlineFunctionalTest extends \PHPUnit_Framework_TestCase
         $initialize = new CnpOnlineRequest();
         $vendorCreditResponse = $initialize->vendorCredit($hash_in);
         $response = XmlParser::getNode($vendorCreditResponse, 'response');
+        $this->assertEquals('000', $response);
+    }
+
+    public function test_customer_debit()
+    {
+        $hash_in = array('id' => 'id',
+            'fundingCustomerId' => '2111',
+            'customerName' => 'Super Secret Tech Inc.',
+            'fundsTransferId' => '12345678',
+            'amount' => '13',
+            'accountInfo' => array(
+                'accType' => 'Checking',
+                'accNum' => '12345657890',
+                'routingNum' => '123456789',
+                'checkNum' => '123455'
+            ),
+        );
+        $initialize = new CnpOnlineRequest();
+        $customerDebitResponses = $initialize->customerDebit($hash_in);
+        $response = XmlParser::getNode($customerDebitResponse, 'response');
+        $this->assertEquals('000', $response);
+    }
+
+    public function test_customer_credit()
+    {
+        $hash_in = array('id' => 'id',
+            'fundingCustomerId' => '2111',
+            'customerName' => 'Super Secret Tech Inc.',
+            'fundsTransferId' => '12345678',
+            'amount' => '13',
+            'accountInfo' => array(
+                'accType' => 'Checking',
+                'accNum' => '12345657890',
+                'routingNum' => '123456789',
+                'checkNum' => '123455'
+            ),
+        );
+        $initialize = new CnpOnlineRequest();
+        $customerCreditResponse = $initialize->customerCredit($hash_in);
+        $response = XmlParser::getNode($customerCreditResponse, 'response');
         $this->assertEquals('000', $response);
     }
 
