@@ -197,10 +197,36 @@ class FundingInstructionOnlineFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('000', $response);
     }
 
+    public function test_reserve_credit_with_fundingCustomerId()
+    {
+        $hash_in = array('id' => 'id',
+            'fundingCustomerId' => '2111',
+            'fundsTransferId' => '12345678',
+            'amount' => '13',
+        );
+        $initialize = new CnpOnlineRequest();
+        $reserveCreditResponse = $initialize->reserveCredit($hash_in);
+        $response = XmlParser::getNode($reserveCreditResponse, 'response');
+        $this->assertEquals('000', $response);
+    }
+
     public function test_reserve_debit()
     {
         $hash_in = array('id' => 'id',
             'fundingSubmerchantId' => '2111',
+            'fundsTransferId' => '12345678',
+            'amount' => '13',
+        );
+        $initialize = new CnpOnlineRequest();
+        $reserveDebitResponse = $initialize->reserveDebit($hash_in);
+        $response = XmlParser::getNode($reserveDebitResponse, 'response');
+        $this->assertEquals('000', $response);
+    }
+
+    public function test_reserve_debit_with_fundingCustomerId()
+    {
+        $hash_in = array('id' => 'id',
+            'fundingCustomerId' => '2111',
             'fundsTransferId' => '12345678',
             'amount' => '13',
         );
@@ -223,10 +249,36 @@ class FundingInstructionOnlineFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('000', $response);
     }
 
+    public function test_physical_check_debit_with_fundingCustomerId()
+    {
+        $hash_in = array('id' => 'id',
+            'fundingCustomerId' => '2111',
+            'fundsTransferId' => '12345678',
+            'amount' => '13',
+        );
+        $initialize = new CnpOnlineRequest();
+        $physicalCheckDebitResponse = $initialize->physicalCheckDebit($hash_in);
+        $response = XmlParser::getNode($physicalCheckDebitResponse, 'response');
+        $this->assertEquals('000', $response);
+    }
+
     public function test_physical_check_credit()
     {
         $hash_in = array('id' => 'id',
             'fundingSubmerchantId' => '2111',
+            'fundsTransferId' => '12345678',
+            'amount' => '13',
+        );
+        $initialize = new CnpOnlineRequest();
+        $physicalCheckCreditResponse = $initialize->physicalCheckCredit($hash_in);
+        $response = XmlParser::getNode($physicalCheckCreditResponse, 'response');
+        $this->assertEquals('000', $response);
+    }
+
+    public function test_physical_check_credit_with_fundingCustomerId()
+    {
+        $hash_in = array('id' => 'id',
+            'fundingCustomerId' => '2111',
             'fundsTransferId' => '12345678',
             'amount' => '13',
         );
@@ -276,6 +328,26 @@ class FundingInstructionOnlineFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('000', $response);
     }
 
+    public function test_vendor_credit_with_fundingCustomerId()
+    {
+        $hash_in = array('id' => 'id',
+            'fundingCustomerId' => '2111',
+            'vendorName' => 'Super Secret Tech Inc.',
+            'fundsTransferId' => '12345678',
+            'amount' => '1000',
+            'accountInfo' => array(
+                'accType' => 'Checking',
+                'accNum' => '12345657890',
+                'routingNum' => '123456789',
+                'checkNum' => '123455'
+            ),
+        );
+        $initialize = new CnpOnlineRequest();
+        $vendorCreditResponse = $initialize->vendorCredit($hash_in);
+        $response = XmlParser::getNode($vendorCreditResponse, 'response');
+        $this->assertEquals('000', $response);
+    }
+
     public function test_customer_debit()
     {
         $hash_in = array('id' => 'id',
@@ -291,11 +363,31 @@ class FundingInstructionOnlineFunctionalTest extends \PHPUnit_Framework_TestCase
             ),
         );
         $initialize = new CnpOnlineRequest();
-        $customerDebitResponses = $initialize->customerDebit($hash_in);
+        $customerDebitResponse = $initialize->customerDebit($hash_in);
         $response = XmlParser::getNode($customerDebitResponse, 'response');
         $this->assertEquals('000', $response);
     }
 
+
+    public function test_customer_debit_fundingCustomerId()
+    {
+        $hash_in = array('id' => 'id',
+            'fundingCustomerId' => '2111',
+            'customerName' => 'Super Secret Tech Inc.',
+            'fundsTransferId' => '12345678',
+            'amount' => '13',
+            'accountInfo' => array(
+                'accType' => 'Checking',
+                'accNum' => '12345657890',
+                'routingNum' => '123456789',
+                'checkNum' => '123455'
+            ),
+        );
+        $initialize = new CnpOnlineRequest();
+        $customerDebitResponse = $initialize->customerDebit($hash_in);
+        $response = XmlParser::getNode($customerDebitResponse, 'response');
+        $this->assertEquals('000', $response);
+    }
     public function test_customer_credit()
     {
         $hash_in = array('id' => 'id',
@@ -355,5 +447,28 @@ class FundingInstructionOnlineFunctionalTest extends \PHPUnit_Framework_TestCase
         $fastAccessFundingResponse = $initialize->fastAccessFunding($hash_in);
         $response = XmlParser::getNode($fastAccessFundingResponse, 'response');
         $this->assertEquals('000', $response);
+    }
+
+    public function test_fastAccessFunding_mixed_names()
+    {
+        $hash_in = array('id' => 'id',
+            'fundingSubmerchantId' => '2111',
+            'customerName' => '001',
+            'fundsTransferId' => '1234567891111111',
+            'amount' => '13',
+            'card' => array(
+                'type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1210'
+            )
+        );
+        $initialize = new CnpOnlineRequest();
+
+        try {
+            $initialize->fastAccessFunding($hash_in);
+            $this -> fail("Exception not thrown.");
+        } catch(\Exception $e) {
+            $this -> assertEquals($e->getCode(),2);
+        }
     }
 }
