@@ -1184,6 +1184,7 @@ class CnpOnlineRequest
     {
         $hash_out = array (
             'fundingSubmerchantId' => XmlFields::returnArrayValue ( $hash_in, 'fundingSubmerchantId' ),
+            'fundingCustomerId' => XmlFields::returnArrayValue ( $hash_in, 'fundingCustomerId' ),
             'vendorName' => XmlFields::returnArrayValue ( $hash_in, 'vendorName' ),
             'fundsTransferId' => XmlFields::returnArrayValue (  $hash_in, 'fundsTransferId'  ),
             'amount' =>  XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
@@ -1197,6 +1198,7 @@ class CnpOnlineRequest
     {
         $hash_out = array (
             'fundingSubmerchantId' => XmlFields::returnArrayValue ( $hash_in, 'fundingSubmerchantId' ),
+            'fundingCustomerId' => XmlFields::returnArrayValue ( $hash_in, 'fundingCustomerId' ),
             'vendorName' => XmlFields::returnArrayValue ( $hash_in, 'vendorName' ),
             'fundsTransferId' => XmlFields::returnArrayValue (  $hash_in, 'fundsTransferId'  ),
             'amount' =>  XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
