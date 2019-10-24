@@ -388,7 +388,56 @@ class FundingInstructionOnlineFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('000', $response);
     }
 
-    public function test_customer_credit_with_null_name()
+    public function test_customer_debit_with_id_too_long()
+    {
+        $hash_in = array('id' => 'id',
+            'fundingCustomerId' => '123456789012345678901234567890123456789012345678901234567890',
+            'fundsTransferId' => '12345678',
+            'amount' => '13',
+            'accountInfo' => array(
+                'accType' => 'Checking',
+                'accNum' => '12345657890',
+                'routingNum' => '123456789',
+                'checkNum' => '123455'
+            ),
+        );
+        $initialize = new CnpOnlineRequest();
+
+        try {
+            $initialize->customerDebit($hash_in);
+            $this -> fail("Exception not thrown.");
+        } catch(\Exception $e) {
+            $this -> assertEquals($e->getCode(),2);
+        }
+    }
+
+    public function test_customer_debit_with_negative_amount()
+    {
+        $this -> markTestSkipped("Sandbox does not check for negative amounts. Production does check.");
+
+        $hash_in = array('id' => 'id',
+            'fundingCustomerId' => '2111',
+            'customerName' => 'Super Secret Tech Inc.',
+            'fundsTransferId' => '12345678',
+            'amount' => '-13',
+            'accountInfo' => array(
+                'accType' => 'Checking',
+                'accNum' => '12345657890',
+                'routingNum' => '123456789',
+                'checkNum' => '123455'
+            ),
+        );
+        $initialize = new CnpOnlineRequest();
+
+        try {
+            $initialize->customerDebit($hash_in);
+            $this -> fail("Exception not thrown.");
+        } catch(\Exception $e) {
+            $this -> assertEquals($e->getCode(),2);
+        }
+    }
+
+    public function test_customer_debit_with_null_name()
     {
         $hash_in = array('id' => 'id',
             'fundingCustomerId' => '2111',
@@ -404,7 +453,7 @@ class FundingInstructionOnlineFunctionalTest extends \PHPUnit_Framework_TestCase
         $initialize = new CnpOnlineRequest();
 
         try {
-            $initialize->customerCredit($hash_in);
+            $initialize->customerDebit($hash_in);
             $this -> fail("Exception not thrown.");
         } catch(\Exception $e) {
             $this -> assertEquals($e->getCode(),2);
@@ -431,7 +480,7 @@ class FundingInstructionOnlineFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('000', $response);
     }
 
-    public function test_customer_debit_with_null_name()
+    public function test_customer_credit_with_null_name()
     {
         $hash_in = array('id' => 'id',
             'fundingCustomerId' => '2111',
@@ -447,10 +496,10 @@ class FundingInstructionOnlineFunctionalTest extends \PHPUnit_Framework_TestCase
         $initialize = new CnpOnlineRequest();
 
         try {
-            $initialize->customerDebit($hash_in);
-            $this -> fail("Exception not thrown.");
-        } catch(\Exception $e) {
-            $this -> assertEquals($e->getCode(),2);
+            $initialize->customerCredit($hash_in);
+            $this->fail("Exception not thrown.");
+        } catch (\Exception $e) {
+            $this->assertEquals($e->getCode(), 2);
         }
     }
 
