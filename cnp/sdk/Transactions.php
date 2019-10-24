@@ -447,7 +447,7 @@ class Transactions {
     }
     public static function createPayoutOrgCreditHash($hash_in) {
         $hash_out = array (
-            'fundingSubmerchantId' => XmlFields::returnArrayValue ( $hash_in, 'fundingCustomerId' ),
+            'fundingCustomerId' => XmlFields::returnArrayValue ( $hash_in, 'fundingCustomerId' ),
             'id'=>XmlFields::returnArrayValue($hash_in,'id'),
             'fundsTransferId' => XmlFields::returnArrayValue ( $hash_in, 'amount' ),
             'amount' => XmlFields::returnArrayValue ( $hash_in, 'amount' )
@@ -520,7 +520,7 @@ class Transactions {
     }
     public static function createPayoutOrgDebitHash($hash_in) {
         $hash_out = array (
-            'fundingSubmerchantId' => XmlFields::returnArrayValue ( $hash_in, 'fundingCustomerId' ),
+            'fundingCustomerId' => XmlFields::returnArrayValue ( $hash_in, 'fundingCustomerId' ),
             'id'=>XmlFields::returnArrayValue($hash_in,'id'),
             'fundsTransferId' => XmlFields::returnArrayValue ( $hash_in, 'amount' ),
             'amount' => XmlFields::returnArrayValue ( $hash_in, 'amount' )

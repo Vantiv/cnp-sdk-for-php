@@ -161,7 +161,7 @@ class FundingInstructionOnlineFunctionalTest extends \PHPUnit_Framework_TestCase
     public function test_payoutorg_debit()
     {
         $hash_in = array('id' => 'id',
-            'fundingSubmerchantId' => '2111',
+            'fundingCustomertId' => '2111',
             'fundsTransferId' => '12345678',
             'amount' => '13',
         );
@@ -171,10 +171,43 @@ class FundingInstructionOnlineFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('000', $response);
     }
 
+    public function test_payoutorg_debit_null_fundingCustomerId()
+    {
+        $hash_in = array('id' => 'id',
+            'fundsTransferId' => '12345678',
+            'amount' => '13',
+        );
+        $initialize = new CnpOnlineRequest();
+
+        try {
+            $initialize->payoutOrgDebit($hash_in);
+            $this -> fail("Exception not thrown.");
+        } catch(\Exception $e) {
+            $this -> assertEquals($e->getCode(),2);
+        }
+    }
+
+    public function test_payoutorg_debit_fundingCustomerId_too_long()
+    {
+        $hash_in = array('id' => 'id',
+            'fundingCustomerId' => '123456789012345678901234567890123456789012345678901234567890',
+            'fundsTransferId' => '12345678',
+            'amount' => '13',
+        );
+        $initialize = new CnpOnlineRequest();
+
+        try {
+            $initialize->payoutOrgDebit($hash_in);
+            $this -> fail("Exception not thrown.");
+        } catch(\Exception $e) {
+            $this -> assertEquals($e->getCode(),2);
+        }
+    }
+
     public function test_payoutorg_credit()
     {
         $hash_in = array('id' => 'id',
-            'fundingSubmerchantId' => '2111',
+            'fundingCustomerId' => '2111',
             'fundsTransferId' => '12345678',
             'amount' => '13',
         );
@@ -182,6 +215,22 @@ class FundingInstructionOnlineFunctionalTest extends \PHPUnit_Framework_TestCase
         $payoutOrgCreditResponse = $initialize->payoutOrgCredit($hash_in);
         $response = XmlParser::getNode($payoutOrgCreditResponse, 'response');
         $this->assertEquals('000', $response);
+    }
+
+    public function test_payoutorg_credit_null_fundingCustomerId()
+    {
+        $hash_in = array('id' => 'id',
+            'fundsTransferId' => '12345678',
+            'amount' => '13',
+        );
+        $initialize = new CnpOnlineRequest();
+
+        try {
+            $initialize->payoutOrgCredit($hash_in);
+            $this -> fail("Exception not thrown.");
+        } catch(\Exception $e) {
+            $this -> assertEquals($e->getCode(),2);
+        }
     }
 
     public function test_reserve_credit()

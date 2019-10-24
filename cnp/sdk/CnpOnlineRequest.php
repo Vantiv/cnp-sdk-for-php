@@ -1016,7 +1016,7 @@ class CnpOnlineRequest
     public function payoutOrgDebit($hash_in)
     {
         $hash_out = array (
-            'fundingCustomerId' => XmlFields::returnArrayValue ( $hash_in, 'fundingSubmerchantId' ),
+            'fundingCustomerId' => XmlFields::returnArrayValue ( $hash_in, 'fundingCustomerId' ),
             'fundsTransferId' => XmlFields::returnArrayValue (  $hash_in, 'fundsTransferId'  ),
             'amount' =>  XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
         );
@@ -1048,7 +1048,7 @@ class CnpOnlineRequest
     public function payoutOrgCredit($hash_in)
     {
         $hash_out = array (
-            'fundingCustomerId' => XmlFields::returnArrayValue ( $hash_in, 'fundingSubmerchantId' ),
+            'fundingCustomerId' => XmlFields::returnArrayValue ( $hash_in, 'fundingCustomerId' ),
             'fundsTransferId' => XmlFields::returnArrayValue (  $hash_in, 'fundsTransferId'  ),
             'amount' =>  XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
         );
