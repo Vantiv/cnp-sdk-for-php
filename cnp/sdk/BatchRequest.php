@@ -134,11 +134,19 @@ class BatchRequest
                 'count' => 0,
                 'amount' => 0
             ),
+            'payoutOrgCredit' => array(
+                'count' => 0,
+                'amount' => 0
+            ),
             'reserveCredit' => array(
                 'count' => 0,
                 'amount' => 0
             ),
             'vendorCredit' => array(
+                'count' => 0,
+                'amount' => 0
+            ),
+            'customerCredit' => array(
                 'count' => 0,
                 'amount' => 0
             ),
@@ -154,11 +162,19 @@ class BatchRequest
                 'count' => 0,
                 'amount' => 0
             ),
+            'payoutOrgDebit' => array(
+                'count' => 0,
+                'amount' => 0
+            ),
             'reserveDebit' => array(
                 'count' => 0,
                 'amount' => 0
             ),
             'vendorDebit' => array(
+                'count' => 0,
+                'amount' => 0
+            ),
+            'customerDebit' => array(
                 'count' => 0,
                 'amount' => 0
             ),
@@ -537,6 +553,14 @@ class BatchRequest
         $this->counts_and_amounts ['payFacCredit'] ['amount'] += $hash_out ['amount'];
     }
 
+    public function addPayoutOrgCredit($hash_in)
+    {
+        $hash_out = Transactions::createPayoutOrgCreditHash($hash_in);
+        $this->addTransaction($hash_out, $hash_in, 'payoutOrgDebit');
+        $this->counts_and_amounts ['payoutOrgCredit'] ['count'] += 1;
+        $this->counts_and_amounts ['payoutOrgCredit'] ['amount'] += $hash_out ['amount'];
+    }
+
     public function addReserveCredit($hash_in)
     {
         $hash_out = Transactions::createReserveCreditHash($hash_in);
@@ -559,6 +583,14 @@ class BatchRequest
         $this->addTransaction($hash_out, $hash_in, 'vendorCreditCtx');
         $this->counts_and_amounts ['vendorCredit'] ['count'] += 1;
         $this->counts_and_amounts ['vendorCredit'] ['amount'] += $hash_out ['amount'];
+    }
+
+    public function addCustomerCredit($hash_in)
+    {
+        $hash_out = Transactions::createCustomerCreditHash($hash_in);
+        $this->addTransaction($hash_out, $hash_in, 'customerDebit');
+        $this->counts_and_amounts ['customerCredit'] ['count'] += 1;
+        $this->counts_and_amounts ['customerCredit'] ['amount'] += $hash_out ['amount'];
     }
 
     public function addPhysicalCheckCredit($hash_in)
@@ -600,6 +632,14 @@ class BatchRequest
         $this->counts_and_amounts ['payFacDebit'] ['amount'] += $hash_out ['amount'];
     }
 
+    public function addPayoutOrgDebit($hash_in)
+    {
+        $hash_out = Transactions::createPayoutOrgDebitHash($hash_in);
+        $this->addTransaction($hash_out, $hash_in, 'payoutOrgDebit');
+        $this->counts_and_amounts ['payoutOrgDebit'] ['count'] += 1;
+        $this->counts_and_amounts ['payoutOrgDebit'] ['amount'] += $hash_out ['amount'];
+    }
+
     public function addReserveDebit($hash_in)
     {
         $hash_out = Transactions::createReserveDebitHash($hash_in);
@@ -622,6 +662,14 @@ class BatchRequest
         $this->addTransaction($hash_out, $hash_in, 'vendorDebitCtx');
         $this->counts_and_amounts ['vendorDebit'] ['count'] += 1;
         $this->counts_and_amounts ['vendorDebit'] ['amount'] += $hash_out ['amount'];
+    }
+
+    public function addCustomerDebit($hash_in)
+    {
+        $hash_out = Transactions::createCustomerDebitHash($hash_in);
+        $this->addTransaction($hash_out, $hash_in, 'customerDebit');
+        $this->counts_and_amounts ['customerDebit'] ['count'] += 1;
+        $this->counts_and_amounts ['customerDebit'] ['amount'] += $hash_out ['amount'];
     }
 
     public function addPhysicalCheckDebit($hash_in)

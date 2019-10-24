@@ -1013,6 +1013,22 @@ class CnpOnlineRequest
      * @return \DOMDocument|\SimpleXMLElement
      * @throws exceptions\cnpSDKException
      */
+    public function payoutOrgDebit($hash_in)
+    {
+        $hash_out = array (
+            'fundingCustomerId' => XmlFields::returnArrayValue ( $hash_in, 'fundingSubmerchantId' ),
+            'fundsTransferId' => XmlFields::returnArrayValue (  $hash_in, 'fundsTransferId'  ),
+            'amount' =>  XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
+        );
+        $payoutOrgDebitResponse = $this ->processRequest($hash_out, $hash_in, 'payoutOrgDebit');
+        return $payoutOrgDebitResponse;
+    }
+
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function payFacCredit($hash_in)
     {
         $hash_out = array (
@@ -1029,10 +1045,27 @@ class CnpOnlineRequest
      * @return \DOMDocument|\SimpleXMLElement
      * @throws exceptions\cnpSDKException
      */
+    public function payoutOrgCredit($hash_in)
+    {
+        $hash_out = array (
+            'fundingCustomerId' => XmlFields::returnArrayValue ( $hash_in, 'fundingSubmerchantId' ),
+            'fundsTransferId' => XmlFields::returnArrayValue (  $hash_in, 'fundsTransferId'  ),
+            'amount' =>  XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
+        );
+        $payoutOrgCreditResponse = $this ->processRequest($hash_out, $hash_in, 'payoutOrgCredit');
+        return $payoutOrgCreditResponse;
+    }
+
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function reserveCredit($hash_in)
     {
         $hash_out = array (
             'fundingSubmerchantId' => XmlFields::returnArrayValue ( $hash_in, 'fundingSubmerchantId' ),
+            'fundingCustomerId' => XmlFields::returnArrayValue ( $hash_in, 'fundingCustomerId' ),
             'fundsTransferId' => XmlFields::returnArrayValue (  $hash_in, 'fundsTransferId'  ),
             'amount' =>  XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
         );
@@ -1049,6 +1082,7 @@ class CnpOnlineRequest
     {
         $hash_out = array (
             'fundingSubmerchantId' => XmlFields::returnArrayValue ( $hash_in, 'fundingSubmerchantId' ),
+            'fundingCustomerId' => XmlFields::returnArrayValue ( $hash_in, 'fundingCustomerId' ),
             'fundsTransferId' => XmlFields::returnArrayValue (  $hash_in, 'fundsTransferId'  ),
             'amount' =>  XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
         );
@@ -1065,6 +1099,7 @@ class CnpOnlineRequest
     {
         $hash_out = array (
             'fundingSubmerchantId' => XmlFields::returnArrayValue ( $hash_in, 'fundingSubmerchantId' ),
+            'fundingCustomerId' => XmlFields::returnArrayValue ( $hash_in, 'fundingCustomerId' ),
             'fundsTransferId' => XmlFields::returnArrayValue (  $hash_in, 'fundsTransferId'  ),
             'amount' =>  XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
         );
@@ -1081,6 +1116,7 @@ class CnpOnlineRequest
     {
         $hash_out = array (
             'fundingSubmerchantId' => XmlFields::returnArrayValue ( $hash_in, 'fundingSubmerchantId' ),
+            'fundingCustomerId' => XmlFields::returnArrayValue ( $hash_in, 'fundingCustomerId' ),
             'fundsTransferId' => XmlFields::returnArrayValue (  $hash_in, 'fundsTransferId'  ),
             'amount' =>  XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
         );
@@ -1097,6 +1133,7 @@ class CnpOnlineRequest
     {
         $hash_out = array (
             'fundingSubmerchantId' => XmlFields::returnArrayValue ( $hash_in, 'fundingSubmerchantId' ),
+            'fundingCustomerId' => XmlFields::returnArrayValue ( $hash_in, 'fundingCustomerId' ),
             'vendorName' => XmlFields::returnArrayValue ( $hash_in, 'vendorName' ),
             'fundsTransferId' => XmlFields::returnArrayValue (  $hash_in, 'fundsTransferId'  ),
             'amount' =>  XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
@@ -1110,6 +1147,7 @@ class CnpOnlineRequest
     {
         $hash_out = array (
             'fundingSubmerchantId' => XmlFields::returnArrayValue ( $hash_in, 'fundingSubmerchantId' ),
+            'fundingCustomerId' => XmlFields::returnArrayValue ( $hash_in, 'fundingCustomerId' ),
             'vendorName' => XmlFields::returnArrayValue ( $hash_in, 'vendorName' ),
             'fundsTransferId' => XmlFields::returnArrayValue (  $hash_in, 'fundsTransferId'  ),
             'amount' =>  XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
@@ -1117,6 +1155,24 @@ class CnpOnlineRequest
         );
         $vendorCreditResponse = $this ->processRequest($hash_out, $hash_in, "vendorCreditCtx");
         return $vendorCreditResponse;
+    }
+
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
+    public function customerCredit($hash_in)
+    {
+        $hash_out = array (
+            'fundingCustomerId' => XmlFields::returnArrayValue ( $hash_in, 'fundingCustomerId' ),
+            'customerName' => XmlFields::returnArrayValue ( $hash_in, 'customerName' ),
+            'fundsTransferId' => XmlFields::returnArrayValue (  $hash_in, 'fundsTransferId'  ),
+            'amount' =>  XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
+            'accountInfo' => XmlFields::echeckType ( XmlFields::returnArrayValue ( $hash_in, 'accountInfo' ) ) ,
+        );
+        $customerCreditResponse = $this ->processRequest($hash_out, $hash_in, "customerCredit");
+        return $customerCreditResponse;
     }
 
     /**
@@ -1155,6 +1211,24 @@ class CnpOnlineRequest
      * @return \DOMDocument|\SimpleXMLElement
      * @throws exceptions\cnpSDKException
      */
+    public function customerDebit($hash_in)
+    {
+        $hash_out = array (
+            'fundingCustomerId' => XmlFields::returnArrayValue ( $hash_in, 'fundingCustomerId' ),
+            'customerName' => XmlFields::returnArrayValue ( $hash_in, 'customerName' ),
+            'fundsTransferId' => XmlFields::returnArrayValue (  $hash_in, 'fundsTransferId'  ),
+            'amount' =>  XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
+            'accountInfo' => XmlFields::echeckType ( XmlFields::returnArrayValue ( $hash_in, 'accountInfo' ) ) ,
+        );
+        $customreDebitResponse = $this ->processRequest($hash_out, $hash_in, "customerDebit");
+        return $customreDebitResponse;
+    }
+
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function fundingInstructionVoid($hash_in)
     {
         $hash_out = array (
@@ -1182,6 +1256,8 @@ class CnpOnlineRequest
             'card'=> (XmlFields::cardType(XmlFields::returnArrayValue($hash_in,'card'))),
             'token'=>(XmlFields::cardTokenType(XmlFields::returnArrayValue($hash_in,'token'))),
             'paypage'=>(XmlFields::cardPaypageType(XmlFields::returnArrayValue($hash_in,'paypage'))),
+            'fundingCustomerId' => XmlFields::returnArrayValue ( $hash_in, 'fundingCustomerId' ),
+            'customerName' => XmlFields::returnArrayValue ( $hash_in, 'customerName' ),
         );
         $fastAccessFunding = $this ->processRequest($hash_out, $hash_in, "fastAccessFunding");
         return $fastAccessFunding;
