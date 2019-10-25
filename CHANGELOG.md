@@ -1,5 +1,12 @@
 = CnpOnline CHANGELOG
 
+==Version 12.9.0 (October 25, 2019)
+* Feature: Added support for customerCredit, customerDebit
+* Feature: Added support for payoutOrgCredit, payoutOrgDebit
+* Feature: Added fundingCustomerID support
+* Feature: Enhancements to fastAccessFunding
+* Feature: Added configurable timeout for getting batch responses
+
 ==Version 12.8.0 (Jun 24, 2019)
 * Feature: TokenURL support
 
