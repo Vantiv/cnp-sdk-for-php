@@ -93,6 +93,9 @@ function initialize()
         print "Please input the timeout (in seconds) for stream batch delivery. " .
             "If you are not using stream batch delivery, you may hit enter. ";
         $line['tcp_timeout'] = formatConfigValue(STDIN);
+        print "Please input the timeout (in seconds) for batch response. " .
+            "If you are not using stream batch delivery, you may hit enter. ";
+        $line['sftp_timeout'] = formatConfigValue(STDIN);
         # ssl should be usd by default
         $line['tcp_ssl'] = '1';
         $line['print_xml'] = '0';
