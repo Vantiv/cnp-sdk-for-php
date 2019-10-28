@@ -1,6 +1,6 @@
 = CnpOnline CHANGELOG
 
-==Version 12.9.0 (October 25, 2019)
+==Version 12.9.0 (October 28, 2019)
 * Feature: Added support for customerCredit, customerDebit
 * Feature: Added support for payoutOrgCredit, payoutOrgDebit
 * Feature: Added fundingCustomerID support
