@@ -448,4 +448,43 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
 //        $this->assertEquals('http://redirect.url.vantiv.com', XmlParser::getNode($saleResponse, 'redirectUrl'));
     }
 
+    public function test_simple_sale_with_card_skip_realtime_au_true()
+    {
+        $hash_in = array(
+            'card' => array('type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1213',
+                'cardValidationNum' => '1213'),
+            'id' => '1211',
+            'orderId' => '2111',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '123',
+            'skipRealtimeAU' => 'true');
+
+        $initialize = new CnpOnlineRequest();
+        $saleResponse = $initialize->saleRequest($hash_in);
+        $response = XmlParser::getNode($saleResponse, 'response');
+        $this->assertEquals('000', $response);
+    }
+
+    public function test_simple_sale_with_card_skip_realtime_au_false()
+    {
+        $hash_in = array(
+            'card' => array('type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1213',
+                'cardValidationNum' => '1213'),
+            'id' => '1211',
+            'orderId' => '2111',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '123',
+            'skipRealtimeAU' => 'false');
+
+        $initialize = new CnpOnlineRequest();
+        $saleResponse = $initialize->saleRequest($hash_in);
+        $response = XmlParser::getNode($saleResponse, 'response');
+        $this->assertEquals('000', $response);
+    }
 }

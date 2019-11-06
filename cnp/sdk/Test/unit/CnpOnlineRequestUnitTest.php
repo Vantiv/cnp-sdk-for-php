@@ -79,4 +79,52 @@ class CnpOnlineRequestUnitTest extends \PHPUnit_Framework_TestCase
         $cnpTest->authorizationRequest($hash_in);
     }
 
+    public function test_sale_with_realtime_account_updater()
+    {
+        $hash_in = array(
+            'card' => array('type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1213',
+                'cardValidationNum' => '1213'),
+            'id' => '1211',
+            'orderId' => '2111',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '123',
+            'skipRealtimeAU' => 'true');
+        
+        $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
+        $mock->expects($this->once())
+            ->method('request')
+            ->with($this->matchesRegularExpression('/.*\<skipRealtimeAU\>true\<\/skipRealtimeAU\>.*/'));
+
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->saleRequest($hash_in);
+    }
+
+    public function test_sale_without_realtime_account_updater()
+    {
+        $hash_in = array(
+            'card' => array('type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1213',
+                'cardValidationNum' => '1213'),
+            'id' => '1211',
+            'orderId' => '2111',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '123',
+            'skipRealtimeAU' => 'false');
+
+        $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
+        $mock->expects($this->once())
+            ->method('request')
+            ->with($this->matchesRegularExpression('/.*\<skipRealtimeAU\>false\<\/skipRealtimeAU\>.*/'));
+
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->saleRequest($hash_in);
+    }
+
 }
