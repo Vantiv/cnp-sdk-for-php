@@ -25,6 +25,7 @@
 namespace cnp\sdk\Test\unit;
 use cnp\sdk\CnpOnlineRequest;
 use cnp\sdk\CommManager;
+use cnp\sdk\XmlParser;
 
 class CnpOnlineRequestUnitTest extends \PHPUnit_Framework_TestCase
 {
@@ -36,21 +37,21 @@ class CnpOnlineRequestUnitTest extends \PHPUnit_Framework_TestCase
     public function test_set_merchant_sdk_integration()
     {
         $hash_in = array(
-            'id'=>'654',
-            'merchantSdk'=>'Magento;8.14.3',
-            'orderId'=> '2111',
-            'amount'=>'123',
-            'orderSource'=>'ecommerce',
-            'card'=>array(
-                'type'=>'VI',
-                'number' =>'4100000000000001',
-                'expDate' =>'1210')
+            'id' => '654',
+            'merchantSdk' => 'Magento;8.14.3',
+            'orderId' => '2111',
+            'amount' => '123',
+            'orderSource' => 'ecommerce',
+            'card' => array(
+                'type' => 'VI',
+                'number' => '4100000000000001',
+                'expDate' => '1210')
 
-            );
+        );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
-        ->method('request')
-        ->with($this->matchesRegularExpression('/.*merchantSdk="Magento;8.14.3".*/'));
+            ->method('request')
+            ->with($this->matchesRegularExpression('/.*merchantSdk="Magento;8.14.3".*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
@@ -60,19 +61,19 @@ class CnpOnlineRequestUnitTest extends \PHPUnit_Framework_TestCase
     public function test_set_merchant_sdk_default()
     {
         $hash_in = array(
-                'orderId'=> '2111',
-                'id'=>'654',
-                'orderSource'=>'ecommerce',
-                'amount'=>'123',
-                'card'=>array(
-                    'type'=>'VI',
-                    'number' =>'4100000000000001',
-                    'expDate' =>'1210')
-            );
+            'orderId' => '2111',
+            'id' => '654',
+            'orderSource' => 'ecommerce',
+            'amount' => '123',
+            'card' => array(
+                'type' => 'VI',
+                'number' => '4100000000000001',
+                'expDate' => '1210')
+        );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
-        ->method('request')
-        ->with($this->matchesRegularExpression('/.*merchantSdk="PHP;12.*/'));
+            ->method('request')
+            ->with($this->matchesRegularExpression('/.*merchantSdk="PHP;12.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
@@ -90,20 +91,22 @@ class CnpOnlineRequestUnitTest extends \PHPUnit_Framework_TestCase
             'orderId' => '2111',
             'reportGroup' => 'Planets',
             'orderSource' => 'ecommerce',
-            'amount' => '123',
-            'skipRealtimeAU' => 'true');
-        
+            'amount' => '123');
+
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
             ->method('request')
-            ->with($this->matchesRegularExpression('/.*\<skipRealtimeAU\>true\<\/skipRealtimeAU\>.*/'));
+            ->with($this->matchesRegularExpression('/.*\<cnpOnlineRequest.*\<sale.*\<card\>.*number\>.*\<\/card\>*\<\/sale\>.*/'))
+            ->will($this->returnValue(XmlParser::domParser('<cnpOnlineResponse version=\'12.10\' response=\'0\' message=\'Valid Format\' xmlns=\'http://www.vantivcnp.com/schema\'><saleResponse><cnpTxnId>123</cnpTxnId><accountUpdater><accountUpdateSource>R</accountUpdateSource></accountUpdater></saleResponse></cnpOnlineResponse>')));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
-        $cnpTest->saleRequest($hash_in);
+        $saleResponse = $cnpTest->saleRequest($hash_in);
+        $response = XmlParser::getNode($saleResponse, 'accountUpdateSource');
+        $this->assertEquals('R', $response);
     }
 
-    public function test_sale_without_realtime_account_updater()
+    public function test_sale_with_nonrealtime_account_updater()
     {
         $hash_in = array(
             'card' => array('type' => 'VI',
@@ -114,17 +117,18 @@ class CnpOnlineRequestUnitTest extends \PHPUnit_Framework_TestCase
             'orderId' => '2111',
             'reportGroup' => 'Planets',
             'orderSource' => 'ecommerce',
-            'amount' => '123',
-            'skipRealtimeAU' => 'false');
+            'amount' => '123');
 
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
             ->method('request')
-            ->with($this->matchesRegularExpression('/.*\<skipRealtimeAU\>false\<\/skipRealtimeAU\>.*/'));
+            ->with($this->matchesRegularExpression('/.*\<cnpOnlineRequest.*\<sale.*\<card\>.*number\>.*\<\/card\>*\<\/sale\>.*/'))
+            ->will($this->returnValue(XmlParser::domParser('<cnpOnlineResponse version=\'12.10\' response=\'0\' message=\'Valid Format\' xmlns=\'http://www.vantivcnp.com/schema\'><saleResponse><cnpTxnId>123</cnpTxnId><accountUpdater><accountUpdateSource>N</accountUpdateSource></accountUpdater></saleResponse></cnpOnlineResponse>')));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
-        $cnpTest->saleRequest($hash_in);
+        $saleResponse = $cnpTest->saleRequest($hash_in);
+        $response = XmlParser::getNode($saleResponse, 'accountUpdateSource');
+        $this->assertEquals('N', $response);
     }
-
 }
