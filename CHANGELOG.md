@@ -1,5 +1,9 @@
 = CnpOnline CHANGELOG
 
+==Version 12.10.0 (November 11, 2019)
+* Feature: Added skipRealtimeAU support to authorization and sale
+* Feature: Added support for accountUpdateSource and numAccountUpdates in responses
+
 ==Version 12.9.0 (October 28, 2019)
 * Feature: Added support for customerCredit, customerDebit
 * Feature: Added support for payoutOrgCredit, payoutOrgDebit
