@@ -69,6 +69,7 @@ class Obj2xml
         unset($data['id']);
 
         Obj2xml::iterateChildren($data,$transacType);
+        
         return $xml->asXML();
     }
 
