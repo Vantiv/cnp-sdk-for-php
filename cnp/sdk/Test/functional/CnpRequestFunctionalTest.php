@@ -25,7 +25,7 @@ class CnpRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->direct = sys_get_temp_dir() . '/test';
+        $this->direct = sys_get_temp_dir() . '/test' . CURRENT_SDK_VERSION;
         $this->preliveStatus = $_SERVER['preliveStatus'];
         if (!file_exists($this->direct)) {
             mkdir($this->direct);
