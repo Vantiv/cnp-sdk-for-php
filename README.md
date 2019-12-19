@@ -31,22 +31,29 @@ Using with composer
 --------------------
 If you are using a composer to manage your dependencies, you can do the following in your project directory:
 
-1) Install the composer using command:
+1) Install the Vantiv eCommerce PHP SDK from git.
+> git clone git://github.com/Vantiv/cnp-sdk-for-php.git
+
+2) Install the composer using command:
 > curl -sS https://getcomposer.org/installer | php
 
-2) Install dependencies using the command:
-> php composer.phar install
+3) Move into the cnp-sdk-for-php directory and install dependencies via composer.
+> cd cnp-sdk-for-php 
 
-3) Configure the SDK:
+> php ../composer.phar install
+
+4) Configure the SDK:
 > cd cnp/sdk
+
 > php Setup.php
 
-4) Run the attached sample:
+5) Return to the cnp-sdk-for-php directory, then run the attached sample:
 ```php
 <?php
-require_once _DIR_.'/vendor/autoload.php';
+require_once realpath(dirname(__FILE__)).'/vendor/autoload.php';
 #sale
 $sale_info = array(
+             'id' => '42',
              'orderId' => '1',
              'amount'  => '10010',
              'orderSource' => 'ecommerce',
