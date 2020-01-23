@@ -58,6 +58,32 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
 
     }
 
+    public function test_simple_captureGivenAuth_with_merchantCategoryCode()
+    {
+        $hash_in = array(
+            'amount'=>'123',
+            'orderId'=>'12344',
+            'id'=> 'id',
+            'merchantCategoryCode' => '3535',
+            'authInformation' => array(
+                'authDate'=>'2002-10-09','authCode'=>'543216',
+                'authAmount'=>'12345'),
+            'orderSource'=>'ecommerce',
+            'card'=>array(
+                'type'=>'VI',
+                'number' =>'4100000000000001',
+                'expDate' =>'1210'));
+        $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
+        $mock	->expects($this->once())
+            ->method('request')
+            ->with($this->matchesRegularExpression('/.*<authInformation><authDate>2002-10-09.*<authCode>543216.*><authAmount>12345.*/'));
+
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->captureGivenAuthRequest($hash_in);
+
+    }
+
     public function test_no_amount()
     {
         $hash_in = array(
