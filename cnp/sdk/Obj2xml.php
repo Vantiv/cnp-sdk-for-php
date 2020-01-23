@@ -24,7 +24,7 @@
 */
 namespace cnp\sdk;
 require_once realpath(dirname(__FILE__)) . '/CnpOnline.php';
-class Obj2xml
+class lObj2xml
 {
     public static function toXml($data, $hash_config, $type, $rootNodeName = 'cnpOnlineRequest')
     {

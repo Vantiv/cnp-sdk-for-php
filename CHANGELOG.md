@@ -1,5 +1,9 @@
 = CnpOnline CHANGELOG
 
+==Version 12.11.0 (January 23, 2020)
+* Feature: Added merchantCatagoryCode support to forceCapture, captureGivenAuth, sale, credit, authorization
+* Feature: Added authenticationProtocolVersion support to fraudCheckType
+
 ==Version 12.10.0 (November 11, 2019)
 * Feature: Added skipRealtimeAU support to authorization and sale
 * Feature: Added support for accountUpdateSource and numAccountUpdates in responses
