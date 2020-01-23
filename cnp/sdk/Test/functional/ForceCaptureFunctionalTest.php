@@ -128,4 +128,102 @@ class ForceCaptureFunctionalTest extends \PHPUnit_Framework_TestCase
         $response = XmlParser::getAttribute($forceCaptureResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('000', $response);
     }
+
+    public function test_simple_forceCapture_with_card_with_MerchantCategoryCode()
+    {
+        $hash_in = array('id' => 'id',
+            'merchantId' => '101',
+            'version' => '8.8',
+            'reportGroup' => 'Planets',
+            'cnpTxnId' => '123456',
+            'orderId' => '12344',
+            'amount' => '106',
+            'orderSource' => 'ecommerce',
+            'card' => array(
+                'type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1210'
+            ),
+            'merchantCategoryCode' => '6789');
+
+        $initialize = new CnpOnlineRequest();
+        $forceCaptureResponse = $initialize->forceCaptureRequest($hash_in);
+        $response = XmlParser::getAttribute($forceCaptureResponse, 'cnpOnlineResponse', 'response');
+        $this->assertEquals('000', $response);
+    }
+
+    public function test_simple_forceCapture_with_token_with_MerchantCategoryCode()
+    {
+        $hash_in = array('id' => 'id',
+            'merchantId' => '101',
+            'version' => '8.8',
+            'reportGroup' => 'Planets',
+            'cnpTxnId' => '123456',
+            'orderId' => '12344',
+            'amount' => '106',
+            'orderSource' => 'ecommerce',
+            'token' => array(
+                'cnpToken' => '123456789101112',
+                'expDate' => '1210',
+                'cardValidationNum' => '555',
+                'type' => 'VI'
+            ),
+            'merchantCategoryCode' => '6780');
+
+        $initialize = new CnpOnlineRequest();
+        $forceCaptureResponse = $initialize->forceCaptureRequest($hash_in);
+        $message = XmlParser::getAttribute($forceCaptureResponse, 'cnpOnlineResponse', 'message');
+        $this->assertEquals('Valid Format', $message);
+    }
+
+
+    public function test_simple_forceCapture_with_secondary_amount_with_MerchantCategoryCode()
+    {
+        $hash_in = array('id' => 'id',
+            'merchantId' => '101',
+            'version' => '8.8',
+            'reportGroup' => 'Planets',
+            'cnpTxnId' => '123456',
+            'orderId' => '12344',
+            'amount' => '106',
+            'secondaryAmount' => '2000',
+            'orderSource' => 'ecommerce',
+            'card' => array(
+                'type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1210'
+            ),
+            'merchantCategoryCode' => '6712');
+
+        $initialize = new CnpOnlineRequest();
+        $forceCaptureResponse = $initialize->forceCaptureRequest($hash_in);
+        $response = XmlParser::getAttribute($forceCaptureResponse, 'cnpOnlineResponse', 'response');
+        $this->assertEquals('000', $response);
+    }
+
+    public function test_simple_forceCapture_with_processingType_with_MerchantCategoryCode()
+    {
+        $hash_in = array('id' => 'id',
+            'merchantId' => '101',
+            'version' => '8.8',
+            'reportGroup' => 'Planets',
+            'cnpTxnId' => '123456',
+            'orderId' => '12344',
+            'amount' => '106',
+            'secondaryAmount' => '2000',
+            'orderSource' => 'ecommerce',
+            'card' => array(
+                'type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1210'
+            ),
+            'processingType' => 'initialRecurring',
+            'merchantCategoryCode' => '6770'
+        );
+
+        $initialize = new CnpOnlineRequest();
+        $forceCaptureResponse = $initialize->forceCaptureRequest($hash_in);
+        $response = XmlParser::getAttribute($forceCaptureResponse, 'cnpOnlineResponse', 'response');
+        $this->assertEquals('000', $response);
+    }
 }
