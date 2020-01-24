@@ -217,7 +217,7 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Approved', $message);
     }
 
-    public function test_simple_captureGivenAuth_with_token()
+    public function test_simple_captureGivenAuth_with_token_with_MerchantCategoryCode()
     {
         $hash_in = array('id' => 'id',
             'orderId' => '12344',
@@ -229,7 +229,8 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
             'token' => array(
                 'type' => 'VI',
                 'cnpToken' => '123456789101112',
-                'expDate' => '1210'));
+                'expDate' => '1210'),
+            'merchantCategoryCode' => '2424');
 
         $initialize = new CnpOnlineRequest();
         $captureGivenAuthResponse = $initialize->captureGivenAuthRequest($hash_in);
@@ -237,7 +238,7 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Approved', $message);
     }
 
-    public function test_complex_captureGivenAuth()
+    public function test_complex_captureGivenAuth_with_MerchantCategoryCode()
     {
         $hash_in = array('id' => 'id',
             'orderId' => '12344',
@@ -251,7 +252,8 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
             'card' => array(
                 'type' => 'VI',
                 'number' => '4100000000000000',
-                'expDate' => '1210'));
+                'expDate' => '1210'),
+            'merchantCategoryCode' => '1234');
 
         $initialize = new CnpOnlineRequest();
         $captureGivenAuthResponse = $initialize->captureGivenAuthRequest($hash_in);
@@ -259,7 +261,7 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Approved', $message);
     }
 
-    public function test_authInfo()
+    public function test_authInfo_with_MerchantCategoryCode()
     {
         $hash_in = array('id' => 'id',
             'orderId' => '12344',
@@ -272,7 +274,8 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
             'card' => array(
                 'type' => 'VI',
                 'number' => '4100000000000000',
-                'expDate' => '1210'));
+                'expDate' => '1210'),
+            'merchantCategoryCode' => '2424');
 
         $initialize = new CnpOnlineRequest();
         $captureGivenAuthResponse = $initialize->captureGivenAuthRequest($hash_in);
@@ -280,7 +283,7 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Approved', $message);
     }
 
-    public function test_simple_captureGivenAuth_secondary_amount()
+    public function test_simple_captureGivenAuth_secondary_amount_with_MerchantCategoryCode()
     {
         $hash_in = array('id' => 'id',
             'orderId' => '12344',
@@ -293,7 +296,8 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
             'card' => array(
                 'type' => 'VI',
                 'number' => '4100000000000000',
-                'expDate' => '1210'));
+                'expDate' => '1210'),
+            'merchantCategoryCode' => '5678');
 
         $initialize = new CnpOnlineRequest();
         $captureGivenAuthResponse = $initialize->captureGivenAuthRequest($hash_in);
@@ -301,7 +305,7 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Approved', $message);
     }
 
-    public function test_simple_captureGivenAuth_with_processingType_orgntwtxnid_orgtxnamt()
+    public function test_simple_captureGivenAuth_with_processingType_orgntwtxnid_orgtxnamt_with_MerchantCategoryCode()
     {
         $hash_in = array(
             'id' => 'id',
@@ -319,7 +323,8 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
                 'expDate' => '1210'),
             'processingType' => 'initialRecurring',
             'originalNetworkTransactionId' => 'abcdefghijklmnopqrstuvwxyz',
-            'originalTransactionAmount' => '1000'
+            'originalTransactionAmount' => '1000',
+            'merchantCategoryCode' => '1234'
         );
 
         $initialize = new CnpOnlineRequest();
@@ -328,7 +333,7 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Approved', $message);
     }
 
-    public function test_simple_capture_given_auth_with_tokenURL()
+    public function test_simple_capture_given_auth_with_tokenURL_with_MerchantCategoryCode()
     {
         $hash_in = array(
             'merchantId' => '101',
@@ -346,7 +351,8 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
                 'expDate'=>'1210',
                 'cardValidationNum'=>'555',
                 'type'=>'VI'
-            ));
+            ),
+            'merchantCategoryCode' => '4567');
         $initialize = new CnpOnlineRequest();
         $captureGivenAuthResponse = $initialize->captureGivenAuthRequest($hash_in);
         $message = XmlParser::getNode($captureGivenAuthResponse, 'message');
