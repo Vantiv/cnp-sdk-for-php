@@ -1579,7 +1579,6 @@
                                 <xs:element ref="xp:processingInstructions" minOccurs="0" />
                                 <xs:element ref="xp:pos" minOccurs="0" />
                                 <xs:element name="pin" type="xp:pinType" minOccurs="0" />
-                                <xs:element name="merchantCategoryCode" type="xp:stringExactly4Type" minOccurs="0" />
                             </xs:sequence>
                             <xs:sequence>
                                 <xs:element name="orderId" type="xp:string25Type" />
