@@ -297,7 +297,7 @@ class CnpOnlineRequest
                     'merchantCategoryCode'=>XmlFields::returnArrayValue($hash_in,'merchantCategoryCode')
         );
 
-        $choice_hash = array($hash_out['card'],$hash_out['paypal'],$hash_out['token'],$hash_out['paypage'],$hash_out['mpos']);
+        $choice_hash = array($hash_out['card'],$hash_out['paypal'],$hash_out['token'],$hash_out['paypage'],$hash_out['mpos'],$hash_out['merchantCategoryCode']);
         $creditResponse = $this->processRequest($hash_out,$hash_in,'credit',$choice_hash);
 
         return $creditResponse;
