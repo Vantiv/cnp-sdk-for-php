@@ -1624,12 +1624,11 @@
                                 <xs:element ref="xp:processingInstructions" minOccurs="0" />
                                 <xs:element ref="xp:pos" minOccurs="0" />
                                 <xs:element name="merchantData" type="xp:merchantDataType" minOccurs="0" />
-
-                                <xs:element name="merchantCategoryCode" type="xp:stringExactly4Type" minOccurs="0" />
                             </xs:sequence>
                         </xs:choice>
                         <xs:element name="payPalNotes" type="xp:payPalNotesType" minOccurs="0" />
                         <xs:element name="actionReason" type="xp:actionReasonType" minOccurs="0" />
+                        <xs:element name="merchantCategoryCode" type="xp:stringExactly4Type" minOccurs="0" />
                     </xs:sequence>
                 </xs:extension>
             </xs:complexContent>
