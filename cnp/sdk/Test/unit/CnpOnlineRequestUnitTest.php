@@ -97,7 +97,7 @@ class CnpOnlineRequestUnitTest extends \PHPUnit_Framework_TestCase
         $mock->expects($this->once())
             ->method('request')
             ->with($this->matchesRegularExpression('/.*\<cnpOnlineRequest.*\<sale.*\<card\>.*number\>.*\<\/card\>*\<\/sale\>.*/'))
-            ->will($this->returnValue(XmlParser::domParser('<cnpOnlineResponse version=\'12.10\' response=\'0\' message=\'Valid Format\' xmlns=\'http://www.vantivcnp.com/schema\'><saleResponse><cnpTxnId>123</cnpTxnId><accountUpdater><accountUpdateSource>R</accountUpdateSource></accountUpdater></saleResponse></cnpOnlineResponse>')));
+            ->will($this->returnValue(XmlParser::domParser('<cnpOnlineResponse version=\'12.11\' response=\'0\' message=\'Valid Format\' xmlns=\'http://www.vantivcnp.com/schema\'><saleResponse><cnpTxnId>123</cnpTxnId><accountUpdater><accountUpdateSource>R</accountUpdateSource></accountUpdater></saleResponse></cnpOnlineResponse>')));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
@@ -123,7 +123,7 @@ class CnpOnlineRequestUnitTest extends \PHPUnit_Framework_TestCase
         $mock->expects($this->once())
             ->method('request')
             ->with($this->matchesRegularExpression('/.*\<cnpOnlineRequest.*\<sale.*\<card\>.*number\>.*\<\/card\>*\<\/sale\>.*/'))
-            ->will($this->returnValue(XmlParser::domParser('<cnpOnlineResponse version=\'12.10\' response=\'0\' message=\'Valid Format\' xmlns=\'http://www.vantivcnp.com/schema\'><saleResponse><cnpTxnId>123</cnpTxnId><accountUpdater><accountUpdateSource>N</accountUpdateSource></accountUpdater></saleResponse></cnpOnlineResponse>')));
+            ->will($this->returnValue(XmlParser::domParser('<cnpOnlineResponse version=\'12.11\' response=\'0\' message=\'Valid Format\' xmlns=\'http://www.vantivcnp.com/schema\'><saleResponse><cnpTxnId>123</cnpTxnId><accountUpdater><accountUpdateSource>N</accountUpdateSource></accountUpdater></saleResponse></cnpOnlineResponse>')));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;

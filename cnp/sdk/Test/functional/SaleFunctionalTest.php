@@ -487,4 +487,242 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $response = XmlParser::getNode($saleResponse, 'response');
         $this->assertEquals('000', $response);
     }
+
+    public function test_simple_sale_with_card_with_MerchantCategoryCode()
+    {
+        $hash_in = array(
+            'card' => array('type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1213',
+                'cardValidationNum' => '1213'),
+            'id' => '1211',
+            'orderId' => '2111',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '123',
+            'merchantCategoryCode' => '6770');
+
+        $initialize = new CnpOnlineRequest();
+        $saleResponse = $initialize->saleRequest($hash_in);
+        $response = XmlParser::getNode($saleResponse, 'response');
+        $this->assertEquals('000', $response);
+    }
+
+    public function test_simple_sale_with_paypal_with_MerchantCategoryCode()
+    {
+        $hash_in = array(
+            'paypal' => array("payerId" => '123', "token" => '12321312',
+                "transactionId" => '123123'),
+            'id' => '1211',
+            'orderId' => '2111',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '123',
+            'merchantCategoryCode' => '6770');
+
+        $initialize = new CnpOnlineRequest();
+        $saleResponse = $initialize->saleRequest($hash_in);
+        $response = XmlParser::getNode($saleResponse, 'response');
+        $this->assertEquals('000', $response);
+    }
+
+    public function test_illegal_orderSource_with_MerchantCategoryCode()
+    {
+        $hash_in = array(
+            'paypal' => array("payerId" => '123', "token" => '12321312',
+                "transactionId" => '123123'),
+            'id' => '1211',
+            'orderId' => '2111',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'notecommerce',
+            'amount' => '123',
+            'merchantCategoryCode' => '6770');
+        $initialize = new CnpOnlineRequest();
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
+        $saleResponse = $initialize->saleRequest($hash_in);
+        $message = XmlParser::getAttribute($saleResponse, 'cnpOnlineResponse', 'message');
+    }
+
+    public function test_illegal_card_type_with_MerchantCategoryCode()
+    {
+        $hash_in = array(
+            'card' => array('type' => 'DK',
+                'number' => '4100000000000000',
+                'expDate' => '1213',
+                'cardValidationNum' => '1213'),
+            'id' => '1211',
+            'orderId' => '2111',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '123',
+            'merchantCategoryCode' => '6770');
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
+        $initialize = new CnpOnlineRequest();
+        $saleResponse = $initialize->saleRequest($hash_in);
+        $message = XmlParser::getAttribute($saleResponse, 'cnpOnlineResponse', 'message');
+    }
+
+    public function no_reportGroup_with_MerchantCategoryCode()
+    {
+        $hash_in = array(
+            'card' => array('type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1213',
+                'cardValidationNum' => '1213'),
+            'id' => '1211',
+            'orderId' => '2111',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '123',
+            'merchantCategoryCode' => '6770');
+
+        $initialize = new CnpOnlineRequest();
+        $saleResponse = $initialize->saleRequest($hash_in);
+        $response = XmlParser::getNode($saleResponse, 'response');
+        $this->assertEquals('000', $response);
+    }
+
+
+
+    public function test_simple_sale_with_applepay_with_MerchantCategoryCode()
+    {
+        $hash_in = array(
+            'applepay' => array(
+                'data' => 'string data here',
+                'header' => array('applicationData' => '454657413164',
+                    'ephemeralPublicKey' => '1',
+                    'publicKeyHash' => '1234',
+                    'transactionId' => '12345'),
+                'signature' => 'signature',
+                'version' => 'version 1'),
+            'id' => '1211',
+            'orderId' => '2111',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '123',
+            'merchantCategoryCode' => '6770');
+
+        $initialize = new CnpOnlineRequest();
+        $saleResponse = $initialize->saleRequest($hash_in);
+        $response = XmlParser::getNode($saleResponse, 'response');
+        $this->assertEquals('000', $response);
+    }
+
+
+
+    public function test_sale_with_processingType_with_MerchantCategoryCode()
+    {
+        $hash_in = array(
+            'card'=>array('type'=>'VI',
+                'number'=>'4100200300011000',
+                'expDate'=>'0521',),
+            'id' => '1211',
+            'orderId'=> '2111',
+            'amount'=>'4999',
+            'orderSource' => 'ecommerce',
+            'processingType' => 'initialRecurring',
+            'merchantCategoryCode' => '6770');
+        $initilaize = new CnpOnlineRequest();
+        $saleResponse = $initilaize->saleRequest($hash_in);
+        $response = XmlParser::getNode($saleResponse,'response');
+        $this->assertEquals('000',$response);
+        $message = XmlParser::getNode($saleResponse,'message');
+        $this->assertEquals('Approved',$message);
+        $networkTransactionId = XmlParser::getNode($saleResponse,'networkTransactionId');
+        $this->assertNotNull($networkTransactionId);
+    }
+
+
+
+
+    public function test_simple_sale_with_AdvancedFraudCheckWithCustomAttribute_with_MerchantCategoryCode()
+    {
+        $hash_in = array(
+            'card' => array('type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1213',
+                'cardValidationNum' => '1213'),
+            'id' => '654',
+            'orderId' => '2111',
+            'orderSource' => 'ecommerce',
+            'amount' => '123',
+            'advancedFraudChecks' => array(
+                'threatMetrixSessionId' => 'abc123',
+                'customAttribute1' => '1',
+                'customAttribute2' => '2',
+                'customAttribute3' => '3',
+                'customAttribute4' => '4',
+                'customAttribute5' => '5',
+            ),
+            'merchantCategoryCode' => '6770');
+        $initialize = new CnpOnlineRequest();
+        $saleResponse = $initialize->saleRequest($hash_in);
+        $response = XmlParser::getNode($saleResponse, 'response');
+        $this->assertEquals('000', $response);
+    }
+
+
+
+
+    public function test_simple_sale_with_networkTransactionId_with_MerchantCategoryCode()
+    {
+        $hash_in = array(
+            'card' => array('type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1213',
+                'cardValidationNum' => '1213'),
+            'id' => '1211',
+            'orderId' => '2111',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '123',
+            'merchantCategoryCode' => '6770');
+
+
+        $initialize = new CnpOnlineRequest();
+        $saleResponse = $initialize->saleRequest($hash_in);
+        $this->assertEquals("000", XmlParser::getNode($saleResponse, 'response'));
+        $this->assertEquals("Approved", XmlParser::getNode($saleResponse, 'message'));
+    }
+
+    public function test_sale_with_detail_tax_multiple_with_MerchantCategoryCode()
+    {
+        $sale_info = array(
+            'id' => '1',
+            'orderId' => '1',
+            'amount' => '10010',
+            'orderSource'=>'ecommerce',
+            'billToAddress'=>array(
+                'name' => 'John Smith',
+                'addressLine1' => '1 Main St.',
+                'city' => 'Burlington',
+                'state' => 'MA',
+                'zip' => '01803-3747',
+                'country' => 'US'),
+            'card'=>array(
+                'number' =>'5112010000000003',
+                'expDate' => '0112',
+                'cardValidationNum' => '349',
+                'type' => 'MC'
+            ),
+            'enhancedData' => array(
+                'detailTax' => array(
+                    'taxAmount' => 300,
+                    'taxIncludedInTotal' => true
+                ),
+                'salesTax' => 500,
+                'taxExempt' => false
+            ),
+            'merchantCategoryCode' => '6770'
+        );
+        $initialize = new CnpOnlineRequest();
+        $saleResponse = $initialize->saleRequest($sale_info);
+        #display results
+        $response = XmlParser::getNode($saleResponse, 'response');
+        $this->assertEquals('000', $response);
+    }
+
+
+
+
 }

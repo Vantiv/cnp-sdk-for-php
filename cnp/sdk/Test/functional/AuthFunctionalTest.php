@@ -484,4 +484,26 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $response = XmlParser::getNode($authorizationResponse, 'response');
         $this->assertEquals('000', $response);
     }
+
+
+    public function test_simple_auth_with_with_MerchantCategoryCode()
+    {
+        $hash_in = array('id' => 'id',
+            'card' => array('type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1213',
+                'cardValidationNum' => '1213'),
+            'id' => '1211',
+            'orderId' => '22@33',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '0',
+            'skipRealtimeAU' => 'false',
+            'merchantCategoryCode' => '6770');
+
+        $initialize = new CnpOnlineRequest();
+        $authorizationResponse = $initialize->authorizationRequest($hash_in);
+        $response = XmlParser::getNode($authorizationResponse, 'response');
+        $this->assertEquals('000', $response);
+    }
 }

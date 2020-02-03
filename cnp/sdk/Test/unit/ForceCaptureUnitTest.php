@@ -55,6 +55,29 @@ class ForceCaptureUnitTest extends \PHPUnit_Framework_TestCase
         $cnpTest->newXML = $mock;
         $cnpTest->forceCaptureRequest($hash_in);
     }
+    public function test_simple_forcCapture_with_merchantCategoryCode()
+    {
+        $hash_in = array(
+            'orderId'=>'123',
+            'id' => 'id',
+            'cnpTxnId'=>'123456',
+            'amount'=>'106',
+            'orderSource'=>'ecommerce',
+            'merchantCategoryCode' => '3535',
+            'token'=> array(
+                'cnpToken'=>'123456789101112',
+                'expDate'=>'1210',
+                'cardValidationNum'=>'555',
+                'type'=>'VI'));
+        $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
+        $mock->expects($this->once())
+            ->method('request')
+            ->with($this->matchesRegularExpression('/.*<token><cnpToken>123456789101112.*<expDate>1210.*/'));
+
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->forceCaptureRequest($hash_in);
+    }
     public function test_no_orderId()
     {
         $hash_in = array(

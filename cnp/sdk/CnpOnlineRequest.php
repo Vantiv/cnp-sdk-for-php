@@ -125,7 +125,8 @@ class CnpOnlineRequest
 			'originalNetworkTransactionId' => XmlFields::returnArrayValue ( $hash_in, 'originalNetworkTransactionId' ),
 			'originalTransactionAmount' => XmlFields::returnArrayValue ( $hash_in, 'originalTransactionAmount' ),
             'skipRealtimeAU'=> XmlFields::returnArrayValue ( $hash_in, 'skipRealtimeAU'),
-                'lodgingInfo' => XmlFields::lodgingInfo(XmlFields::returnArrayValue($hash_in, 'lodgingInfo'))
+                'lodgingInfo' => XmlFields::lodgingInfo(XmlFields::returnArrayValue($hash_in, 'lodgingInfo')),
+                'merchantCategoryCode'=>XmlFields::returnArrayValue($hash_in,'merchantCategoryCode')
             );
         }
         $choice_hash = array(XmlFields::returnArrayValue($hash_out,'card'),XmlFields::returnArrayValue($hash_out,'paypal'),XmlFields::returnArrayValue($hash_out,'token'),XmlFields::returnArrayValue($hash_out,'paypage'),XmlFields::returnArrayValue($hash_out,'applepay'),XmlFields::returnArrayValue($hash_out,'mpos'));
@@ -189,7 +190,8 @@ class CnpOnlineRequest
         	'originalNetworkTransactionId' => XmlFields::returnArrayValue ( $hash_in, 'originalNetworkTransactionId' ),
         	'originalTransactionAmount' => XmlFields::returnArrayValue ( $hash_in, 'originalTransactionAmount' ),
             'pinlessDebitRequest' => XmlFields::pinlessDebitRequest(XmlFields::returnArrayValue ( $hash_in, 'pinlessDebitRequest' )),
-            'skipRealtimeAU' => XmlFields::returnArrayValue ( $hash_in, 'skipRealtimeAU')
+            'skipRealtimeAU' => XmlFields::returnArrayValue ( $hash_in, 'skipRealtimeAU'),
+            'merchantCategoryCode'=>XmlFields::returnArrayValue($hash_in,'merchantCategoryCode')
         );
 
         $choice_hash = array($hash_out['card'],$hash_out['paypal'],$hash_out['token'],$hash_out['paypage'],$hash_out['applepay'],$hash_out['mpos']);
@@ -291,10 +293,11 @@ class CnpOnlineRequest
                     'pos'=>XmlFields::pos(XMLFields::returnArrayValue($hash_in, 'pos')),
                     'amexAggregatorData'=>XmlFields::amexAggregatorData(XMLFields::returnArrayValue($hash_in, 'amexAggregatorData')),
                     'payPalNotes' =>XmlFields::returnArrayValue($hash_in, 'payPalNotes'),
-                    'actionReason'=>XmlFields::returnArrayValue($hash_in, 'actionReason')
+                    'actionReason'=>XmlFields::returnArrayValue($hash_in, 'actionReason'),
+                    'merchantCategoryCode'=>XmlFields::returnArrayValue($hash_in,'merchantCategoryCode')
         );
 
-        $choice_hash = array($hash_out['card'],$hash_out['paypal'],$hash_out['token'],$hash_out['paypage'],$hash_out['mpos']);
+        $choice_hash = array($hash_out['card'],$hash_out['paypal'],$hash_out['token'],$hash_out['paypage'],$hash_out['mpos'],$hash_out['merchantCategoryCode']);
         $creditResponse = $this->processRequest($hash_out,$hash_in,'credit',$choice_hash);
 
         return $creditResponse;
@@ -384,7 +387,8 @@ class CnpOnlineRequest
             'amexAggregatorData'=>XmlFields::amexAggregatorData(XmlFields::returnArrayValue($hash_in,'amexAggregatorData')),
             'merchantData'=>(XmlFields::merchantData(XmlFields::returnArrayValue($hash_in,'merchantData'))),
             'debtRepayment'=>XmlFields::returnArrayValue($hash_in,'debtRepayment'),
-        	'processingType'=>XmlFields::returnArrayValue($hash_in,'processingType')
+        	'processingType'=>XmlFields::returnArrayValue($hash_in,'processingType'),
+            'merchantCategoryCode'=>XmlFields::returnArrayValue($hash_in,'merchantCategoryCode')
         );
 
         $choice_hash = array(XmlFields::returnArrayValue($hash_out,'card'),XmlFields::returnArrayValue($hash_out,'paypal'),XmlFields::returnArrayValue($hash_out,'token'),XmlFields::returnArrayValue($hash_out,'paypage'),XmlFields::returnArrayValue($hash_out,'mpos'));
@@ -451,7 +455,8 @@ class CnpOnlineRequest
             'debtRepayment'=>XmlFields::returnArrayValue($hash_in,'debtRepayment'),
         	'processingType' => XmlFields::returnArrayValue ( $hash_in, 'processingType' ),
         	'originalNetworkTransactionId' => XmlFields::returnArrayValue ( $hash_in, 'originalNetworkTransactionId' ),
-        	'originalTransactionAmount' => XmlFields::returnArrayValue ( $hash_in, 'originalTransactionAmount' )
+        	'originalTransactionAmount' => XmlFields::returnArrayValue ( $hash_in, 'originalTransactionAmount' ),
+            'merchantCategoryCode'=>XmlFields::returnArrayValue($hash_in,'merchantCategoryCode')
         );
 
         $choice_hash = array($hash_out['card'],$hash_out['token'],$hash_out['paypage'],$hash_out['mpos']);

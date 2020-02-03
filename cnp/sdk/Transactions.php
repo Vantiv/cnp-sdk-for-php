@@ -147,7 +147,8 @@ class Transactions {
             'pos' => XmlFields::pos ( XMLFields::returnArrayValue ( $hash_in, 'pos' ) ),
             'amexAggregatorData' => XmlFields::amexAggregatorData ( XMLFields::returnArrayValue ( $hash_in, 'amexAggregatorData' ) ),
             'payPalNotes' => XmlFields::returnArrayValue ( $hash_in, 'payPalNotes' ),
-            'actionReason' => XmlFields::returnArrayValue ( $hash_in, 'actionReason' )
+            'actionReason' => XmlFields::returnArrayValue ( $hash_in, 'actionReason' ),
+            'merchantCategoryCode' => XmlFields::returnArrayValue ( $hash_in, 'merchantCategoryCode' )
         );
 
         return $hash_out;
