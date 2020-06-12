@@ -338,7 +338,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $this->assertEquals("000", XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals("Approved", XmlParser::getNode($authorizationResponse, 'message'));
-        $this->assertEqals("sandbox", XmlParser::getNode($authorizationResponse, 'location'));
+        $this->assertEquals("sandbox", XmlParser::getNode($authorizationResponse, 'location'));
     }
 
     public function test_simple_auth_with_enhancedAuthResponse()
