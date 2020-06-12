@@ -65,7 +65,7 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
             ->method('request')
-            ->with($this->matchesRegularExpression('/.*<cnpTxnId>12312312.*<amount>123.*/'));
+            ->with($this->matchesRegularExpression('/.*<orderId>12344.*<amount>123.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
