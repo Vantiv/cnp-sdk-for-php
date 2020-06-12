@@ -1,7 +1,7 @@
 = CnpOnline CHANGELOG
 
 ==Version 12.13.0 (June 12, 2020)
-* Feature: Added location in all cnpOnline responses
+* Feature: Added location as optional element of all online responses
 
 ==Version 12.11.0 (January 23, 2020)
 * Feature: Added merchantCatagoryCode support to forceCapture, captureGivenAuth, sale, credit, authorization
