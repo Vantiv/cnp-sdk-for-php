@@ -48,6 +48,7 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
 
     public function test_credit_with_merchantCategoryCode()
     {
+
         $hash_in = array(
             'reportGroup'=>'Planets',
             'orderId'=>'12344',
@@ -60,6 +61,7 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
                 'number' =>'4100000000000001',
                 'expDate' =>'1210'
             ));
+
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
             ->method('request')
