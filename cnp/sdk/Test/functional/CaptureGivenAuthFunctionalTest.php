@@ -53,6 +53,8 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $captureGivenAuthResponse = $initialize->captureGivenAuthRequest($hash_in);
         $message = XmlParser::getNode($captureGivenAuthResponse, 'message');
         $this->assertEquals('Approved', $message);
+        $location = XmlParser::getNode($captureGivenAuthResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_captureGivenAuth_with_token()
@@ -73,6 +75,8 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $captureGivenAuthResponse = $initialize->captureGivenAuthRequest($hash_in);
         $message = XmlParser::getNode($captureGivenAuthResponse, 'message');
         $this->assertEquals('Approved', $message);
+        $location = XmlParser::getNode($captureGivenAuthResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_complex_captureGivenAuth()
@@ -95,6 +99,8 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $captureGivenAuthResponse = $initialize->captureGivenAuthRequest($hash_in);
         $message = XmlParser::getNode($captureGivenAuthResponse, 'message');
         $this->assertEquals('Approved', $message);
+        $location = XmlParser::getNode($captureGivenAuthResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_authInfo()
@@ -116,6 +122,8 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $captureGivenAuthResponse = $initialize->captureGivenAuthRequest($hash_in);
         $message = XmlParser::getNode($captureGivenAuthResponse, 'message');
         $this->assertEquals('Approved', $message);
+        $location = XmlParser::getNode($captureGivenAuthResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_captureGivenAuth_secondary_amount()
@@ -137,6 +145,8 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $captureGivenAuthResponse = $initialize->captureGivenAuthRequest($hash_in);
         $message = XmlParser::getNode($captureGivenAuthResponse, 'message');
         $this->assertEquals('Approved', $message);
+        $location = XmlParser::getNode($captureGivenAuthResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_captureGivenAuth_with_processingType_orgntwtxnid_orgtxnamt()
@@ -164,6 +174,8 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $captureGivenAuthResponse = $initialize->captureGivenAuthRequest($hash_in);
         $message = XmlParser::getNode($captureGivenAuthResponse, 'message');
         $this->assertEquals('Approved', $message);
+        $location = XmlParser::getNode($captureGivenAuthResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
         public function test_simple_capture_given_auth_with_tokenURL()
@@ -189,7 +201,8 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
             $captureGivenAuthResponse = $initialize->captureGivenAuthRequest($hash_in);
             $message = XmlParser::getNode($captureGivenAuthResponse, 'message');
             $this->assertEquals('Approved', $message);
-
+            $location = XmlParser::getNode($captureGivenAuthResponse, 'location');
+            $this->assertEquals('sandbox', $location);
 
         }
 
@@ -215,6 +228,8 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $captureGivenAuthResponse = $initialize->captureGivenAuthRequest($hash_in);
         $message = XmlParser::getNode($captureGivenAuthResponse, 'message');
         $this->assertEquals('Approved', $message);
+        $location = XmlParser::getNode($captureGivenAuthResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_captureGivenAuth_with_token_with_MerchantCategoryCode()
@@ -236,6 +251,8 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $captureGivenAuthResponse = $initialize->captureGivenAuthRequest($hash_in);
         $message = XmlParser::getNode($captureGivenAuthResponse, 'message');
         $this->assertEquals('Approved', $message);
+        $location = XmlParser::getNode($captureGivenAuthResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_complex_captureGivenAuth_with_MerchantCategoryCode()
@@ -259,6 +276,8 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $captureGivenAuthResponse = $initialize->captureGivenAuthRequest($hash_in);
         $message = XmlParser::getNode($captureGivenAuthResponse, 'message');
         $this->assertEquals('Approved', $message);
+        $location = XmlParser::getNode($captureGivenAuthResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_authInfo_with_MerchantCategoryCode()
@@ -281,6 +300,8 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $captureGivenAuthResponse = $initialize->captureGivenAuthRequest($hash_in);
         $message = XmlParser::getNode($captureGivenAuthResponse, 'message');
         $this->assertEquals('Approved', $message);
+        $location = XmlParser::getNode($captureGivenAuthResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_captureGivenAuth_secondary_amount_with_MerchantCategoryCode()
@@ -303,6 +324,8 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $captureGivenAuthResponse = $initialize->captureGivenAuthRequest($hash_in);
         $message = XmlParser::getNode($captureGivenAuthResponse, 'message');
         $this->assertEquals('Approved', $message);
+        $location = XmlParser::getNode($captureGivenAuthResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_captureGivenAuth_with_processingType_orgntwtxnid_orgtxnamt_with_MerchantCategoryCode()
@@ -331,6 +354,8 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $captureGivenAuthResponse = $initialize->captureGivenAuthRequest($hash_in);
         $message = XmlParser::getNode($captureGivenAuthResponse, 'message');
         $this->assertEquals('Approved', $message);
+        $location = XmlParser::getNode($captureGivenAuthResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_capture_given_auth_with_tokenURL_with_MerchantCategoryCode()
@@ -357,7 +382,8 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $captureGivenAuthResponse = $initialize->captureGivenAuthRequest($hash_in);
         $message = XmlParser::getNode($captureGivenAuthResponse, 'message');
         $this->assertEquals('Approved', $message);
-
+        $location = XmlParser::getNode($captureGivenAuthResponse, 'location');
+        $this->assertEquals('sandbox', $location);
 
     }
 

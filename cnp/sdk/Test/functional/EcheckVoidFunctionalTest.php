@@ -42,6 +42,8 @@ class EcheckVoidFunctionalTest extends \PHPUnit_Framework_TestCase
         $echeckVoidResponse = $initialize->echeckVoidRequest($hash_in);
         $response = XmlParser::getAttribute($echeckVoidResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('0', $response);
+        $location = XmlParser::getNode($echeckVoidResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
 }

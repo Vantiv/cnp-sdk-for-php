@@ -52,6 +52,8 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $saleResponse = $initialize->saleRequest($hash_in);
         $response = XmlParser::getNode($saleResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($saleResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_sale_with_paypal()
@@ -69,6 +71,8 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $saleResponse = $initialize->saleRequest($hash_in);
         $response = XmlParser::getNode($saleResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($saleResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_illegal_orderSource()
@@ -122,6 +126,8 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $saleResponse = $initialize->saleRequest($hash_in);
         $response = XmlParser::getNode($saleResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($saleResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_fields_out_of_order()
@@ -139,6 +145,8 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $saleResponse = $initialize->saleRequest($hash_in);
         $response = XmlParser::getNode($saleResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($saleResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_invalid_field()
@@ -157,6 +165,8 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $saleResponse = $initialize->saleRequest($hash_in);
         $message = XmlParser::getNode($saleResponse, 'message');
         $this->assertEquals('Approved', $message);
+        $location = XmlParser::getNode($saleResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_sale_with_applepay()
@@ -180,6 +190,8 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $saleResponse = $initialize->saleRequest($hash_in);
         $response = XmlParser::getNode($saleResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($saleResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_sale_with_applepay_insufficient_funds()
@@ -203,6 +215,8 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $saleResponse = $initialize->saleRequest($hash_in);
         $response = XmlParser::getNode($saleResponse, 'response');
         $this->assertEquals('110', $response);
+        $location = XmlParser::getNode($saleResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_sale_with_processingType()
@@ -224,6 +238,8 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Approved',$message);
         $networkTransactionId = XmlParser::getNode($saleResponse,'networkTransactionId');
         $this->assertNotNull($networkTransactionId);
+        $location = XmlParser::getNode($saleResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_sale_with_processingTypeCOF()
@@ -245,6 +261,8 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Approved',$message);
         $networkTransactionId = XmlParser::getNode($saleResponse,'networkTransactionId');
         $this->assertNotNull($networkTransactionId);
+        $location = XmlParser::getNode($saleResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_sale_with_processingTypeCOF1()
@@ -266,6 +284,8 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Approved',$message);
         $networkTransactionId = XmlParser::getNode($saleResponse,'networkTransactionId');
         $this->assertNotNull($networkTransactionId);
+        $location = XmlParser::getNode($saleResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_sale_with_processingTypeCOF2()
@@ -287,6 +307,8 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Approved',$message);
         $networkTransactionId = XmlParser::getNode($saleResponse,'networkTransactionId');
         $this->assertNotNull($networkTransactionId);
+        $location = XmlParser::getNode($saleResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_sale_with_AdvancedFraudCheckWithCustomAttribute()
@@ -312,6 +334,8 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $saleResponse = $initialize->saleRequest($hash_in);
         $response = XmlParser::getNode($saleResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($saleResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_sale_with_sepaDirectDebit()
@@ -336,6 +360,8 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $saleResponse = $initialize->saleRequest($hash_in);
         $response = XmlParser::getNode($saleResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($saleResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
 
@@ -357,6 +383,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $saleResponse = $initialize->saleRequest($hash_in);
         $this->assertEquals("000", XmlParser::getNode($saleResponse, 'response'));
         $this->assertEquals("Approved", XmlParser::getNode($saleResponse, 'message'));
+        $this->assertEquals("sandbox", XmlParser::getNode($saleResponse, 'location'));
     }
 
     public function test_sale_with_detail_tax_multiple()
@@ -393,6 +420,8 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         #display results
         $response = XmlParser::getNode($saleResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($saleResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_sale_with_Ideal()
@@ -410,6 +439,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $response = XmlParser::getNode($saleResponse, 'response');
         $this->assertEquals('000', $response);
         $this->assertEquals('http://redirect.url.vantiv.com', XmlParser::getNode($saleResponse, 'redirectUrl'));
+        $this->assertEquals('sandbox', XmlParser::getNode($saleResponse, 'location'));
     }
 
     public function test_sale_with_Giropay()
@@ -466,6 +496,8 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $saleResponse = $initialize->saleRequest($hash_in);
         $response = XmlParser::getNode($saleResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($saleResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_sale_with_card_skip_realtime_au_false()
@@ -486,6 +518,8 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $saleResponse = $initialize->saleRequest($hash_in);
         $response = XmlParser::getNode($saleResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($saleResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_sale_with_card_with_MerchantCategoryCode()
@@ -506,6 +540,8 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $saleResponse = $initialize->saleRequest($hash_in);
         $response = XmlParser::getNode($saleResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($saleResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_sale_with_paypal_with_MerchantCategoryCode()
@@ -524,6 +560,8 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $saleResponse = $initialize->saleRequest($hash_in);
         $response = XmlParser::getNode($saleResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($saleResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_illegal_orderSource_with_MerchantCategoryCode()
@@ -580,6 +618,8 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $saleResponse = $initialize->saleRequest($hash_in);
         $response = XmlParser::getNode($saleResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($saleResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
 
@@ -606,6 +646,8 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $saleResponse = $initialize->saleRequest($hash_in);
         $response = XmlParser::getNode($saleResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($saleResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
 
@@ -630,6 +672,8 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Approved',$message);
         $networkTransactionId = XmlParser::getNode($saleResponse,'networkTransactionId');
         $this->assertNotNull($networkTransactionId);
+        $location = XmlParser::getNode($saleResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
 
@@ -659,6 +703,8 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $saleResponse = $initialize->saleRequest($hash_in);
         $response = XmlParser::getNode($saleResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($saleResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
 
@@ -683,6 +729,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $saleResponse = $initialize->saleRequest($hash_in);
         $this->assertEquals("000", XmlParser::getNode($saleResponse, 'response'));
         $this->assertEquals("Approved", XmlParser::getNode($saleResponse, 'message'));
+        $this->assertEquals("sandbox", XmlParser::getNode($saleResponse,'location'));
     }
 
     public function test_sale_with_detail_tax_multiple_with_MerchantCategoryCode()
@@ -720,6 +767,8 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         #display results
         $response = XmlParser::getNode($saleResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($saleResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
 

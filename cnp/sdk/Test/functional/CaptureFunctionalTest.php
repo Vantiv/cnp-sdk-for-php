@@ -45,6 +45,8 @@ class CaptureFunctionalTest extends \PHPUnit_Framework_TestCase
         $captureResponse = $initialize->captureRequest($hash_in);
         $message = XmlParser::getAttribute($captureResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('0', $message);
+        $location = XmlParser::getNode($captureResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_complex_capture()
@@ -61,6 +63,8 @@ class CaptureFunctionalTest extends \PHPUnit_Framework_TestCase
         $captureResponse = $initialize->captureRequest($hash_in);
         $message = XmlParser::getAttribute($captureResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('0', $message);
+        $location = XmlParser::getNode($captureResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_capture_with_partial()
@@ -74,6 +78,8 @@ class CaptureFunctionalTest extends \PHPUnit_Framework_TestCase
         $captureResponse = $initialize->captureRequest($hash_in);
         $message = XmlParser::getAttribute($captureResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('0', $message);
+        $location = XmlParser::getNode($captureResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_capture_with_pin()
@@ -86,6 +92,8 @@ class CaptureFunctionalTest extends \PHPUnit_Framework_TestCase
         $captureResponse = $initialize->captureRequest($hash_in);
         $message = XmlParser::getAttribute($captureResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('0', $message);
+        $location = XmlParser::getNode($captureResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
 

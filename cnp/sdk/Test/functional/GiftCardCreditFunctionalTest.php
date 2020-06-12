@@ -58,6 +58,8 @@ class GiftCardCreditFunctionalTest extends \PHPUnit_Framework_TestCase
         $giftCardCreditResponse = $initialize->giftCardCreditRequest($hash_in);
         $response = XmlParser::getNode($giftCardCreditResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($giftCardCreditResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_giftCardCredit_giftCardResponse()
@@ -85,6 +87,8 @@ class GiftCardCreditFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('0', $systemTraceId);
         $sequenceNumber = XmlParser::getNode($giftCardCreditResponse, 'sequenceNumber');
         $this->assertEquals('123456', $sequenceNumber);
+        $location = XmlParser::getNode($giftCardCreditResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
 }

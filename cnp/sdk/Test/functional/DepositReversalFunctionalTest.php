@@ -58,6 +58,8 @@ class DepositReversalFunctionalTest extends \PHPUnit_Framework_TestCase
         $depositReversalResponse = $initialize->depositReversalRequest($hash_in);
         $response = XmlParser::getAttribute($depositReversalResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('0', $response);
+        $location = XmlParser::getNode($depositReversalResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
 }
