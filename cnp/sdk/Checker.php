@@ -37,6 +37,7 @@ class Checker
         $xml = new DOMDocument();
         $xml->loadXML($request);
         $filepath = __DIR__ . "/schema/SchemaCombined_v12.13.xsd";
+        printf("%n%n%s%n%n", $xml);
         $result =  $xml->schemaValidate( $filepath);
 
         if(!$result)

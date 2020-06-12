@@ -48,7 +48,7 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
 
     public function test_credit_with_merchantCategoryCode()
     {
-        $hash_in = array('cnpTxnId'=> '12312312','reportGroup'=>'Planets', 'amount'=>'123','id' => 'id', 'merchantCategoryCode' => '3535',);
+        $hash_in = array('cnpTxnId'=> '12312312','reportGroup'=>'Planets', 'amount'=>'123','id' => 'id', 'merchantCategoryCode' => '3535');
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
             ->method('request')
