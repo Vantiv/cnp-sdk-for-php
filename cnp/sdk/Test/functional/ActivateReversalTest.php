@@ -58,6 +58,8 @@ class ActivateReversalTest extends \PHPUnit_Framework_TestCase
         $activateReversalResponse = $initialize->activateReversalRequest($hash_in);
         $response = XmlParser::getAttribute($activateReversalResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('0', $response);
+        $location = XmlParser::getNode($activateReversalResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
 }

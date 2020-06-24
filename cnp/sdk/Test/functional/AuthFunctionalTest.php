@@ -54,6 +54,8 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $response = XmlParser::getNode($authorizationResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_auth_with_detail_tax()
@@ -111,6 +113,8 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $response = XmlParser::getNode($authorizationResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_auth_with_paypal()
@@ -128,6 +132,8 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $message = XmlParser::getNode($authorizationResponse, 'message');
         $this->assertEquals('Approved', $message);
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_auth_with_cnpTxnId()
@@ -138,6 +144,8 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $message = XmlParser::getAttribute($authorizationResponse, 'cnpOnlineResponse', 'message');
         $this->assertEquals("Valid Format", $message);
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_illegal_orderSource()
@@ -155,6 +163,8 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $message = XmlParser::getAttribute($authorizationResponse, 'cnpOnlineResponse', 'message');
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_fields_out_of_order()
@@ -172,6 +182,8 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $message = XmlParser::getNode($authorizationResponse, 'message');
         $this->assertEquals('Approved', $message);
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_invalid_field()
@@ -190,6 +202,8 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $message = XmlParser::getNode($authorizationResponse, 'message');
         $this->assertEquals('Approved', $message);
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_pos_missing_field()
@@ -229,6 +243,8 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $response = XmlParser::getNode($authorizationResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_auth_with_applepay_issuer_unavailable()
@@ -251,6 +267,8 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $response = XmlParser::getNode($authorizationResponse, 'response');
         $this->assertEquals('101', $response);
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_auth_with_applepay_approved()
@@ -273,6 +291,8 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $response = XmlParser::getNode($authorizationResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_auth_with_card_processingType_originalNetworkTransactionId_originalTransactionAmount()
@@ -292,6 +312,8 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $response = XmlParser::getNode($authorizationResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_auth_with_networkTransactionId()
@@ -316,6 +338,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $this->assertEquals("000", XmlParser::getNode($authorizationResponse, 'response'));
         $this->assertEquals("Approved", XmlParser::getNode($authorizationResponse, 'message'));
+        $this->assertEquals("sandbox", XmlParser::getNode($authorizationResponse, 'location'));
     }
 
     public function test_simple_auth_with_enhancedAuthResponse()
@@ -344,11 +367,13 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $fieldValue = XmlParser::getNode($authorizationResponse, 'fieldValue');
         $fieldNumber = XmlParser::getAttribute($authorizationResponse, 'networkField', 'fieldNumber');
         $fieldName = XmlParser::getAttribute($authorizationResponse, 'networkField', 'fieldName');
+        $location = XmlParser::getNode($authorizationResponse, 'location');
 
         $this->assertEquals('visa', $endpoint);
         $this->assertEquals('135798642', $fieldValue);
         $this->assertEquals('4', $fieldNumber);
         $this->assertEquals('Transaction Amount', $fieldName);
+        $this->assertEquals('sandbox', $location);
 
     }
 
@@ -417,6 +442,8 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $response = XmlParser::getAttribute($authorizationResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_recurring_request()
@@ -443,6 +470,8 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $response = XmlParser::getAttribute($authorizationResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_auth_with_card_skip_realtime_au_true()
@@ -463,6 +492,8 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $response = XmlParser::getNode($authorizationResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_auth_with_card_skip_realtime_au_false()
@@ -483,6 +514,8 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $response = XmlParser::getNode($authorizationResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
 
@@ -505,5 +538,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $response = XmlParser::getNode($authorizationResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 }

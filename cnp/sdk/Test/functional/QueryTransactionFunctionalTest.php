@@ -48,6 +48,8 @@ class QueryTransactionFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('150', $response->nodeValue);
         $matchCount = XmlParser::getNode($queryTransactionResponse, 'matchCount');
         $this->assertEquals('1', $matchCount);
+        $location = XmlParser::getNode($queryTransactionResponse, 'location');
+        $this->assertEquals('sandbox', $location);
         $resultsMax10 = XmlParser::getNodeWithChildren($queryTransactionResponse, 'results_max10');
         foreach ($resultsMax10->getElementsByTagName('authorizationResponse') as $child) {
             $childResponse = XmlParser::getNode($child, 'response');
@@ -76,6 +78,8 @@ class QueryTransactionFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('150', $response->nodeValue);
         $matchCount = XmlParser::getNode($queryTransactionResponse, 'matchCount');
         $this->assertEquals('1', $matchCount);
+        $location = XmlParser::getNode($queryTransactionResponse, 'location');
+        $this->assertEquals('sandbox', $location);
         $resultsMax10 = XmlParser::getNodeWithChildren($queryTransactionResponse, 'results_max10');
         foreach ($resultsMax10->getElementsByTagName('authorizationResponse') as $child) {
             $childResponse = XmlParser::getNode($child, 'response');
@@ -115,6 +119,8 @@ class QueryTransactionFunctionalTest extends \PHPUnit_Framework_TestCase
         $matchCount = XmlParser::getNode($queryTransactionResponse, 'matchCount');
         $this->assertEquals('150', $response->nodeValue);
         $this->assertEquals('2', $matchCount);
+        $location = XmlParser::getNode($queryTransactionResponse, 'location');
+        $this->assertEquals('sandbox', $location);
         $resultsMax10 = XmlParser::getNodeWithChildren($queryTransactionResponse, 'results_max10');
         foreach ($resultsMax10->getElementsByTagName('authorizationResponse') as $child) {
             $childResponse = XmlParser::getNode($child, 'response');

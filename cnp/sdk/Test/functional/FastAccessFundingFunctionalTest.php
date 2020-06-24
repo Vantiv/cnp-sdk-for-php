@@ -29,5 +29,7 @@ class FastAccessFundingFunctionalTest extends \PHPUnit_Framework_TestCase
         $fastAccessFundingResponse = $initialize->fastAccessFunding($hash_in);
         $response = XmlParser::getNode($fastAccessFundingResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($fastAccessFundingResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 }

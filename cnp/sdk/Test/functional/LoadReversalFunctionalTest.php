@@ -58,6 +58,8 @@ class LoadReversalFunctionalTest extends \PHPUnit_Framework_TestCase
         $loadReversalResponse = $initialize->loadReversalRequest($hash_in);
         $response = XmlParser::getAttribute($loadReversalResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('0', $response);
+        $location = XmlParser::getNode($loadReversalResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
 }

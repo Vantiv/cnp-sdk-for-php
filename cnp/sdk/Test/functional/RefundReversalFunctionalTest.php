@@ -58,6 +58,8 @@ class RefundReversalFunctionalTest extends \PHPUnit_Framework_TestCase
         $refundReversalResponse = $initialize->refundReversalRequest($hash_in);
         $response = XmlParser::getAttribute($refundReversalResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('0', $response);
+        $location = XmlParser::getNode($refundReversalResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
 }

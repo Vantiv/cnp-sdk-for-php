@@ -52,6 +52,8 @@ class CreditFunctionalTest extends \PHPUnit_Framework_TestCase
         $creditResponse = $initialize->creditRequest($hash_in);
         $response = XmlParser::getNode($creditResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($creditResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_credit_with_paypal()
@@ -79,6 +81,8 @@ class CreditFunctionalTest extends \PHPUnit_Framework_TestCase
         $creditResponse = $initialize->creditRequest($hash_in);
         $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals("0", $message);
+        $location = XmlParser::getNode($creditResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_paypal_notes()
@@ -99,6 +103,8 @@ class CreditFunctionalTest extends \PHPUnit_Framework_TestCase
         $creditResponse = $initialize->creditRequest($hash_in);
         $response = XmlParser::getNode($creditResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($creditResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_credit_with_secondary_amount()
@@ -119,6 +125,8 @@ class CreditFunctionalTest extends \PHPUnit_Framework_TestCase
         $creditResponse = $initialize->creditRequest($hash_in);
         $response = XmlParser::getNode($creditResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($creditResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_credit_with_cnpTxnId_AndSecondaryAmount()
@@ -129,6 +137,8 @@ class CreditFunctionalTest extends \PHPUnit_Framework_TestCase
         $creditResponse = $initialize->creditRequest($hash_in);
         $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals("0", $message);
+        $location = XmlParser::getNode($creditResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_credit_with_pin()
@@ -147,6 +157,8 @@ class CreditFunctionalTest extends \PHPUnit_Framework_TestCase
         $creditResponse = $initialize->creditRequest($hash_in);
         $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals("0", $message);
+        $location = XmlParser::getNode($creditResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_credit_with_card_with_MerchantCategoryCode()
@@ -167,6 +179,8 @@ class CreditFunctionalTest extends \PHPUnit_Framework_TestCase
         $creditResponse = $initialize->creditRequest($hash_in);
         $response = XmlParser::getNode($creditResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($creditResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
 

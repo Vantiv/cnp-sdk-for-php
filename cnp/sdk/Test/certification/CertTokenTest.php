@@ -199,8 +199,8 @@ class CertTokenTest extends \PHPUnit_Framework_TestCase
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($token_hash);
 
-        $this->assertEquals('823', XMLParser::getNode($authorizationResponse, 'response'));
-        $this->assertEquals('Token was invalid', XMLParser::getNode($authorizationResponse, 'message'));
+        $this->assertEquals('822', XMLParser::getNode($authorizationResponse, 'response'));
+        $this->assertEquals('Token was not found', XMLParser::getNode($authorizationResponse, 'message'));
     }
 
     # test 61-64 need echecksale to support token. merchantid not authoried.

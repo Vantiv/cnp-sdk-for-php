@@ -54,5 +54,7 @@ class LoadFunctionalTest extends \PHPUnit_Framework_TestCase
         $response = $initialize->load($hash_in);
         $message = XmlParser::getAttribute($response, 'cnpOnlineResponse', 'message');
         $this->assertEquals('Valid Format', $message);
+        $location = XmlParser::getNode($response, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 }

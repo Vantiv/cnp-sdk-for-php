@@ -45,6 +45,8 @@ class AuthReversalFunctionalTest extends \PHPUnit_Framework_TestCase
         $authReversalResponse = $initialize->authReversalRequest($hash_in);
         $response = XmlParser::getNode($authReversalResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($authReversalResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     function test_simple_authreversal_fields_out_of_order()
@@ -57,6 +59,8 @@ class AuthReversalFunctionalTest extends \PHPUnit_Framework_TestCase
         $authReversalResponse = $initialize->authReversalRequest($hash_in);
         $response = XmlParser::getNode($authReversalResponse, 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($authReversalResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
 }

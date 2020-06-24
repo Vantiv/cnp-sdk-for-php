@@ -55,6 +55,8 @@ class ForceCaptureFunctionalTest extends \PHPUnit_Framework_TestCase
         $forceCaptureResponse = $initialize->forceCaptureRequest($hash_in);
         $response = XmlParser::getAttribute($forceCaptureResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($forceCaptureResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_forceCapture_with_token()
@@ -78,6 +80,8 @@ class ForceCaptureFunctionalTest extends \PHPUnit_Framework_TestCase
         $forceCaptureResponse = $initialize->forceCaptureRequest($hash_in);
         $message = XmlParser::getAttribute($forceCaptureResponse, 'cnpOnlineResponse', 'message');
         $this->assertEquals('Valid Format', $message);
+        $location = XmlParser::getNode($forceCaptureResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
 
@@ -102,6 +106,8 @@ class ForceCaptureFunctionalTest extends \PHPUnit_Framework_TestCase
         $forceCaptureResponse = $initialize->forceCaptureRequest($hash_in);
         $response = XmlParser::getAttribute($forceCaptureResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($forceCaptureResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_forceCapture_with_processingType()
@@ -127,6 +133,8 @@ class ForceCaptureFunctionalTest extends \PHPUnit_Framework_TestCase
         $forceCaptureResponse = $initialize->forceCaptureRequest($hash_in);
         $response = XmlParser::getAttribute($forceCaptureResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($forceCaptureResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_forceCapture_with_card_with_MerchantCategoryCode()
@@ -150,6 +158,8 @@ class ForceCaptureFunctionalTest extends \PHPUnit_Framework_TestCase
         $forceCaptureResponse = $initialize->forceCaptureRequest($hash_in);
         $response = XmlParser::getAttribute($forceCaptureResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($forceCaptureResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_forceCapture_with_token_with_MerchantCategoryCode()
@@ -174,6 +184,8 @@ class ForceCaptureFunctionalTest extends \PHPUnit_Framework_TestCase
         $forceCaptureResponse = $initialize->forceCaptureRequest($hash_in);
         $message = XmlParser::getAttribute($forceCaptureResponse, 'cnpOnlineResponse', 'message');
         $this->assertEquals('Valid Format', $message);
+        $location = XmlParser::getNode($forceCaptureResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
 
@@ -199,6 +211,8 @@ class ForceCaptureFunctionalTest extends \PHPUnit_Framework_TestCase
         $forceCaptureResponse = $initialize->forceCaptureRequest($hash_in);
         $response = XmlParser::getAttribute($forceCaptureResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($forceCaptureResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
     public function test_simple_forceCapture_with_processingType_with_MerchantCategoryCode()
@@ -225,5 +239,7 @@ class ForceCaptureFunctionalTest extends \PHPUnit_Framework_TestCase
         $forceCaptureResponse = $initialize->forceCaptureRequest($hash_in);
         $response = XmlParser::getAttribute($forceCaptureResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($forceCaptureResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 }

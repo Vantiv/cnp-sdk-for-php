@@ -42,6 +42,8 @@ class VoidFunctionalTest extends \PHPUnit_Framework_TestCase
         $voidResponse = $initialize->voidRequest($hash_in);
         $response = XmlParser::getAttribute($voidResponse, 'cnpOnlineResponse', 'response');
         $this->assertEquals('0', $response);
+        $location = XmlParser::getNode($voidResponse, 'location');
+        $this->assertEquals('sandbox', $location);
     }
 
 }
