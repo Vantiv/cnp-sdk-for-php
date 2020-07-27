@@ -224,10 +224,9 @@ class CnpRequestFunctionalTest extends \PHPUnit_Framework_TestCase
             ),
             'pinlessDebitRequest' => array(
                 'routingPreference' => 'pinlessDebitOnly',
-//                'preferredDebitNetworks' => array(
-//                    'debitNetworkName0' => 'VI',
-//                    'debitNetworkName1' => 'MC'
-//                )
+                'preferredDebitNetworks' => array(
+                    'debitNetworkName0' => 'VI'
+                )
             )
         );
 
@@ -255,6 +254,7 @@ class CnpRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('saleResponse', $resp->getName());
         $this->assertEquals('Planets', $resp->attributes()->reportGroup);
         $this->assertEquals('1864', $resp->orderId);
+        $this->assertEquals('VI', $resp->pinlessDebitResponse->networkName);
 
         $resp = $proc->nextTransaction();
         $this->assertEquals('translateToLowValueTokenResponse', $resp->getName());
