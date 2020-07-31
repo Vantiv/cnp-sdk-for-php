@@ -189,7 +189,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($hash_in);
         $response = XmlParser::getNode($saleResponse, 'response');
-        $this->assertEquals('000', $response);
+        $this->assertEquals('123', $response);
         $location = XmlParser::getNode($saleResponse, 'location');
         $this->assertEquals('sandbox', $location);
     }
@@ -645,7 +645,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($hash_in);
         $response = XmlParser::getNode($saleResponse, 'response');
-        $this->assertEquals('000', $response);
+        $this->assertEquals('123', $response);
         $location = XmlParser::getNode($saleResponse, 'location');
         $this->assertEquals('sandbox', $location);
     }
