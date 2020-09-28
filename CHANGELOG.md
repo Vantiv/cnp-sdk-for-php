@@ -1,6 +1,6 @@
 = CnpOnline CHANGELOG
 
-==Version 12.14.0 (July 27, 2020)
+==Version 12.14.0 (September 28, 2020)
 * Feature: Added PinlessDebitResponse as an optional child of AuthorizationResponse, AuthReversalResponse,
 * captureResponse, saleResponse
 * Feature: Added TokenAuthenticationValue as optional child of CardholderAuthentication
