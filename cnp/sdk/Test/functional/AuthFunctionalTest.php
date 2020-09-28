@@ -290,7 +290,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
         $response = XmlParser::getNode($authorizationResponse, 'response');
-        $this->assertEquals('000', $response);
+        $this->assertEquals('312', $response);
         $location = XmlParser::getNode($authorizationResponse, 'location');
         $this->assertEquals('sandbox', $location);
     }
