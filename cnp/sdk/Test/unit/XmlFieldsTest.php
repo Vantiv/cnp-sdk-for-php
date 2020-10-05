@@ -123,11 +123,13 @@ class XmlFieldsTest extends \PHPUnit_Framework_TestCase
         $hash=array(
         "totalHealthcareAmount"=>"123",
         "RxAmount"=>"456",
-        "visionAmount"=>"789");
+        "visionAmount"=>"789",
+        "copayAmount"=>"345");
         $hash_out = XmlFields::healthcareAmounts($hash);
         $this->assertEquals($hash_out["totalHealthcareAmount"],"123");
         $this->assertEquals($hash_out["dentalAmount"], NULL);
         $this->assertEquals($hash_out["RxAmount"],"456");
+        $this->assertEquals($hash_out["copayAmount"],"345");
     }
 
     public function test_simple_healtcareIIAS()
@@ -257,6 +259,20 @@ class XmlFieldsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($hash_out["checkoutId"], "234565345435");
     }
 
+    public function test_simple_cardTokenTypewithAuthenticatedShopperID()
+    {
+        $hash = array(
+            "expDate"=>"2013",
+            "cardValidationNum"=>"123",
+            "type"=>"VISA",
+            "authenticatedShopperID" => '234565345435');
+        $hash_out = XmlFields::cardTokenType($hash);
+        $this->assertEquals($hash_out["type"], "VISA");
+        $this->assertEquals($hash_out["expDate"], "2013");
+        $this->assertEquals($hash_out["cardValidationNum"], "123");
+        $this->assertEquals($hash_out["authenticatedShopperID"], "234565345435");
+    }
+
 
     public function test_simple_cardPaypageType()
     {
@@ -355,10 +371,11 @@ class XmlFieldsTest extends \PHPUnit_Framework_TestCase
     {
         $hash = array(
         "cnpToken" =>"1243141413421343",
-        "accType"=>"checking");
+        "accType"=>"checking",
+        "routingNum"=>"12345678");
         $hash_out = XmlFields::echeckTokenType($hash);
         $this->assertEquals($hash_out["accType"], "checking");
-        $this->assertEquals($hash_out["routingNum"], "");
+        $this->assertEquals($hash_out["routingNum"], "12345678");
         $this->assertEquals($hash_out["checkNum"], NUll);
     }
 

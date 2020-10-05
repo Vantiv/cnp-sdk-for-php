@@ -63,6 +63,7 @@ class EcheckRedepositUnitTest extends \PHPUnit_Framework_TestCase
         $retOb = $cnpTest->echeckRedepositRequest($hash_in);
     }
 
+    // As of 12.15, routingNum isn't required as part of the request (won't throw an exception)
     public function test_no_routingNum_echeckToken()
     {
         $hash_in = array('reportGroup'=>'Planets','cnpTxnId'=>'123456','id' => 'id',
