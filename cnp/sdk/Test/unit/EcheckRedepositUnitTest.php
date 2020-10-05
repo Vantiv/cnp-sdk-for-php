@@ -68,7 +68,6 @@ class EcheckRedepositUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array('reportGroup'=>'Planets','cnpTxnId'=>'123456','id' => 'id',
         'echeckToken' => array('accType'=>'Checking','cnpToken'=>'1234565789012','checkNum'=>'123455'));
         $cnpTest = new CnpOnlineRequest();
-        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         $retOb = $cnpTest->echeckRedepositRequest($hash_in);
     }
 
