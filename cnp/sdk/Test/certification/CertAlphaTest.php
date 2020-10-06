@@ -156,8 +156,6 @@ class CertAlphaTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('11111', trim(XmlParser::getNode($saleResponse, 'authCode')));
         $this->assertEquals('1', XmlParser::getNode($saleResponse, 'avsResult'));
         $this->assertEquals('M', XmlParser::getNode($saleResponse, 'cardValidationResult'));
-        $pinlessResponse = XmlParser::getNodeWithChildren($saleResponse, 'pinlessDebitResponse');
-        $this->assertEquals('VI', $pinlessResponse->networkName);
 
         $credit_hash = array(
             'cnpTxnId' => (XmlParser::getNode($saleResponse, 'cnpTxnId')),
