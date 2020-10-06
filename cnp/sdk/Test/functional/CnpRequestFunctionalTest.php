@@ -255,6 +255,8 @@ class CnpRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Planets', $resp->attributes()->reportGroup);
         $this->assertEquals('1864', $resp->orderId);
         $this->assertEquals('VI', $resp->pinlessDebitResponse->networkName);
+        $this->assertEquals('VI', $resp->pinlessDebitResponse->debitResponse);
+        $this->assertEquals('VI', $resp->pinlessDebitResponse->debitMessage);
 
         $resp = $proc->nextTransaction();
         $this->assertEquals('translateToLowValueTokenResponse', $resp->getName());
