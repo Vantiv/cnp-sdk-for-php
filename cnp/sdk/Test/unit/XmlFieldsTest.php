@@ -83,10 +83,12 @@ class XmlFieldsTest extends \PHPUnit_Framework_TestCase
     public function test_simple_fraudCheckType()
     {
         $hash=array(
+        "tokenAuthenticationValue"=>"456",
         "authenticationValue"=>"123",
         "authenticationTransactionId"=>"123",
         "authenticatedByMerchant"=> "YES");
         $hash_out = XmlFields::fraudCheckType($hash);
+        $this->assertEquals($hash_out["tokenAuthenticationValue"],"456");
         $this->assertEquals($hash_out["authenticationValue"],"123");
         $this->assertEquals($hash_out["customerIpAddress"], NULL);
         $this->assertEquals($hash_out["authenticationTransactionId"],"123");
