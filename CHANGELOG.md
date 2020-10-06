@@ -1,5 +1,8 @@
 = CnpOnline CHANGELOG
 
+==Version 12.14.1 (October 6, 2020)
+* BugFix: Added tokenAuthenticationValue as a PHP field
+
 ==Version 12.14.0 (September 28, 2020)
 * Feature: Added PinlessDebitResponse as an optional child of AuthorizationResponse, AuthReversalResponse,
 * captureResponse, saleResponse

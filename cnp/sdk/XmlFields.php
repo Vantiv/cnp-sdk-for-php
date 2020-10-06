@@ -115,7 +115,8 @@ class XmlFields
                         "authenticationTransactionId"=>XmlFields::returnArrayValue($hash_in, "authenticationTransactionId"),
                         "customerIpAddress"=>XmlFields::returnArrayValue($hash_in, "customerIpAddress"),
                         "authenticatedByMerchant"=>XmlFields::returnArrayValue($hash_in, "authenticatedByMerchant"),
-                        "authenticationProtocolVersion"=>XmlFields::returnArrayValue($hash_in,"authenticationProtocolVersion")
+                        "authenticationProtocolVersion"=>XmlFields::returnArrayValue($hash_in,"authenticationProtocolVersion"),
+                        "tokenAuthenticationValue"=>XmlFields::returnArrayValue($hash_in,"tokenAuthenticationValue")
             );
 
             return $hash_out;
