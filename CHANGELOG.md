@@ -1,5 +1,11 @@
 = CnpOnline CHANGELOG
 
+==Version 12.15.0 (October 5, 2020)
+* Feature: Added an AuthenticationShopperID to cardTokenType
+* Feature: Added a copayAmount to healthcareAmounts
+* Feature: Created echeckTokenRoutingNumber and echeckTokenAccountTypeEnum types and set routingNum and accType in echeckTokenType to those new types
+* Feature: Added debitResponse and debitMessage fields to pinlessDebitResponse
+
 ==Version 12.14.1 (October 6, 2020)
 * BugFix: Added tokenAuthenticationValue as a PHP field
 

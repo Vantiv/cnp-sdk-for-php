@@ -721,6 +721,7 @@
             <xs:element name="cardValidationNum" type="xp:cvNumType" minOccurs="0" />
             <xs:element name="type" type="xp:methodOfPaymentTypeEnum" minOccurs="0" />
             <xs:element name="checkoutId" type="xp:checkoutIdType" minOccurs="0" />
+            <xs:element name="authenticatedShopperID" type="xp:authenticatedShopperIDType" minOccurs="0" />
         </xs:sequence>
     </xs:complexType>
 
@@ -728,6 +729,13 @@
         <xs:restriction base="xs:string">
             <xs:minLength value="18" />
             <xs:maxLength value="18" />
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="authenticatedShopperIDType">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+            <xs:maxLength value="64" />
         </xs:restriction>
     </xs:simpleType>
 
@@ -1761,6 +1769,7 @@
                 <xs:element name="visionAmount" type="xp:transactionAmountType" minOccurs="0"/>
                 <xs:element name="clinicOtherAmount" type="xp:transactionAmountType" minOccurs="0"/>
                 <xs:element name="dentalAmount" type="xp:transactionAmountType" minOccurs="0"/>
+                <xs:element name="copayAmount" type="xp:transactionAmountType" minOccurs="0"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -1839,8 +1848,8 @@
     <xs:complexType name="echeckTokenType">
         <xs:sequence>
             <xs:element name="cnpToken" type="xp:ccAccountNumberType"/>
-            <xs:element name="routingNum" type="xp:routingNumberType" />
-            <xs:element name="accType" type="xp:echeckAccountTypeEnum" />
+            <xs:element name="routingNum" type="xp:echeckTokenRoutingNumberType" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="accType" type="xp:echeckTokenAccountTypeEnum" minOccurs="0" maxOccurs="1"/>
             <xs:element name="checkNum" type="xp:checkNumberType" minOccurs="0" maxOccurs="1" />
         </xs:sequence>
     </xs:complexType>
@@ -2949,6 +2958,19 @@
             <xs:maxLength value="9" />
         </xs:restriction>
     </xs:simpleType>
+
+    <xs:simpleType name="echeckTokenRoutingNumberType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(.{8,9})|()"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="echeckTokenAccountTypeEnum">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(Checking)|(Savings)|(Corporate)|(Corp Savings)|()"/>
+        </xs:restriction>
+    </xs:simpleType>
+
     <xs:simpleType name="checkNumberType">
         <xs:restriction base="xs:string">
             <xs:minLength value="1" />
@@ -3827,6 +3849,8 @@
         <xs:complexType>
             <xs:all>
                 <xs:element name="networkName" type="xp:string25Type" minOccurs="0" />
+                <xs:element name="debitResponse" type="xp:responseType" minOccurs="0"  />
+                <xs:element name="debitMessage" type="xp:messageType" minOccurs="0"  />
             </xs:all>
         </xs:complexType>
     </xs:element>
