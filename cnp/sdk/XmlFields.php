@@ -183,6 +183,7 @@ class XmlFields
                 "RxAmount"=>XmlFields::returnArrayValue($hash_in, "RxAmount"),
                 "visionAmount"=>XmlFields::returnArrayValue($hash_in, "visionAmount"),
                 "clinicOtherAmount"=>XmlFields::returnArrayValue($hash_in, "clinicOtherAmount"),
+                "copayAmount"=>XmlFields::returnArrayValue($hash_in, "copayAmount"),
                 "dentalAmount"=>XmlFields::returnArrayValue($hash_in, "dentalAmount")
             );
 
@@ -518,6 +519,7 @@ class XmlFields
                         "expDate"=>XmlFields::returnArrayValue($hash_in, "expDate"),
                         "cardValidationNum"=>XmlFields::returnArrayValue($hash_in, "cardValidationNum"),
                         "type"=>XmlFields::returnArrayValue($hash_in, "type"),
+                        "authenticatedShopperID"=>XmlFields::returnArrayValue($hash_in, "authenticatedShopperID"),
                         "checkoutId"=>XmlFields::returnArrayValue($hash_in, "checkoutId")
 
             );
