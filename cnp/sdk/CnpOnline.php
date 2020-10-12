@@ -24,8 +24,8 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 namespace cnp\sdk;
-define('CURRENT_XML_VERSION', '12.15');
-define('CURRENT_SDK_VERSION', 'PHP;12.15.0');
+define('CURRENT_XML_VERSION', '12.16');
+define('CURRENT_SDK_VERSION', 'PHP;12.16.0');
 define('MAX_TXNS_PER_BATCH', 100000);
 define('MAX_TXNS_PER_REQUEST', 500000);
 define('CNP_CONFIG_LIST', 'user,password,merchantId,timeout,proxy,reportGroup,version,url,cnp_requests_path,batch_requests_path,sftp_username,sftp_password,batch_url,tcp_port,tcp_ssl,tcp_timeout,print_xml,vantivPublicKeyID,gpgPassphrase,useEncryption,deleteBatchFiles,multiSite,multiSiteErrorThreshold,maxHoursWithoutSwitch,printMultiSiteDebug,multiSiteUrl1,multiSiteUrl2,sftp_timeout');
