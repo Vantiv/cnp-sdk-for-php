@@ -614,7 +614,7 @@ class BatchRequest
 
     public function addTransactionReversal($hash_in)
     {
-        $hash_out = Transactions::createTransactionReversal($hash_in);
+        $hash_out = Transactions::createTransactionReversalHash($hash_in);
         $this->addTransaction($hash_out, $hash_in, 'transactionReversal');
         $this->counts_and_amounts ['transactionReversal'] ['count'] += 1;
         $this->counts_and_amounts ['transactionReversal'] ['amount'] += $hash_out ['amount'];
