@@ -146,6 +146,9 @@ class Obj2xml
 
         $xml->addAttribute('numTranslateToLowValueTokenRequests', $counts_and_amounts['translateToLowValueTokenRequest']['count']);
 
+        $xml->addAttribute('transactionReversalAmount', $counts_and_amounts['transactionReversal']['amount']);
+        $xml->addAttribute('numTransactionReversals', $counts_and_amounts['transactionReversal']['count']);
+
         $xml->addAttribute('captureGivenAuthAmount', $counts_and_amounts['captureGivenAuth']['amount']);
         $xml->addAttribute('numCaptureGivenAuths', $counts_and_amounts['captureGivenAuth']['count']);
 

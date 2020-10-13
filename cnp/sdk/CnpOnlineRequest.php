@@ -689,6 +689,28 @@ class CnpOnlineRequest
      * @return \DOMDocument|\SimpleXMLElement
      * @throws exceptions\cnpSDKException
      */
+    public function transactionReversal($hash_in)
+    {
+        $hash_out = array(
+                'cnpTxnId' => (XmlFields::returnArrayValue($hash_in,'cnpTxnId')),
+                'amount' => XmlFields::returnArrayValue($hash_in, 'amount'),
+                'surchargeAmount' => XmlFields::returnArrayValue($hash_in, 'surchargeAmount'),
+                'enhancedData' => XmlFields::enhancedData($hash_in, 'enhancedData'),
+                'processingInstructions' => XmlFields::processingInstructions($hash_in, 'processingInstructions'),
+                'customBilling' => XmlFields::customBilling($hash_in, 'customBilling'),
+                'lodgingInfo' => XmlFields::lodgingInfo($hash_in, 'lodgingInfo'),
+                'pin' => (XmlFields::returnArrayValue($hash_in, 'pin'))
+        );
+        $response = $this->processRequest($hash_out, $hash_in, 'transactionReversal');
+
+        return $response;
+    }
+
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
     public function deactivateReversalRequest($hash_in)
     {
         $hash_out = array(
