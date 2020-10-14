@@ -56,9 +56,6 @@ class TransactionReversalFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $location = XmlParser::getNode($transactionReversalResponse, 'location');
         $this->assertEquals('sandbox', $location);
-
-        $cnpTxnId = XmlParser::getNode($transactionReversalResponse, 'creditCnpTxnId');
-        this->assertEquals('12345678000', $cnpTxnId);
     }
 
 }
