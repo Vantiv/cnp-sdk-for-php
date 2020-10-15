@@ -1,5 +1,8 @@
 = CnpOnline CHANGELOG
 
+==Version 12.16.0 (October 12, 2020)
+* Feature: Added a new transaction type: Transaction Reversal
+
 ==Version 12.15.0 (October 5, 2020)
 * Feature: Added an AuthenticationShopperID to cardTokenType
 * Feature: Added a copayAmount to healthcareAmounts

@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Copyright (c) 2011 Vantiv eCommerce Inc.
  *
@@ -23,10 +22,40 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace cnp\sdk;
-define('CURRENT_XML_VERSION', '12.16');
-define('CURRENT_SDK_VERSION', 'PHP;12.16.0');
-define('MAX_TXNS_PER_BATCH', 100000);
-define('MAX_TXNS_PER_REQUEST', 500000);
-define('CNP_CONFIG_LIST', 'user,password,merchantId,timeout,proxy,reportGroup,version,url,cnp_requests_path,batch_requests_path,sftp_username,sftp_password,batch_url,tcp_port,tcp_ssl,tcp_timeout,print_xml,vantivPublicKeyID,gpgPassphrase,useEncryption,deleteBatchFiles,multiSite,multiSiteErrorThreshold,maxHoursWithoutSwitch,printMultiSiteDebug,multiSiteUrl1,multiSiteUrl2,sftp_timeout');
+namespace cnp\sdk\Test\functional;
 
+use cnp\sdk\CnpOnlineRequest;
+use cnp\sdk\CommManager;
+use cnp\sdk\XmlParser;
+
+class TransactionReversalFunctionalTest extends \PHPUnit_Framework_TestCase
+{
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
+    }
+
+    public function test_simple_transactionReversal()
+    {
+        $hash_in = array(
+            'id' => 'id',
+            'cnpTxnId' => '12345678000',
+            'amount' => '123',
+            'pin' => '1234',
+            'surchargeAmount' => '4321'
+        );
+
+        $initilaize = new CnpOnlineRequest();
+        $transactionReversalResponse = $initilaize->transactionReversal($hash_in);
+
+        $response = XmlParser::getNode($transactionReversalResponse, 'response');
+        $this->assertEquals('000', $response);
+
+        $response = XmlParser::getNode($transactionReversalResponse, 'message');
+        $this->assertEquals('Approved', $response);
+
+        $location = XmlParser::getNode($transactionReversalResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+    }
+
+}

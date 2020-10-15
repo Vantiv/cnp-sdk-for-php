@@ -59,6 +59,10 @@ class BatchRequest
             'translateToLowValueTokenRequest' => array(
                 'count' => 0
             ),
+            'transactionReversal' => array(
+                'count' => 0,
+                'amount' => 0
+            ),
             'capture' => array(
                 'count' => 0,
                 'amount' => 0
@@ -606,6 +610,14 @@ class BatchRequest
         $hash_out = Transactions::createTranslateToLowValueTokenHash($hash_in);
         $this->addTransaction($hash_out, $hash_in, 'translateToLowValueTokenRequest');
         $this->counts_and_amounts ['translateToLowValueTokenRequest'] ['count'] += 1;
+    }
+
+    public function addTransactionReversal($hash_in)
+    {
+        $hash_out = Transactions::createTransactionReversalHash($hash_in);
+        $this->addTransaction($hash_out, $hash_in, 'transactionReversal');
+        $this->counts_and_amounts ['transactionReversal'] ['count'] += 1;
+        $this->counts_and_amounts ['transactionReversal'] ['amount'] += $hash_out ['amount'];
     }
 
     public function addSubmerchantDebit($hash_in)

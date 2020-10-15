@@ -1604,6 +1604,27 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->fail("test_addAccountUpdate_negative_with_transaction_after_accountUpdate is expected to fail");
     }
 
+    public function test_addTransactionReversal()
+    {
+        if(strtolower($this->preliveStatus) == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
+        $hash_in = array(
+            'id' => 'id',
+            'reportGroup' => 'Default Report Group',
+            'cnpTxnId' => '12345678000',
+            'amount' => '123'
+        );
+        $batch_request = new BatchRequest ($this->direct);
+        $batch_request->addTransactionReversal($hash_in);
+
+        $this->assertTrue(file_exists($batch_request->batch_file));
+        $cts = $batch_request->getCountsAndAmounts();
+        $this->assertEquals(1, $cts ['transactionReversal'] ['count']);
+        $this->assertEquals(123, $cts ['transactionReversal'] ['amount']);
+    }
+
     public function test_isFull()
     {
         if(strtolower($this->preliveStatus) == 'down'){
