@@ -242,4 +242,29 @@ class ForceCaptureFunctionalTest extends \PHPUnit_Framework_TestCase
         $location = XmlParser::getNode($forceCaptureResponse, 'location');
         $this->assertEquals('sandbox', $location);
     }
+
+    public function test_simple_forceCapture_with_business_indicator()
+    {
+        $hash_in = array('id' => 'id',
+            'merchantId' => '101',
+            'version' => '8.8',
+            'reportGroup' => 'Planets',
+            'cnpTxnId' => '123456',
+            'orderId' => '12344',
+            'amount' => '106',
+            'orderSource' => 'ecommerce',
+            'businessIndicator' => 'consumerBillPayment',
+            'card' => array(
+                'type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1210'
+            ));
+
+        $initialize = new CnpOnlineRequest();
+        $forceCaptureResponse = $initialize->forceCaptureRequest($hash_in);
+        $response = XmlParser::getAttribute($forceCaptureResponse, 'cnpOnlineResponse', 'response');
+        $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($forceCaptureResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+    }
 }

@@ -387,4 +387,28 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
 
     }
 
+
+    public function test_simple_captureGivenAuth_with_business_indicator()
+    {
+        $hash_in = array('id' => 'id',
+            'orderId' => '12344',
+            'amount' => '106',
+            'businessIndicator' => 'consumerBillPayment',
+            'authInformation' => array(
+                'authDate' => '2002-10-09', 'authCode' => '543216',
+                'authAmount' => '12345'),
+            'orderSource' => 'ecommerce',
+            'card' => array(
+                'type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1210'));
+
+        $initialize = new CnpOnlineRequest();
+        $captureGivenAuthResponse = $initialize->captureGivenAuthRequest($hash_in);
+        $message = XmlParser::getNode($captureGivenAuthResponse, 'message');
+        $this->assertEquals('Approved', $message);
+        $location = XmlParser::getNode($captureGivenAuthResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+    }
+
 }
