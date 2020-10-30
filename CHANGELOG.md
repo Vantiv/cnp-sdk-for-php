@@ -1,6 +1,6 @@
 = CnpOnline CHANGELOG
 
-==Version 12.11.0 (January 23, 2020)
+==Version 12.17.0 (October 30, 2020)
 * Feature: Added businessIndicator support to forceCapture, captureGivenAuth, sale, credit, authorization
 
 ==Version 12.16.0 (October 12, 2020)
