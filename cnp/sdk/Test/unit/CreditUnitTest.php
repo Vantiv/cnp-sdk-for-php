@@ -393,20 +393,15 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
         $hash_in = array(
             'amount'=>'2',
             'id' => 'id',
-            'surchargeAmount'=>'1',
-            'orderId'=>'3',
+            'cnpTxnId'=>'3',
+            'payPalNotes'=>'notes',
             'businessIndicator'=>'consumerBillPayment',
-            'card'=>array(
-                'type'=>'VI',
-                'number' =>'4100000000000001',
-                'expDate' =>'1210'),
-            'orderSource'=>'ecommerce',
         );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock
             ->expects($this->once())
             ->method('request')
-            ->with($this->matchesRegularExpression('/.*<businessIndicator>consumerBillPayment</businessIndicator>.*/'));
+            ->with($this->matchesRegularExpression('/.*<businessIndicator>consumerBiLlPayment</businessIndicator>.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
