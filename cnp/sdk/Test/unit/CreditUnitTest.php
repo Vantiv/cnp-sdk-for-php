@@ -395,6 +395,7 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
             'id' => 'id',
             'surchargeAmount'=>'1',
             'orderId'=>'3',
+            'businessIndicator'=>'consumerBillPayment',
             'card'=>array(
                 'type'=>'VI',
                 'number' =>'4100000000000001',
