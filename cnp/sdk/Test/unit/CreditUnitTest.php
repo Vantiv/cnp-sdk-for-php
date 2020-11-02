@@ -388,4 +388,29 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
     	$cnpTest->creditRequest($hash_in);
     }
 
+
+    public function test_business_indicator()
+    {
+        $hash_in = array(
+            'amount'=>'2',
+            'id' => 'id',
+            'surchargeAmount'=>'1',
+            'orderId'=>'3',
+            'card'=>array(
+                'type'=>'VI',
+                'number' =>'4100000000000001',
+                'expDate' =>'1210'),
+            'orderSource'=>'ecommerce',
+        );
+        $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
+        $mock
+            ->expects($this->once())
+            ->method('request')
+            ->with($this->matchesRegularExpression('/.*<businessIndicator>consumerBillPayment</businessIndicator>.*/'));
+
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->creditRequest($hash_in);
+    }
+
 }
