@@ -388,7 +388,6 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
     	$cnpTest->creditRequest($hash_in);
     }
 
-
     public function test_business_indicator()
     {
         $hash_in = array(
