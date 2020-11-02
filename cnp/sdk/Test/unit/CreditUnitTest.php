@@ -401,7 +401,7 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
         $mock
             ->expects($this->once())
             ->method('request')
-            ->with($this->matchesRegularExpression('/.*<businessIndicator>consumerBiLlPayment</businessIndicator>.*/'));
+            ->with($this->matchesRegularExpression('/.*<businessIndicator>consumerBillPayment<\/businessIndicator>.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
