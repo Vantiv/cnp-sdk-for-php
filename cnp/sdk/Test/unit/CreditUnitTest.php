@@ -388,4 +388,24 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
     	$cnpTest->creditRequest($hash_in);
     }
 
+    public function test_business_indicator()
+    {
+        $hash_in = array(
+            'amount'=>'2',
+            'id' => 'id',
+            'cnpTxnId'=>'3',
+            'payPalNotes'=>'notes',
+            'businessIndicator'=>'consumerBillPayment',
+        );
+        $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
+        $mock
+            ->expects($this->once())
+            ->method('request')
+            ->with($this->matchesRegularExpression('/.*<businessIndicator>consumerBillPayment<\/businessIndicator>.*/'));
+
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->creditRequest($hash_in);
+    }
+
 }
