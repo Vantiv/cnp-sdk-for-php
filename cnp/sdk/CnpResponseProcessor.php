@@ -4,7 +4,7 @@ namespace cnp\sdk;
 
 class CnpResponseProcessor {
 	private $xml_reader;
-    public static $deleteBatchFiles = "false";
+    public static $deleteBatchFiles = FALSE;
 	
 	/*
 	 * $response_file is a string corresponding to the path of the response file to be processed.
