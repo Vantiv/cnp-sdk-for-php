@@ -1,5 +1,8 @@
 = CnpOnline CHANGELOG
 
+==Version 12.17.1 (April 19, 2021)
+* BugFix: Fixed delete batch files flag in CnpResponseProcessor
+
 ==Version 12.17.0 (October 30, 2020)
 * Feature: Added businessIndicator support to forceCapture, captureGivenAuth, sale, credit, authorization
 
