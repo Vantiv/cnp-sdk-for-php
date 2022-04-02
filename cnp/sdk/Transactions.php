@@ -13,6 +13,8 @@ class Transactions {
             'customerInfo' => XmlFields::customerInfo ( XmlFields::returnArrayValue ( $hash_in, 'customerInfo' ) ),
             'billToAddress' => XmlFields::contact ( XmlFields::returnArrayValue ( $hash_in, 'billToAddress' ) ),
             'shipToAddress' => XmlFields::contact ( XmlFields::returnArrayValue ( $hash_in, 'shipToAddress' ) ),
+            'retailerAddress' => (XmlFields::contact(XmlFields::returnArrayValue($hash_in, 'retailerAddress'))),
+            'additionalCOFData' => (XmlFields::additionalCOFData(XmlFields::returnArrayValue($hash_in, 'additionalCOFData'))),
             'card' => XmlFields::cardType ( XmlFields::returnArrayValue ( $hash_in, 'card' ) ),
             'paypal' => XmlFields::payPal ( XmlFields::returnArrayValue ( $hash_in, 'paypal' ) ),
             'token' => XmlFields::cardTokenType ( XmlFields::returnArrayValue ( $hash_in, 'token' ) ),
@@ -48,7 +50,13 @@ class Transactions {
             'processingType' => XmlFields::returnArrayValue ( $hash_in, 'processingType' ),
             'originalNetworkTransactionId' => XmlFields::returnArrayValue ( $hash_in, 'originalNetworkTransactionId' ),
             'originalTransactionAmount' => XmlFields::returnArrayValue ( $hash_in, 'originalTransactionAmount' ),
-            'pinlessDebitRequest' => XmlFields::pinlessDebitRequest(XmlFields::returnArrayValue ( $hash_in, 'pinlessDebitRequest' ))
+            'pinlessDebitRequest' => XmlFields::pinlessDebitRequest(XmlFields::returnArrayValue ( $hash_in, 'pinlessDebitRequest' )),
+            'skipRealtimeAU' => XmlFields::returnArrayValue($hash_in, 'skipRealtimeAU'),
+            'merchantCategoryCode' => XmlFields::returnArrayValue($hash_in, 'merchantCategoryCode'),
+            'businessIndicator' => XmlFields::returnArrayValue($hash_in, 'businessIndicator'),
+            'orderChannel' => XmlFields::returnArrayValue($hash_in, 'orderChannel'),
+            'fraudCheckStatus' => XmlFields::returnArrayValue($hash_in, 'fraudCheckStatus'),
+            'crypto' => XmlFields::returnArrayValue($hash_in, 'crypto')
         );
 
         return $hash_out;
@@ -66,7 +74,8 @@ class Transactions {
             'customerInfo' => (XmlFields::customerInfo ( XmlFields::returnArrayValue ( $hash_in, 'customerInfo' ) )),
             'billToAddress' => (XmlFields::contact ( XmlFields::returnArrayValue ( $hash_in, 'billToAddress' ) )),
             'shipToAddress' => (XmlFields::contact ( XmlFields::returnArrayValue ( $hash_in, 'shipToAddress' ) )),
-
+            'retailerAddress' => XmlFields::contact(XmlFields::returnArrayValue($hash_in, 'retailerAddress')),
+            'additionalCOFData' => XmlFields::additionalCOFData(XmlFields::returnArrayValue($hash_in, 'additionalCOFData')),
             'mpos'=> (XmlFields::mposType ( XmlFields::returnArrayValue ( $hash_in, 'mpos' ) )),
             'card' => (XmlFields::cardType ( XmlFields::returnArrayValue ( $hash_in, 'card' ) )),
             'paypal' => (XmlFields::payPal ( XmlFields::returnArrayValue ( $hash_in, 'paypal' ) )),
@@ -93,7 +102,10 @@ class Transactions {
             'wallet'=>XmlFields::wallet(XmlFields::returnArrayValue($hash_in,'wallet')),
             'processingType'=>XmlFields::returnArrayValue($hash_in,'processingType'),
             'originalNetworkTransactionId'=>XmlFields::returnArrayValue($hash_in,'originalNetworkTransactionId'),
-            'originalTransactionAmount'=>XmlFields::returnArrayValue($hash_in,'originalTransactionAmount')
+            'originalTransactionAmount'=>XmlFields::returnArrayValue($hash_in,'originalTransactionAmount'),
+            'orderChannel' => XmlFields::returnArrayValue($hash_in, 'orderChannel'),
+            'fraudCheckStatus' => XmlFields::returnArrayValue($hash_in, 'fraudCheckStatus'),
+            'crypto' => XmlFields::returnArrayValue($hash_in, 'crypto')
         );
 
         return $hash_out;
@@ -220,6 +232,7 @@ class Transactions {
             'partial' => XmlFields::returnArrayValue ( $hash_in, 'partial' ),
             'id'=>XmlFields::returnArrayValue($hash_in,'id'),
             'cnpTxnId' =>  ( XmlFields::returnArrayValue ( $hash_in, 'cnpTxnId' ) ),
+            'orderId' => (XmlFields::returnArrayValue($hash_in, 'orderId')),
             'amount' => (XmlFields::returnArrayValue ( $hash_in, 'amount' )),
             'surchargeAmount' => XmlFields::returnArrayValue ( $hash_in, 'surchargeAmount' ),
             'enhancedData' => XmlFields::enhancedData ( XmlFields::returnArrayValue ( $hash_in, 'enhancedData' ) ),
@@ -256,6 +269,8 @@ class Transactions {
             'orderSource' =>  ( XmlFields::returnArrayValue ( $hash_in, 'orderSource' ) ),
             'billToAddress' => XmlFields::contact ( XmlFields::returnArrayValue ( $hash_in, 'billToAddress' ) ),
             'shipToAddress' => XmlFields::contact ( XmlFields::returnArrayValue ( $hash_in, 'shipToAddress' ) ),
+            'retailerAddress' => (XmlFields::contact(XmlFields::returnArrayValue($hash_in, 'retailerAddress'))),
+            'additionalCOFData' => (XmlFields::additionalCOFData(XmlFields::returnArrayValue($hash_in, 'additionalCOFData'))),
             'card' => XmlFields::cardType ( XmlFields::returnArrayValue ( $hash_in, 'card' ) ),
             'token' => XmlFields::cardTokenType ( XmlFields::returnArrayValue ( $hash_in, 'token' ) ),
             'paypage' => XmlFields::cardPaypageType ( XmlFields::returnArrayValue ( $hash_in, 'paypage' ) ),
@@ -268,7 +283,13 @@ class Transactions {
             'pos' => XmlFields::pos ( XmlFields::returnArrayValue ( $hash_in, 'pos' ) ),
             'amexAggregatorData' => XmlFields::amexAggregatorData ( XmlFields::returnArrayValue ( $hash_in, 'amexAggregatorData' ) ),
             'merchantData' => (XmlFields::merchantData ( XmlFields::returnArrayValue ( $hash_in, 'merchantData' ) )),
-            'debtRepayment' => XmlFields::returnArrayValue ( $hash_in, 'debtRepayment' )
+            'debtRepayment' => XmlFields::returnArrayValue ( $hash_in, 'debtRepayment' ),
+            'processingType' => XmlFields::returnArrayValue($hash_in, 'processingType'),
+            'originalNetworkTransactionId' => XmlFields::returnArrayValue($hash_in, 'originalNetworkTransactionId'),
+            'originalTransactionAmount' => XmlFields::returnArrayValue($hash_in, 'originalTransactionAmount'),
+            'merchantCategoryCode' => XmlFields::returnArrayValue($hash_in, 'merchantCategoryCode'),
+            'businessIndicator' => XmlFields::returnArrayValue($hash_in, 'businessIndicator'),
+            'crypto' => XmlFields::returnArrayValue($hash_in, 'crypto')
         );
 
         return $hash_out;
@@ -402,7 +423,7 @@ class Transactions {
         );
         return $hash_out;
     }
-    public function createTransactionReversalHash($hash_in)
+    public function createDepositTransactionReversalHash($hash_in)
     {
         $hash_out = array(
                 'cnpTxnId' => (XmlFields::returnArrayValue($hash_in,'cnpTxnId')),
@@ -413,6 +434,21 @@ class Transactions {
                 'customBilling' => XmlFields::customBilling($hash_in, 'customBilling'),
                 'lodgingInfo' => XmlFields::lodgingInfo($hash_in, 'lodgingInfo'),
                 'pin' => (XmlFields::returnArrayValue($hash_in, 'pin'))
+        );
+        return $hash_out;
+    }
+
+    public function createRefundTransactionReversalHash($hash_in)
+    {
+        $hash_out = array(
+            'cnpTxnId' => (XmlFields::returnArrayValue($hash_in,'cnpTxnId')),
+            'amount' => XmlFields::returnArrayValue($hash_in, 'amount'),
+            'surchargeAmount' => XmlFields::returnArrayValue($hash_in, 'surchargeAmount'),
+            'enhancedData' => XmlFields::enhancedData($hash_in, 'enhancedData'),
+            'processingInstructions' => XmlFields::processingInstructions($hash_in, 'processingInstructions'),
+            'customBilling' => XmlFields::customBilling($hash_in, 'customBilling'),
+            'lodgingInfo' => XmlFields::lodgingInfo($hash_in, 'lodgingInfo'),
+            'pin' => (XmlFields::returnArrayValue($hash_in, 'pin'))
         );
         return $hash_out;
     }
@@ -734,12 +770,14 @@ class Transactions {
 
         return $hash_out;
     }
-    public static function createAccountUpdate($hash_in) {
-        $hash_out = array (
-            'orderId' =>  ( XmlFields::returnArrayValue ( $hash_in, 'orderId' ) ),
-            'id'=>XmlFields::returnArrayValue($hash_in,'id'),
-            'card' => XmlFields::cardType ( XmlFields::returnArrayValue ( $hash_in, 'card' ) ),
-            'token' => XmlFields::cardTokenType ( XmlFields::returnArrayValue ( $hash_in, 'token' ) )
+
+    public static function createAccountUpdate($hash_in)
+    {
+        $hash_out = array(
+            'orderId' => (XmlFields::returnArrayValue($hash_in, 'orderId')),
+            'id' => XmlFields::returnArrayValue($hash_in, 'id'),
+            'card' => XmlFields::cardType(XmlFields::returnArrayValue($hash_in, 'card')),
+            'token' => XmlFields::cardTokenType(XmlFields::returnArrayValue($hash_in, 'token'))
         );
 
         return $hash_out;
@@ -782,7 +820,8 @@ class Transactions {
             'token' => XmlFields::cardTokenType ( XmlFields::returnArrayValue ( $hash_in, 'token' ) ),
             'paypage' => XmlFields::cardPaypageType ( XmlFields::returnArrayValue ( $hash_in, 'paypage' ) ),
             'fundingCustomerId' => XmlFields::returnArrayValue ( $hash_in, 'fundingCustomerId' ),
-            'customerName' => XmlFields::returnArrayValue ( $hash_in, 'customerName' )
+            'customerName' => XmlFields::returnArrayValue ( $hash_in, 'customerName' ),
+            'cardholderAddress' => XmlFields::address(XmlFields::returnArrayValue($hash_in, 'cardholderAddress'))
         );
         return $hash_out;
     }

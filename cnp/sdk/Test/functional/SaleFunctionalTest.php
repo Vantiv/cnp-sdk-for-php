@@ -424,6 +424,46 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('sandbox', $location);
     }
 
+    public function test_sale_with_billToAddress()
+    {
+        $sale_info = array(
+            'id' => '1',
+            'orderId' => '1',
+            'amount' => '10010',
+            'orderSource'=>'ecommerce',
+            'billToAddress'=>array(
+                'name' => 'John Smith',
+                'addressLine1' => '1 Main St.',
+                'city' => 'Burlington',
+                'state' => 'MA',
+                'zip' => '01803-3747',
+                'country' => 'US',
+                'sellerId' => '12345678912345',
+                'url' => 'https://dummyurl.com'),
+            'card'=>array(
+                'number' =>'5112010000000003',
+                'expDate' => '0112',
+                'cardValidationNum' => '349',
+                'type' => 'MC'
+            ),
+            'enhancedData' => array(
+                'detailTax' => array(
+                    'taxAmount' => 300,
+                    'taxIncludedInTotal' => true
+                ),
+                'salesTax' => 500,
+                'taxExempt' => false
+            ),
+        );
+        $initialize = new CnpOnlineRequest();
+        $saleResponse = $initialize->saleRequest($sale_info);
+        #display results
+        $response = XmlParser::getNode($saleResponse, 'response');
+        $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($saleResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+    }
+
     public function test_sale_with_Ideal()
     {
         $hash_in = array(
@@ -793,7 +833,31 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('sandbox', $location);
     }
 
+    public function test_simple_sale_with_interac()
+    {
+        $hash_in = array(
+            'card' => array('type' => 'IC',
+                'number' => '4100000000000000',
+                'expDate' => '1213',
+                'cardValidationNum' => '1213'),
+            'cardholderAuthentication' => array(
+                /// base64 value for dummy number '123456789012345678901234567890123456789012345678901234567890'
+                /// System should accept the request with length 60 of authenticationValueType
+                'authenticationValue' => 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkw'
+            ),
+            'id' => '1211',
+            'orderId' => '2111',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '123');
 
+        $initialize = new CnpOnlineRequest();
+        $saleResponse = $initialize->saleRequest($hash_in);
+        $response = XmlParser::getNode($saleResponse, 'response');
+        $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($saleResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+    }
 
 
 }

@@ -1604,7 +1604,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->fail("test_addAccountUpdate_negative_with_transaction_after_accountUpdate is expected to fail");
     }
 
-    public function test_addTransactionReversal()
+    public function test_addDepositTransactionReversal()
     {
         if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
@@ -1617,12 +1617,33 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
             'amount' => '123'
         );
         $batch_request = new BatchRequest ($this->direct);
-        $batch_request->addTransactionReversal($hash_in);
+        $batch_request->addDepositTransactionReversal($hash_in);
 
         $this->assertTrue(file_exists($batch_request->batch_file));
         $cts = $batch_request->getCountsAndAmounts();
-        $this->assertEquals(1, $cts ['transactionReversal'] ['count']);
-        $this->assertEquals(123, $cts ['transactionReversal'] ['amount']);
+        $this->assertEquals(1, $cts ['depositTransactionReversal'] ['count']);
+        $this->assertEquals(123, $cts ['depositTransactionReversal'] ['amount']);
+    }
+
+    public function test_addRefundTransactionReversal()
+    {
+        if(strtolower($this->preliveStatus) == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
+        $hash_in = array(
+            'id' => 'id',
+            'reportGroup' => 'Default Report Group',
+            'cnpTxnId' => '12345678000',
+            'amount' => '123'
+        );
+        $batch_request = new BatchRequest ($this->direct);
+        $batch_request->addRefundTransactionReversal($hash_in);
+
+        $this->assertTrue(file_exists($batch_request->batch_file));
+        $cts = $batch_request->getCountsAndAmounts();
+        $this->assertEquals(1, $cts ['refundTransactionReversal'] ['count']);
+        $this->assertEquals(123, $cts ['refundTransactionReversal'] ['amount']);
     }
 
     public function test_isFull()

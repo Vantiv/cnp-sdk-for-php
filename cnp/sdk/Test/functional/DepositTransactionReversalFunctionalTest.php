@@ -22,27 +22,40 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace cnp\sdk;
-use cnp\sdk\exceptions\cnpSDKException;
-use DOMDocument;
+namespace cnp\sdk\Test\functional;
 
-class Checker
+use cnp\sdk\CnpOnlineRequest;
+use cnp\sdk\CommManager;
+use cnp\sdk\XmlParser;
+
+class DepositTransactionReversalFunctionalTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @param $request
-     * @return bool
-     * @throws cnpSDKException
-     */
-    public static function validateXML($request){
-        $xml = new DOMDocument();
-        $xml->loadXML($request);
-        $filepath = __DIR__ . "/schema/SchemaCombined_v12.24.xsd";
-        $result =  $xml->schemaValidate( $filepath);
-
-        if(!$result)
-            throw new cnpSDKException("Fatal ERROR: Invalid XML Request!");
-
-
-        return $result;
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
     }
+
+    public function test_simple_depositTransactionReversal()
+    {
+        $hash_in = array(
+            'id' => 'id',
+            'cnpTxnId' => '12345678000',
+            'amount' => '123',
+            'pin' => '1234',
+            'surchargeAmount' => '4321'
+        );
+
+        $initilaize = new CnpOnlineRequest();
+        $depositTransactionReversalResponse = $initilaize->depositTransactionReversal($hash_in);
+
+        $response = XmlParser::getNode($depositTransactionReversalResponse, 'response');
+        $this->assertEquals('000', $response);
+
+        $response = XmlParser::getNode($depositTransactionReversalResponse, 'message');
+        $this->assertEquals('Approved', $response);
+
+        $location = XmlParser::getNode($depositTransactionReversalResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+    }
+
 }

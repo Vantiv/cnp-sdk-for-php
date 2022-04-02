@@ -377,6 +377,34 @@ class FundingInstructionOnlineFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('000', $response);
     }
 
+    public function test_vendor_debit_with_vendorAddress()
+    {
+        $hash_in = array('id' => 'id',
+            'fundingSubmerchantId' => '2111',
+            'vendorName' => 'Super Secret Tech Inc.',
+            'fundsTransferId' => '12345678',
+            'amount' => '13',
+            'accountInfo' => array(
+                'accType' => 'Checking',
+                'accNum' => '12345657890',
+                'routingNum' => '123456789',
+                'checkNum' => '123455'
+            ),
+            'vendorAddress' => array(
+                'addressLine1' => '2 Main St.',
+                'addressLine2' => 'Apt. 222',
+                'addressLine3' => 'NA',
+                'city' => 'Riverside',
+                'state' => 'RI',
+                'zip' => '02915',
+                'country' => 'US'),
+        );
+        $initialize = new CnpOnlineRequest();
+        $vendorDebitResponse = $initialize->vendorDebit($hash_in);
+        $response = XmlParser::getNode($vendorDebitResponse, 'response');
+        $this->assertEquals('000', $response);
+    }
+
     public function test_vendor_credit()
     {
         $hash_in = array('id' => 'id',
@@ -410,6 +438,34 @@ class FundingInstructionOnlineFunctionalTest extends \PHPUnit_Framework_TestCase
                 'routingNum' => '123456789',
                 'checkNum' => '123455'
             ),
+        );
+        $initialize = new CnpOnlineRequest();
+        $vendorCreditResponse = $initialize->vendorCredit($hash_in);
+        $response = XmlParser::getNode($vendorCreditResponse, 'response');
+        $this->assertEquals('000', $response);
+    }
+
+    public function test_vendor_credit_with_vendorAddress()
+    {
+        $hash_in = array('id' => 'id',
+            'fundingSubmerchantId' => '2111',
+            'vendorName' => 'Super Secret Tech Inc.',
+            'fundsTransferId' => '12345678',
+            'amount' => '1000',
+            'accountInfo' => array(
+                'accType' => 'Checking',
+                'accNum' => '12345657890',
+                'routingNum' => '123456789',
+                'checkNum' => '123455'
+            ),
+            'vendorAddress' => array(
+                'addressLine1' => '2 Main St.',
+                'addressLine2' => 'Apt. 222',
+                'addressLine3' => 'NA',
+                'city' => 'Riverside',
+                'state' => 'RI',
+                'zip' => '02915',
+                'country' => 'US'),
         );
         $initialize = new CnpOnlineRequest();
         $vendorCreditResponse = $initialize->vendorCredit($hash_in);

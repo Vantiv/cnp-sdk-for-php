@@ -205,5 +205,26 @@ class CreditFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('sandbox', $location);
     }
 
+    public function test_simple_credit_with_pin_and_optional_order_id()
+    {
+        $hash_in = array(
+            'cnpTxnId' => '12312312',
+            'orderId' => '22@33123456789012345678901234567890',
+            'id' => 'id',
+            'reportGroup' => 'Planets',
+            'amount' => '123',
+            'secondaryAmount' => '3214',
+            'surchargeAmount' => '1',
+            'pin' => '3333'
+        );
+
+        $initialize = new CnpOnlineRequest();
+        $creditResponse = $initialize->creditRequest($hash_in);
+        $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'response');
+        $this->assertEquals("0", $message);
+        $location = XmlParser::getNode($creditResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+    }
+
 
 }
