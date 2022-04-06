@@ -590,7 +590,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('sandbox', $location);
     }
 
-    public function test_auth_with_with_additionalCOFData()
+    public function test_auth_with_additionalCOFData()
     {
         $hash_in = array(
             'id'=>'0001',
@@ -606,7 +606,8 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
                 'country' => 'USA',
                 'email' => 'dberman@phoenixProcessing.com',
                 'phone' => '781-270-1111',
-                'sellerId' => '21234234A1'
+                'sellerId' => '21234234A1',
+                'url' => 'www.google.com',
             ),
             'shipToAddress' => array(
                 'name' => 'Raymond J. Johnson Jr. B',
@@ -617,7 +618,8 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
                 'country' => 'USA',
                 'email' => 'ray@rayjay.com',
                 'phone' => '978-275-0000',
-                'sellerId' => '21234234A2'
+                'sellerId' => '21234234A2',
+                'url' => 'www.google.com',
             ),
             'crypto' => 'true',
             'retailerAddress' => array(
@@ -650,6 +652,9 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
                 'cardValidationNum' => '987',
             ),
             'businessIndicator' => 'buyOnlinePickUpInStore',
+            'orderChannel' => 'IN_STORE_KIOSK',
+            'fraudCheckStatus' => 'CLOSE',
+
         );
 
         $initialize = new CnpOnlineRequest();

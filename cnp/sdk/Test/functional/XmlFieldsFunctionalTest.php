@@ -439,4 +439,72 @@ class XmlFieldsFunctionalTest extends \PHPUnit_Framework_TestCase
 
     }
 
+    public function test_sale_customerInfo_with_accountUsername()
+    {
+        $hash_in = array('merchantId' => '101', 'id' => '1211',
+            'version' => '8.8',
+            'reportGroup' => 'Planets',
+            'cnpTxnId' => '123456',
+            'orderId' => '12344',
+            'amount' => '106',
+            'orderSource' => 'ecommerce',
+            'CustomerInfo' => array(
+                'ssn' => '12345',
+                'incomeAmount' => '12345',
+                'incomeCurrency' => 'dollar',
+                'yearsAtResidence' => '2',
+                'AccountUsername' => 'Woolfoo',
+                'UserAccountNumber' => '123456ATY',
+                'UserAccountEmail' => 'woolfoo@gmail.com',
+                'MembershipId' => 'Member01',
+                'MembershipPhone' => '9765431234',
+                'MembershipEmail' => 'mem@abc.com',
+                'MembershipName' => 'memName',
+		        'AccountCreatedDate' => '2022-04-04',
+		        'UserAccountPhone' => '123456789',
+            ),
+            'card' => array(
+                'type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1210'
+            ));
+
+        $initialize = new CnpOnlineRequest();
+        $saleResponse = $initialize->saleRequest($hash_in);
+        $message = XmlParser::getAttribute($saleResponse, 'cnpOnlineResponse', 'message');
+        $this->assertEquals("Valid Format", $message);
+    }
+
+    public function test_enhancedData_with_discountCode()
+    {
+        $hash_in = array('merchantId' => '101', 'id' => '1211',
+            'version' => '8.8',
+            'reportGroup' => 'Planets',
+            'orderId' => '12344',
+            'amount' => '106',
+            'card' => array(
+                'type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1210'),
+            'orderSource' => 'ecommerce',
+            'enhancedData' => array(
+                'detailtax' => array('taxAmount' => '1234', 'tax' => '50'),
+                'customerReference' => 'Litle',
+                'salesTax' => '50',
+                'deliveryType' => 'TBD',
+                'restriction' => 'DIG',
+                'shipFromPostalCode' => '01741',
+                'destinationPostalCode' => '01742',
+                'discountCode' => 'oneTimeDis',
+                'discountPercent' => '12',
+                'fulfilmentMethodType' => 'COUNTER_PICKUP'
+            )
+        );
+        $initialize = new CnpOnlineRequest();
+        $creditResponse = $initialize->creditRequest($hash_in);
+        $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'message');
+        $this->assertEquals("Valid Format", $message);
+    }
+
+
 }

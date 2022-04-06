@@ -1917,4 +1917,80 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         }
         rmdir($this->direct);
     }
+    public function test_addVendorDebit_with_vendorAddress()
+    {
+        if(strtolower($this->preliveStatus) == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
+        $hash_in = array('id' => 'id',
+            'fundingSubmerchantId' => '2111',
+            'vendorName' => '001',
+            'fundsTransferId' => '12345678',
+            'amount' => '13',
+            'accountInfo' => array(
+                'accType' => 'Checking',
+                'accNum' => '12345657890',
+                'routingNum' => '123456789',
+                'checkNum' => '123455'
+            ) ,
+            'vendorAddress' => array(
+                'addressLine1' => '2 Main St.',
+                'addressLine2' => 'Apt. 222',
+                'addressLine3' => 'NA',
+                'city' => 'Riverside',
+                'state' => 'RI',
+                'zip' => '02915',
+                'country' => 'US'),
+
+        );
+        $batch_request = new BatchRequest ($this->direct);
+        $batch_request->addVendorDebit($hash_in);
+
+        $this->assertTrue(file_exists($batch_request->batch_file));
+        $this->assertEquals(1, $batch_request->total_txns);
+
+        $cts = $batch_request->getCountsAndAmounts();
+        $this->assertEquals(1, $cts ['vendorDebit'] ['count']);
+        $this->assertEquals(13, $cts ['vendorDebit'] ['amount']);
+    }
+    public function test_addVendorCredit_with_vendorAddress()
+    {
+        if(strtolower($this->preliveStatus) == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
+        $hash_in = array('id' => 'id',
+            'fundingSubmerchantId' => '2111',
+            'vendorName' => '001',
+            'fundsTransferId' => '12345678',
+            'amount' => '13',
+            'accountInfo' => array(
+                'accType' => 'Checking',
+                'accNum' => '12345657890',
+                'routingNum' => '123456789',
+                'checkNum' => '123455'
+            )
+        ,
+            'vendorAddress' => array(
+                'addressLine1' => '2 Main St.',
+                'addressLine2' => 'Apt. 222',
+                'addressLine3' => 'NA',
+                'city' => 'Riverside',
+                'state' => 'RI',
+                'zip' => '02915',
+                'country' => 'US'),
+
+        );
+        $batch_request = new BatchRequest ($this->direct);
+        $batch_request->addVendorCredit($hash_in);
+
+        $this->assertTrue(file_exists($batch_request->batch_file));
+        $this->assertEquals(1, $batch_request->total_txns);
+
+        $cts = $batch_request->getCountsAndAmounts();
+        $this->assertEquals(1, $cts ['vendorCredit'] ['count']);
+        $this->assertEquals(13, $cts ['vendorCredit'] ['amount']);
+    }
+
 }

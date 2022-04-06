@@ -460,7 +460,8 @@ class Transactions {
             'vendorName' => XmlFields::returnArrayValue ( $hash_in, 'vendorName' ),
             'fundsTransferId' => XmlFields::returnArrayValue ( $hash_in, 'amount' ),
             'amount' => XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
-            'accountInfo' => XmlFields::echeckType ( XmlFields::returnArrayValue ( $hash_in, 'accountInfo' ) )
+            'accountInfo' => XmlFields::echeckType ( XmlFields::returnArrayValue ( $hash_in, 'accountInfo' ) ),
+             'vendorAddress' => (XmlFields::address(XmlFields::returnArrayValue($hash_in, 'vendorAddress')))
         );
         return $hash_out;
     }
@@ -533,7 +534,9 @@ class Transactions {
             'vendorName' => XmlFields::returnArrayValue ( $hash_in, 'vendorName' ),
             'fundsTransferId' => XmlFields::returnArrayValue ( $hash_in, 'amount' ),
             'amount' => XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
-            'accountInfo' => XmlFields::echeckType ( XmlFields::returnArrayValue ( $hash_in, 'accountInfo' ) )
+            'accountInfo' => XmlFields::echeckType ( XmlFields::returnArrayValue ( $hash_in, 'accountInfo' ) ),
+             'vendorAddress' => (XmlFields::address(XmlFields::returnArrayValue($hash_in, 'vendorAddress')))
+
         );
         return $hash_out;
     }

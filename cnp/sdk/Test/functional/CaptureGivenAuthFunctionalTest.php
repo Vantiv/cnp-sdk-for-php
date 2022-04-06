@@ -411,4 +411,79 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('sandbox', $location);
     }
 
+    public function test_captureGivenAuth_with_additionalCOFData()
+    {
+
+        $hash_in = array('id' => 'id',
+            'orderId' => '12344',
+            'amount' => '106',
+            'authInformation' => array(
+                'authDate' => '2002-10-09', 'authCode' => '543216',
+                'authAmount' => '12345'),
+            'billToAddress' => array('name' => 'Bob', 'city' => 'lowell', 'state' => 'MA', 'email' => 'vantiv.com'),
+            'processingInstructions' => array('bypassVelocityCheck' => 'true'),
+            'orderSource' => 'ecommerce',
+            'card' => array(
+                'type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1210'),
+            'crypto' => 'true',
+            'billToAddress' => array(
+                'name' => 'David Berman A',
+                'addressLine1' => '10 Main Street',
+                'city' => 'San Jose',
+                'state' => 'ca',
+                'zip' => '95032',
+                'country' => 'USA',
+                'email' => 'dberman@phoenixProcessing.com',
+                'phone' => '781-270-1111',
+                'sellerId' => '21234234A1',
+                'url' => 'www.google.com',
+            ),
+            'shipToAddress' => array(
+                'name' => 'Raymond J. Johnson Jr. B',
+                'addressLine1' => '123 Main Street',
+                'city' => 'McLean',
+                'state' => 'VA',
+                'zip' => '22102',
+                'country' => 'USA',
+                'email' => 'ray@rayjay.com',
+                'phone' => '978-275-0000',
+                'sellerId' => '21234234A2',
+                'url' => 'www.google.com',
+            ),
+            'retailerAddress' => array(
+                'name' => 'John doe',
+                'addressLine1' => '123 Main Street',
+                'addressLine2' => '123 Main Street',
+                'addressLine3' => '123 Main Street',
+                'city' => 'Cincinnati',
+                'state' => 'OH',
+                'zip' => '45209',
+                'country' => 'USA',
+                'email' => 'noone@abc.com',
+                'phone' => '1234562783',
+                'sellerId' => '21234234A',
+                'companyName' => 'Google INC',
+                'url' => 'www.google.com',
+            ),
+            'additionalCOFData' => array(
+                'totalPaymentCount' => 'ND',
+                'paymentType' => 'Fixed Amount',
+                'uniqueId' => '234GTYH654RF13',
+                'frequencyOfMIT' => 'Annually',
+                'validationReference' => 'ANBH789UHY564RFC@EDB',
+                'sequenceIndicator' => '86',
+            ),
+            );
+
+        $initialize = new CnpOnlineRequest();
+        //print_r($hash_in);
+        $authorizationResponse = $initialize->captureGivenAuthRequest($hash_in);
+        $response = XmlParser::getNode($authorizationResponse, 'response');
+        $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+    }
+
 }

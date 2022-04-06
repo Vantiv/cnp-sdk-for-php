@@ -24,8 +24,11 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 namespace cnp\sdk\Test\unit;
+use cnp\sdk\CnpOnlineRequest;
 use cnp\sdk\CommManager;
 use cnp\sdk\XmlFields;
+use cnp\sdk\XmlParser;
+
 class XmlFieldsTest extends \PHPUnit_Framework_TestCase
 {
     public static function setUpBeforeClass()
@@ -600,6 +603,60 @@ class XmlFieldsTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($hash_out["cardValidationNum"], "123");
         $this->assertEquals($hash_out["checkoutId"], "324324324234");
         $this->assertEquals($hash_out["cnpToken"], "");
+
+    }
+    public function test_customerInfo_with_accountUsername()
+    {
+        $hash_in  = array(
+                'ssn' => '12345',
+                'incomeAmount' => '12345',
+                'incomeCurrency' => 'dollar',
+                'yearsAtResidence' => '2',
+                'accountUsername' => 'Woolfoo',
+                'userAccountNumber' => '123456ATY',
+                'userAccountEmail' => 'woolfoo@gmail.com',
+                'membershipId' => 'Member01',
+                'membershipPhone' => '9765431234',
+                'membershipEmail' => 'mem@abc.com',
+                'membershipName' => 'memName',
+                'accountCreatedDate' => '2022-04-04',
+                'userAccountPhone' => '123456789',
+
+           );
+        $hash_out = XmlFields::customerInfo($hash_in);
+        $this->assertEquals($hash_out ["accountUsername"], "Woolfoo");
+        $this->assertEquals($hash_out ["userAccountNumber"], "123456ATY");
+        $this->assertEquals($hash_out ["userAccountEmail"], "woolfoo@gmail.com");
+        $this->assertEquals($hash_out ["membershipId"], "Member01");
+        $this->assertEquals($hash_out ["membershipPhone"], "9765431234");
+        $this->assertEquals($hash_out ["membershipEmail"], "mem@abc.com");
+        $this->assertEquals($hash_out ["membershipName"], "memName");
+        $this->assertEquals($hash_out ["accountCreatedDate"], "2022-04-04");
+        $this->assertEquals($hash_out ["userAccountPhone"], "123456789");
+
+
+    }
+
+    public function test_enhancedData_with_discountCode()
+    {
+        $hash_in =  array(
+                'detailtax' => array('taxAmount' => '1234', 'tax' => '50'),
+                'customerReference' => 'Litle',
+                'salesTax' => '50',
+                'deliveryType' => 'TBD',
+                'restriction' => 'DIG',
+                'shipFromPostalCode' => '01741',
+                'destinationPostalCode' => '01742',
+                'discountCode' => 'oneTimeDis',
+                'discountPercent' => '12',
+                'fulfilmentMethodType' => 'COUNTER_PICKUP'
+
+        );
+        $hash_out = XmlFields::enhancedData($hash_in);
+        $this->assertEquals($hash_out ["discountCode"], "oneTimeDis");
+        $this->assertEquals($hash_out ["discountPercent"], "12");
+        $this->assertEquals($hash_out ["fulfilmentMethodType"], "COUNTER_PICKUP");
+
 
     }
 

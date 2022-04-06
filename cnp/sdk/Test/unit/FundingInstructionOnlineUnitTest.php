@@ -23,67 +23,88 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 namespace cnp\sdk\Test\unit;
+
 use cnp\sdk\CnpOnlineRequest;
 use cnp\sdk\CommManager;
+use cnp\sdk\XmlParser;
 
-class FastAccessFundingTest extends \PHPUnit_Framework_TestCase
+class FundingInstructionOnlineUnitTest extends \PHPUnit_Framework_TestCase
 {
     public static function setUpBeforeClass()
     {
         CommManager::reset();
     }
 
-    public function test_simple()
-    {
-        $hash_in = array('id' => 'id',
-            'fundingSubmerchantId' => '2111',
-            'submerchantName' => '001',
-            'fundsTransferId' => '1234567891111111',
-            'amount' => '13',
-            'card' => array(
-                'type' => 'VI',
-                'number' => '4100000000000000',
-                'expDate' => '1210'
-            ));
-        $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
-        $mock->expects($this->once())
-            ->method('request')
-            ->with($this->matchesRegularExpression('/.*<fastAccessFunding.*<fundingSubmerchantId>2.*<submerchantName>0.*<fundsTransferId>123.*/'));
 
-        $cnpTest = new CnpOnlineRequest();
-        $cnpTest->newXML = $mock;
-        $cnpTest->fastAccessFunding($hash_in);
-    }
-    public function test_fastAccessFunding_with_cardholderAddress()
+    public function test_vendor_debit_with_vendorAddress()
     {
         $hash_in = array('id' => 'id',
             'fundingSubmerchantId' => '2111',
-            'submerchantName' => '001',
-            'fundsTransferId' => '1234567891111111',
+            'vendorName' => 'Super Secret Tech Inc.',
+            'fundsTransferId' => '12345678',
             'amount' => '13',
-            'card' => array(
-                'type' => 'VI',
-                'number' => '4100000000000000',
-                'expDate' => '1210'
+            'accountInfo' => array(
+                'accType' => 'Checking',
+                'accNum' => '12345657890',
+                'routingNum' => '123456789',
+                'checkNum' => '123455'
             ),
-            'cardholderAddress' => array(
+            'vendorAddress' => array(
                 'addressLine1' => '2 Main St.',
                 'addressLine2' => 'Apt. 222',
                 'addressLine3' => 'NA',
                 'city' => 'Riverside',
                 'state' => 'RI',
                 'zip' => '02915',
-                'country' => 'US')
+                'country' => 'US'),
         );
+
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
-        $mock->expects($this->once())
+        $mock	->expects($this->once())
             ->method('request')
             ->with($this->matchesRegularExpression('/.*<addressLine1>2 Main St..*<addressLine2>Apt. 222.*<addressLine3>NA.*<city>Riverside.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
-        $cnpTest->fastAccessFunding($hash_in);
+        $cnpTest->vendorDebit($hash_in);
+
     }
+
+
+
+    public function test_vendor_credit_with_vendorAddress()
+    {
+        $hash_in = array('id' => 'id',
+            'fundingSubmerchantId' => '2111',
+            'vendorName' => 'Super Secret Tech Inc.',
+            'fundsTransferId' => '12345678',
+            'amount' => '1000',
+            'accountInfo' => array(
+                'accType' => 'Checking',
+                'accNum' => '12345657890',
+                'routingNum' => '123456789',
+                'checkNum' => '123455'
+            ),
+            'vendorAddress' => array(
+                'addressLine1' => '2 Main St.',
+                'addressLine2' => 'Apt. 222',
+                'addressLine3' => 'NA',
+                'city' => 'Riverside',
+                'state' => 'RI',
+                'zip' => '02915',
+                'country' => 'US'),
+        );
+
+        $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
+        $mock	->expects($this->once())
+            ->method('request')
+            ->with($this->matchesRegularExpression('/.*<addressLine1>2 Main St..*<addressLine2>Apt. 222.*<addressLine3>NA.*<city>Riverside.*/'));
+
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->vendorCredit($hash_in);
+    }
+
 
 
 }
