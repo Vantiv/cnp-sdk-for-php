@@ -333,10 +333,7 @@ class XmlFields
                 "destinationPostalCode"=>XmlFields::returnArrayValue($hash_in, "destinationPostalCode"),
                 "destinationCountryCode"=>XmlFields::returnArrayValue($hash_in, "destinationCountryCode"),
                 "invoiceReferenceNumber"=>XmlFields::returnArrayValue($hash_in, "invoiceReferenceNumber"),
-                "orderDate"=>XmlFields::returnArrayValue($hash_in, "orderDate"),
-                "discountCode"=>XmlFields::returnArrayValue($hash_in, "discountCode"),
-                "discountPercent"=>XmlFields::returnArrayValue($hash_in, "discountPercent"),
-                "fulfilmentMethodType"=>XmlFields::returnArrayValue($hash_in, "fulfilmentMethodType")
+                "orderDate"=>XmlFields::returnArrayValue($hash_in, "orderDate")
             );
             $lineItem = array();
             $detailtax = array();
@@ -355,6 +352,14 @@ class XmlFields
                 $outIndex = ('lineItemData') . (string) $j;
                 $hash_out[$outIndex] = XmlFields::lineItemData(XmlFields::returnArrayValue($lineItem,$j));
             }
+
+            array_merge($hash_out,
+                array(
+                    "discountCode" => XmlFields::returnArrayValue($hash_in, "discountCode"),
+                    "discountPercent" => XmlFields::returnArrayValue($hash_in, "discountPercent"),
+                    "fulfilmentMethodType" => XmlFields::returnArrayValue($hash_in, "fulfilmentMethodType")
+                    )
+            );
             return $hash_out;
         }
     }

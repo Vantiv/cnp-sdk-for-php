@@ -103,6 +103,7 @@ class Transactions {
             'processingType'=>XmlFields::returnArrayValue($hash_in,'processingType'),
             'originalNetworkTransactionId'=>XmlFields::returnArrayValue($hash_in,'originalNetworkTransactionId'),
             'originalTransactionAmount'=>XmlFields::returnArrayValue($hash_in,'originalTransactionAmount'),
+            'businessIndicator' => XmlFields::returnArrayValue($hash_in, 'businessIndicator'),
             'orderChannel' => XmlFields::returnArrayValue($hash_in, 'orderChannel'),
             'fraudCheckStatus' => XmlFields::returnArrayValue($hash_in, 'fraudCheckStatus'),
             'crypto' => XmlFields::returnArrayValue($hash_in, 'crypto')
@@ -423,7 +424,7 @@ class Transactions {
         );
         return $hash_out;
     }
-    public function createDepositTransactionReversalHash($hash_in)
+    public static function createDepositTransactionReversalHash($hash_in)
     {
         $hash_out = array(
                 'cnpTxnId' => (XmlFields::returnArrayValue($hash_in,'cnpTxnId')),
@@ -438,7 +439,7 @@ class Transactions {
         return $hash_out;
     }
 
-    public function createRefundTransactionReversalHash($hash_in)
+    public static function createRefundTransactionReversalHash($hash_in)
     {
         $hash_out = array(
             'cnpTxnId' => (XmlFields::returnArrayValue($hash_in,'cnpTxnId')),
@@ -816,15 +817,14 @@ class Transactions {
             'submerchantName' => XmlFields::returnArrayValue ( $hash_in, 'submerchantName' ),
             'fundsTransferId' => XmlFields::returnArrayValue (  $hash_in, 'fundsTransferId'  ),
             'amount' =>  XmlFields::returnArrayValue ( $hash_in, 'amount' ) ,
-            // new
             'disbursementType' =>  XmlFields::returnArrayValue ( $hash_in, 'disbursementType' ) ,
-            //
+            'cardholderAddress' => XmlFields::address(XmlFields::returnArrayValue($hash_in, 'cardholderAddress')),
             'card' => XmlFields::cardType ( XmlFields::returnArrayValue ( $hash_in, 'card' ) ),
             'token' => XmlFields::cardTokenType ( XmlFields::returnArrayValue ( $hash_in, 'token' ) ),
             'paypage' => XmlFields::cardPaypageType ( XmlFields::returnArrayValue ( $hash_in, 'paypage' ) ),
             'fundingCustomerId' => XmlFields::returnArrayValue ( $hash_in, 'fundingCustomerId' ),
-            'customerName' => XmlFields::returnArrayValue ( $hash_in, 'customerName' ),
-            'cardholderAddress' => XmlFields::address(XmlFields::returnArrayValue($hash_in, 'cardholderAddress'))
+            'customerName' => XmlFields::returnArrayValue ( $hash_in, 'customerName' )
+
         );
         return $hash_out;
     }
