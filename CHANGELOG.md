@@ -1,6 +1,6 @@
 = CnpOnline CHANGELOG
 
-==Version 12.24.0 (April 05, 2022)
+==Version 12.24.0 (April 20, 2022)
 Note: It contains changes from cnpAPI v12.19, v12.20, v12.21, v12.22 & 12.23. In case you need any feature supported by cnpAPI v12.19, v12.20, v12.21, v12.22 or v12.23, please use SDK version 12.24.0.
 
 * Feature: [cnpAPI v12.24] New Enum value highRiskSecuritiesPurchase, fundTransfer and walletTransfer included in businessIndicatorEnum.
