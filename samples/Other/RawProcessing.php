@@ -1,7 +1,7 @@
 <?php
 namespace cnp\sdk;
 require_once realpath(__DIR__). '/../../vendor/autoload.php';  
-$request = new CnpRequest();
+/*$request = new CnpRequest();
 $batch = new BatchRequest();
 $sale_info = array(
         	  'orderId' => '1',
@@ -34,4 +34,4 @@ echo "Response Raw XML: " . $raw_response;
 
 if($sxe->message[0]!='Approved')
  throw new \Exception('RawProcessing does not get the right response');
-
+*/

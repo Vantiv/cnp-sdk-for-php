@@ -2,7 +2,7 @@
 namespace cnp\sdk;
 require_once realpath(__DIR__). '/../../vendor/autoload.php';
 #Sale
-$sale_info = array(
+/*$sale_info = array(
         	  'orderId' => '1',
 		      'amount' => '10010',
 		      'orderSource'=>'ecommerce',
@@ -18,10 +18,10 @@ $sale_info = array(
 		      'expDate' => '0112',
 		      'cardValidationNum' => '349',
 		      'type' => 'MC')
-			);
+			);*/
  
  
-$config_hash = array(
+/*$config_hash = array(
   'user' => 'BATCHSDKA',
   'password' => 'certpass',
   'merchantId' => '101',
@@ -55,4 +55,4 @@ while($txn = $processor->nextTransaction()){
 	echo "Transaction Id: " . $txn->cnpTxnId ." \n";
 	if($txn->message!='Approved')
  throw new \Exception('ConfiguredCnpBatchRequestsMaually does not get the right response');
-}
+}*/

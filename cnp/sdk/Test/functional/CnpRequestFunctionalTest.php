@@ -266,7 +266,7 @@ class CnpRequestFunctionalTest extends \PHPUnit_Framework_TestCase
     }
 
 
-    public function test_sendToCnpStream()
+    /*public function test_sendToCnpStream()
     {
         $request = new CnpRequest ($this->config);
 
@@ -308,7 +308,7 @@ class CnpRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('saleResponse', $resp->getName());
         $this->assertEquals('Planets', $resp->attributes()->reportGroup);
         $this->assertEquals('1864', $resp->orderId);
-    }
+    }*/
 
     public function tearDown()
     {

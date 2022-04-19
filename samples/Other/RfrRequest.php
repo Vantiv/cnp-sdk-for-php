@@ -2,7 +2,7 @@
 namespace cnp\sdk;
 require_once realpath(__DIR__). '/../../vendor/autoload.php'; 
 # use Auth batch to get the session Id
-$request = new CnpRequest();
+/*$request = new CnpRequest();
 $batch = new BatchRequest();
 	$hash_in = array(
 		'card'=>array('type'=>'VI',
@@ -32,7 +32,7 @@ $batch = new BatchRequest();
 	 echo $res;
 	 $xml = simplexml_load_string($res);
 	if($xml->message[0]!='Approved')
-     throw new \Exception('RfrRequest does not get the right response');
+     throw new \Exception('RfrRequest does not get the right response');*/
 	
   
 

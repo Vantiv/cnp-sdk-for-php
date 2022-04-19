@@ -73,7 +73,7 @@ class CnpResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
         $proc = new CnpResponseProcessor ($this->direct . '/pizza.tmp');
     }
 
-    public function test_processRaw()
+   /* public function test_processRaw()
     {
         $request = new CnpRequest ($this->config);
 
@@ -99,9 +99,9 @@ class CnpResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
         $proc = new CnpResponseProcessor ($resp);
         $res = $proc->nextTransaction(true);
         $this->assertTrue(strpos($res, "authorizationResponse") !== FALSE);
-    }
+    }*/
 
-    public function test_processMecha()
+   /* public function test_processMecha()
     {
         $request = new CnpRequest ($this->config);
 
@@ -408,9 +408,9 @@ class CnpResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(in_array("loadResponse", $responses));
         $this->assertTrue(in_array("unloadResponse", $responses));
         $this->assertTrue(in_array("balanceInquiryResponse", $responses));
-    }
+    }*/
 
-    public function test_echeckPreNote_all()
+   /* public function test_echeckPreNote_all()
     {
 
         $request = new CnpRequest ($this->config);
@@ -507,7 +507,7 @@ class CnpResponseProcessorFunctionalTest extends \PHPUnit_Framework_TestCase
         }
 
         $this->assertEquals($txnCount, 6);
-    }
+    }*/
 //    public function test_PFIF_instruction_txn()
 //    {
 //
