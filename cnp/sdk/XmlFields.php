@@ -353,7 +353,7 @@ class XmlFields
                 $hash_out[$outIndex] = XmlFields::lineItemData(XmlFields::returnArrayValue($lineItem,$j));
             }
 
-            array_merge($hash_out,
+                $hash_out =  array_merge($hash_out,
                 array(
                     "discountCode" => XmlFields::returnArrayValue($hash_in, "discountCode"),
                     "discountPercent" => XmlFields::returnArrayValue($hash_in, "discountPercent"),
