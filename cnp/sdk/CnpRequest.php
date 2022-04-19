@@ -302,7 +302,7 @@ class CnpRequest
     /*
      * Deliver the Cnp Request over a TCP stream. Returns the name of the file retrieved from the server
      */
-    public function sendToCnpStream()
+   /* public function sendToCnpStream()
     {
         if (!$this->closed) {
             $this->closeRequest();
@@ -343,5 +343,5 @@ class CnpRequest
 
             return $this->response_file;
         }
-    }
+    }*/
 }
