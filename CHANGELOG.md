@@ -24,6 +24,7 @@ Note: It contains changes from cnpAPI v12.19, v12.20, v12.21, v12.22 & 12.23. In
 * Feature: [cnpAPI v12.19] transactionReversal transaction is not supported in and after cnpAPI v12.19. It has been split into two different transactions:
 			- depositTransactionReversal
 			- refundTransactionReversal
+* Removed: sendToCnpStream() method is being removed as it is not supported by cnpAPI anymore. The support is removed from the platform, so, it will not work with any SDK version.
 
 ==Version 12.17.1 (April 19, 2021)
 * BugFix: Fixed delete batch files flag in CnpResponseProcessor

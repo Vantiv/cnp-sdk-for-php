@@ -31,7 +31,7 @@ use cnp\sdk\XmlParser;
 
 require_once realpath(__DIR__) . '/../../../../vendor/autoload.php';
 
-define('PRELIVE_URL', 'https://payments.vantivprelive.com/vap/communicator/online');
+define('PRELIVE_URL', 'https://transact.vantivprelive.com/vap/communicator/online');
 
 //comment to see if can commit
 
