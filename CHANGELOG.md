@@ -1,5 +1,31 @@
 = CnpOnline CHANGELOG
 
+==Version 12.24.0 (April 20, 2022)
+Note: It contains changes from cnpAPI v12.19, v12.20, v12.21, v12.22 & 12.23. In case you need any feature supported by cnpAPI v12.19, v12.20, v12.21, v12.22 or v12.23, please use SDK version 12.24.0.
+
+* Feature: [cnpAPI v12.24] New Enum value highRiskSecuritiesPurchase, fundTransfer and walletTransfer included in businessIndicatorEnum.
+* Feature: [cnpAPI v12.24] New element fraudCheckStatus is added for authorization and sale transactions.
+* Feature: [cnpAPI v12.24] New element crypto is added for authorization, captureGivenAuth and  sale transactions.
+* Feature: [cnpAPI v12.23] New Enum value buyOnlinePickUpInStore included in businessIndicatorEnum.
+* Feature: [cnpAPI v12.23] sellerId & url elements are added for new element retailerAddress and for existing contact type elements.
+* Feature: [cnpAPI v12.23] New element additionalCOFData is added for authorization, captureGivenAuth and  sale transactions.
+* Feature: [cnpAPI v12.23] New element retailerAddress is added for authorization, captureGivenAuth and  sale transactions.
+* Feature: [cnpAPI v12.23] New element orderChannel is added for authorization and  sale transactions.
+* Feature: [cnpAPI v12.23] New elements accountUsername, userAccountNumber, userAccountEmail, membershipId, membershipPhone, membershipEmail, membershipName, accountCreatedDate and userAccountPhone added for custmerInfo element.
+* Feature: [cnpAPI v12.23] New elements discountCode, discountPercent and fulfilmentMethodType added to enhancedData element.
+* Feature: [cnpAPI v12.23] New elements itemCategory, itemSubCategory, productId and productName added to lineItemData element.
+* Feature: [cnpAPI v12.22] New element vendorAddress is added in vendorCredit and vendorDebit transaction type.
+* Feature: [cnpAPI v12.22] Optional element cardholderAddress is added to fastAccessFunding transaction type.
+* Feature: [cnpAPI v12.22] New addressType is added to support vendorAddress and cardholderAddress.
+* Feature: [cnpAPI v12.21] fraudCheck authenticationValue can support upto 512 characters now.
+* Feature: [cnpAPI v12.20] New methodOfPaymentTypeEnum value IC for Interac Payment has been added.
+* Feature: [cnpAPI v12.19] OrderID element now supports 256 characters.
+* Feature: [cnpAPI v12.19] Optional OrderID element is supported in Capture and Credit transactions.
+* Feature: [cnpAPI v12.19] transactionReversal transaction is not supported in and after cnpAPI v12.19. It has been split into two different transactions:
+			- depositTransactionReversal
+			- refundTransactionReversal
+* Removed: sendToCnpStream() method is being removed as it is not supported by cnpAPI anymore. The support is removed from the platform, so, it will not work with any SDK version.
+
 ==Version 12.17.1 (April 19, 2021)
 * BugFix: Fixed delete batch files flag in CnpResponseProcessor
 

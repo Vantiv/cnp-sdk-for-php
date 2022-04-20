@@ -424,6 +424,46 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('sandbox', $location);
     }
 
+    public function test_sale_with_billToAddress()
+    {
+        $sale_info = array(
+            'id' => '1',
+            'orderId' => '1',
+            'amount' => '10010',
+            'orderSource'=>'ecommerce',
+            'billToAddress'=>array(
+                'name' => 'John Smith',
+                'addressLine1' => '1 Main St.',
+                'city' => 'Burlington',
+                'state' => 'MA',
+                'zip' => '01803-3747',
+                'country' => 'US',
+                'sellerId' => '12345678912345',
+                'url' => 'https://dummyurl.com'),
+            'card'=>array(
+                'number' =>'5112010000000003',
+                'expDate' => '0112',
+                'cardValidationNum' => '349',
+                'type' => 'MC'
+            ),
+            'enhancedData' => array(
+                'detailTax' => array(
+                    'taxAmount' => 300,
+                    'taxIncludedInTotal' => true
+                ),
+                'salesTax' => 500,
+                'taxExempt' => false
+            ),
+        );
+        $initialize = new CnpOnlineRequest();
+        $saleResponse = $initialize->saleRequest($sale_info);
+        #display results
+        $response = XmlParser::getNode($saleResponse, 'response');
+        $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($saleResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+    }
+
     public function test_sale_with_Ideal()
     {
         $hash_in = array(
@@ -793,7 +833,105 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('sandbox', $location);
     }
 
+    public function test_simple_sale_with_interac()
+    {
+        $hash_in = array(
+            'card' => array('type' => 'IC',
+                'number' => '4100000000000000',
+                'expDate' => '1213',
+                'cardValidationNum' => '1213'),
+            'cardholderAuthentication' => array(
+                /// base64 value for dummy number '123456789012345678901234567890123456789012345678901234567890'
+                /// System should accept the request with length 60 of authenticationValueType
+                'authenticationValue' => 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkw'
+            ),
+            'id' => '1211',
+            'orderId' => '2111',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '123');
 
+        $initialize = new CnpOnlineRequest();
+        $saleResponse = $initialize->saleRequest($hash_in);
+        $response = XmlParser::getNode($saleResponse, 'response');
+        $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($saleResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+    }
+    public function test_sale_with_additionalCOFData()
+    {
+        $hash_in = array(
+            'card' => array('type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1213',
+                'cardValidationNum' => '1213'),
+            'id' => '1211',
+            'orderId' => '2111',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '123',
+            'merchantCategoryCode' => '6770',
+            'billToAddress' => array(
+                'name' => 'David Berman A',
+                'addressLine1' => '10 Main Street',
+                'city' => 'San Jose',
+                'state' => 'ca',
+                'zip' => '95032',
+                'country' => 'USA',
+                'email' => 'dberman@phoenixProcessing.com',
+                'phone' => '781-270-1111',
+                'sellerId' => '21234234A1',
+                'url' => 'www.google.com',
+            ),
+            'shipToAddress' => array(
+                'name' => 'Raymond J. Johnson Jr. B',
+                'addressLine1' => '123 Main Street',
+                'city' => 'McLean',
+                'state' => 'VA',
+                'zip' => '22102',
+                'country' => 'USA',
+                'email' => 'ray@rayjay.com',
+                'phone' => '978-275-0000',
+                'sellerId' => '21234234A2',
+                'url' => 'www.google.com',
+            ),
+            'crypto' => 'true',
+            'retailerAddress' => array(
+                'name' => 'John doe',
+                'addressLine1' => '123 Main Street',
+                'addressLine2' => '123 Main Street',
+                'addressLine3' => '123 Main Street',
+                'city' => 'Cincinnati',
+                'state' => 'OH',
+                'zip' => '45209',
+                'country' => 'USA',
+                'email' => 'noone@abc.com',
+                'phone' => '1234562783',
+                'sellerId' => '21234234A',
+                'companyName' => 'Google INC',
+                'url' => 'www.google.com',
+            ),
+            'additionalCOFData' => array(
+                'totalPaymentCount' => 'ND',
+                'paymentType' => 'Fixed Amount',
+                'uniqueId' => '234GTYH654RF13',
+                'frequencyOfMIT' => 'Annually',
+                'validationReference' => 'ANBH789UHY564RFC@EDB',
+                'sequenceIndicator' => '86',
+            ),
+            'orderChannel' => 'IN_STORE_KIOSK',
+            'fraudCheckStatus' => 'CLOSE',
+
+        );
+
+        $initialize = new CnpOnlineRequest();
+        //print_r($hash_in);
+        $authorizationResponse = $initialize->saleRequest($hash_in);
+        $response = XmlParser::getNode($authorizationResponse, 'response');
+        $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+    }
 
 
 }

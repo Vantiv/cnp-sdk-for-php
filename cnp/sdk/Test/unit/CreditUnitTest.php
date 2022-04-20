@@ -407,5 +407,21 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
         $cnpTest->newXML = $mock;
         $cnpTest->creditRequest($hash_in);
     }
+    public function test_simple_credit_with_optional_order_id()
+    {
+        $hash_in = array('id' => 'id',
+            'cnpTxnId' => '1234567891234567891',
+            'orderId' => '22@33123456789012345678901234567890',
+            'amount' => '123');
+        $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
+        $mock->expects($this->once())
+            ->method('request')
+            ->with($this->matchesRegularExpression('/.*<cnpTxnId>1234567891234567891.*<orderId>22@33123456789012345678901234567890.*<amount>123.*/'));
+
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->captureRequest($hash_in);
+    }
+
 
 }

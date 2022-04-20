@@ -25,6 +25,7 @@
 namespace cnp\sdk\Test\unit;
 use cnp\sdk\CnpOnlineRequest;
 use cnp\sdk\CommManager;
+use cnp\sdk\XmlParser;
 
 class SaleUnitTest extends \PHPUnit_Framework_TestCase
 {
@@ -776,4 +777,111 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
         $cnpTest->newXML = $mock;
         $cnpTest->saleRequest($hash_in);
     }
+    public function test_sale_with_additionalCOFData()
+    {
+        $hash_in = array(
+            'card' => array('type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1213',
+                'cardValidationNum' => '1213'),
+            'id' => '1211',
+            'orderId' => '2111',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '123',
+            'merchantCategoryCode' => '6770',
+            'billToAddress' => array(
+                'name' => 'David Berman A',
+                'addressLine1' => '10 Main Street',
+                'city' => 'San Jose',
+                'state' => 'ca',
+                'zip' => '95032',
+                'country' => 'USA',
+                'email' => 'dberman@phoenixProcessing.com',
+                'phone' => '781-270-1111',
+                'sellerId' => '21234234A1',
+                'url' => 'www.google.com',
+            ),
+            'shipToAddress' => array(
+                'name' => 'Raymond J. Johnson Jr. B',
+                'addressLine1' => '123 Main Street',
+                'city' => 'McLean',
+                'state' => 'VA',
+                'zip' => '22102',
+                'country' => 'USA',
+                'email' => 'ray@rayjay.com',
+                'phone' => '978-275-0000',
+                'sellerId' => '21234234A2',
+                'url' => 'www.google.com',
+            ),
+            'crypto' => 'true',
+            'retailerAddress' => array(
+                'name' => 'John doe',
+                'addressLine1' => '123 Main Street',
+                'addressLine2' => '123 Main Street',
+                'addressLine3' => '123 Main Street',
+                'city' => 'Cincinnati',
+                'state' => 'OH',
+                'zip' => '45209',
+                'country' => 'USA',
+                'email' => 'noone@abc.com',
+                'phone' => '1234562783',
+                'sellerId' => '21234234A',
+                'companyName' => 'Google INC',
+                'url' => 'www.google.com',
+            ),
+            'additionalCOFData' => array(
+                'totalPaymentCount' => 'ND',
+                'paymentType' => 'Fixed Amount',
+                'uniqueId' => '234GTYH654RF13',
+                'frequencyOfMIT' => 'Annually',
+                'validationReference' => 'ANBH789UHY564RFC@EDB',
+                'sequenceIndicator' => '86',
+            ),
+                'orderChannel' => 'IN_STORE_KIOSK',
+                'fraudCheckStatus' => 'CLOSE',
+
+        );
+
+
+        $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
+        $mock->expects($this->once())
+            ->method('request')
+            ->with($this->matchesRegularExpression('/.*<sellerId>21234234A.*<url>www.google.com.*<orderChannel>IN_STORE_KIOSK.*<fraudCheckStatus>CLOSE.*/'));
+
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->saleRequest($hash_in);
+
+
+    }
+    public function test_simple_sale_with_authenticationValue()
+    {
+        $hash_in = array(
+            'card' => array('type' => 'IC',
+                'number' => '4100000000000000',
+                'expDate' => '1213',
+                'cardValidationNum' => '1213'),
+            'cardholderAuthentication' => array(
+                /// base64 value for dummy number '123456789012345678901234567890123456789012345678901234567890'
+                /// System should accept the request with length 60 of authenticationValueType
+                'authenticationValue' => 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkw'
+            ),
+            'id' => '1211',
+            'orderId' => '2111',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '123');
+
+        $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
+        $mock->expects($this->once())
+            ->method('request')
+            ->with($this->matchesRegularExpression('/.*<type>IC.*<authenticationValue>MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkw.*/'));
+
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->saleRequest($hash_in);
+
+    }
+
 }

@@ -22,27 +22,40 @@
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
  * OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace cnp\sdk;
-use cnp\sdk\exceptions\cnpSDKException;
-use DOMDocument;
+namespace cnp\sdk\Test\unit;
 
-class Checker
+use cnp\sdk\CnpOnlineRequest;
+use cnp\sdk\CommManager;
+
+
+class DepositTransactionReversalUnitTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @param $request
-     * @return bool
-     * @throws cnpSDKException
-     */
-    public static function validateXML($request){
-        $xml = new DOMDocument();
-        $xml->loadXML($request);
-        $filepath = __DIR__ . "/schema/SchemaCombined_v12.24.xsd";
-        $result =  $xml->schemaValidate( $filepath);
-
-        if(!$result)
-            throw new cnpSDKException("Fatal ERROR: Invalid XML Request!");
-
-
-        return $result;
+    public static function setUpBeforeClass()
+    {
+        CommManager::reset();
     }
+
+    public function test_simple_depositTransactionReversal()
+    {
+        $hash_in = array(
+            'id' => 'id',
+            'cnpTxnId' => '12345678000',
+            'amount' => '123',
+            'pin' => '1234',
+            'surchargeAmount' => '4321'
+        );
+
+
+
+        $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
+        $mock	->expects($this->once())
+            ->method('request')
+            ->with($this->matchesRegularExpression('/.*<cnpTxnId>12345678000.*<amount>123.*<pin>1234.*/'));
+
+
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->DepositTransactionReversal($hash_in);
+    }
+
 }

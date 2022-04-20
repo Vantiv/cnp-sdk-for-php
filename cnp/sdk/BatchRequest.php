@@ -59,7 +59,11 @@ class BatchRequest
             'translateToLowValueTokenRequest' => array(
                 'count' => 0
             ),
-            'transactionReversal' => array(
+            'depositTransactionReversal' => array(
+                'count' => 0,
+                'amount' => 0
+            ),
+            'refundTransactionReversal' => array(
                 'count' => 0,
                 'amount' => 0
             ),
@@ -612,12 +616,20 @@ class BatchRequest
         $this->counts_and_amounts ['translateToLowValueTokenRequest'] ['count'] += 1;
     }
 
-    public function addTransactionReversal($hash_in)
+    public function addDepositTransactionReversal($hash_in)
     {
-        $hash_out = Transactions::createTransactionReversalHash($hash_in);
-        $this->addTransaction($hash_out, $hash_in, 'transactionReversal');
-        $this->counts_and_amounts ['transactionReversal'] ['count'] += 1;
-        $this->counts_and_amounts ['transactionReversal'] ['amount'] += $hash_out ['amount'];
+        $hash_out = Transactions::createDepositTransactionReversalHash($hash_in);
+        $this->addTransaction($hash_out, $hash_in, 'depositTransactionReversal');
+        $this->counts_and_amounts ['depositTransactionReversal'] ['count'] += 1;
+        $this->counts_and_amounts ['depositTransactionReversal'] ['amount'] += $hash_out ['amount'];
+    }
+
+    public function addRefundTransactionReversal($hash_in)
+    {
+        $hash_out = Transactions::createRefundTransactionReversalHash($hash_in);
+        $this->addTransaction($hash_out, $hash_in, 'refundTransactionReversal');
+        $this->counts_and_amounts ['refundTransactionReversal'] ['count'] += 1;
+        $this->counts_and_amounts ['refundTransactionReversal'] ['amount'] += $hash_out ['amount'];
     }
 
     public function addSubmerchantDebit($hash_in)

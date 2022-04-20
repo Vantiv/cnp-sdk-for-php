@@ -28,14 +28,14 @@ use cnp\sdk\CnpOnlineRequest;
 use cnp\sdk\CommManager;
 use cnp\sdk\XmlParser;
 
-class TransactionReversalFunctionalTest extends \PHPUnit_Framework_TestCase
+class RefundTransactionReversalFunctionalTest extends \PHPUnit_Framework_TestCase
 {
     public static function setUpBeforeClass()
     {
         CommManager::reset();
     }
 
-    public function test_simple_transactionReversal()
+    public function test_simple_refundTransactionReversal()
     {
         $hash_in = array(
             'id' => 'id',
@@ -46,15 +46,15 @@ class TransactionReversalFunctionalTest extends \PHPUnit_Framework_TestCase
         );
 
         $initilaize = new CnpOnlineRequest();
-        $transactionReversalResponse = $initilaize->transactionReversal($hash_in);
+        $refundTransactionReversalResponse = $initilaize->refundTransactionReversal($hash_in);
 
-        $response = XmlParser::getNode($transactionReversalResponse, 'response');
+        $response = XmlParser::getNode($refundTransactionReversalResponse, 'response');
         $this->assertEquals('000', $response);
 
-        $response = XmlParser::getNode($transactionReversalResponse, 'message');
+        $response = XmlParser::getNode($refundTransactionReversalResponse, 'message');
         $this->assertEquals('Approved', $response);
 
-        $location = XmlParser::getNode($transactionReversalResponse, 'location');
+        $location = XmlParser::getNode($refundTransactionReversalResponse, 'location');
         $this->assertEquals('sandbox', $location);
     }
 
