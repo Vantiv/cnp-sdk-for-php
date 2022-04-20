@@ -1226,6 +1226,7 @@ class CnpOnlineRequest
             'fundsTransferId' => XmlFields::returnArrayValue($hash_in, 'fundsTransferId'),
             'amount' => XmlFields::returnArrayValue($hash_in, 'amount'),
             'accountInfo' => XmlFields::echeckTypeCtx(XmlFields::returnArrayValue($hash_in, 'accountInfo')),
+            'vendorAddress' => (XmlFields::address(XmlFields::returnArrayValue($hash_in, 'vendorAddress'))),
         );
         $vendorCreditResponse = $this->processRequest($hash_out, $hash_in, "vendorCreditCtx");
         return $vendorCreditResponse;
@@ -1278,6 +1279,7 @@ class CnpOnlineRequest
             'fundsTransferId' => XmlFields::returnArrayValue($hash_in, 'fundsTransferId'),
             'amount' => XmlFields::returnArrayValue($hash_in, 'amount'),
             'accountInfo' => XmlFields::echeckTypeCtx(XmlFields::returnArrayValue($hash_in, 'accountInfo')),
+            'vendorAddress' => (XmlFields::address(XmlFields::returnArrayValue($hash_in, 'vendorAddress'))),
         );
         $vendorDebitResponse = $this->processRequest($hash_out, $hash_in, "vendorDebitCtx");
         return $vendorDebitResponse;
