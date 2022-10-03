@@ -241,7 +241,9 @@ class CnpOnlineRequest
             'amount' => XmlFields::returnArrayValue($hash_in, 'amount'),
             'surchargeAmount' => XmlFields::returnArrayValue($hash_in, 'surchargeAmount'),
             'payPalNotes' => XmlFields::returnArrayValue($hash_in, 'payPalNotes'),
-            'actionReason' => XmlFields::returnArrayValue($hash_in, 'actionReason'));
+            'actionReason' => XmlFields::returnArrayValue($hash_in, 'actionReason'),
+            'additionalCOFData' => (XmlFields::additionalCOFData(XmlFields::returnArrayValue($hash_in, 'additionalCOFData'))),
+            );
         $authReversalResponse = $this->processRequest($hash_out, $hash_in, 'authReversal');
 
         return $authReversalResponse;
@@ -312,6 +314,7 @@ class CnpOnlineRequest
             'token' => XmlFields::cardTokenType(XMLFields::returnArrayValue($hash_in, 'token')),
             'paypage' => XmlFields::cardPaypageType(XMLFields::returnArrayValue($hash_in, 'paypage')),
             'mpos' => (XmlFields::mposType(XmlFields::returnArrayValue($hash_in, 'mpos'))),
+            'additionalCOFData' => (XmlFields::additionalCOFData(XmlFields::returnArrayValue($hash_in, 'additionalCOFData'))),
             'customBilling' => XmlFields::customBilling(XMLFields::returnArrayValue($hash_in, 'customBilling')),
             'taxBilling' => XmlFields::taxBilling(XMLFields::returnArrayValue($hash_in, 'taxBilling')),
             'billMeLaterRequest' => XmlFields::billMeLaterRequest(XMLFields::returnArrayValue($hash_in, 'billMeLaterRequest')),
@@ -323,7 +326,8 @@ class CnpOnlineRequest
             'payPalNotes' => XmlFields::returnArrayValue($hash_in, 'payPalNotes'),
             'actionReason' => XmlFields::returnArrayValue($hash_in, 'actionReason'),
             'merchantCategoryCode' => XmlFields::returnArrayValue($hash_in, 'merchantCategoryCode'),
-            'businessIndicator' => XmlFields::returnArrayValue($hash_in, 'businessIndicator')
+            'businessIndicator' => XmlFields::returnArrayValue($hash_in, 'businessIndicator'),
+            'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData'))
         );
 
         $choice_hash = array($hash_out['card'], $hash_out['paypal'], $hash_out['token'], $hash_out['paypage'], $hash_out['mpos'], $hash_out['merchantCategoryCode']);
@@ -418,7 +422,8 @@ class CnpOnlineRequest
             'debtRepayment' => XmlFields::returnArrayValue($hash_in, 'debtRepayment'),
             'processingType' => XmlFields::returnArrayValue($hash_in, 'processingType'),
             'merchantCategoryCode' => XmlFields::returnArrayValue($hash_in, 'merchantCategoryCode'),
-            'businessIndicator' => XmlFields::returnArrayValue($hash_in, 'businessIndicator')
+            'businessIndicator' => XmlFields::returnArrayValue($hash_in, 'businessIndicator'),
+            'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData'))
         );
 
         $choice_hash = array(XmlFields::returnArrayValue($hash_out, 'card'), XmlFields::returnArrayValue($hash_out, 'paypal'), XmlFields::returnArrayValue($hash_out, 'token'), XmlFields::returnArrayValue($hash_out, 'paypage'), XmlFields::returnArrayValue($hash_out, 'mpos'));
@@ -446,7 +451,8 @@ class CnpOnlineRequest
             'payPalOrderComplete' => XmlFields::returnArrayValue($hash_in, 'payPalOrderComplete'),
             'payPalNotes' => XmlFields::returnArrayValue($hash_in, 'payPalNotes'),
             'lodgingInfo' => XmlFields::lodgingInfo(XmlFields::returnArrayValue($hash_in, 'lodgingInfo')),
-            'pin' => XmlFields::returnArrayValue($hash_in, 'pin')
+            'pin' => XmlFields::returnArrayValue($hash_in, 'pin'),
+            'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData'))
         );
         $captureResponse = $this->processRequest($hash_out, $hash_in, 'capture');
 
@@ -491,7 +497,8 @@ class CnpOnlineRequest
             'originalTransactionAmount' => XmlFields::returnArrayValue($hash_in, 'originalTransactionAmount'),
             'merchantCategoryCode' => XmlFields::returnArrayValue($hash_in, 'merchantCategoryCode'),
             'businessIndicator' => XmlFields::returnArrayValue($hash_in, 'businessIndicator'),
-            'crypto' => XmlFields::returnArrayValue($hash_in, 'crypto')
+            'crypto' => XmlFields::returnArrayValue($hash_in, 'crypto'),
+            'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData'))
         );
 
         $choice_hash = array($hash_out['card'], $hash_out['token'], $hash_out['paypage'], $hash_out['mpos']);
@@ -652,7 +659,8 @@ class CnpOnlineRequest
             'originalAmount' => XmlFields::returnArrayValue($hash_in, 'originalAmount'),
             'originalTxnTime' => XmlFields::returnArrayValue($hash_in, 'originalTxnTime'),
             'originalSystemTraceId' => XmlFields::returnArrayValue($hash_in, 'originalSystemTraceId'),
-            'originalSequenceNumber' => XmlFields::returnArrayValue($hash_in, 'originalSequenceNumber')
+            'originalSequenceNumber' => XmlFields::returnArrayValue($hash_in, 'originalSequenceNumber'),
+            'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData'))
         );
         $response = $this->processRequest($hash_out, $hash_in, "depositReversal");
 
@@ -674,7 +682,8 @@ class CnpOnlineRequest
             'originalAmount' => XmlFields::returnArrayValue($hash_in, 'originalAmount'),
             'originalTxnTime' => XmlFields::returnArrayValue($hash_in, 'originalTxnTime'),
             'originalSystemTraceId' => XmlFields::returnArrayValue($hash_in, 'originalSystemTraceId'),
-            'originalSequenceNumber' => XmlFields::returnArrayValue($hash_in, 'originalSequenceNumber')
+            'originalSequenceNumber' => XmlFields::returnArrayValue($hash_in, 'originalSequenceNumber'),
+            'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData'))
         );
         $response = $this->processRequest($hash_out, $hash_in, "refundReversal");
 
