@@ -133,7 +133,14 @@ class CnpOnlineRequest
                 'businessIndicator' => XmlFields::returnArrayValue($hash_in, 'businessIndicator'),
                 'orderChannel' => XmlFields::returnArrayValue($hash_in, 'orderChannel'),
                 'fraudCheckStatus' => XmlFields::returnArrayValue($hash_in, 'fraudCheckStatus'),
-                'crypto' => XmlFields::returnArrayValue($hash_in, 'crypto')
+                'crypto' => XmlFields::returnArrayValue($hash_in, 'crypto'),
+                'overridePolicy' => XmlFields::returnArrayValue($hash_in, 'overridePolicy'),
+                'fsErrorCode' => XmlFields::returnArrayValue($hash_in, 'fsErrorCode'),
+                'merchantAccountStatus' => XmlFields::returnArrayValue($hash_in, 'merchantAccountStatus'),
+                'productEnrolled' => XmlFields::returnArrayValue($hash_in, 'productEnrolled'),
+                'decisionPurpose' => XmlFields::returnArrayValue($hash_in, 'decisionPurpose'),
+                'fraudSwitchIndicator' => XmlFields::returnArrayValue($hash_in, 'fraudSwitchIndicator'),
+                'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData'))
             );
         }
         $choice_hash = array(XmlFields::returnArrayValue($hash_out, 'card'), XmlFields::returnArrayValue($hash_out, 'paypal'), XmlFields::returnArrayValue($hash_out, 'token'), XmlFields::returnArrayValue($hash_out, 'paypage'), XmlFields::returnArrayValue($hash_out, 'applepay'), XmlFields::returnArrayValue($hash_out, 'mpos'));
@@ -204,7 +211,14 @@ class CnpOnlineRequest
             'businessIndicator' => XmlFields::returnArrayValue($hash_in, 'businessIndicator'),
             'orderChannel' => XmlFields::returnArrayValue($hash_in, 'orderChannel'),
             'fraudCheckStatus' => XmlFields::returnArrayValue($hash_in, 'fraudCheckStatus'),
-            'crypto' => XmlFields::returnArrayValue($hash_in, 'crypto')
+            'crypto' => XmlFields::returnArrayValue($hash_in, 'crypto'),
+            'overridePolicy' => XmlFields::returnArrayValue($hash_in, 'overridePolicy'),
+            'fsErrorCode' => XmlFields::returnArrayValue($hash_in, 'fsErrorCode'),
+            'merchantAccountStatus' => XmlFields::returnArrayValue($hash_in, 'merchantAccountStatus'),
+            'productEnrolled' => XmlFields::returnArrayValue($hash_in, 'productEnrolled'),
+            'decisionPurpose' => XmlFields::returnArrayValue($hash_in, 'decisionPurpose'),
+            'fraudSwitchIndicator' => XmlFields::returnArrayValue($hash_in, 'fraudSwitchIndicator'),
+            'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData'))
         );
 
         $choice_hash = array($hash_out['card'], $hash_out['paypal'], $hash_out['token'], $hash_out['paypage'], $hash_out['applepay'], $hash_out['mpos']);
