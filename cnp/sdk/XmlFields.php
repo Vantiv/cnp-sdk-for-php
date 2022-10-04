@@ -976,7 +976,7 @@ class XmlFields
                 "travelAgencyCode" => XmlFields::returnArrayValue($hash_in, 'travelAgencyCode', 8),
                 "travelAgencyName" => XmlFields::returnArrayValue($hash_in, 'travelAgencyName', 25),
                 "computerizedReservationSystem" => XmlFields::returnArrayValue($hash_in, 'computerizedReservationSystem'),
-                "creditReasonIndicator" => XmlFields::propertyAddress(XmlFields::returnArrayValue($hash_in, 'creditReasonIndicator')),
+                "creditReasonIndicator" => XmlFields::returnArrayValue($hash_in, 'creditReasonIndicator'),
                 "ticketChangeIndicator" => XmlFields::returnArrayValue($hash_in, 'ticketChangeIndicator'),
                 "ticketIssuerAddress" => XmlFields::returnArrayValue($hash_in, 'ticketIssuerAddress', 16),
                 "exchangeTicketNumber" => XmlFields::returnArrayValue($hash_in, 'exchangeTicketNumber',15),

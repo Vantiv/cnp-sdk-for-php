@@ -226,5 +226,115 @@ class CreditFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('sandbox', $location);
     }
 
+    public function test_simple_credit_with_additionalCOFData()
+    {
+        $hash_in = array(
+            'id' => 'id',
+            'orderId' => '82364_cnpApiAuth',
+            'amount' => '2870',
+            'orderSource' => 'telephone',
+            'billToAddress' => array(
+                'name' => 'David Berman A',
+                'addressLine1' => '10 Main Street',
+                'city' => 'San Jose',
+                'state' => 'ca',
+                'zip' => '95032',
+                'country' => 'USA',
+                'email' => 'dberman@phoenixProcessing.com',
+                'phone' => '781-270-1111',
+                'sellerId' => '21234234A1'
+            ),
+            'additionalCOFData' => array(
+                'totalPaymentCount' => '10',
+                'paymentType' => 'Fixed Amount',
+                'uniqueId' => '12',
+                'frequencyOfMIT' => 'Daily',
+                'validationReference' => 'AB',
+                'sequenceIndicator' => '1',
+            ),
+            'card' => array(
+            'type' => 'VI',
+            'number' => '4100101411234567',
+            'expDate' => '1112',
+            'cardValidationNum' => '987',
+        ),
+        'businessIndicator' => 'buyOnlinePickUpInStore',
+
+        );
+        $initialize = new CnpOnlineRequest();
+        $creditResponse = $initialize->creditRequest($hash_in);
+        $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'response');
+        $this->assertEquals("0", $message);
+        $location = XmlParser::getNode($creditResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+    }
+
+    public function test_simple_credit_with_PassengerTransportData()
+    {
+        $hash_in = array(
+            'id' => 'id',
+            'cnpTxnId' => '64736458734657',
+            'amount' => '1010',
+            'passengerTransportData' => array(
+                'passengerName' => 'Mrs. Huxley234567890123456789',
+                'ticketNumber' => 'ATL456789012345',
+                'issuingCarrier' => 'AMTK',
+                'carrierName' => 'AMTK',
+                'restrictedTicketIndicator' => 'refundable123456789',
+                'numberOfAdults' => '2',
+                'numberOfChildren' => '0',
+                'customerCode' => 'Railway',
+                'arrivalDate' => '2022-09-20',
+                'issueDate' => '2022-09-10',
+                'travelAgencyCode' => '12345678',
+                'travelAgencyName' => 'Travel R Us23456789012345',
+                'creditReasonIndicator' => 'A',
+                'ticketChangeIndicator' => 'C',
+                'ticketIssuerAddress' => '99 Second St',
+                'exchangeTicketNumber' => '123456789012346',
+                'exchangeAmount' => '500046',
+                'exchangeFeeAmount' => '5046',
+                'tripLegData0' => array(
+                    'tripLegNumber' => '1',
+                    'departureCode' => 'STL',
+                    'carrierCode' => 'AT',
+                    'serviceClass' => 'Business',
+                    'stopOverCode' => 'X',
+                    'destinationCode' => 'STL',
+                    'fareBasisCode' => 'nonref',
+                    'departureDate' => '2022-09-20',
+                    'originCity' => 'BOS',
+                    'travelNumber' => '123AB',
+                    'departureTime' => '09:32',
+                    'arrivalTime' => '15:56',
+                    'remarks' => 'This is a max 80 chars',
+                ),
+                'tripLegData1' => array(
+                    'tripLegNumber' => '1',
+                    'departureCode' => 'STL',
+                    'carrierCode' => 'AT',
+                    'serviceClass' => 'Business',
+                    'stopOverCode' => 'X',
+                    'destinationCode' => 'STL',
+                    'fareBasisCode' => 'nonref',
+                    'departureDate' => '2022-09-20',
+                    'originCity' => 'BOS',
+                    'travelNumber' => '123AB',
+                    'departureTime' => '09:32',
+                    'arrivalTime' => '15:56',
+                    'remarks' => 'This is a max 80 chars',
+                )
+            )
+
+        );
+        $initialize = new CnpOnlineRequest();
+        $creditResponse = $initialize->creditRequest($hash_in);
+        $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'response');
+        $this->assertEquals("0", $message);
+        $location = XmlParser::getNode($creditResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+    }
+
+
 
 }
