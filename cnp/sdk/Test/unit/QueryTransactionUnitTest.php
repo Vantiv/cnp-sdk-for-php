@@ -48,4 +48,20 @@ class QueryTransaction extends \PHPUnit_Framework_TestCase
         $cnpTest->newXML = $mock;
         $cnpTest->queryTransaction($hash_in);
     }
+
+    public function testQueryTransactionWithNewActionTypeValue()
+    {
+        $hash_in = array(
+            'id' => 'id',
+            'origId'=> '2111',
+            'origActionType'=>'FIPC');
+        $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
+        $mock	->expects($this->once())
+            ->method('request')
+            ->with($this->matchesRegularExpression('/.*<origId>2111.*<origActionType>FIPC.*/'));
+
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->queryTransaction($hash_in);
+    }
 } 
