@@ -486,4 +486,55 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('sandbox', $location);
     }
 
+    public function test_captureGivenAuth_with_passengerTransportData()
+    {
+        $hash_in = array('id' => 'id',
+            'orderId' => '12344',
+            'amount' => '106',
+            'businessIndicator' => 'consumerBillPayment',
+            'authInformation' => array(
+                'authDate' => '2002-10-09', 'authCode' => '543216',
+                'authAmount' => '12345'),
+            'orderSource' => 'ecommerce',
+            'card' => array(
+                'type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1210'),
+        'passengerTransportData' =>array(
+        'passengerName' =>'Mrs. Huxley234567890123456789',
+        'ticketNumber' =>'ATL456789012345' ,
+        'issuingCarrier' =>'AMTK',
+        'carrierName' =>'AMTK',
+        'restrictedTicketIndicator' =>'99999',
+        'numberOfAdults' =>'2',
+        'numberOfChildren' =>'0',
+        'customerCode' =>'Railway',
+        'arrivalDate' =>'2022-09-20',
+        'issueDate' =>'2022-09-10',
+        'travelAgencyCode' =>'12345678',
+        'travelAgencyName' =>'Travel R Us23456789012345',
+        'computerizedReservationSystem' =>'STRT',
+        'creditReasonIndicator' =>'P',
+        'ticketChangeIndicator' =>'C',
+        'ticketIssuerAddress' =>'99 Second St',
+        'exchangeTicketNumber' =>'123456789012346',
+        'exchangeAmount' =>'500046',
+        'exchangeFeeAmount' =>'5046',
+        'tripLegData' =>array(
+            'tripLegNumber' =>'10' ,
+            'serviceClass' =>'First',
+            'departureDate' =>'2022-09-20',
+            'originCity' =>'BOS')
+    ));
+
+
+        $initialize = new CnpOnlineRequest();
+        $authorizationResponse = $initialize->captureGivenAuthRequest($hash_in);
+        $response = XmlParser::getNode($authorizationResponse, 'response');
+        $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+    }
+
+
 }

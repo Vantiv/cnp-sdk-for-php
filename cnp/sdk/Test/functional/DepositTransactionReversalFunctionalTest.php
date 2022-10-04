@@ -58,4 +58,51 @@ class DepositTransactionReversalFunctionalTest extends \PHPUnit_Framework_TestCa
         $this->assertEquals('sandbox', $location);
     }
 
+    public function test_simple_depositTransactionReversal_passengerTransportData()
+    {
+        $hash_in = array(
+            'id' => 'id',
+            'cnpTxnId' => '12345678000',
+            'passengerTransportData' =>array(
+            'passengerName' =>'Mrs. Huxley234567890123456789',
+            'ticketNumber' =>'ATL456789012345' ,
+            'issuingCarrier' =>'AMTK',
+            'carrierName' =>'AMTK',
+            'restrictedTicketIndicator' =>'99999',
+            'numberOfAdults' =>'2',
+            'numberOfChildren' =>'0',
+            'customerCode' =>'Railway',
+            'arrivalDate' =>'2022-09-20',
+            'issueDate' =>'2022-09-10',
+            'travelAgencyCode' =>'12345678',
+            'travelAgencyName' =>'Travel R Us23456789012345',
+            'computerizedReservationSystem' =>'STRT',
+            'creditReasonIndicator' =>'P',
+            'ticketChangeIndicator' =>'C',
+            'ticketIssuerAddress' =>'99 Second St',
+            'exchangeTicketNumber' =>'123456789012346',
+            'exchangeAmount' =>'500046',
+            'exchangeFeeAmount' =>'5046',
+            'tripLegData' =>array(
+                'tripLegNumber' =>'10' ,
+                'serviceClass' =>'First',
+                'departureDate' =>'2022-09-20',
+                'originCity' =>'BOS')
+        )
+        );
+
+        $initilaize = new CnpOnlineRequest();
+        $depositTransactionReversalResponse = $initilaize->depositTransactionReversal($hash_in);
+
+        $response = XmlParser::getNode($depositTransactionReversalResponse, 'response');
+        $this->assertEquals('000', $response);
+
+        $response = XmlParser::getNode($depositTransactionReversalResponse, 'message');
+        $this->assertEquals('Approved', $response);
+
+        $location = XmlParser::getNode($depositTransactionReversalResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+    }
+
+
 }
