@@ -58,27 +58,6 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('sandbox', $location);
     }
 
-    public function test_simple_auth_with_card_authmax()
-    {
-        $hash_in = array('id' => 'id',
-            'card' => array('type' => 'VI',
-                'number' => '4100000000000000',
-                'expDate' => '1213',
-                'cardValidationNum' => '1213'),
-            'id' => '1211',
-            'orderId' => '22@401',
-            'reportGroup' => 'Planets',
-            'orderSource' => 'ecommerce',
-            'amount' => '0');
-
-        $initialize = new CnpOnlineRequest();
-        $authorizationResponse = $initialize->authorizationRequest($hash_in);
-        $response = XmlParser::getNode($authorizationResponse, 'response');
-        $this->assertEquals('000', $response);
-        $location = XmlParser::getNode($authorizationResponse, 'location');
-        $this->assertEquals('sandbox', $location);
-    }
-
     public function test_simple_auth_with_detail_tax()
     {
         $hash_in = array('id' => 'id',
@@ -686,4 +665,95 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $location = XmlParser::getNode($authorizationResponse, 'location');
         $this->assertEquals('sandbox', $location);
     }
+
+    public function test_auth_with_authmax_true()
+    {
+        $hash_in = array('id' => 'id',
+            'card' => array('type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1213',
+                'cardValidationNum' => '1213'),
+            'id' => '1211',
+            'orderId' => '22@401',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '0');
+
+        $initialize = new CnpOnlineRequest();
+        $authorizationResponse = $initialize->authorizationRequest($hash_in);
+
+        $response = XmlParser::getNode($authorizationResponse, 'response');
+        $this->assertEquals('000', $response);
+
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+
+        foreach ($authorizationResponse->getElementsByTagName('authMax') as $child) {
+            $authMaxApplied = XmlParser::getNode($child, 'authMaxApplied');
+            $networkTokenApplied = XmlParser::getNode($child, 'networkTokenApplied');
+            $networkToken = XmlParser::getNode($child, 'networkToken');
+            $authMaxResponseCode = XmlParser::getNode($child, 'authMaxResponseCode');
+            $authMaxResponseMessage = XmlParser::getNode($child, 'authMaxResponseMessage');
+            $this->assertEquals('true', $authMaxApplied);
+            $this->assertEquals('true', $networkTokenApplied);
+            $this->assertEquals('1112000199940085', $networkToken);
+            $this->assertEquals('000', $authMaxResponseCode);
+            $this->assertEquals('Approved', $authMaxResponseMessage);
+        }
+    }
+
+    public function test_auth_with_authmax_false()
+    {
+        $hash_in = array('id' => 'id',
+            'card' => array('type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1213',
+                'cardValidationNum' => '1213'),
+            'id' => '1211',
+            'orderId' => '22@402',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '0');
+
+        $initialize = new CnpOnlineRequest();
+        $authorizationResponse = $initialize->authorizationRequest($hash_in);
+
+        $response = XmlParser::getNode($authorizationResponse, 'response');
+        $this->assertEquals('000', $response);
+
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+
+        foreach ($authorizationResponse->getElementsByTagName('authMax') as $child) {
+            $authMaxApplied = XmlParser::getNode($child, 'authMaxApplied');
+            $this->assertEquals('false', $authMaxApplied);
+        }
+    }
+
+    public function test_simple_auth_with_authmax_not_applied()
+    {
+        $hash_in = array('id' => 'id',
+            'card' => array('type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1213',
+                'cardValidationNum' => '1213'),
+            'id' => '1211',
+            'orderId' => '22@403',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '0');
+
+        $initialize = new CnpOnlineRequest();
+        $authorizationResponse = $initialize->authorizationRequest($hash_in);
+
+        $response = XmlParser::getNode($authorizationResponse, 'response');
+        $this->assertEquals('000', $response);
+
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+
+        $authMax = XmlParser::getNode($authorizationResponse, 'authMax');
+        $this->assertEquals('', $authMax);
+    }
+
 }
