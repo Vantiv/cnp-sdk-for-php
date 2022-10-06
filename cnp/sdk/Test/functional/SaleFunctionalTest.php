@@ -933,7 +933,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('sandbox', $location);
     }
 
-    public function test_auth_with_authmax_true()
+    public function test_sale_with_authmax_true()
     {
         $hash_in = array('id' => 'id',
             'card' => array('type' => 'VI',
@@ -969,7 +969,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-    public function test_auth_with_authmax_false()
+    public function test_sale_with_authmax_false()
     {
         $hash_in = array('id' => 'id',
             'card' => array('type' => 'VI',
@@ -997,7 +997,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-    public function test_simple_auth_with_authmax_not_applied()
+    public function test_sale_with_authmax_not_applied()
     {
         $hash_in = array('id' => 'id',
             'card' => array('type' => 'VI',
@@ -1023,7 +1023,177 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('', $authMax);
     }
 
-    public function test_simple_auth_with_passengerTransportData()
+    public function test_sale_with_elements_to_support_gp()
+    {
+        $hash_in = array(
+            'id' => 'id',
+            'orderId' => '82364_cnpApiAuth',
+            'amount' => '1001',
+            'orderSource' => 'telephone',
+            'customerInfo' => array(
+                'accountUsername' => 'username123',
+                'userAccountNumber' => '7647326235897',
+                'userAccountEmail' => 'dummtemail@abc.com',
+                'membershipId' => '23874682304',
+                'membershipPhone' => '16818807607551094758',
+                'membershipEmail' => 'email@abc.com',
+                'membershipName' => 'member123',
+                'accountCreatedDate' => '2050-07-17',
+                'userAccountPhone' => '1392345678',
+            ),
+            'card' => array(
+                'type' => 'VI',
+                'number' => '4005518220000002',
+                'expDate' => '0150',
+                'cardValidationNum' => '987',
+            ),
+            'enhancedData' => array(
+                'customerReference' => 'cust ref sale1',
+                'salesTax' => '1000',
+                'discountAmount' => '0',
+                'shippingAmount' => '0',
+                'dutyAmount' => '0',
+                'lineItemData' => array(
+                    'itemSequenceNumber' => '1',
+                    'itemDescription' => 'Clothes',
+                    'productCode' => 'TB123',
+                    'quantity' => '1',
+                    'unitOfMeasure' => 'EACH',
+                    'lineItemTotal' => '9900',
+                    'lineItemTotalWithTax' => '10000',
+                    'itemDiscountAmount' => '0',
+                    'commodityCode' => '301',
+                    'unitCost' => '31.02',
+                    'itemCategory' => 'Aparel',
+                    'itemSubCategory' => 'Clothing',
+                ),
+                'discountCode' => 'OneTimeDiscount11',
+                'discountPercent' => '11',
+                'fulfilmentMethodType' => 'DELIVERY',
+            ),
+            'lodgingInfo' => array(
+                'bookingID' => 'book1234512341',
+                'passengerName' => 'john cena',
+                'propertyAddress' => array(
+                    'name' => 'property1',
+                    'city' => 'nyc',
+                    'region' => 'KBA',
+                    'country' => 'USA',
+                ),
+                'travelPackageIndicator' => 'AirlineReservation',
+                'smokingPreference' => 'N',
+                'numberOfRooms' => '13',
+                'tollFreePhoneNumber' => '1981876578076548',
+            ),
+            'orderChannel' => 'PHONE',
+            'fraudCheckStatus' => 'CLOSE',
+            'overridePolicy' => 'merchantPolicyToDecline',
+            'fsErrorCode' => 'error123',
+            'merchantAccountStatus' => 'activeAccount',
+            'productEnrolled' => 'GUARPAY2',
+            'decisionPurpose' => 'INFORMATION_ONLY',
+            'fraudSwitchIndicator' => 'PRE',
+        );
+
+        $initialize = new CnpOnlineRequest();
+        $authorizationResponse = $initialize->saleRequest($hash_in);
+
+        $response = XmlParser::getNode($authorizationResponse, 'response');
+        $this->assertEquals('000', $response);
+
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+
+        $message = XmlParser::getNode($authorizationResponse, 'message');
+        $this->assertEquals('Approved', $message);
+    }
+
+    public function test_sale_with_lodging_info()
+    {
+        $hash_in = array(
+            'id' => 'id',
+            'orderId' => '82364_cnpApiAuth',
+            'amount' => '1001',
+            'orderSource' => 'telephone',
+            'customerInfo' => array(
+                'accountUsername' => 'username123',
+                'userAccountNumber' => '7647326235897',
+                'userAccountEmail' => 'dummtemail@abc.com',
+                'membershipId' => '23874682304',
+                'membershipPhone' => '16818807607551094758',
+                'membershipEmail' => 'email@abc.com',
+                'membershipName' => 'member123',
+                'accountCreatedDate' => '2050-07-17',
+                'userAccountPhone' => '1392345678',
+            ),
+            'card' => array(
+                'type' => 'VI',
+                'number' => '4005518220000002',
+                'expDate' => '0150',
+                'cardValidationNum' => '987',
+            ),
+            'enhancedData' => array(
+                'customerReference' => 'cust ref sale1',
+                'salesTax' => '1000',
+                'discountAmount' => '0',
+                'shippingAmount' => '0',
+                'dutyAmount' => '0',
+                'lineItemData' => array(
+                    'itemSequenceNumber' => '1',
+                    'itemDescription' => 'Clothes',
+                    'productCode' => 'TB123',
+                    'quantity' => '1',
+                    'unitOfMeasure' => 'EACH',
+                    'lineItemTotal' => '9900',
+                    'lineItemTotalWithTax' => '10000',
+                    'itemDiscountAmount' => '0',
+                    'commodityCode' => '301',
+                    'unitCost' => '31.02',
+                    'itemCategory' => 'Aparel',
+                    'itemSubCategory' => 'Clothing',
+                ),
+                'discountCode' => 'OneTimeDiscount11',
+                'discountPercent' => '11',
+                'fulfilmentMethodType' => 'DELIVERY',
+            ),
+            'lodgingInfo' => array(
+                'bookingID' => 'book1234512341',
+                'passengerName' => 'john cena',
+                'propertyAddress' => array(
+                    'name' => 'property1',
+                    'city' => 'nyc',
+                    'region' => 'KBA',
+                    'country' => 'USA',
+                ),
+                'travelPackageIndicator' => 'Both',
+                'smokingPreference' => 'N',
+                'numberOfRooms' => '13',
+                'tollFreePhoneNumber' => '1981876578076548',
+            ),
+            'orderChannel' => 'PHONE',
+            'fraudCheckStatus' => 'CLOSE',
+            'overridePolicy' => 'merchantPolicyToDecline',
+            'fsErrorCode' => 'error123',
+            'merchantAccountStatus' => 'activeAccount',
+            'productEnrolled' => 'GUARPAY3',
+            'decisionPurpose' => 'CONSIDER_DECISION',
+            'fraudSwitchIndicator' => 'POST',
+        );
+
+        $initialize = new CnpOnlineRequest();
+        $authorizationResponse = $initialize->saleRequest($hash_in);
+
+        $response = XmlParser::getNode($authorizationResponse, 'response');
+        $this->assertEquals('000', $response);
+
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+
+        $message = XmlParser::getNode($authorizationResponse, 'message');
+        $this->assertEquals('Approved', $message);
+    }
+
+    public function test_simple_sale_with_passengerTransportData()
     {
         $hash_in = array('id' => 'id',
             'card' => array('type' => 'VI',
