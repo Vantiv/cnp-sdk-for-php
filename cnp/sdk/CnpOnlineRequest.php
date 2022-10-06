@@ -660,7 +660,6 @@ class CnpOnlineRequest
             'originalTxnTime' => XmlFields::returnArrayValue($hash_in, 'originalTxnTime'),
             'originalSystemTraceId' => XmlFields::returnArrayValue($hash_in, 'originalSystemTraceId'),
             'originalSequenceNumber' => XmlFields::returnArrayValue($hash_in, 'originalSequenceNumber'),
-            'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData'))
         );
         $response = $this->processRequest($hash_out, $hash_in, "depositReversal");
 
@@ -683,7 +682,6 @@ class CnpOnlineRequest
             'originalTxnTime' => XmlFields::returnArrayValue($hash_in, 'originalTxnTime'),
             'originalSystemTraceId' => XmlFields::returnArrayValue($hash_in, 'originalSystemTraceId'),
             'originalSequenceNumber' => XmlFields::returnArrayValue($hash_in, 'originalSequenceNumber'),
-            'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData'))
         );
         $response = $this->processRequest($hash_out, $hash_in, "refundReversal");
 
@@ -743,7 +741,9 @@ class CnpOnlineRequest
             'processingInstructions' => XmlFields::processingInstructions($hash_in, 'processingInstructions'),
             'customBilling' => XmlFields::customBilling($hash_in, 'customBilling'),
             'lodgingInfo' => XmlFields::lodgingInfo($hash_in, 'lodgingInfo'),
-            'pin' => (XmlFields::returnArrayValue($hash_in, 'pin'))
+            'pin' => (XmlFields::returnArrayValue($hash_in, 'pin')),
+            'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData'))
+
         );
         $response = $this->processRequest($hash_out, $hash_in, 'depositTransactionReversal');
 
@@ -765,7 +765,8 @@ class CnpOnlineRequest
             'processingInstructions' => XmlFields::processingInstructions($hash_in, 'processingInstructions'),
             'customBilling' => XmlFields::customBilling($hash_in, 'customBilling'),
             'lodgingInfo' => XmlFields::lodgingInfo($hash_in, 'lodgingInfo'),
-            'pin' => (XmlFields::returnArrayValue($hash_in, 'pin'))
+            'pin' => (XmlFields::returnArrayValue($hash_in, 'pin')),
+            'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData'))
         );
         $response = $this->processRequest($hash_out, $hash_in, 'refundTransactionReversal');
 
