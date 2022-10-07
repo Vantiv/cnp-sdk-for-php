@@ -19,7 +19,7 @@ See LICENSE file for details on using this software.
 
 Source Code available from : https://github.com/Vantiv/cnp-sdk-for-php
 
-Please contact [Vantiv eCommerce](https://developer.vantiv.com/community/ecommerce) to receive valid merchant credentials in order to run tests successfully or if you require assistance in any way.  We are reachable at sdksupport@Vantiv.com
+Please contact [Vantiv eCommerce](https://developer.vantiv.com/community/ecommerce) to receive valid merchant credentials in order to run tests successfully or if you require assistance in any way.  We are reachable at sdksupport@fisglobal.com
 
 SDK PHP Dependencies
 --------------
@@ -180,4 +180,4 @@ You probably had a problem with composer.  You can safely remove line 42 if you 
 
 More examples can be found here [php Gists](https://gist.github.com/litleSDK)
 
-Please contact Vantiv eCommerce Inc. with any further questions.   You can reach us at SDKSupport@Vantiv.com
+Please contact Vantiv eCommerce Inc. with any further questions.   You can reach us at sdksupport@fisglobal.com
