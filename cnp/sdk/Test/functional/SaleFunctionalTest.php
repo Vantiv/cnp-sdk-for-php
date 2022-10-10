@@ -941,6 +941,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
                 'expDate' => '1213',
                 'cardValidationNum' => '1213'),
             'id' => '1211',
+            'cnpTxnId'=> '475402',
             'orderId' => '22@401',
             'reportGroup' => 'Planets',
             'orderSource' => 'ecommerce',
@@ -954,6 +955,9 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $location = XmlParser::getNode($authorizationResponse, 'location');
         $this->assertEquals('sandbox', $location);
+
+        $authMax = XmlParser::getNode($authorizationResponse, 'authMax');
+        $this->assertNotEquals('', $authMax);
 
         foreach ($authorizationResponse->getElementsByTagName('authMax') as $child) {
             $authMaxApplied = XmlParser::getNode($child, 'authMaxApplied');
@@ -977,6 +981,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
                 'expDate' => '1213',
                 'cardValidationNum' => '1213'),
             'id' => '1211',
+            'cnpTxnId'=> '475403',
             'orderId' => '22@402',
             'reportGroup' => 'Planets',
             'orderSource' => 'ecommerce',
@@ -990,6 +995,9 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $location = XmlParser::getNode($authorizationResponse, 'location');
         $this->assertEquals('sandbox', $location);
+
+        $authMax = XmlParser::getNode($authorizationResponse, 'authMax');
+        $this->assertNotEquals('', $authMax);
 
         foreach ($authorizationResponse->getElementsByTagName('authMax') as $child) {
             $authMaxApplied = XmlParser::getNode($child, 'authMaxApplied');
@@ -1006,6 +1014,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
                 'cardValidationNum' => '1213'),
             'id' => '1211',
             'orderId' => '22@403',
+            'cnpTxnId'=> '475401',
             'reportGroup' => 'Planets',
             'orderSource' => 'ecommerce',
             'amount' => '0');
