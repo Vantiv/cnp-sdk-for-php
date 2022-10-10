@@ -147,5 +147,19 @@ class QueryTransactionFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Original transaction not found', $message);
     }
 
+    public function testSimpleQueryTransactionWithNewActionTypeValue()
+    {
+        $hash_in = array(
+            'id' => 'id',
+            'origId' => 'ABCD0',
+            'origActionType' => 'FIRD');
+
+        $initialize = new CnpOnlineRequest();
+        $queryTransactionResponse = $initialize->queryTransaction($hash_in);
+        $response = XmlParser::getNode($queryTransactionResponse, 'response');
+        $message = XmlParser::getNode($queryTransactionResponse, 'message');
+        $this->assertEquals('151', $response);
+        $this->assertEquals('Original transaction not found', $message);
+    }
 
 }

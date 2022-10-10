@@ -485,6 +485,20 @@ class XmlFields
         }
     }
 
+    public static function propertyAddress($hash_in)
+    {
+        if (isset($hash_in)) {
+            $hash_out = array(
+                "name" => (XmlFields::returnArrayValue($hash_in, 'name')),
+                "city" => (XmlFields::returnArrayValue($hash_in, 'city')),
+                "region" => (XmlFields::returnArrayValue($hash_in, 'region')),
+                "country" => (XmlFields::returnArrayValue($hash_in, 'country'))
+            );
+
+            return $hash_out;
+        }
+    }
+
 
     public static function lodgingInfo($hash_in)
     {
@@ -501,6 +515,13 @@ class XmlFields
                         "numAdults" => XmlFields::returnArrayValue($hash_in, 'numAdults', 2),
                         "propertyLocalPhone" => XmlFields::returnArrayValue($hash_in, 'propertyLocalPhone', 17),
                         "fireSafetyIndicator" => XmlFields::returnArrayValue($hash_in, 'fireSafetyIndicator'),
+                        "bookingID" => XmlFields::returnArrayValue($hash_in, 'bookingID', 14),
+                        "passengerName" => XmlFields::returnArrayValue($hash_in, 'passengerName', 30),
+                        "propertyAddress" => XmlFields::propertyAddress(XmlFields::returnArrayValue($hash_in, 'propertyAddress')),
+                        "travelPackageIndicator" => XmlFields::returnArrayValue($hash_in, 'travelPackageIndicator'),
+                        "smokingPreference" => XmlFields::returnArrayValue($hash_in, 'smokingPreference', 1),
+                        "numberOfRooms" => XmlFields::returnArrayValue($hash_in, 'numberOfRooms', 2),
+                        "tollFreePhoneNumber" => XmlFields::returnArrayValue($hash_in, 'tollFreePhoneNumber',16)
             );
 
             $lodgingCharge = array();
@@ -914,5 +935,71 @@ class XmlFields
             return $hash_out;
         }
     }
+
+    public static function tripLegData($hash_in)
+    {
+        if (isset($hash_in)) {
+            $hash_out = array(
+                "tripLegNumber"=>XmlFields::returnArrayValue($hash_in, "tripLegNumber"),
+                "departureCode"=>XmlFields::returnArrayValue($hash_in, "departureCode", 5),
+                "carrierCode"=>XmlFields::returnArrayValue($hash_in, "carrierCode", 2),
+                "serviceClass"=>XmlFields::returnArrayValue($hash_in, "serviceClass"),
+                "stopOverCode"=>XmlFields::returnArrayValue($hash_in, "stopOverCode", 1),
+                "destinationCode"=>XmlFields::returnArrayValue($hash_in, "destinationCode", 5),
+                "fareBasisCode"=>XmlFields::returnArrayValue($hash_in, "fareBasisCode", 15),
+                "departureDate"=>XmlFields::returnArrayValue($hash_in, "departureDate"),
+                "originCity"=>XmlFields::returnArrayValue($hash_in, "originCity", 5),
+                "travelNumber"=>XmlFields::returnArrayValue($hash_in, "travelNumber", 5),
+                "departureTime"=>XmlFields::returnArrayValue($hash_in, "departureTime"),
+                "arrivalTime"=>XmlFields::returnArrayValue($hash_in, "arrivalTime"),
+                "remarks"=>XmlFields::returnArrayValue($hash_in, "remarks", 80)
+            );
+
+            return $hash_out;
+        }
+    }
+
+    public static function passengerTransportData($hash_in)
+    {
+        if (isset($hash_in)){
+            $hash_out = array(
+                "passengerName" => XmlFields::returnArrayValue($hash_in, 'passengerName', 29),
+                "ticketNumber" => XmlFields::returnArrayValue($hash_in, 'ticketNumber', 15),
+                "issuingCarrier" => XmlFields::returnArrayValue($hash_in, 'issuingCarrier', 4),
+                "carrierName" => XmlFields::returnArrayValue($hash_in, 'carrierName', 19),
+                "restrictedTicketIndicator" => XmlFields::returnArrayValue($hash_in, 'restrictedTicketIndicator', 20),
+                "numberOfAdults" => XmlFields::returnArrayValue($hash_in, 'numberOfAdults'),
+                "numberOfChildren" => XmlFields::returnArrayValue($hash_in, 'numberOfChildren'),
+                "customerCode" => XmlFields::returnArrayValue($hash_in, 'customerCode', 25),
+                "arrivalDate" => XmlFields::returnArrayValue($hash_in, 'arrivalDate'),
+                "issueDate" => XmlFields::returnArrayValue($hash_in, 'issueDate'),
+                "travelAgencyCode" => XmlFields::returnArrayValue($hash_in, 'travelAgencyCode', 8),
+                "travelAgencyName" => XmlFields::returnArrayValue($hash_in, 'travelAgencyName', 25),
+                "computerizedReservationSystem" => XmlFields::returnArrayValue($hash_in, 'computerizedReservationSystem'),
+                "creditReasonIndicator" => XmlFields::returnArrayValue($hash_in, 'creditReasonIndicator'),
+                "ticketChangeIndicator" => XmlFields::returnArrayValue($hash_in, 'ticketChangeIndicator'),
+                "ticketIssuerAddress" => XmlFields::returnArrayValue($hash_in, 'ticketIssuerAddress', 16),
+                "exchangeTicketNumber" => XmlFields::returnArrayValue($hash_in, 'exchangeTicketNumber',15),
+                "exchangeAmount" => XmlFields::returnArrayValue($hash_in, 'exchangeAmount'),
+                "exchangeFeeAmount" => XmlFields::returnArrayValue($hash_in, 'exchangeFeeAmount'),
+            );
+
+
+            $tripLegData = array();
+            foreach ($hash_in as $key => $value) {
+                if (($key == 'tripLegData' || $key == ('tripLegData' . count($tripLegData))) && $key != NULL) {
+                    $tripLegData[] = $value;
+                }
+            }
+            for ($j=0; $j<count($tripLegData) and $j < 99; $j++) {
+                $outIndex = ('tripLegData') . (string) $j;
+                $hash_out[$outIndex] = XmlFields::tripLegData(XmlFields::returnArrayValue($tripLegData,$j));
+            }
+
+            return $hash_out;
+        }
+    }
+
+
 
 }

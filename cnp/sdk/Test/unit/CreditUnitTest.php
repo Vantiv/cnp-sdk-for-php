@@ -420,8 +420,88 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
-        $cnpTest->captureRequest($hash_in);
+        $cnpTest->creditRequest($hash_in);
     }
 
+    public function test_credit_with_passengerTransportData()
+    {
+        $hash_in = array(
+            'id' => 'id',
+            'cnpTxnId' => '64736458734657',
+            'amount' => '1010',
+            'passengerTransportData' => array(
+                'passengerName' => 'Mrs. Huxley234567890123456789',
+                'ticketNumber' => 'ATL456789012345',
+                'issuingCarrier' => 'AMTK',
+                'carrierName' => 'AMTK',
+                'restrictedTicketIndicator' => 'refundable123456789',
+                'numberOfAdults' => '2',
+                'numberOfChildren' => '0',
+                'customerCode' => 'Railway',
+                'arrivalDate' => '2022-09-20',
+                'issueDate' => '2022-09-10',
+                'travelAgencyCode' => '12345678',
+                'travelAgencyName' => 'Travel R Us23456789012345',
+                'creditReasonIndicator' => 'A',
+                'ticketChangeIndicator' => 'C',
+                'ticketIssuerAddress' => '99 Second St',
+                'exchangeTicketNumber' => '123456789012346',
+                'exchangeAmount' => '500046',
+                'exchangeFeeAmount' => '5046',
+                'tripLegData0' => array(
+                    'tripLegNumber' => '1',
+                    'departureCode' => 'STL',
+                    'carrierCode' => 'AT',
+                    'serviceClass' => 'Business',
+                    'stopOverCode' => 'X',
+                    'destinationCode' => 'STL',
+                    'fareBasisCode' => 'nonref',
+                    'departureDate' => '2022-09-20',
+                    'originCity' => 'BOS',
+                    'travelNumber' => '123AB',
+                    'departureTime' => '09:32',
+                    'arrivalTime' => '15:56',
+                    'remarks' => 'This is a max 80 chars',
+                )
+            )
+
+        );
+
+        $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
+        $mock	->expects($this->once())
+            ->method('request')
+            ->with($this->matchesRegularExpression('/.*<passengerName>Mrs. Huxley234567890123456789.*<ticketNumber>ATL456789012345.*<exchangeAmount>500046.*<serviceClass>Business.*<originCity>BOS.*/'));
+
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->creditRequest($hash_in);
+    }
+
+    public function test_credit_with_additionalCOFData()
+    {
+        $hash_in = array('id' => 'id',
+            'amount' => '123',
+            'payPalNotes' => 'Notes',
+            'cnpTxnId' => '12345678000',
+            'additionalCOFData' => array(
+                'totalPaymentCount' => 'ND',
+                'paymentType' => 'Fixed Amount',
+                'uniqueId' => '234GTYH654RF13',
+                'frequencyOfMIT' => 'Annually',
+                'validationReference' => 'ANBH789UHY564RFC@EDB',
+                'sequenceIndicator' => '86',
+            ),
+        );
+
+        $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
+        $mock
+            ->expects($this->once())
+            ->method('request')
+            ->with($this->matchesRegularExpression('/.*<amount>123.*<sequenceIndicator>86.*/'));
+
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->creditRequest($hash_in);;
+    }
 
 }

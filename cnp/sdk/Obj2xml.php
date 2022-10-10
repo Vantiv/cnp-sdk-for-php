@@ -287,6 +287,9 @@ class Obj2xml
             } elseif (mb_substr($key,0,-1) == 'lodgingCharge') {
                 $temp_node = $transacType->addChild('lodgingCharge');
                 Obj2xml::iterateChildren($value,$temp_node);
+            }  elseif (mb_substr($key,0,-1) == 'tripLegData') {
+                $temp_node = $transacType->addChild('tripLegData');
+                Obj2xml::iterateChildren($value, $temp_node);
             } elseif (mb_substr($key,0,16) == 'debitNetworkName') {
                 //$temp_node = $transacType->addChild('debitNetworkName');
                 $transacType->addChild('debitNetworkName',str_replace('&','&amp;',$value));
