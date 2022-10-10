@@ -666,7 +666,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('sandbox', $location);
     }
 
-    public function test_auth_with_authmax_true()
+    public function test_auth_with_authmax_true_orderId()
     {
         $hash_in = array('id' => 'id',
             'card' => array('type' => 'VI',
@@ -688,6 +688,9 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $location = XmlParser::getNode($authorizationResponse, 'location');
         $this->assertEquals('sandbox', $location);
 
+        $authMax = XmlParser::getNode($authorizationResponse, 'authMax');
+        $this->assertNotEquals('', $authMax);
+
         foreach ($authorizationResponse->getElementsByTagName('authMax') as $child) {
             $authMaxApplied = XmlParser::getNode($child, 'authMaxApplied');
             $networkTokenApplied = XmlParser::getNode($child, 'networkTokenApplied');
@@ -702,7 +705,38 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         }
     }
 
-    public function test_auth_with_authmax_false()
+    public function test_auth_with_authmax_true_cnpTxnId()
+    {
+        $hash_in = array('id' => 'id',
+            'cnpTxnId'=> '475401');
+
+        $initialize = new CnpOnlineRequest();
+        $authorizationResponse = $initialize->authorizationRequest($hash_in);
+
+        $response = XmlParser::getNode($authorizationResponse, 'response');
+        $this->assertEquals('000', $response);
+
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+
+        $authMax = XmlParser::getNode($authorizationResponse, 'authMax');
+        $this->assertNotEquals('', $authMax);
+
+        foreach ($authorizationResponse->getElementsByTagName('authMax') as $child) {
+            $authMaxApplied = XmlParser::getNode($child, 'authMaxApplied');
+            $networkTokenApplied = XmlParser::getNode($child, 'networkTokenApplied');
+            $networkToken = XmlParser::getNode($child, 'networkToken');
+            $authMaxResponseCode = XmlParser::getNode($child, 'authMaxResponseCode');
+            $authMaxResponseMessage = XmlParser::getNode($child, 'authMaxResponseMessage');
+            $this->assertEquals('true', $authMaxApplied);
+            $this->assertEquals('true', $networkTokenApplied);
+            $this->assertEquals('1112000199940085', $networkToken);
+            $this->assertEquals('000', $authMaxResponseCode);
+            $this->assertEquals('Approved', $authMaxResponseMessage);
+        }
+    }
+
+    public function test_auth_with_authmax_false_orderId()
     {
         $hash_in = array('id' => 'id',
             'card' => array('type' => 'VI',
@@ -724,13 +758,39 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $location = XmlParser::getNode($authorizationResponse, 'location');
         $this->assertEquals('sandbox', $location);
 
+        $authMax = XmlParser::getNode($authorizationResponse, 'authMax');
+        $this->assertNotEquals('', $authMax);
+
         foreach ($authorizationResponse->getElementsByTagName('authMax') as $child) {
             $authMaxApplied = XmlParser::getNode($child, 'authMaxApplied');
             $this->assertEquals('false', $authMaxApplied);
         }
     }
 
-    public function test_auth_with_authmax_not_applied()
+    public function test_auth_with_authmax_false_cnpTxnId()
+    {
+        $hash_in = array('id' => 'id',
+            'cnpTxnId'=> '475402');
+
+        $initialize = new CnpOnlineRequest();
+        $authorizationResponse = $initialize->authorizationRequest($hash_in);
+
+        $response = XmlParser::getNode($authorizationResponse, 'response');
+        $this->assertEquals('000', $response);
+
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+
+        $authMax = XmlParser::getNode($authorizationResponse, 'authMax');
+        $this->assertNotEquals('', $authMax);
+
+        foreach ($authorizationResponse->getElementsByTagName('authMax') as $child) {
+            $authMaxApplied = XmlParser::getNode($child, 'authMaxApplied');
+            $this->assertEquals('false', $authMaxApplied);
+        }
+    }
+
+    public function test_auth_with_authmax_not_applied_orderId()
     {
         $hash_in = array('id' => 'id',
             'card' => array('type' => 'VI',
@@ -742,6 +802,24 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
             'reportGroup' => 'Planets',
             'orderSource' => 'ecommerce',
             'amount' => '0');
+
+        $initialize = new CnpOnlineRequest();
+        $authorizationResponse = $initialize->authorizationRequest($hash_in);
+
+        $response = XmlParser::getNode($authorizationResponse, 'response');
+        $this->assertEquals('000', $response);
+
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+
+        $authMax = XmlParser::getNode($authorizationResponse, 'authMax');
+        $this->assertEquals('', $authMax);
+    }
+
+    public function test_auth_with_authmax_not_applied_cnpTxnId()
+    {
+        $hash_in = array('id' => 'id',
+            'cnpTxnId'=> '1');
 
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
