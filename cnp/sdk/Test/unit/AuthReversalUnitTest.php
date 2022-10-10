@@ -110,4 +110,31 @@ namespace cnp\sdk;
         $cnpTest->authReversalRequest($hash_in);
     }
 
+     public function test_authRev_with_additionalCOFData()
+     {
+         $hash_in = array('id' => 'id',
+             'amount' => '123',
+             'payPalNotes' => 'Notes',
+             'cnpTxnId' => '12345678000',
+             'additionalCOFData' => array(
+                 'totalPaymentCount' => 'ND',
+                 'paymentType' => 'Fixed Amount',
+                 'uniqueId' => '234GTYH654RF13',
+                 'frequencyOfMIT' => 'Annually',
+                 'validationReference' => 'ANBH789UHY564RFC@EDB',
+                 'sequenceIndicator' => '86',
+             ),
+         );
+
+         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
+         $mock
+             ->expects($this->once())
+             ->method('request')
+             ->with($this->matchesRegularExpression('/.*<amount>123.*<sequenceIndicator>86.*/'));
+
+         $cnpTest = new CnpOnlineRequest();
+         $cnpTest->newXML = $mock;
+         $cnpTest->authReversalRequest($hash_in);;
+     }
+
 }

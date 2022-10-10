@@ -58,4 +58,57 @@ class DepositTransactionReversalUnitTest extends \PHPUnit_Framework_TestCase
         $cnpTest->DepositTransactionReversal($hash_in);
     }
 
+    public function test_depositeTranRever_with_passengerTransportData()
+    {
+        $hash_in = array(
+            'id' => 'id',
+            'cnpTxnId' => '12345678000',
+            'passengerTransportData' => array(
+                'passengerName' =>'Mrs. Huxley234567890123456789',
+                'ticketNumber' =>'ATL456789012345' ,
+                'issuingCarrier' =>'AMTK',
+                'carrierName' =>'AMTK',
+                'restrictedTicketIndicator' =>'99999',
+                'numberOfAdults' =>'2',
+                'numberOfChildren' =>'0',
+                'customerCode' =>'Railway',
+                'arrivalDate' =>'2022-09-20',
+                'issueDate' =>'2022-09-10',
+                'travelAgencyCode' =>'12345678',
+                'travelAgencyName' =>'Travel R Us23456789012345',
+                'computerizedReservationSystem' =>'STRT',
+                'creditReasonIndicator' =>'P',
+                'ticketChangeIndicator' =>'C',
+                'ticketIssuerAddress' =>'99 Second St',
+                'exchangeTicketNumber' =>'123456789012346',
+                'exchangeAmount' =>'500046',
+                'exchangeFeeAmount' =>'5046',
+                'tripLegData' => array(
+                    'tripLegNumber' => '1',
+                    'departureCode' => 'STL',
+                    'carrierCode' => 'AT',
+                    'serviceClass' => 'Business',
+                    'stopOverCode' => 'X',
+                    'destinationCode' => 'STL',
+                    'fareBasisCode' => 'nonref',
+                    'departureDate' => '2022-09-20',
+                    'originCity' => 'BOS',
+                    'travelNumber' => '123AB',
+                    'departureTime' => '09:32',
+                    'arrivalTime' => '15:56',
+                    'remarks' => 'This is a max 80 chars'
+                )
+            )
+        );
+
+        $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
+        $mock	->expects($this->once())
+            ->method('request')
+            ->with($this->matchesRegularExpression('/.*<passengerName>Mrs. Huxley234567890123456789.*<ticketNumber>ATL456789012345.*<exchangeAmount>500046.*<serviceClass>Business.*<originCity>BOS.*/'));
+
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->DepositTransactionReversal($hash_in);
+    }
+
 }

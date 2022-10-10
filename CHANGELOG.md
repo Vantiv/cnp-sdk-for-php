@@ -1,5 +1,25 @@
 = CnpOnline CHANGELOG
 
+==Version 12.27.0 (Oct 10, 2022)
+Note: It contains changes from cnpAPI v12.25, v12.26 and v12.27. In case you need any feature supported by cnpAPI v12.25, v12.26 or v12.27, please use SDK version 12.27.0.
+
+* Change:  [cnpAPI v12.27] Added new Element AuthMax in Authorization/ Sale Response
+* Change:  [cnpAPI v12.27] Added new elements authMaxApplied, networkTokenApplied, networkToken, authMaxResponseCode, authMaxResponseMessage in new element AuthMax
+* Change:  [cnpAPI v12.27] Added new values FIFA, FIVC, FISC, FISD, FIPC, FIPD, FIRC, FIRD in existing actionTypeEnum Enum
+
+* Change:  [cnpAPI v12.26] Added new Element passengerTransportData for authorization/sale/capture/forceCapture/captureGivenAuth/credit/depositTransactionReversal/refundTransactionReversal
+* Change:  [cnpAPI v12.26] Added new Element passengerTransportData for authorization/ sale/ capture/ forceCapture/ captureGivenAuth/ credit/ depositTransactionReversal/ refundTransactionReversal.
+* Change:  [cnpAPI v12.26] Added new elements passengerName, ticketNumber, issuingCarrier, carrierName, restrictedTicketIndicator, numberOfAdults, numberOfChildren, customerCode, arrivalDate, issueDate, travelAgencyCode, travelAgencyName, computerizedReservationSystem, creditReasonIndicator, ticketChangeIndicator, ticketIssuerAddress, exchangeTicketNumber, exchangeAmount, exchangeFeeAmount, tripLegData are added for new element passengerTransportData.
+* Change:  [cnpAPI v12.26] Added new elements tripLegNumber, departureCode, carrierCode, serviceClass, stopOverCode, destinationCode, fareBasisCode, departureDate, originCity, travelNumber, departureTime, arrivalTime added in new element in tripLegData.
+* Change:  [cnpAPI v12.26] Added existing Elements additionalCOFData in authReversal/ credit
+
+* Change:  [cnpAPI v12.25]  Added new Elements to support Guaranteed Payments for Authorization/Sale-overridePolicy, fsErrorCode, merchantAccountStatus, productEnrolled, decisionPurpose, fraudSwitchIndicator.
+* Change:  [cnpAPI v12.25]  Added a new Enum productEnrolledEnum(GUARPAY1,GUARPAY2,GUARPAY3) to support productEnrolled
+* Change:  [cnpAPI v12.25]  Added a new Enum decisionPurposeEnum(CONSIDER_DECISION,INFORMATION_ONLY) to support decisionPurpose
+* Change:  [cnpAPI v12.25]  Added a new Enum fraudSwitchIndicatorEnum(PRE,POST) to support fraudSwitchIndicator
+* Change:  [cnpAPI v12.25]  Added new Elements to support Cruise Lines for lodgingInfo element for Authorization/Sale :- bookingID, passengerName, propertyAddress( name,city,region, country), travelPackageIndicator, smokingPreference, numberOfRooms, tollFreePhoneNumber.
+* Change:  [cnpAPI v12.25]  Added a new Enum travelPackageIndicatorEnum(CarRentalReservation,AirlineReservation,Both,Unknown) to support travelPackageIndicator
+
 ==Version 12.24.0 (April 20, 2022)
 Note: It contains changes from cnpAPI v12.19, v12.20, v12.21, v12.22 & 12.23. In case you need any feature supported by cnpAPI v12.19, v12.20, v12.21, v12.22 or v12.23, please use SDK version 12.24.0.
 
