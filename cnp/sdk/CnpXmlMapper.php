@@ -30,7 +30,7 @@ class CnpXmlMapper
     {
     }
 
-    public function request($request,$hash_config=NULL,$useSimpleXml)
+    public function request($request,$hash_config,$useSimpleXml)
     {
         $response = Communication::httpRequest($request,$hash_config);
         if ($useSimpleXml) {
