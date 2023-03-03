@@ -298,4 +298,172 @@ class AuthUnitTest extends \PHPUnit_Framework_TestCase
         $cnpTest->authorizationRequest($hash_in);
     }
 
+    public function test_auth_orderChannel_MIT_Enum()
+    {
+        $hash_in = array(
+            'id' => 'id',
+            'orderId' => '82364_cnpApiAuth',
+            'amount' => '1001',
+            'orderSource' => 'telephone',
+            'customerInfo' => array(
+                'accountUsername' => 'username123',
+                'userAccountNumber' => '7647326235897',
+                'userAccountEmail' => 'dummtemail@abc.com',
+                'membershipId' => '23874682304',
+                'membershipPhone' => '16818807607551094758',
+                'membershipEmail' => 'email@abc.com',
+                'membershipName' => 'member123',
+                'accountCreatedDate' => '2050-07-17',
+                'userAccountPhone' => '1392345678',
+            ),
+            'card' => array(
+                'type' => 'VI',
+                'number' => '4005518220000002',
+                'expDate' => '0150',
+                'cardValidationNum' => '987',
+            ),
+            'enhancedData' => array(
+                'customerReference' => 'cust ref sale1',
+                'salesTax' => '1000',
+                'discountAmount' => '0',
+                'shippingAmount' => '0',
+                'dutyAmount' => '0',
+                'lineItemData' => array(
+                    'itemSequenceNumber' => '1',
+                    'itemDescription' => 'Clothes',
+                    'productCode' => 'TB123',
+                    'quantity' => '1',
+                    'unitOfMeasure' => 'EACH',
+                    'lineItemTotal' => '9900',
+                    'lineItemTotalWithTax' => '10000',
+                    'itemDiscountAmount' => '0',
+                    'commodityCode' => '301',
+                    'unitCost' => '31.02',
+                    'itemCategory' => 'Aparel',
+                    'itemSubCategory' => 'Clothing',
+                ),
+                'discountCode' => 'OneTimeDiscount11',
+                'discountPercent' => '11',
+                'fulfilmentMethodType' => 'DELIVERY',
+            ),
+            'lodgingInfo' => array(
+                'bookingID' => 'book1234512341',
+                'passengerName' => 'john cena',
+                'propertyAddress' => array(
+                    'name' => 'property1',
+                    'city' => 'nyc',
+                    'region' => 'KBA',
+                    'country' => 'USA',
+                ),
+                'travelPackageIndicator' => 'Both',
+                'smokingPreference' => 'N',
+                'numberOfRooms' => '13',
+                'tollFreePhoneNumber' => '1981876578076548',
+            ),
+            'orderChannel' => 'MIT',
+            'fraudCheckStatus' => 'CLOSE',
+            'overridePolicy' => 'merchantPolicyToDecline',
+            'fsErrorCode' => 'error123',
+            'merchantAccountStatus' => 'activeAccount',
+            'productEnrolled' => 'GUARPAY3',
+            'decisionPurpose' => 'CONSIDER_DECISION',
+            'fraudSwitchIndicator' => 'POST',
+        );
+
+        $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
+        $mock->expects($this->once())
+            ->method('request')
+            ->with($this->matchesRegularExpression('/.*<lodgingInfo>.*<bookingID>book1234512341.*<passengerName>john cena.*<propertyAddress>.*<name>property1.*<city>nyc.*<region>KBA.*<country>USA.*<travelPackageIndicator>Both.*<smokingPreference>N.*<numberOfRooms>13.*<tollFreePhoneNumber>1981876578076548.*<overridePolicy>merchantPolicyToDecline.*<fsErrorCode>error123.*<merchantAccountStatus>activeAccount.*<productEnrolled>GUARPAY3.*<decisionPurpose>CONSIDER_DECISION.*<fraudSwitchIndicator>POST.*/'));
+
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->authorizationRequest($hash_in);
+    }
+
+    public function test_auth_with_sellerInfo()
+    {
+            $hash_in = array(
+                'id' => 'id',
+                'orderId' => '82364_cnpApiAuth',
+                'amount' => '1001',
+                'orderSource' => 'telephone',
+                'customerInfo' => array(
+                    'accountUsername' => 'username123',
+                    'userAccountNumber' => '7647326235897',
+                    'userAccountEmail' => 'dummtemail@abc.com',
+                    'membershipId' => '23874682304',
+                    'membershipPhone' => '16818807607551094758',
+                    'membershipEmail' => 'email@abc.com',
+                    'membershipName' => 'member123',
+                    'accountCreatedDate' => '2050-07-17',
+                    'userAccountPhone' => '1392345678',
+                ),
+                'sellerInfo' => array(
+                    'accountNumber' => '4485581000000005',
+                    'aggregateOrderCount' => '4005518220000002',
+                    'aggregateOrderDollars' => '100',
+                    'sellerAddress' => array(
+                        'sellerStreetaddress' => '15 Main Street',
+                        'sellerUnit' => '100 AB',
+                        'sellerPostalcode' => '12345',
+                        'sellerCity' => 'San Jose',
+                        'sellerProvincecode' => 'MA',
+                        'sellerCountrycode' => 'US'),
+                    'createdDate' => '2015-11-12T20:33:09',
+                    'domain' => 'VAP',
+                    'email' => 'bob@example.com',
+                    'lastUpdateDate' => '2015-11-12T20:33:09',
+                    'name' => 'bob',
+                    'onboardingEmail' => 'bob@example.com',
+                    'onboardingIpAddress' => '75.100.88.78',
+                    'parentEntity' => 'abc',
+                    'phone' => '9785510040',
+                    'sellerId' => '123456789',
+                    'sellerTags' => array('tag' => '1',
+                                         'tag' => '2',
+                                        'tag' => '3'),
+                    'username' => 'bob143'
+                ),
+                'sellerInfo' => array(
+        'accountNumber' => '4485581000000005',
+        'aggregateOrderCount' => '4005518220000002',
+        'aggregateOrderDollars' => '100',
+        'sellerAddress' => array(
+            'sellerStreetaddress1' => '15 Main Street',
+            'sellerUnit' => '100 AB',
+            'sellerPostalcode' => '12345',
+            'sellerCity' => 'San Jose',
+            'sellerProvincecode' => 'MA',
+            'sellerCountrycode' => 'US'),
+        'createdDate' => '2015-11-12T20:33:09',
+        'domain' => 'VAP',
+        'email' => 'bob@example.com',
+        'lastUpdateDate' => '2015-11-12T20:33:09',
+        'name' => 'bob',
+        'onboardingEmail' => 'bob@example.com',
+        'onboardingIpAddress' => '75.100.88.78',
+        'parentEntity' => 'abc',
+        'phone' => '9785510040',
+        'sellerId' => '123456789',
+        'sellerTags' => array('tag' => '1',
+            'tag' => '2',
+            'tag' => '3'),
+        'username' => 'bob143'
+    ),
+                'card' => array('type' => 'VI',
+                    'number' => '4100000000000000',
+                    'expDate' => '1213',
+                    'cardValidationNum' => '1213')
+            );
+
+        $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
+        $mock->expects($this->once())
+            ->method('request')
+            ->with($this->matchesRegularExpression('/.*<accountNumber>4485581000000005.*<aggregateOrderDollars>100.*/'));
+
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->authorizationRequest($hash_in);
+    }
+
 }

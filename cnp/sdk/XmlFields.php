@@ -1000,6 +1000,61 @@ class XmlFields
         }
     }
 
+    public static function sellerAddress($hash_in)
+    {
+        if (isset($hash_in)) {
+            $hash_out = array(
+                "sellerStreetaddress"=>XmlFields::returnArrayValue($hash_in, "sellerStreetaddress", 100),
+                "sellerUnit"=>XmlFields::returnArrayValue($hash_in, "sellerUnit", 100),
+                "sellerPostalcode"=>XmlFields::returnArrayValue($hash_in, "sellerPostalcode", 100),
+                "sellerCity"=>XmlFields::returnArrayValue($hash_in, "sellerCity", 100),
+                "sellerProvincecode"=>XmlFields::returnArrayValue($hash_in, "sellerProvincecode", 100),
+                "sellerCountrycode"=>XmlFields::returnArrayValue($hash_in, "sellerCountrycode", 2),
+            );
 
+            return $hash_out;
+        }
+    }
+
+    public static function sellerTagsType($hash_in)
+    {
+        if (isset($hash_in)) {
+            $hash_out = array(
+                "tag"=>XmlFields::returnArrayValue($hash_in, "tag", 100),
+                "tag"=>XmlFields::returnArrayValue($hash_in, "tag", 100),
+                "tag"=>XmlFields::returnArrayValue($hash_in, "tag", 100),
+                "tag"=>XmlFields::returnArrayValue($hash_in, "tag", 100),
+                "tag"=>XmlFields::returnArrayValue($hash_in, "tag", 100),
+            );
+
+            return $hash_out;
+        }
+    }
+
+    public static function sellerInfo($hash_in)
+    {
+        if (isset($hash_in)){
+            $hash_out = array(
+                "accountNumber" => XmlFields::returnArrayValue($hash_in, 'accountNumber', 100),
+                "aggregateOrderCount" => XmlFields::returnArrayValue($hash_in, 'aggregateOrderCount', 8),
+                "aggregateOrderDollars" => XmlFields::returnArrayValue($hash_in, 'aggregateOrderDollars', 12),
+                "sellerAddress" => XmlFields::sellerAddress(XmlFields::returnArrayValue($hash_in, 'sellerAddress')),
+                "createdDate" => XmlFields::returnArrayValue($hash_in, 'createdDate', 100),
+                "domain" => XmlFields::returnArrayValue($hash_in, 'domain', 100),
+                "email" => XmlFields::returnArrayValue($hash_in, 'email', 100),
+                "lastUpdateDate" => XmlFields::returnArrayValue($hash_in, 'lastUpdateDate', 100),
+                "name" => XmlFields::returnArrayValue($hash_in, 'name', 100),
+                "onboardingEmail" => XmlFields::returnArrayValue($hash_in, 'onboardingEmail', 100),
+                "onboardingIpAddress" => XmlFields::returnArrayValue($hash_in, 'onboardingIpAddress', 100),
+                "parentEntity" => XmlFields::returnArrayValue($hash_in, 'parentEntity', 100),
+                "phone" => XmlFields::returnArrayValue($hash_in, 'phone', 100),
+                "sellerId" => XmlFields::returnArrayValue($hash_in, 'sellerId', 100),
+                "sellerTags" => XmlFields::sellerTagsType(XmlFields::returnArrayValue($hash_in, 'sellerTags')),
+                "username" => XmlFields::returnArrayValue($hash_in, 'username', 100),
+            );
+
+            return $hash_out;
+        }
+    }
 
 }
