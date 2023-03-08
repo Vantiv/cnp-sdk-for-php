@@ -1254,4 +1254,68 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('', $authMax);
     }
 
+    public function test_auth_with_sellerInfo()
+    {
+        $hash_in = array(
+            'id' => 'id',
+            'orderId' => '82364_cnpApiAuth',
+            'amount' => '1001',
+            'orderSource' => 'telephone',
+            'customerInfo' => array(
+                'accountUsername' => 'username123',
+                'userAccountNumber' => '7647326235897',
+                'userAccountEmail' => 'dummtemail@abc.com',
+                'membershipId' => '23874682304',
+                'membershipPhone' => '16818807607551094758',
+                'membershipEmail' => 'email@abc.com',
+                'membershipName' => 'member123',
+                'accountCreatedDate' => '2050-07-17',
+                'userAccountPhone' => '1392345678',
+            ),
+            'sellerInfo' => array(
+                'accountNumber' => '4485581000000005',
+                'aggregateOrderCount' => '4005518220000002',
+                'aggregateOrderDollars' => '100',
+                'sellerAddress' => array(
+                    'sellerStreetaddress' => '15 Main Street',
+                    'sellerUnit' => '100 AB',
+                    'sellerPostalcode' => '12345',
+                    'sellerCity' => 'San Jose',
+                    'sellerProvincecode' => 'MA',
+                    'sellerCountrycode' => 'US'),
+                'createdDate' => '2015-11-12T20:33:09',
+                'domain' => 'VAP',
+                'email' => 'bob@example.com',
+                'lastUpdateDate' => '2015-11-12T20:33:09',
+                'name' => 'bob',
+                'onboardingEmail' => 'bob@example.com',
+                'onboardingIpAddress' => '75.100.88.78',
+                'parentEntity' => 'abc',
+                'phone' => '9785510040',
+                'sellerId' => '123456789',
+                'sellerTags' => array(
+                    'tag' => '1',
+                    'tag' => '2',
+                    'tag' => '3'),
+                'username' => 'bob143'
+            ),
+            'card' => array('type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1213',
+                'cardValidationNum' => '1213')
+        );
+
+        $initialize = new CnpOnlineRequest();
+        $authorizationResponse = $initialize->saleRequest($hash_in);
+
+        $response = XmlParser::getNode($authorizationResponse, 'response');
+        $this->assertEquals('000', $response);
+
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+
+        $message = XmlParser::getNode($authorizationResponse, 'message');
+        $this->assertEquals('Approved', $message);
+    }
+
 }
