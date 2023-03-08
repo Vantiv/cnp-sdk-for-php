@@ -9,7 +9,8 @@ Note: It contains changes from cnpAPI v12.28 and v12.29. In case you need any fe
                            sellerTags and username added in sellerInfo.
 * Change:  [cnpAPI v12.29] New elements sellerStreetaddress, sellerUnit, sellerPostalcode, sellerCity, sellerProvincecode
                            and sellerCountrycode added in sellerAddress.
-* Change:  [cnpAPI v12.29] The datatype for networkToken, authMaxResponseCode, authMaxResponseMessage has been changed.
+* Change:  [cnpAPI v12.29] The datatype for networkToken, authMaxResponseCode, authMaxResponseMessage has been changed, Previously it was String.
+                           New dataType :  networkToken - ccAccountNumberType, authMaxResponseCode - responseType, authMaxResponseMessage- messageType.
 * Change:  [cnpAPI v12.28] New value MIT added in existing enum order channel.
 
 ==Version 12.27.0 (Oct 10, 2022)
