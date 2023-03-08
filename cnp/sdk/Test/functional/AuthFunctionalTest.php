@@ -1181,7 +1181,8 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
                 'parentEntity' => 'abc',
                 'phone' => '9785510040',
                 'sellerId' => '123456789',
-                'sellerTags' => array('tag' => '1',
+                'sellerTags' => array(
+                    'tag' => '1',
                     'tag' => '2',
                     'tag' => '3'),
                 'username' => 'bob143'

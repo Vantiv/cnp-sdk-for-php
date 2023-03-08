@@ -373,7 +373,9 @@ class AuthUnitTest extends \PHPUnit_Framework_TestCase
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
             ->method('request')
-            ->with($this->matchesRegularExpression('/.*<lodgingInfo>.*<bookingID>book1234512341.*<passengerName>john cena.*<propertyAddress>.*<name>property1.*<city>nyc.*<region>KBA.*<country>USA.*<travelPackageIndicator>Both.*<smokingPreference>N.*<numberOfRooms>13.*<tollFreePhoneNumber>1981876578076548.*<overridePolicy>merchantPolicyToDecline.*<fsErrorCode>error123.*<merchantAccountStatus>activeAccount.*<productEnrolled>GUARPAY3.*<decisionPurpose>CONSIDER_DECISION.*<fraudSwitchIndicator>POST.*/'));
+            ->with($this->matchesRegularExpression('/.*<lodgingInfo>.*<bookingID>book1234512341.*<passengerName>john cena.*<propertyAddress>.*<name>property1.*<city>nyc.*
+                                                  <region>KBA.*<country>USA.*<travelPackageIndicator>Both.*<smokingPreference>N.*<numberOfRooms>13.*<tollFreePhoneNumber>1981876578076548.*
+                                                  <overridePolicy>merchantPolicyToDecline.*<fsErrorCode>error123.*<merchantAccountStatus>activeAccount.*<productEnrolled>GUARPAY3.*<decisionPurpose>CONSIDER_DECISION.*<fraudSwitchIndicator>POST.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
@@ -419,37 +421,42 @@ class AuthUnitTest extends \PHPUnit_Framework_TestCase
                     'parentEntity' => 'abc',
                     'phone' => '9785510040',
                     'sellerId' => '123456789',
-                    'sellerTags' => array('tag' => '1',
-                                         'tag' => '2',
-                                        'tag' => '3'),
+                    'sellerTags' => array(
+                        'tag' => '1',
+                        'tag' => '2',
+                        'tag' => '3'
+                    ),
                     'username' => 'bob143'
                 ),
                 'sellerInfo' => array(
-        'accountNumber' => '4485581000000005',
-        'aggregateOrderCount' => '4005518220000002',
-        'aggregateOrderDollars' => '100',
-        'sellerAddress' => array(
-            'sellerStreetaddress1' => '15 Main Street',
-            'sellerUnit' => '100 AB',
-            'sellerPostalcode' => '12345',
-            'sellerCity' => 'San Jose',
-            'sellerProvincecode' => 'MA',
-            'sellerCountrycode' => 'US'),
-        'createdDate' => '2015-11-12T20:33:09',
-        'domain' => 'VAP',
-        'email' => 'bob@example.com',
-        'lastUpdateDate' => '2015-11-12T20:33:09',
-        'name' => 'bob',
-        'onboardingEmail' => 'bob@example.com',
-        'onboardingIpAddress' => '75.100.88.78',
-        'parentEntity' => 'abc',
-        'phone' => '9785510040',
-        'sellerId' => '123456789',
-        'sellerTags' => array('tag' => '1',
-            'tag' => '2',
-            'tag' => '3'),
-        'username' => 'bob143'
-    ),
+                    'accountNumber' => '4485581000000005',
+                    'aggregateOrderCount' => '4005518220000002',
+                    'aggregateOrderDollars' => '100',
+                    'sellerAddress' => array(
+                        'sellerStreetaddress1' => '15 Main Street',
+                        'sellerUnit' => '100 AB',
+                        'sellerPostalcode' => '12345',
+                        'sellerCity' => 'San Jose',
+                        'sellerProvincecode' => 'MA',
+                        'sellerCountrycode' => 'US'
+                    ),
+                    'createdDate' => '2015-11-12T20:33:09',
+                    'domain' => 'VAP',
+                    'email' => 'bob@example.com',
+                    'lastUpdateDate' => '2015-11-12T20:33:09',
+                    'name' => 'bob',
+                    'onboardingEmail' => 'bob@example.com',
+                    'onboardingIpAddress' => '75.100.88.78',
+                    'parentEntity' => 'abc',
+                    'phone' => '9785510040',
+                    'sellerId' => '123456789',
+                    'sellerTags' => array(
+                        'tag' => '1',
+                        'tag' => '2',
+                        'tag' => '3'
+                    ),
+                    'username' => 'bob143'
+                ),
                 'card' => array('type' => 'VI',
                     'number' => '4100000000000000',
                     'expDate' => '1213',
