@@ -1254,7 +1254,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('', $authMax);
     }
 
-    public function test_auth_with_sellerInfo()
+    public function test_sale_with_sellerInfo()
     {
         $hash_in = array(
             'id' => 'id',
