@@ -28,7 +28,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->direct = sys_get_temp_dir() . '/test' . CURRENT_SDK_VERSION;
-        $this->preliveStatus =  $_SERVER['preliveStatus'];
+        $this->preliveStatus = $_SERVER['preliveStatus'];
         if (!file_exists($this->direct)) {
             mkdir($this->direct);
         }
@@ -2532,6 +2532,66 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(0, $response);
     }
 
+    public function test_addAuthForSellerInfo()
+    {
+        if(strtolower($this->preliveStatus) == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
+        $hash_in = array(
+            'card' => array(
+                'type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1213',
+                'cardValidationNum' => '1213'
+            ),
+            'id' => '1211',
+            'cnpTxnId' => '12345678000',
+            'orderId' => '2111',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '123',
+            'orderChannel' => 'MIT',
+            'sellerInfo' => array(
+                'accountNumber' => '4485581000000005',
+                'aggregateOrderCount' => '4005518220000002',
+                'aggregateOrderDollars' => '100',
+                'sellerAddress' => array(
+                    'sellerStreetaddress' => '15 Main Street',
+                    'sellerUnit' => '100 AB',
+                    'sellerPostalcode' => '12345',
+                    'sellerCity' => 'San Jose',
+                    'sellerProvincecode' => 'MA',
+                    'sellerCountrycode' => 'US'),
+                'createdDate' => '2015-11-12T20:33:09',
+                'domain' => 'VAP',
+                'email' => 'bob@example.com',
+                'lastUpdateDate' => '2015-11-12T20:33:09',
+                'name' => 'bob',
+                'onboardingEmail' => 'bob@example.com',
+                'onboardingIpAddress' => '75.100.88.78',
+                'parentEntity' => 'abc',
+                'phone' => '9785510040',
+                'sellerId' => '123456789',
+                'sellerTags' => array(
+                    'tag' => '1',
+                    'tag' => '2',
+                    'tag' => '3'),
+                'username' => 'bob143'
+            )
+        );
+        $batch_request = new BatchRequest ($this->direct);
+        $batch_request->addAuth($hash_in);
+
+        $this->assertTrue(file_exists($batch_request->batch_file));
+        $this->assertEquals(1, $batch_request->total_txns);
+
+        $cts = $batch_request->getCountsAndAmounts();
+        $this->assertEquals(1, $cts ['auth'] ['count']);
+        $this->assertEquals(123, $cts ['auth'] ['amount']);
+    }
+
+
     public function tearDown()
     {
         $files = glob($this->direct . '/*'); // get all file names
@@ -2540,6 +2600,65 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
                 unlink($file); // delete file
         }
         rmdir($this->direct);
+    }
+
+    public function test_addSaleForSellerInfo()
+    {
+        if(strtolower($this->preliveStatus) == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
+        $hash_in = array(
+            'card' => array(
+                'type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1213',
+                'cardValidationNum' => '1213'
+            ),
+            'id' => '1211',
+            'cnpTxnId' => '12345678000',
+            'orderId' => '2111',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '123',
+            'orderChannel' => 'MIT',
+            'sellerInfo' => array(
+                'accountNumber' => '4485581000000005',
+                'aggregateOrderCount' => '4005518220000002',
+                'aggregateOrderDollars' => '100',
+                'sellerAddress' => array(
+                    'sellerStreetaddress' => '15 Main Street',
+                    'sellerUnit' => '100 AB',
+                    'sellerPostalcode' => '12345',
+                    'sellerCity' => 'San Jose',
+                    'sellerProvincecode' => 'MA',
+                    'sellerCountrycode' => 'US'),
+                'createdDate' => '2015-11-12T20:33:09',
+                'domain' => 'VAP',
+                'email' => 'bob@example.com',
+                'lastUpdateDate' => '2015-11-12T20:33:09',
+                'name' => 'bob',
+                'onboardingEmail' => 'bob@example.com',
+                'onboardingIpAddress' => '75.100.88.78',
+                'parentEntity' => 'abc',
+                'phone' => '9785510040',
+                'sellerId' => '123456789',
+                'sellerTags' => array(
+                    'tag' => '1',
+                    'tag' => '2',
+                    'tag' => '3'),
+                'username' => 'bob143'
+            )
+        );
+        $batch_request = new BatchRequest ($this->direct);
+        $batch_request->addsale($hash_in);
+
+        $this->assertTrue(file_exists($batch_request->batch_file));
+        $this->assertEquals(1, $batch_request->total_txns);
+
+        $cts = $batch_request->getCountsAndAmounts();
+        $this->assertEquals(1, $cts ['auth'] ['count']);
+        $this->assertEquals(123, $cts ['auth'] ['amount']);
     }
 
 }

@@ -1,5 +1,18 @@
 = CnpOnline CHANGELOG
 
+==Version 12.29.0 (Mar 08, 2023)
+Note: It contains changes from cnpAPI v12.28 and v12.29. In case you need any feature supported by cnpAPI v12.28 and 12.29, please use SDK version 12.29.0.
+
+* Change:  [cnpAPI v12.29] New element sellerInfo added in Authorization and sale Request.
+* Change:  [cnpAPI v12.29] New elements  accountNumber, aggregateOrderCount, aggregateOrderDollars, sellerAddress, createdDate, domain, email,
+                           lastUpdateDate, name, onboardingEmail, onboardingIpAddress, parentEntity, phone, sellerId,
+                           sellerTags and username added in sellerInfo.
+* Change:  [cnpAPI v12.29] New elements sellerStreetaddress, sellerUnit, sellerPostalcode, sellerCity, sellerProvincecode
+                           and sellerCountrycode added in sellerAddress.
+* Change:  [cnpAPI v12.29] The datatype for networkToken, authMaxResponseCode, authMaxResponseMessage has been changed, Previously it was String.
+                           networkToken - ccAccountNumberType, authMaxResponseCode - responseType, authMaxResponseMessage- messageType.
+* Change:  [cnpAPI v12.28] New value MIT added in existing enum order channel.
+
 ==Version 12.27.0 (Oct 10, 2022)
 Note: It contains changes from cnpAPI v12.25, v12.26 and v12.27. In case you need any feature supported by cnpAPI v12.25, v12.26 or v12.27, please use SDK version 12.27.0.
 
