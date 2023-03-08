@@ -373,9 +373,7 @@ class AuthUnitTest extends \PHPUnit_Framework_TestCase
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
             ->method('request')
-            ->with($this->matchesRegularExpression('/.*<lodgingInfo>.*<bookingID>book1234512341.*<passengerName>john cena.*<propertyAddress>.*<name>property1.*<city>nyc.*
-                                                  <region>KBA.*<country>USA.*<travelPackageIndicator>Both.*<smokingPreference>N.*<numberOfRooms>13.*<tollFreePhoneNumber>1981876578076548.*
-                                                  <overridePolicy>merchantPolicyToDecline.*<fsErrorCode>error123.*<merchantAccountStatus>activeAccount.*<productEnrolled>GUARPAY3.*<decisionPurpose>CONSIDER_DECISION.*<fraudSwitchIndicator>POST.*/'));
+            ->with($this->matchesRegularExpression('/.*<lodgingInfo>.*<bookingID>book1234512341.*<passengerName>john cena.*<propertyAddress>.*<name>property1.*<city>nyc.*<region>KBA.*<country>USA.*<travelPackageIndicator>Both.*<smokingPreference>N.*<numberOfRooms>13.*<tollFreePhoneNumber>1981876578076548.*<overridePolicy>merchantPolicyToDecline.*<fsErrorCode>error123.*<merchantAccountStatus>activeAccount.*<productEnrolled>GUARPAY3.*<decisionPurpose>CONSIDER_DECISION.*<fraudSwitchIndicator>POST.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
