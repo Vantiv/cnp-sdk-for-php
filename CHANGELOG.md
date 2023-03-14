@@ -1,5 +1,12 @@
 = CnpOnline CHANGELOG
 
+==Version 12.30.0 (Mar 14, 2023)
+Note: It contains changes from cnpAPI v12.30 . In case you need any feature supported by cnpAPI v12.30, please use SDK version 12.30.0.
+
+* Change:  [cnpAPI v12.30] New element authIndicator added in Authorization Request.
+* Change:  [cnpAPI v12.30] New element amount added in Authorization Request.
+* Change:  [cnpAPI v12.30] To support authIndicator new enum authIndicatorEnum added with values Incremental ,Estimated .
+
 ==Version 12.29.0 (Mar 08, 2023)
 Note: It contains changes from cnpAPI v12.28 and v12.29. In case you need any feature supported by cnpAPI v12.28 and 12.29, please use SDK version 12.29.0.
 
