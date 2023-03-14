@@ -2591,104 +2591,6 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(123, $cts ['auth'] ['amount']);
     }
 
-    public function test_addAuthForAuthIndicatorEnumEstimated()
-    {
-        if(strtolower($this->preliveStatus) == 'down'){
-            $this->markTestSkipped('Prelive is not available');
-        }
-        $hash_in = array(
-            'id' => 'id',
-            'orderId' => 'OnlineCust01',
-            'amount' => '1001',
-            'orderSource' => 'telephone',
-            'billToAddress' => array(
-                'name' => 'Jonathan Ross',
-                'addressLine1' => '10th Floor',
-                'addressLine2' => 'Tower 2',
-                'addressLine3' => '900 Chelmsford Street',
-                'city' => 'Lowell',
-                'state' => 'MA',
-                'zip' => '01851',
-                'country' => 'USA',
-                'email' => 'jross@litle.com<',
-                'phone' => '800-548-5326'),
-            'card' => array(
-                'type' => 'VI',
-                'number' => '4003002345678903',
-                'expDate' => '1199'),
-            'authIndicator' => 'Estimated'
-        );
-        $batch_request = new BatchRequest ($this->direct);
-        $batch_request->addAuth($hash_in);
-
-        $this->assertTrue(file_exists($batch_request->batch_file));
-        $this->assertEquals(1, $batch_request->total_txns);
-
-        $cts = $batch_request->getCountsAndAmounts();
-        $this->assertEquals(1, $cts ['auth'] ['count']);
-        $this->assertEquals(1001, $cts ['auth'] ['amount']);
-
-
-    }
-
-    public function test_addAuthForAuthIndicatorEnumIncremental()
-    {
-        if(strtolower($this->preliveStatus) == 'down'){
-            $this->markTestSkipped('Prelive is not available');
-        }
-
-        $hash_in = array(
-            'id' => 'id',
-            'orderId' => 'OnlineCust01',
-            'amount' => '1001',
-            'orderSource' => 'telephone',
-            'billToAddress' => array(
-                'name' => 'Jonathan Ross',
-                'addressLine1' => '10th Floor',
-                'addressLine2' => 'Tower 2',
-                'addressLine3' => '900 Chelmsford Street',
-                'city' => 'Lowell',
-                'state' => 'MA',
-                'zip' => '01851',
-                'country' => 'USA',
-                'email' => 'jross@litle.com<',
-                'phone' => '800-548-5326'),
-            'card' => array(
-                'type' => 'VI',
-                'number' => '4003002345678903',
-                'expDate' => '1199'),
-            'authIndicator' => 'Incremental'
-        );
-        $batch_request = new BatchRequest ($this->direct);
-        $batch_request->addAuth($hash_in);
-
-        $this->assertTrue(file_exists($batch_request->batch_file));
-        $this->assertEquals(1, $batch_request->total_txns);
-
-        $cts = $batch_request->getCountsAndAmounts();
-        $this->assertEquals(1, $cts ['auth'] ['count']);
-        $this->assertEquals(1001, $cts ['auth'] ['amount']);
-    }
-
-    public function test_addAuthForAuthIndicatorEnumIncremantalAmount()
-    {
-        if(strtolower($this->preliveStatus) == 'down'){
-            $this->markTestSkipped('Prelive is not available');
-        }
-
-        $hash_in = array('id' => 'id', 'cnpTxnId' => '82935478257580213' , 'amount' => '1101', 'authIndicator' => 'Incremental');
-
-        $batch_request = new BatchRequest ($this->direct);
-        $batch_request->addAuth($hash_in);
-
-        $this->assertTrue(file_exists($batch_request->batch_file));
-        $this->assertEquals(1, $batch_request->total_txns);
-
-        $cts = $batch_request->getCountsAndAmounts();
-        $this->assertEquals(1, $cts ['auth'] ['count']);
-        $this->assertEquals(1101, $cts ['auth'] ['amount']);
-    }
-
 
     public function tearDown()
     {
@@ -2700,5 +2602,63 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         rmdir($this->direct);
     }
 
+    public function test_addSaleForSellerInfo()
+    {
+        if(strtolower($this->preliveStatus) == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
+        $hash_in = array(
+            'card' => array(
+                'type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1213',
+                'cardValidationNum' => '1213'
+            ),
+            'id' => '1211',
+            'cnpTxnId' => '12345678000',
+            'orderId' => '2111',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '123',
+            'orderChannel' => 'MIT',
+            'sellerInfo' => array(
+                'accountNumber' => '4485581000000005',
+                'aggregateOrderCount' => '4005518220000002',
+                'aggregateOrderDollars' => '100',
+                'sellerAddress' => array(
+                    'sellerStreetaddress' => '15 Main Street',
+                    'sellerUnit' => '100 AB',
+                    'sellerPostalcode' => '12345',
+                    'sellerCity' => 'San Jose',
+                    'sellerProvincecode' => 'MA',
+                    'sellerCountrycode' => 'US'),
+                'createdDate' => '2015-11-12T20:33:09',
+                'domain' => 'VAP',
+                'email' => 'bob@example.com',
+                'lastUpdateDate' => '2015-11-12T20:33:09',
+                'name' => 'bob',
+                'onboardingEmail' => 'bob@example.com',
+                'onboardingIpAddress' => '75.100.88.78',
+                'parentEntity' => 'abc',
+                'phone' => '9785510040',
+                'sellerId' => '123456789',
+                'sellerTags' => array(
+                    'tag' => '1',
+                    'tag' => '2',
+                    'tag' => '3'),
+                'username' => 'bob143'
+            )
+        );
+        $batch_request = new BatchRequest ($this->direct);
+        $batch_request->addsale($hash_in);
+
+        $this->assertTrue(file_exists($batch_request->batch_file));
+        $this->assertEquals(1, $batch_request->total_txns);
+
+        $cts = $batch_request->getCountsAndAmounts();
+        $this->assertEquals(1, $cts ['auth'] ['count']);
+        $this->assertEquals(123, $cts ['auth'] ['amount']);
+    }
 
 }
