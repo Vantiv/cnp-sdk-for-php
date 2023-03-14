@@ -2689,16 +2689,6 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
     }
 
 
-    public function tearDown()
-    {
-        $files = glob($this->direct . '/*'); // get all file names
-        foreach ($files as $file) { // iterate files
-            if (is_file($file))
-                unlink($file); // delete file
-        }
-        rmdir($this->direct);
-    }
-
     public function test_addSaleForSellerInfo()
     {
         if(strtolower($this->preliveStatus) == 'down'){
@@ -2754,8 +2744,18 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1, $batch_request->total_txns);
 
         $cts = $batch_request->getCountsAndAmounts();
-        $this->assertEquals(1, $cts ['auth'] ['count']);
-        $this->assertEquals(123, $cts ['auth'] ['amount']);
+        $this->assertEquals(1, $cts ['sale'] ['count']);
+        $this->assertEquals(123, $cts ['sale'] ['amount']);
+    }
+
+    public function tearDown()
+    {
+        $files = glob($this->direct . '/*'); // get all file names
+        foreach ($files as $file) { // iterate files
+            if (is_file($file))
+                unlink($file); // delete file
+        }
+        rmdir($this->direct);
     }
 
 }
