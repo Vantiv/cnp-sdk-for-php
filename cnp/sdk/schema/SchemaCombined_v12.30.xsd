@@ -1231,6 +1231,13 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <xs:simpleType name="authIndicatorEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Estimated" />
+            <xs:enumeration value="Incremental" />
+        </xs:restriction>
+    </xs:simpleType>
+
 
     <!--cnpRecurring-->
 
@@ -1629,6 +1636,8 @@
                     <xs:choice>
                         <xs:sequence>
                             <xs:element name="cnpTxnId" type="xp:cnpIdType"/>
+                            <xs:element name="amount" type="xp:transactionAmountType"/>
+                            <xs:element name="authIndicator" type="xp:authIndicatorEnum"/>
                         </xs:sequence>
                         <xs:sequence>
                             <xs:element name="orderId" type="xp:string256Type"/>
@@ -1685,6 +1694,7 @@
                             <xs:element name="decisionPurpose" type="xp:decisionPurposeEnum" minOccurs="0"/>
                             <xs:element name="fraudSwitchIndicator" type="xp:fraudSwitchIndicatorEnum" minOccurs="0"/>
                             <xs:element ref="xp:passengerTransportData" minOccurs="0"/>
+                            <xs:element name="authIndicator" type="xp:authIndicatorEnum" minOccurs="0"/>
                         </xs:sequence>
                     </xs:choice>
                 </xs:extension>

@@ -86,7 +86,11 @@ class CnpOnlineRequest
     public function authorizationRequest($hash_in)
     {
         if (isset($hash_in['cnpTxnId'])) {
-            $hash_out = array('cnpTxnId' => (XmlFields::returnArrayValue($hash_in, 'cnpTxnId')));
+            $hash_out = array(
+                'cnpTxnId' => (XmlFields::returnArrayValue($hash_in, 'cnpTxnId')),
+                'amount' => (XmlFields::returnArrayValue($hash_in, 'amount')),
+                'authIndicator' => XmlFields::returnArrayValue($hash_in, 'authIndicator'));
+
         } else {
             $hash_out = array(
                 'orderId' => XmlFields::returnArrayValue($hash_in, 'orderId'),
@@ -141,7 +145,8 @@ class CnpOnlineRequest
                 'productEnrolled' => XmlFields::returnArrayValue($hash_in, 'productEnrolled'),
                 'decisionPurpose' => XmlFields::returnArrayValue($hash_in, 'decisionPurpose'),
                 'fraudSwitchIndicator' => XmlFields::returnArrayValue($hash_in, 'fraudSwitchIndicator'),
-                'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData'))
+                'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData')),
+                'authIndicator' => XmlFields::returnArrayValue($hash_in, 'authIndicator')
             );
         }
         $choice_hash = array(XmlFields::returnArrayValue($hash_out, 'card'), XmlFields::returnArrayValue($hash_out, 'paypal'), XmlFields::returnArrayValue($hash_out, 'token'), XmlFields::returnArrayValue($hash_out, 'paypage'), XmlFields::returnArrayValue($hash_out, 'applepay'), XmlFields::returnArrayValue($hash_out, 'mpos'));
