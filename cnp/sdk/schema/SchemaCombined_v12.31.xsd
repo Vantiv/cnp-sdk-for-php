@@ -1238,6 +1238,11 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <xs:simpleType name="foreignRetailerIndicatorEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="F" />
+        </xs:restriction>
+    </xs:simpleType>
 
     <!--cnpRecurring-->
 
@@ -1754,6 +1759,7 @@
                         <xs:element ref="xp:lodgingInfo" minOccurs="0"/>
                         <xs:element name="pin" type="xp:pinType" minOccurs="0"/>
                         <xs:element ref="xp:passengerTransportData" minOccurs="0"/>
+                        <xs:element name="foreignRetailerIndicator" type="xp:foreignRetailerIndicatorEnum" minOccurs="0"/>
                     </xs:all>
                 </xs:extension>
             </xs:complexContent>
@@ -1806,6 +1812,7 @@
                         <xs:element name="merchantCategoryCode" type="xp:stringExactly4Type" minOccurs="0"/>
                         <xs:element name="businessIndicator" type="xp:businessIndicatorEnum" minOccurs="0"/>
                         <xs:element ref="xp:passengerTransportData" minOccurs="0"/>
+                        <xs:element name="foreignRetailerIndicator" type="xp:foreignRetailerIndicatorEnum" minOccurs="0"/>
                     </xs:sequence>
                 </xs:extension>
             </xs:complexContent>
@@ -1848,6 +1855,7 @@
                         <xs:element name="businessIndicator" type="xp:businessIndicatorEnum" minOccurs="0"/>
                         <xs:element name="crypto" type="xs:boolean" minOccurs="0"/>
                         <xs:element ref="xp:passengerTransportData" minOccurs="0"/>
+                        <xs:element name="foreignRetailerIndicator" type="xp:foreignRetailerIndicatorEnum" minOccurs="0"/>
                     </xs:sequence>
                 </xs:extension>
             </xs:complexContent>
@@ -1926,6 +1934,7 @@
                         <xs:element name="decisionPurpose" type="xp:decisionPurposeEnum" minOccurs="0"/>
                         <xs:element name="fraudSwitchIndicator" type="xp:fraudSwitchIndicatorEnum" minOccurs="0"/>
                         <xs:element ref="xp:passengerTransportData" minOccurs="0"/>
+                        <xs:element name="foreignRetailerIndicator" type="xp:foreignRetailerIndicatorEnum" minOccurs="0"/>
                     </xs:sequence>
                 </xs:extension>
             </xs:complexContent>

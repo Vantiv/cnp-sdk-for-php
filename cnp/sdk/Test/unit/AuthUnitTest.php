@@ -552,6 +552,40 @@ class AuthUnitTest extends \PHPUnit_Framework_TestCase
         $cnpTest->newXML = $mock;
         $cnpTest->authorizationRequest($hash_in);
     }
+    public function test_auth_foreignRetailerIndicatorEnum()
+    {
+        $hash_in = array(
+            'id' => 'id',
+            'orderId' => 'OnlineCust01',
+            'amount' => '1001',
+            'orderSource' => 'telephone',
+            'billToAddress' => array(
+                'name' => 'Jonathan Ross',
+                'addressLine1' => '10th Floor',
+                'addressLine2' => 'Tower 2',
+                'addressLine3' => '900 Chelmsford Street',
+                'city' => 'Lowell',
+                'state' => 'MA',
+                'zip' => '01851',
+                'country' => 'USA',
+                'email' => 'jross@litle.com<',
+                'phone' => '800-548-5326'),
+            'card' => array(
+                'type' => 'VI',
+                'number' => '4003002345678903',
+                'expDate' => '1199'),
+            'authIndicator' => 'Estimated',
+            'foreignRetailerIndicator' => 'F'
 
+        );
+        $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
+        $mock->expects($this->once())
+            ->method('request')
+            ->with($this->matchesRegularExpression('/.*<authIndicator>Estimated.*/'));
+
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->authorizationRequest($hash_in);
+    }
 
 }
