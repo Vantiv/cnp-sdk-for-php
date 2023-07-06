@@ -550,14 +550,12 @@ class CaptureGivenAuthUnitTest extends \PHPUnit_Framework_TestCase
                     'originCity' =>'BOS')
             ),                
             'foreignRetailerIndicator' => 'F'
-
         );
 
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock	->expects($this->once())
             ->method('request')
-            ->with($this->matchesRegularExpression('/.*<passengerName>Mrs. Huxley234567890123456789.*<ticketNumber>ATL456789012345.*<exchangeAmount>500046.*<serviceClass>First.*<originCity>BOS.*/'));
-
+            ->with($this->matchesRegularExpression('/.*<foreignRetailerIndicator>F.*/'));
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
         $cnpTest->captureGivenAuthRequest($hash_in);

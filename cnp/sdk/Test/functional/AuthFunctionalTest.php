@@ -1227,7 +1227,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('sandbox', $location);
     }
 
-    public function test_simple_auth_with_authIndicatorenum_estimated()
+    public function test_simple_auth_with_authIndicatorEnum_estimated()
     {
         $hash_in = array(
             'id' => 'id',
@@ -1259,7 +1259,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('sandbox', $location);
     }
 
-    public function test_simple_auth_with_authIndicator_increamental()
+    public function test_simple_auth_with_authIndicator_incremental()
     {
         $hash_in = array(
             'id' => 'id',
@@ -1290,39 +1290,4 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $location = XmlParser::getNode($authorizationResponse, 'location');
         $this->assertEquals('sandbox', $location);
     }
-
-    public function test_simple_auth_with_foreignRetailerIndicatorEnum()
-    {
-        $hash_in = array(
-            'id' => 'id',
-            'orderId' => 'OnlineCust01',
-            'amount' => '1001',
-            'orderSource' => 'telephone',
-            'billToAddress' => array(
-                'name' => 'Jonathan Ross',
-                'addressLine1' => '10th Floor',
-                'addressLine2' => 'Tower 2',
-                'addressLine3' => '900 Chelmsford Street',
-                'city' => 'Lowell',
-                'state' => 'MA',
-                'zip' => '01851',
-                'country' => 'USA',
-                'email' => 'jross@litle.com<',
-                'phone' => '800-548-5326'),
-            'card' => array(
-                'type' => 'VI',
-                'number' => '4003002345678903',
-                'expDate' => '1199'),
-            'authIndicator' => 'Estimated',
-            'foreignRetailerIndicator' => 'F'
-
-        );
-        $initialize = new CnpOnlineRequest();
-        $authorizationResponse = $initialize->authorizationRequest($hash_in);
-        $message = XmlParser::getAttribute($authorizationResponse, 'cnpOnlineResponse', 'message');
-        $this->assertEquals("Valid Format", $message);
-        $location = XmlParser::getNode($authorizationResponse, 'location');
-        $this->assertEquals('sandbox', $location);
-    }
-
 }

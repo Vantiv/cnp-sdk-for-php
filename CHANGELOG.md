@@ -1,5 +1,9 @@
 = CnpOnline CHANGELOG
 
+==Version 12.31.0 (Jul 08, 2023)
+* Feature:  [cnpAPI v12.31] New element foreignRetailerIndicator of type enum added in capture, captureGivenAuth, forceCapture, sale request.
+* Change:  [cnpAPI v12.31] phpseclib is upgraded to phpseclib3 to support modern ciphers during sftp sessions.
+
 ==Version 12.30.0 (Mar 14, 2023)
 Note: It contains changes from cnpAPI v12.30 . In case you need any feature supported by cnpAPI v12.30, please use SDK version 12.30.0.
 
