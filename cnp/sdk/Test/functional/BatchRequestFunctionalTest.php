@@ -1811,7 +1811,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderId'=> '2111',
             'orderSource'=>'ecommerce',
             'id'=>'654',
-            'amount'=>'123');
+            'amount'=>'1123');
         $batch->addAuth($hash_in);
 
         $hash_in = array(
@@ -1822,7 +1822,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
             'id'=>'654',
             'orderId'=> '2111',
             'orderSource'=>'ecommerce',
-            'amount'=>'123');
+            'amount'=>'1123');
         $batch->addSale($hash_in);
         $request->addBatchRequest($batch);
 
@@ -2010,7 +2010,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         $hash_in = array(
             'id'=>'0001',
             'orderId' => '82364_cnpApiAuth',
-            'amount' => '2870',
+            'amount' => '1870',
             'orderSource' => 'telephone',
             'billToAddress' => array(
                 'name' => 'David Berman A',

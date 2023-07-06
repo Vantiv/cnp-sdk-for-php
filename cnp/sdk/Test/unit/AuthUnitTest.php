@@ -552,6 +552,4 @@ class AuthUnitTest extends \PHPUnit_Framework_TestCase
         $cnpTest->newXML = $mock;
         $cnpTest->authorizationRequest($hash_in);
     }
-
-
 }

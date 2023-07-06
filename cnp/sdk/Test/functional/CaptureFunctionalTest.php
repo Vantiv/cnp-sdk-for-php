@@ -149,4 +149,45 @@ class CaptureFunctionalTest extends \PHPUnit_Framework_TestCase
         $location = XmlParser::getNode($captureResponse, 'location');
         $this->assertEquals('sandbox', $location);
     }
+
+    public function test_simple_capture_foreignRetailerIndicator()
+    {
+        $hash_in = array('id' => 'id',
+            'cnpTxnId' => '1234567891234567891',
+            'passengerTransportData' => array(
+                'passengerName' => 'Mrs. Huxley234567890123456789',
+                'ticketNumber' => 'ATL456789012345',
+                'issuingCarrier' => 'AMTK',
+                'carrierName' => 'AMTK',
+                'restrictedTicketIndicator' => '99999',
+                'numberOfAdults' => '2',
+                'numberOfChildren' => '0',
+                'customerCode' => 'Railway',
+                'arrivalDate' => '2022-09-20',
+                'issueDate' => '2022-09-10',
+                'travelAgencyCode' => '12345678',
+                'travelAgencyName' => 'Travel R Us23456789012345',
+                'computerizedReservationSystem' => 'STRT',
+                'creditReasonIndicator' => 'P',
+                'ticketChangeIndicator' => 'C',
+                'ticketIssuerAddress' => '99 Second St',
+                'exchangeTicketNumber' => '123456789012346',
+                'exchangeAmount' => '500046',
+                'exchangeFeeAmount' => '5046',
+                'tripLegData' => array(
+                    'tripLegNumber' => '10',
+                    'serviceClass' => 'First',
+                    'departureDate' => '2022-09-20',
+                    'originCity' => 'BOS')),
+        'foreignRetailerIndicator' => 'F'
+        );
+
+        $initialize = new CnpOnlineRequest();
+        $captureResponse = $initialize->captureRequest($hash_in);
+        $message = XmlParser::getAttribute($captureResponse, 'cnpOnlineResponse', 'response');
+        $this->assertEquals('0', $message);
+        $location = XmlParser::getNode($captureResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+    }
+
 }

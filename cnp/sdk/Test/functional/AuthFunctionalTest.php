@@ -1227,7 +1227,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('sandbox', $location);
     }
 
-    public function test_simple_auth_with_authIndicatorenum_estimated()
+    public function test_simple_auth_with_authIndicatorEnum_estimated()
     {
         $hash_in = array(
             'id' => 'id',
@@ -1259,7 +1259,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('sandbox', $location);
     }
 
-    public function test_simple_auth_with_authIndicator_increamental()
+    public function test_simple_auth_with_authIndicator_incremental()
     {
         $hash_in = array(
             'id' => 'id',
@@ -1290,7 +1290,4 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
         $location = XmlParser::getNode($authorizationResponse, 'location');
         $this->assertEquals('sandbox', $location);
     }
-
-
-
 }
