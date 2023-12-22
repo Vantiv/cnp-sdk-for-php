@@ -1371,5 +1371,92 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $authMax = XmlParser::getNode($authorizationResponse, 'authMax');
         $this->assertEquals('', $authMax);
     }
+
+    public function test_sale_with_subscription()
+    {
+        $hash_in = array(
+            'id' => 'id',
+            'orderId' => '82364_cnpApiAuth',
+            'amount' => '1001',
+            'orderSource' => 'telephone',
+            'customerInfo' => array(
+                'accountUsername' => 'username123',
+                'userAccountNumber' => '7647326235897',
+                'userAccountEmail' => 'dummtemail@abc.com',
+                'membershipId' => '23874682304',
+                'membershipPhone' => '16818807607551094758',
+                'membershipEmail' => 'email@abc.com',
+                'membershipName' => 'member123',
+                'accountCreatedDate' => '2050-07-17',
+                'userAccountPhone' => '1392345678',
+            ),
+            'card' => array(
+                'type' => 'VI',
+                'number' => '4005518220000002',
+                'expDate' => '0150',
+                'cardValidationNum' => '987',
+            ),
+            'enhancedData' => array(
+                'customerReference' => 'cust ref sale1',
+                'salesTax' => '1000',
+                'discountAmount' => '0',
+                'shippingAmount' => '0',
+                'dutyAmount' => '0',
+                'lineItemData' => array(
+                    'itemSequenceNumber' => '1',
+                    'itemDescription' => 'Clothes',
+                    'productCode' => 'TB123',
+                    'quantity' => '1',
+                    'unitOfMeasure' => 'EACH',
+                    'lineItemTotal' => '9900',
+                    'lineItemTotalWithTax' => '10000',
+                    'itemDiscountAmount' => '0',
+                    'commodityCode' => '301',
+                    'unitCost' => '31.02',
+                    'itemCategory' => 'Aparel',
+                    'itemSubCategory' => 'Clothing',
+                ),
+                'discountCode' => 'OneTimeDiscount11',
+                'discountPercent' => '11',
+                'fulfilmentMethodType' => 'DELIVERY',
+                'shipmentId' => '12222222',
+                'lineItemData' => array(
+                    'itemSequenceNumber' => '1',
+                    'itemDescription' => 'Clothes',
+                    'productCode' => 'TB123',
+                    'quantity' => '1',
+                    'unitOfMeasure' => 'EACH',
+                    'lineItemTotal' => '9900',
+                    'lineItemTotalWithTax' => '10000',
+                    'itemDiscountAmount' => '0',
+                    'commodityCode' => '301',
+                    'unitCost' => '31.02',
+                    'itemCategory' => 'Aparel',
+                    'itemSubCategory' => 'Clothing',
+                    'shipmentId' => '12222222',
+                    'subscription' => array(
+                        'subscriptionId' => 'subscription',
+                        'nextDeliveryDate' => '2023-01-01',
+                        'periodUnit' => 'YEAR',
+                        'numberOfPeriods' => '123',
+                        'regularItemPrice' => '123',
+                        'currentPeriod' => '123',
+                    ))
+            )
+
+        );
+
+        $initialize = new CnpOnlineRequest();
+        $authorizationResponse = $initialize->saleRequest($hash_in);
+
+        $response = XmlParser::getNode($authorizationResponse, 'response');
+        $this->assertEquals('000', $response);
+
+        $location = XmlParser::getNode($authorizationResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+
+        $message = XmlParser::getNode($authorizationResponse, 'message');
+        $this->assertEquals('Approved', $message);
+    }
     
 }

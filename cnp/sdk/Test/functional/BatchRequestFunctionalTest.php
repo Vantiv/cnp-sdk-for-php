@@ -2747,6 +2747,80 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1, $cts ['sale'] ['count']);
         $this->assertEquals(123, $cts ['sale'] ['amount']);
     }
+    public function test_enhancedData_with_subscription_batchSFTP()
+    {
+        if(strtolower($this->preliveStatus) == 'down'){
+            $this->markTestSkipped('Prelive is not available');
+        }
+
+        $request = new CnpRequest();
+
+        $batch = new BatchRequest();
+        $hash_in = array('id' => 'id',
+            'card' => array('type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1213',
+                'cardValidationNum' => '1213'),
+            'id' => '1211',
+            'orderId' => '22@33',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '0',
+            'enhancedData' => array(
+                'salesTax' => '500',
+                'taxExempt' => false,
+                'detailTax0' => array(
+                    'taxAmount' => '200',
+                    'taxRate' => '0.06',
+                    'taxIncludedInTotal' => true
+                ),
+                'detailTax1' => array(
+                    'taxAmount' => '300',
+                    'taxRate' => '0.10',
+                    'taxIncludedInTotal' => true
+                ),'lineItemData0' => array(
+                    'itemSequenceNumber' => '1',
+                    'itemDescription' => 'product 1',
+                    'productCode' => '123',
+                    'quantity' => 3,
+                    'unitOfMeasure' => 'unit',
+                    'taxAmount' => 200,
+                    'detailTax' => array(
+                        'taxIncludedInTotal' => true,
+                        'taxAmount' => 200
+                    ),
+                    'itemCategory' => 'Aparel',
+                    'itemSubCategory' => 'Clothing',
+                    'productId' => '1001',
+                    'productName' => 'N1',
+                    'shipmentId' => '12222222',
+                    'subscription' => array(
+                        'subscriptionId' => 'subscription',
+                        'nextDeliveryDate' => '2023-01-01',
+                        'periodUnit' => 'YEAR',
+                        'numberOfPeriods' => '123',
+                        'regularItemPrice' => '123',
+                        'currentPeriod' => '123',
+                    )
+                ),
+                'discountCode' => 'oneTimeDis',
+                'discountPercent' => '12',
+                'fulfilmentMethodType' => 'COUNTER_PICKUP'
+            )
+
+        );
+        $batch->addAuth($hash_in);
+
+        $request->addBatchRequest($batch);
+
+        $resp = new CnpResponseProcessor($request->sendToCnp());
+
+        $message = $resp->getXmlReader()->getAttribute("message");
+        $response = $resp->getXmlReader()->getAttribute("response");
+        $this->assertEquals("Valid Format", $message);
+        $this->assertEquals(0, $response);
+
+    }
 
     public function tearDown()
     {
