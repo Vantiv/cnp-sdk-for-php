@@ -2,12 +2,12 @@
 
 ==Version: 12.33.0(Dec 22, 2023)
 Note: It contains changes from cnpAPI v12.32 and v12.33. In case you need any feature supported by cnpAPI v12.32 and v12.33.please use SDK version 12.33.0.
-* Change: [cnpAPI v12.33] Added new simple types numberOfPeriods,string10Type
-* Change: [cnpAPI v12.33] Added new simple element shipmentId and complex element subscription
-* Change: [cnpAPI v12.33] Added new complex element subscription added with few simple elements subscriptionId ,nextDeliveryDate ,periodUnit ,numberOfPeriods ,regularItemPrice ,currentPeriod
+* Change: [cnpAPI v12.33] Added new simple types numberOfPeriods of type digit,string10Type
+* Change: [cnpAPI v12.33] Added new simple element shipmentId
+* Change: [cnpAPI v12.33] new complex element subscription is added with few simple elements subscriptionId ,nextDeliveryDate ,periodUnit ,numberOfPeriods ,regularItemPrice ,currentPeriod
 * Change: [cnpAPI v12.33] Added new Enum periodUnit of type enum with values WEEK,MONTH,QUARTER,YEAR
-* Change: [cnpAPI v12.32] simple types of customerIpAddress is changed from ipAddress to stringipAddress
-* Change: [cnpAPI v12.32] to support customerIpAddress new simple type stringipAddress is added
+* Change: [cnpAPI v12.32] simple type of customerIpAddress is changed from ipAddress to newly added simpletype stringipAddress
+
 
 ==Version 12.31.0 (Jul 08, 2023)
 * Feature:  [cnpAPI v12.31] New element foreignRetailerIndicator of type enum added in capture, captureGivenAuth, forceCapture, sale request.
