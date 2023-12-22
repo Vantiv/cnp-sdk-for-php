@@ -292,6 +292,23 @@ class XmlFields
         }
     }
 
+    public static function subscription($hash_in)
+    {
+        if (isset($hash_in)) {
+            $hash_out = array(
+                "subscriptionId"=>XmlFields::returnArrayValue($hash_in, "subscriptionId"),
+                "nextDeliveryDate"=>XmlFields::returnArrayValue($hash_in, "nextDeliveryDate"),
+                "periodUnit"=>XmlFields::returnArrayValue($hash_in, "periodUnit"),
+                "numberOfPeriods"=>XmlFields::returnArrayValue($hash_in, "numberOfPeriods"),
+                "regularItemPrice"=>XmlFields::returnArrayValue($hash_in, "regularItemPrice"),
+                "currentPeriod"=>XmlFields::returnArrayValue($hash_in, "currentPeriod"),
+            );
+
+            return $hash_out;
+        }
+    }
+
+
     public static function lineItemData($hash_in)
     {
         if (isset($hash_in)) {
@@ -312,6 +329,8 @@ class XmlFields
                 "itemSubCategory" => XmlFields::returnArrayValue($hash_in, "itemSubCategory"),
                 "productId" => XmlFields::returnArrayValue($hash_in, "productId"),
                 "productName" => XmlFields::returnArrayValue($hash_in, "productName"),
+                "shipmentId" => XmlFields::returnArrayValue($hash_in, "shipmentId"),
+                "subscription" => (XmlFields::subscription(XmlFields::returnArrayValue($hash_in, "subscription"))),
             );
 
             return $hash_out;
