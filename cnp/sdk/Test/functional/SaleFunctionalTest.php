@@ -843,7 +843,8 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'cardholderAuthentication' => array(
                 /// base64 value for dummy number '123456789012345678901234567890123456789012345678901234567890'
                 /// System should accept the request with length 60 of authenticationValueType
-                'authenticationValue' => 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkw'
+                'authenticationValue' => 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkw',
+                'customerIpAddress' => '123'
             ),
             'id' => '1211',
             'orderId' => '2111',
