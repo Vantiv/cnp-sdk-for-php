@@ -552,4 +552,67 @@ class AuthUnitTest extends \PHPUnit_Framework_TestCase
         $cnpTest->newXML = $mock;
         $cnpTest->authorizationRequest($hash_in);
     }
+
+    public function test_simple_auth_with_lineItemData_with_subscrption()
+    {
+        $hash_in = array('id' => 'id',
+            'card' => array('type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1213',
+                'cardValidationNum' => '1213'),
+            'id' => '1211',
+            'orderId' => '22@33',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '0',
+            'enhancedData' => array(
+                'detailTax0' => array(
+                    'taxAmount' => '200',
+                    'taxRate' => '0.06',
+                    'taxIncludedInTotal' => true
+                ),
+                'detailTax1' => array(
+                    'taxAmount' => '300',
+                    'taxRate' => '0.10',
+                    'taxIncludedInTotal' => true
+                ),'lineItemData0' => array(
+                    'itemSequenceNumber' => '1',
+                    'itemDescription' => 'product 1',
+                    'productCode' => '123',
+                    'quantity' => 3,
+                    'unitOfMeasure' => 'unit',
+                    'taxAmount' => 200,
+                    'detailTax' => array(
+                        'taxIncludedInTotal' => true,
+                        'taxAmount' => 200
+                    ),
+                    'itemCategory' => 'Aparel',
+                    'itemSubCategory' => 'Clothing',
+                    'productId' => '1001',
+                    'productName' => 'N1',
+                    'shipmentId' => '12222222',
+                    'subscription' => array(
+                        'subscriptionId' => 'subscription',
+                        'nextDeliveryDate' => '2023-01-01',
+                        'periodUnit' => 'YEAR',
+                        'numberOfPeriods' => '123',
+                        'regularItemPrice' => '123',
+                        'currentPeriod' => '123',
+                    )
+                ))
+
+        );
+
+
+
+        $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
+        $mock	->expects($this->once())
+            ->method('request')
+            ->with($this->matchesRegularExpression('/.*<itemCategory>Aparel.*<itemSubCategory>Clothing.*<productId>1001.*<productName>N1.*<shipmentId>12222222.*<subscription>.*<subscriptionId>subscription.*<nextDeliveryDate>2023-01-01.*<periodUnit>YEAR.*<numberOfPeriods>123.*<regularItemPrice>123.*<currentPeriod>123.*/'));
+
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->authorizationRequest($hash_in);
+    }
+
 }

@@ -335,4 +335,59 @@ class CreditFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('sandbox', $location);
     }
 
+    public function test_simple_credit_with_subscription()
+    {
+        $hash_in = array('id' => 'id',
+            'card' => array('type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1213',
+                'cardValidationNum' => '1213'),
+            'id' => '1211',
+            'orderId' => '2111',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '123',
+            'secondaryAmount' => '1234',
+            'enhancedData' => array(
+                'customerReference' => 'cust ref sale1',
+                'salesTax' => '1000',
+                'discountAmount' => '0',
+                'shippingAmount' => '0',
+                'dutyAmount' => '0',
+                'discountCode' => 'OneTimeDiscount11',
+                'discountPercent' => '11',
+                'fulfilmentMethodType' => 'DELIVERY',
+                'shipmentId' => '12222222',
+                'lineItemData' => array(
+                    'itemSequenceNumber' => '1',
+                    'itemDescription' => 'Clothes',
+                    'productCode' => 'TB123',
+                    'quantity' => '1',
+                    'unitOfMeasure' => 'EACH',
+                    'lineItemTotal' => '9900',
+                    'lineItemTotalWithTax' => '10000',
+                    'itemDiscountAmount' => '0',
+                    'commodityCode' => '301',
+                    'unitCost' => '31.02',
+                    'itemCategory' => 'Aparel',
+                    'itemSubCategory' => 'Clothing',
+                    'shipmentId' => '12222222',
+                    'subscription' => array(
+                        'subscriptionId' => 'subscription',
+                        'nextDeliveryDate' => '2023-01-01',
+                        'periodUnit' => 'YEAR',
+                        'numberOfPeriods' => '123',
+                        'regularItemPrice' => '123',
+                        'currentPeriod' => '123',
+                    ))
+            ));
+
+        $initialize = new CnpOnlineRequest();
+        $creditResponse = $initialize->creditRequest($hash_in);
+        $response = XmlParser::getNode($creditResponse, 'response');
+        $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($creditResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+    }
+
 }

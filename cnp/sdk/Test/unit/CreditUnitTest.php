@@ -504,4 +504,63 @@ class CreditUnitTest extends \PHPUnit_Framework_TestCase
         $cnpTest->creditRequest($hash_in);;
     }
 
+    public function test_credit_with_subscription()
+    {
+        $hash_in = array('id' => 'id',
+            'amount' => '123',
+            'payPalNotes' => 'Notes',
+            'cnpTxnId' => '12345678000',
+            'additionalCOFData' => array(
+                'totalPaymentCount' => 'ND',
+                'paymentType' => 'Fixed Amount',
+                'uniqueId' => '234GTYH654RF13',
+                'frequencyOfMIT' => 'Annually',
+                'validationReference' => 'ANBH789UHY564RFC@EDB',
+                'sequenceIndicator' => '86',
+            ),
+            'enhancedData' => array(
+                'customerReference' => 'cust ref sale1',
+                'salesTax' => '1000',
+                'discountAmount' => '0',
+                'shippingAmount' => '0',
+                'dutyAmount' => '0',
+                'discountCode' => 'OneTimeDiscount11',
+                'discountPercent' => '11',
+                'fulfilmentMethodType' => 'DELIVERY',
+                'shipmentId' => '12222222',
+                'lineItemData' => array(
+                    'itemSequenceNumber' => '1',
+                    'itemDescription' => 'Clothes',
+                    'productCode' => 'TB123',
+                    'quantity' => '1',
+                    'unitOfMeasure' => 'EACH',
+                    'lineItemTotal' => '9900',
+                    'lineItemTotalWithTax' => '10000',
+                    'itemDiscountAmount' => '0',
+                    'commodityCode' => '301',
+                    'unitCost' => '31.02',
+                    'itemCategory' => 'Aparel',
+                    'itemSubCategory' => 'Clothing',
+                    'shipmentId' => '12222222',
+                    'subscription' => array(
+                        'subscriptionId' => 'subscription',
+                        'nextDeliveryDate' => '2023-01-01',
+                        'periodUnit' => 'YEAR',
+                        'numberOfPeriods' => '123',
+                        'regularItemPrice' => '123',
+                        'currentPeriod' => '123',
+                    )))
+    );
+
+        $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
+        $mock
+            ->expects($this->once())
+            ->method('request')
+            ->with($this->matchesRegularExpression('/.*<shipmentId>12222222.*<subscription>.*<subscriptionId>subscription.*<nextDeliveryDate>2023-01-01.*<periodUnit>YEAR.*<numberOfPeriods>123.*<regularItemPrice>123.*<currentPeriod>123.*/'));
+
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->creditRequest($hash_in);;
+    }
+
 }

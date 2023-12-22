@@ -190,4 +190,45 @@ class CaptureFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('sandbox', $location);
     }
 
+    public function test_simple_capture_with_subscription()
+    {
+        $hash_in = array('id' => 'id',
+            'cnpTxnId' => '1234567891234567891',
+            'amount' => '123', 'enhancedData' => array(
+                'customerReference' => 'Litle',
+                'salesTax' => '50',
+                'deliveryType' => 'TBD',
+            'payPalOrderComplete' => 'true',
+            'lineItemData' => array(
+                'itemSequenceNumber' => '1',
+                'itemDescription' => 'Clothes',
+                'productCode' => 'TB123',
+                'quantity' => '1',
+                'unitOfMeasure' => 'EACH',
+                'lineItemTotal' => '9900',
+                'lineItemTotalWithTax' => '10000',
+                'itemDiscountAmount' => '0',
+                'commodityCode' => '301',
+                'unitCost' => '31.02',
+                'itemCategory' => 'Aparel',
+                'itemSubCategory' => 'Clothing',
+                'shipmentId' => '12222222',
+                'subscription' => array(
+                    'subscriptionId' => 'subscription',
+                    'nextDeliveryDate' => '2023-01-01',
+                    'periodUnit' => 'YEAR',
+                    'numberOfPeriods' => '123',
+                    'regularItemPrice' => '123',
+                    'currentPeriod' => '123',
+                )))
+
+        );
+
+        $initialize = new CnpOnlineRequest();
+        $captureResponse = $initialize->captureRequest($hash_in);
+        $message = XmlParser::getAttribute($captureResponse, 'cnpOnlineResponse', 'response');
+        $this->assertEquals('0', $message);
+        $location = XmlParser::getNode($captureResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+    }
 }

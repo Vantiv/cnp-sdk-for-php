@@ -153,6 +153,13 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <xs:simpleType name="stringipAddress">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="100" />
+            <xs:pattern value="[A-Z,a-z,0-9, ,:,.]*"/>
+        </xs:restriction>
+    </xs:simpleType>
+
     <xs:simpleType name="string150Type">
         <xs:restriction base="xs:string">
             <xs:maxLength value="150"/>
@@ -981,6 +988,12 @@
         </xs:restriction>
     </xs:simpleType>
 
+    <xs:simpleType name="string10Type">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="10" />
+        </xs:restriction>
+    </xs:simpleType>
+
     <xs:simpleType name="string15Type">
         <xs:restriction base="xs:string">
             <xs:maxLength value="15"/>
@@ -1026,6 +1039,12 @@
     <xs:simpleType name="noOfAdultsType">
         <xs:restriction base="xs:integer">
             <xs:totalDigits value="2"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="numberOfPeriods">
+        <xs:restriction base="xs:integer">
+            <xs:totalDigits value="3" />
         </xs:restriction>
     </xs:simpleType>
 
@@ -1627,7 +1646,7 @@
         <xs:all>
             <xs:element name="authenticationValue" type="xp:authenticationValueType" minOccurs="0"/>
             <xs:element name="authenticationTransactionId" type="xp:authenticationTransactionIdType" minOccurs="0"/>
-            <xs:element name="customerIpAddress" type="xp:ipAddress" minOccurs="0"/>
+            <xs:element name="customerIpAddress" type="xp:stringipAddress" minOccurs="0"/>
             <xs:element name="authenticatedByMerchant" type="xs:boolean" minOccurs="0"/>
             <xs:element name="authenticationProtocolVersion" type="xp:authenticationProtocolVersionType" minOccurs="0"/>
             <xs:element name="tokenAuthenticationValue" type="xp:tokenAuthenticationValueType" minOccurs="0"/>
@@ -2223,6 +2242,8 @@
                 <xs:element name="itemSubCategory" type="xp:string100Type" minOccurs="0"/>
                 <xs:element name="productId" type="xp:string150Type" minOccurs="0"/>
                 <xs:element name="productName" type="xp:string150Type" minOccurs="0"/>
+                <xs:element name="shipmentId" type="xp:string100Type" minOccurs="0"/>
+                <xs:element ref="xp:subscription" minOccurs="0" maxOccurs="1"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -4749,6 +4770,28 @@
             <xs:element name="tag" type="xp:string100Type" minOccurs="0" maxOccurs="5"/>
         </xs:sequence>
     </xs:complexType>
+
+    <xs:element name="subscription">
+        <xs:complexType >
+            <xs:all>
+                <xs:element name="subscriptionId" type="xp:string100Type" minOccurs="0"/>
+                <xs:element name="nextDeliveryDate" type="xs:date" minOccurs="0"/>
+                <xs:element name="periodUnit" minOccurs="0">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="WEEK"/>
+                            <xs:enumeration value="MONTH"/>
+                            <xs:enumeration value="QUARTER"/>
+                            <xs:enumeration value="YEAR"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="numberOfPeriods" type="xp:numberOfPeriods" minOccurs="0"/>
+                <xs:element name="regularItemPrice" type="xp:transactionAmountType" minOccurs="0"/>
+                <xs:element name="currentPeriod" type="xp:numberOfPeriods" minOccurs="0" />
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
 
     <!--cnpBatch-->
 

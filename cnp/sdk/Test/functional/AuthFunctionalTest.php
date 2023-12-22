@@ -886,6 +886,15 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
                     'unitCost' => '31.02',
                     'itemCategory' => 'Aparel',
                     'itemSubCategory' => 'Clothing',
+                    'shipmentId' => '12222222',
+                    'subscription' => array(
+                    'subscriptionId' => 'subscription',
+                        'nextDeliveryDate' => '2023-01-01',
+                        'periodUnit' => 'YEAR',
+                        'numberOfPeriods' => '123',
+                        'regularItemPrice' => '123',
+                        'currentPeriod' => '123',
+                    )
                 ),
                 'discountCode' => 'OneTimeDiscount11',
                 'discountPercent' => '11',
