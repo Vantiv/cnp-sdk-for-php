@@ -275,7 +275,14 @@ class CnpRequest
                 if ($time_spent % 180 == 0) {
                     $this->resetSFTPSession($session);
                 }
-                $session->get($sftp_remote_file, $this->response_file);
+
+                // response files are initially created with permissions that prevent download. These permissions are
+                // updated to allow download within a few minutes, so retry the download until it actually succeeds.
+                if (!$session->get($sftp_remote_file, $this->response_file)) {
+                    $time_spent += 20;
+                    sleep(20);
+                }
+
                 $session->delete($sftp_remote_file);
                 $this->response_file = str_replace("request", "response", $this->response_file);
                 unset ($session);
