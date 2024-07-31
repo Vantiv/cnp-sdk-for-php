@@ -70,6 +70,14 @@ class FastAccessFundingFunctionalTest extends \PHPUnit_Framework_TestCase
             'fundsTransferId' => '1234567891111222',
             'amount' => '13',
             'disbursementType' => 'VFD',
+            'cardholderAddress' => array(
+                'addressLine1' => '2 Main St.',
+                'addressLine2' => 'Apt. 222',
+                'addressLine3' => 'NA',
+                'city' => 'Riverside',
+                'state' => 'RI',
+                'zip' => '02915',
+                'country' => 'US'),
             'card' => array(
                 'type' => 'VI',
                 'number' => '4100000000000000',
