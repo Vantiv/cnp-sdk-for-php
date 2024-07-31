@@ -1374,8 +1374,8 @@ class CnpOnlineRequest
             'fundsTransferId' => XmlFields::returnArrayValue($hash_in, 'fundsTransferId'),
             'amount' => XmlFields::returnArrayValue($hash_in, 'amount'),
             // new
-            'cardholderAddress' => XmlFields::address(XmlFields::returnArrayValue($hash_in, 'cardholderAddress')),
             'disbursementType' => XmlFields::returnArrayValue($hash_in, 'disbursementType'),
+            'cardholderAddress' => XmlFields::address(XmlFields::returnArrayValue($hash_in, 'cardholderAddress')),
             //
             'card' => (XmlFields::cardType(XmlFields::returnArrayValue($hash_in, 'card'))),
             'token' => (XmlFields::cardTokenType(XmlFields::returnArrayValue($hash_in, 'token'))),
