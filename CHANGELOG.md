@@ -1,5 +1,28 @@
 = CnpOnline CHANGELOG
 
+==Version 12.40.0 (v12.40.0)(October 25, 2024)
+* Change: [cnpAPI v12.40] In authorization,sale and captureGivenAuth request new elements added-> 'typeOfDigitalCurrency' and 'conversionAffiliateId'.
+* Change: [cnpAPI v12.40] In existing simple type transactionAmountType range added between minInclusive value -999999999999  and maxInclusive value 999999999999
+* Change: [cnpAPI v12.40] In existing type authenticationProtocolVersionType new values '3','4','5','6','7','8' and '9' are added
+
+==Version 12.39.0 (v12.39.0) (October 25, 2024)
+* Change: [cnpAPI v12.39] In 'subMerchantCredit' 'payFacCredit','reserveCredit', 'payoutOrgCreditRequest' base changed from 'transactionTypeWithReportGroup' to 'transactionTypeWithReportGroupAndRtp'.
+* Change: [cnpAPI v12.39] To support new changed extension base for above txns ,New Complextype 'transactionTypeWithReportGroupAndRtp' added.
+* Change: [cnpAPI v12.39] New element 'fundingTransactionReferenceNumber' in authorization and sale response.
+
+==Version 12.38.0 (v12.38.0) (October 25, 2024)
+* Change: [cnpAPI v12.38] In existing Enum 'ActionTypeEnum' new value 'FIVD' added
+* Change: [cnpAPI v12.38] In existing complex element 'baseRequest' two more choices are added 'encryptionKeyRequest' and 'encryptedPayload'
+* Change: [cnpAPI v12.38] In existing complex element 'cnpOnlineResponse' one more choice is added 'encryptionKeyResponse'
+* Change: [cnpAPI v12.38] New element 'encryptionKeyRequest' is added of type 'encryptionKeyRequestEnum'
+* Change: [cnpAPI v12.38] To support 'encryptionKeyRequest' new Enum 'encryptionKeyRequestEnum' added with values 'CURRENT' and 'PREVIOUS'
+* Change: [cnpAPI v12.38] New complex element 'encryptionKeyResponse' is added with simple elements ->'encryptionKeySequence' of type 'encryptionKeySequenceType' and 'encryptionKey' of type 'encryptionKeyType'
+* Change: [cnpAPI v12.38] To support 'encryptionKeySequence' new simple type 'encryptionKeySequenceType' added with total Digits 19
+* Change: [cnpAPI v12.38] To support 'encryptionKey' new simple type 'encryptionKeyType' of type string with maxLength 15000
+* Change: [cnpAPI v12.38] New complex element 'encryptedPayload' is added with simple elements ->'encryptionKeySequence' of type 'encryptionKeySequenceType' and 'payload' of type 'payloadType'
+* Change: [cnpAPI v12.38] To support 'payload' new simple type 'payloadType' of type string with maxLength 15000
+* Change: [cnpAPI v12.38] In capture Request new complex element 'partialCapture' is added with elements-> 'partialCaptureSequenceNumber' of type 'integer' and 'partialCaptureTotalCount' of type 'partialCaptureCount'
+
 ==Version 12.37.1 (v12.37.1)(July 29, 2024)
 Fix: [cnpAPI v12.37.1] Fix for Ordering issue for Fast Access Funding
 

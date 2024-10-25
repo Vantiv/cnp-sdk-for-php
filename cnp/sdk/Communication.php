@@ -92,9 +92,9 @@ class Communication
         return $xml;
     }
 
+    //If neuter_xml flag enabled then neuter the sensitive data from the request xml
     public static function print_xml($xml_request, $config)
     {
-
         $xml_to_log = $xml_request;
         if (isset($config['neuter_xml']) and (int)$config['neuter_xml'] == 1) {
             $xml_to_log = Communication::neuter_xml($xml_to_log);

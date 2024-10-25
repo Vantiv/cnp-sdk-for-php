@@ -1583,6 +1583,8 @@ class CnpOnlineRequest
             $request = str_replace("submerchantCreditCtx", "submerchantCredit", $request);
             $request = str_replace("vendorCreditCtx", "vendorCredit", $request);
             $request = str_replace("vendorDebitCtx", "vendorDebit", $request);
+
+            // If oltpEncryptionPayload enabled then send reuqest for encryption.
             if (isset($hash_config['oltpEncryptionPayload']) and (int)$hash_config['oltpEncryptionPayload'] == 1){
                 $request = CnpOnlineRequest::getEncryptedPayload($request,$hash_config);
             }
@@ -1599,11 +1601,12 @@ class CnpOnlineRequest
             $doc->loadXML($request);
             $root = $doc->documentElement;
 
+            // Find the second child element
             $secondChild = $root->childNodes->item(1);
 
             if ($secondChild !== null) {
-                // Transform the second element to a string
 
+                // Skip the encrypt payload part for encryptionKeyRequest
                 if ($secondChild->nodeName == 'encryptionKeyRequest') {
                     return $request;
 
@@ -1623,9 +1626,10 @@ class CnpOnlineRequest
 
                     $output = $doc->saveXML($secondChild);
 
-
+                    // removing the child element which needs to be encrypted.
                     $root->removeChild($secondChild);
 
+                    //Send payload for encryption
                     $payload = PgpHelper::encryptPayload($output, $path);
 
                     $encryptedPayloadElement = $doc->createElement('encryptedPayload');
@@ -1643,6 +1647,7 @@ class CnpOnlineRequest
                     $payloadElement->nodeValue = $payload;
                     $encryptedPayloadElement->appendChild($payloadElement);
 
+                    // adding new element after encryption
                     $root->appendChild($encryptedPayloadElement);
                     $xmlRequest = $doc->saveHTML();
                     return $xmlRequest;
