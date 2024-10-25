@@ -142,7 +142,7 @@ function initialize()
             print "Please input your oltpEncryptionKeyPath: ";
             $line['oltpEncryptionKeyPath '] = formatConfigValue(STDIN);
         }else{
-            $line['oltpEncryptionPayload'] = "";
+            $line['oltpEncryptionPayload'] = "false";
             $line['oltpEncryptionKeySequence'] = "";
             $line['oltpEncryptionKeyPath '] = "";
         }

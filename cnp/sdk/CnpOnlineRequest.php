@@ -35,7 +35,6 @@ require_once realpath(dirname(__FILE__)) . '/CnpOnline.php';
 class CnpOnlineRequest
 {
     private $useSimpleXml = false;
-    public $request_file;
 
     public function __construct($treeResponse = false)
     {
