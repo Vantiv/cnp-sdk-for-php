@@ -36,7 +36,7 @@ class Checker
     public static function validateXML($request){
         $xml = new DOMDocument();
         $xml->loadXML($request);
-        $filepath = __DIR__ . "/schema/SchemaCombined_v12.40.xsd";
+        $filepath = __DIR__ . "/schema/SchemaCombined_v12.44.xsd";
         $result =  $xml->schemaValidate( $filepath);
 
         if(!$result)

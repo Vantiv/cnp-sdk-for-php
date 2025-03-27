@@ -67,8 +67,8 @@ class Transactions {
             'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData')),
             'foreignRetailerIndicator' => XmlFields::returnArrayValue($hash_in, 'foreignRetailerIndicator'),
             'accountFundingTransactionData' => XmlFields::accountFundingTransactionData(XmlFields::returnArrayValue($hash_in, 'accountFundingTransactionData')),
-            'fraudCheckAction' => XmlFields::returnArrayValue($hash_in, 'fraudCheckAction')
-
+            'fraudCheckAction' => XmlFields::returnArrayValue($hash_in, 'fraudCheckAction'),
+            'identityBundle' => (XmlFields::identityBundle(XmlFields::returnArrayValue($hash_in, 'identityBundle'))),
         );
 
         return $hash_out;
@@ -138,7 +138,9 @@ class Transactions {
                 'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData')),
                 'authIndicator' => XmlFields::returnArrayValue($hash_in, 'authIndicator'),
                 'accountFundingTransactionData' => XmlFields::accountFundingTransactionData(XmlFields::returnArrayValue($hash_in, 'accountFundingTransactionData')),
-                'fraudCheckAction' => XmlFields::returnArrayValue($hash_in, 'fraudCheckAction')
+                'fraudCheckAction' => XmlFields::returnArrayValue($hash_in, 'fraudCheckAction'),
+                'identityBundle' => (XmlFields::identityBundle(XmlFields::returnArrayValue($hash_in, 'identityBundle'))),
+                'originalRetrievalReferenceNumber' => XmlFields::returnArrayValue($hash_in, 'originalRetrievalReferenceNumber'),
 
             );
         }
@@ -153,7 +155,8 @@ class Transactions {
             'surchargeAmount' => XmlFields::returnArrayValue ( $hash_in, 'surchargeAmount' ),
             'payPalNotes' => XmlFields::returnArrayValue ( $hash_in, 'payPalNotes' ),
             'actionReason' => XmlFields::returnArrayValue ( $hash_in, 'actionReason' ),
-            'additionalCOFData' => (XmlFields::additionalCOFData(XmlFields::returnArrayValue($hash_in, 'additionalCOFData')))
+            'additionalCOFData' => (XmlFields::additionalCOFData(XmlFields::returnArrayValue($hash_in, 'additionalCOFData'))),
+            'identityBundle' => (XmlFields::identityBundle(XmlFields::returnArrayValue($hash_in, 'identityBundle'))),
         );
 
         return $hash_out;
@@ -201,7 +204,8 @@ class Transactions {
             'merchantCategoryCode' => XmlFields::returnArrayValue ( $hash_in, 'merchantCategoryCode' ),
             'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData')),
             'businessIndicator' => XmlFields::returnArrayValue($hash_in, 'businessIndicator'),
-            'accountFundingTransactionData' => XmlFields::accountFundingTransactionData(XmlFields::returnArrayValue($hash_in, 'accountFundingTransactionData'))
+            'accountFundingTransactionData' => XmlFields::accountFundingTransactionData(XmlFields::returnArrayValue($hash_in, 'accountFundingTransactionData')),
+            'identityBundle' => (XmlFields::identityBundle(XmlFields::returnArrayValue($hash_in, 'identityBundle'))),
         );
 
         return $hash_out;
@@ -290,8 +294,9 @@ class Transactions {
             'lodgingInfo' => XmlFields::lodgingInfo(XmlFields::returnArrayValue($hash_in, 'lodgingInfo')),
             'pin' => XmlFields::returnArrayValue($hash_in, 'pin', 12),
             'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData')),
-            'foreignRetailerIndicator' => XmlFields::returnArrayValue($hash_in, 'foreignRetailerIndicator')
-        );
+            'foreignRetailerIndicator' => XmlFields::returnArrayValue($hash_in, 'foreignRetailerIndicator'),
+            'identityBundle' => (XmlFields::identityBundle(XmlFields::returnArrayValue($hash_in, 'identityBundle'))),
+            );
 
         return $hash_out;
     }
@@ -493,7 +498,8 @@ class Transactions {
                 'customBilling' => XmlFields::customBilling($hash_in, 'customBilling'),
                 'lodgingInfo' => XmlFields::lodgingInfo($hash_in, 'lodgingInfo'),
                 'pin' => (XmlFields::returnArrayValue($hash_in, 'pin')),
-                'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData'))
+                'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData')),
+                'identityBundle' => (XmlFields::identityBundle(XmlFields::returnArrayValue($hash_in, 'identityBundle'))),
         );
         return $hash_out;
     }
@@ -509,7 +515,8 @@ class Transactions {
             'customBilling' => XmlFields::customBilling($hash_in, 'customBilling'),
             'lodgingInfo' => XmlFields::lodgingInfo($hash_in, 'lodgingInfo'),
             'pin' => (XmlFields::returnArrayValue($hash_in, 'pin')),
-            'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData'))
+            'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData')),
+            'identityBundle' => (XmlFields::identityBundle(XmlFields::returnArrayValue($hash_in, 'identityBundle'))),
         );
         return $hash_out;
     }
@@ -887,6 +894,37 @@ class Transactions {
             'fundingCustomerId' => XmlFields::returnArrayValue ( $hash_in, 'fundingCustomerId' ),
             'customerName' => XmlFields::returnArrayValue ( $hash_in, 'customerName' )
 
+        );
+        return $hash_out;
+    }
+
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
+    public static function createRealtimeIncrementalAuthorizationHash($hash_in)
+    {
+        $hash_out = array(
+            'cnpTxnId' => (XmlFields::returnArrayValue($hash_in, 'cnpTxnId')),
+            'orderId' => XmlFields::returnArrayValue($hash_in, 'orderId'),
+            'id' => XmlFields::returnArrayValue($hash_in, 'id'),
+            'amount' => XmlFields::returnArrayValue($hash_in, 'amount'),
+            'orderSource' => XmlFields::returnArrayValue($hash_in, 'orderSource'),
+            'billToAddress' => (XmlFields::contact(XmlFields::returnArrayValue($hash_in, 'billToAddress'))),
+            'shipToAddress' => (XmlFields::contact(XmlFields::returnArrayValue($hash_in, 'shipToAddress'))),
+            'card' => (XmlFields::cardType(XmlFields::returnArrayValue($hash_in, 'card'))),
+            'paypal' => (XmlFields::payPal(XmlFields::returnArrayValue($hash_in, 'paypal'))),
+            'token' => (XmlFields::cardTokenType(XmlFields::returnArrayValue($hash_in, 'token'))),
+            'paypage' => (XmlFields::cardPaypageType(XmlFields::returnArrayValue($hash_in, 'paypage'))),
+            'applepay' => (XmlFields::applepayType(XmlFields::returnArrayValue($hash_in, 'applepay'))),
+            'cardholderAuthentication' => XmlFields::fraudCheckType(XmlFields::returnArrayValue($hash_in, 'cardholderAuthentication')),
+            'customBilling' => (XmlFields::customBilling(XmlFields::returnArrayValue($hash_in, 'customBilling'))),
+            'allowPartialAuth' => XmlFields::returnArrayValue($hash_in, 'allowPartialAuth'),
+            'wallet' => XmlFields::wallet(XmlFields::returnArrayValue($hash_in, 'wallet')),
+            'originalNetworkTransactionId' => XmlFields::returnArrayValue($hash_in, 'originalNetworkTransactionId'),
+            'merchantCategoryCode' => XmlFields::returnArrayValue($hash_in, 'merchantCategoryCode'),
+            'originalRetrievalReferenceNumber' => XmlFields::returnArrayValue($hash_in, 'originalRetrievalReferenceNumber'),
         );
         return $hash_out;
     }

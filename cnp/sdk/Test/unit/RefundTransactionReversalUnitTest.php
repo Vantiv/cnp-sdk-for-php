@@ -106,4 +106,61 @@ class RefundTransactionReversalUnitTest extends \PHPUnit_Framework_TestCase
         $cnpTest->refundTransactionReversal($hash_in);
     }
 
+    public function test_refundTranReversal_with_identityBundle()
+    {
+        $hash_in = array(
+            'id' => 'id',
+            'cnpTxnId' => '12345678000',
+            'passengerTransportData' =>array(
+                'passengerName' =>'Mrs. Huxley234567890123456789',
+                'ticketNumber' =>'ATL456789012345' ,
+                'issuingCarrier' =>'AMTK',
+                'carrierName' =>'AMTK',
+                'restrictedTicketIndicator' =>'99999',
+                'numberOfAdults' =>'2',
+                'numberOfChildren' =>'0',
+                'customerCode' =>'Railway',
+                'arrivalDate' =>'2022-09-20',
+                'issueDate' =>'2022-09-10',
+                'travelAgencyCode' =>'12345678',
+                'travelAgencyName' =>'Travel R Us23456789012345',
+                'computerizedReservationSystem' =>'STRT',
+                'creditReasonIndicator' =>'P',
+                'ticketChangeIndicator' =>'C',
+                'ticketIssuerAddress' =>'99 Second St',
+                'exchangeTicketNumber' =>'123456789012346',
+                'exchangeAmount' =>'500046',
+                'exchangeFeeAmount' =>'5046',
+                'tripLegData0' =>array(
+                    'tripLegNumber' =>'10' ,
+                    'serviceClass' =>'First',
+                    'departureDate' =>'2022-09-20',
+                    'originCity' =>'BOS'),
+                'tripLegData1' =>array(
+                    'tripLegNumber' =>'10' ,
+                    'serviceClass' =>'First',
+                    'departureDate' =>'2022-09-20',
+                    'originCity' =>'BOS')
+            ),
+            'identityBundle' => array(
+                'merchantId' => '12222',
+                'entityId' => '234567',
+                'entityReference' => '23475',
+                'resourceId' => '67806',
+                'resourceReference' => '231457',
+                'commandId' => '09765',
+                'commandReference' => '5679',
+                'orderReference' => '223555',
+            )
+        );
+
+        $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
+        $mock	->expects($this->once())
+            ->method('request')
+            ->with($this->matchesRegularExpression('/.*<passengerName>Mrs. Huxley234567890123456789.*<ticketNumber>ATL456789012345.*<exchangeAmount>500046.*<serviceClass>First.*<originCity>BOS.*/'));
+
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->refundTransactionReversal($hash_in);
+    }
 }

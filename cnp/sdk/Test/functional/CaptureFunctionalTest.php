@@ -296,4 +296,29 @@ class CaptureFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('sandbox', $location);
     }
 
+    public function test_capture_with_identityBundle()
+    {
+        $hash_in = array('id' => 'id',
+            'cnpTxnId' => '1234567891234567891',
+            'amount' => '123',
+            'oltpEncryptionPayload' => true,
+            'identityBundle' => array(
+                'merchantId' => '12222',
+                'entityId' => '234567',
+                'entityReference' => '23475',
+                'resourceId' => '67806',
+                'resourceReference' => '231457',
+                'commandId' => '09765',
+                'commandReference' => '5679',
+                'orderReference' => '223555',
+            ),);
+
+        $initialize = new CnpOnlineRequest();
+        $captureResponse = $initialize->captureRequest($hash_in);
+        $message = XmlParser::getAttribute($captureResponse, 'cnpOnlineResponse', 'response');
+        $this->assertEquals('0', $message);
+        $location = XmlParser::getNode($captureResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+    }
+
 }

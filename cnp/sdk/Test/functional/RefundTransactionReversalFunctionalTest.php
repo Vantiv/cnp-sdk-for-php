@@ -176,4 +176,61 @@ class RefundTransactionReversalFunctionalTest extends \PHPUnit_Framework_TestCas
         $this->assertEquals('sandbox', $location);
     }
 
+    public function test_refundTransactionReversal_with_identityBundle()
+    {
+        $hash_in = array(
+            'id' => 'id',
+            'cnpTxnId' => '12345678000',
+            'amount' => '123',
+            'pin' => '1234',
+            'surchargeAmount' => '4321',
+            'enhancedData' => array(
+                'customerReference' => 'cust ref sale1',
+                'salesTax' => '1000',
+                'discountAmount' => '0',
+                'shippingAmount' => '0',
+                'dutyAmount' => '0',
+                'lineItemData' => array(
+                    'itemSequenceNumber' => '1',
+                    'itemDescription' => 'Clothes',
+                    'productCode' => 'TB123',
+                    'quantity' => '1',
+                    'unitOfMeasure' => 'EACH',
+                    'lineItemTotal' => '9900',
+                    'lineItemTotalWithTax' => '10000',
+                    'itemDiscountAmount' => '0',
+                    'commodityCode' => '301',
+                    'unitCost' => '31.02',
+                    'itemCategory' => 'Aparel',
+                    'itemSubCategory' => 'Clothing',
+                ),
+                'discountCode' => 'OneTimeDiscount11',
+                'discountPercent' => '11',
+                'fulfilmentMethodType' => 'EXPEDITED_SHIPPING',
+                'identityBundle' => array(
+                    'merchantId' => '12222',
+                    'entityId' => '234567',
+                    'entityReference' => '23475',
+                    'resourceId' => '67806',
+                    'resourceReference' => '231457',
+                    'commandId' => '09765',
+                    'commandReference' => '5679',
+                    'orderReference' => '223555',
+                ),)
+        );
+
+        $initilaize = new CnpOnlineRequest();
+        $refundTransactionReversalResponse = $initilaize->refundTransactionReversal($hash_in);
+
+        $response = XmlParser::getNode($refundTransactionReversalResponse, 'response');
+        $this->assertEquals('000', $response);
+
+        $response = XmlParser::getNode($refundTransactionReversalResponse, 'message');
+        $this->assertEquals('Approved', $response);
+
+        $location = XmlParser::getNode($refundTransactionReversalResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+    }
+
+
 }

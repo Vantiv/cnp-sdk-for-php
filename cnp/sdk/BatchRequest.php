@@ -266,6 +266,14 @@ class BatchRequest
         $this->counts_and_amounts ['auth'] ['amount'] += $hash_out ['amount'];
     }
 
+    public function addRealTimeIncreamentalAuthorization($hash_in)
+    {
+        $hash_out = Transactions::createRealtimeIncrementalAuthorizationHash($hash_in);
+        $this->addTransaction($hash_out, $hash_in, 'realtimeIncrementalAuthorization');
+        $this->counts_and_amounts ['auth'] ['count'] += 1;
+        $this->counts_and_amounts ['auth'] ['amount'] += $hash_out ['amount'];
+    }
+
     public function addAuthReversal($hash_in)
     {
         $hash_out = Transactions::createAuthReversalHash($hash_in);

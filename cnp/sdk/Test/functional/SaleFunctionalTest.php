@@ -1550,5 +1550,50 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('sandbox', $location);
     }
 
+    public function test_sale_with_identityBundle()
+    {
+        $hash_in = array(
+            'card' => array('type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1213',
+                'cardValidationNum' => '1213'),
+            'id' => '1211',
+            'orderId' => '2111',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'orderChannel' => 'SCAN_AND_GO',
+            'fraudCheckAction' => 'APPROVED_SKIP_FRAUD_CHECK',
+            'amount' => '123',
+            'businessIndicator'=>'businessToBusinessTransfer',
+            'card' => array(
+                'type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1210'),
+            'accountFundingTransactionData' => array(
+                'receiverLastName' =>'Jon',
+                'receiverState' => 'CA',
+                'receiverCountry' => 'USA',
+                'receiverAccountNumber' => '4356872257i',
+                'accountFundingTransactionType' => 'businessDisbursement',
+                'receiverAccountNumberType' => 'RTNAndBAN'),
+            'oltpEncryptionPayload' => true,
+            'identityBundle' => array(
+                'merchantId' => '12222',
+                'entityId' => '234567',
+                'entityReference' => '23475',
+                'resourceId' => '67806',
+                'resourceReference' => '231457',
+                'commandId' => '09765',
+                'commandReference' => '5679',
+                'orderReference' => '223555',
+            ),);
+
+        $initialize = new CnpOnlineRequest();
+        $saleResponse = $initialize->saleRequest($hash_in);
+        $response = XmlParser::getNode($saleResponse, 'response');
+        $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($saleResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+    }
 
 }
