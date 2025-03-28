@@ -1618,7 +1618,17 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
             'id' => 'id',
             'reportGroup' => 'Default Report Group',
             'cnpTxnId' => '12345678000',
-            'amount' => '123'
+            'amount' => '123',
+            'identityBundle' => array(
+                'merchantId' => '12222',
+                'entityId' => '234567',
+                'entityReference' => '23475',
+                'resourceId' => '67806',
+                'resourceReference' => '231457',
+                'commandId' => '09765',
+                'commandReference' => '5679',
+                'orderReference' => '223555',
+            )
         );
         $batch_request = new BatchRequest ($this->direct);
         $batch_request->addDepositTransactionReversal($hash_in);
@@ -1639,7 +1649,27 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
             'id' => 'id',
             'reportGroup' => 'Default Report Group',
             'cnpTxnId' => '12345678000',
-            'amount' => '123'
+            'amount' => '123',
+            'identityBundle' => array(
+                'merchantId' => '12222',
+                'entityId' => '234567',
+                'entityReference' => '23475',
+                'resourceId' => '67806',
+                'resourceReference' => '231457',
+                'commandId' => '09765',
+                'commandReference' => '5679',
+                'orderReference' => '223555',
+            ),
+            'identityBundle' => array(
+                'merchantId' => '12222',
+                'entityId' => '234567',
+                'entityReference' => '23475',
+                'resourceId' => '67806',
+                'resourceReference' => '231457',
+                'commandId' => '09765',
+                'commandReference' => '5679',
+                'orderReference' => '223555',
+            )
         );
         $batch_request = new BatchRequest ($this->direct);
         $batch_request->addRefundTransactionReversal($hash_in);
@@ -1667,7 +1697,17 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderId' => '2111',
             'reportGroup' => 'Planets',
             'orderSource' => 'ecommerce',
-            'amount' => '123'
+            'amount' => '123',
+            'identityBundle' => array(
+                'merchantId' => '12222',
+                'entityId' => '234567',
+                'entityReference' => '23475',
+                'resourceId' => '67806',
+                'resourceReference' => '231457',
+                'commandId' => '09765',
+                'commandReference' => '5679',
+                'orderReference' => '223555',
+            ),
         );
 
         $this->setExpectedException('RuntimeException', 'The transaction could not be added to the batch. It is full.');
@@ -1798,7 +1838,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_mechaBatchSFTP()
     {
-        if(strtolower($this->preliveStatus) == 'down'){
+       if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -1813,7 +1853,18 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderId'=> '2111',
             'orderSource'=>'ecommerce',
             'id'=>'654',
-            'amount'=>'1123');
+            'amount'=>'1123',
+            'identityBundle' => array(
+                'merchantId' => '12222',
+                'entityId' => '234567',
+                'entityReference' => '23475',
+                'resourceId' => '67806',
+                'resourceReference' => '231457',
+                'commandId' => '09765',
+                'commandReference' => '5679',
+                'orderReference' => '223555',
+            ),
+            'originalRetrievalReferenceNumber' => '345378');
         $batch->addAuth($hash_in);
 
         $hash_in = array(
@@ -1824,8 +1875,81 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
             'id'=>'654',
             'orderId'=> '2111',
             'orderSource'=>'ecommerce',
-            'amount'=>'1123');
+            'amount'=>'1123',
+            'identityBundle' => array(
+                'merchantId' => '12222',
+                'entityId' => '234567',
+                'entityReference' => '23475',
+                'resourceId' => '67806',
+                'resourceReference' => '231457',
+                'commandId' => '09765',
+                'commandReference' => '5679',
+                'orderReference' => '223555',
+            ));
         $batch->addSale($hash_in);
+
+        $hash_in = array('id' => 'id',
+            'cnpTxnId' => '82935478257580213',
+            'orderId' => '82364_cnpApiAuth',
+            'amount' => '1001',
+            'orderSource' => 'telephone',
+            'billToAddress' => array(
+                'name' => 'Jonathan Ross',
+                'firstName' => 'wsdfaaa',
+                'middleInitial' => 'middleInitial',
+                'lastName' => 'lastName',
+                'companyName' => 'companyName',
+                'addressLine1' => '10th Floor',
+                'addressLine2' => 'Tower 2',
+                'addressLine3' => '900 Chelmsford Street',
+                'city' => 'Lowell',
+                'state' => 'MA',
+                'zip' => '01851',
+                'country' => 'USA',
+                'email' => 'jross@litle.com<',
+                'phone' => '800-548-5326',
+                'url' => 'mail',
+            ),
+            'shipToAddress' => array(
+                'name' => 'Jonathan Ross',
+                'firstName' => 'wsdfaaa',
+                'middleInitial' => 'middleInitial',
+                'lastName' => 'lastName',
+                'companyName' => 'companyName',
+                'addressLine1' => '10th Floor',
+                'addressLine2' => 'Tower 2',
+                'addressLine3' => '900 Chelmsford Street',
+                'city' => 'Lowell',
+                'state' => 'MA',
+                'zip' => '01851',
+                'country' => 'USA',
+                'email' => 'jross@litle.com<',
+                'phone' => '800-548-5326',
+                'url' => 'mail',
+            ),
+            'card' => array(
+                'type' => 'VI',
+                'number' => '4005518220000002',
+                'expDate' => '0150',
+                'cardValidationNum' => '987',
+            ),
+            'cardholderAuthentication' => array(
+                'authenticationValue' => 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkw',
+                'customerIpAddress' => '123'
+            ),
+            'customBilling' => array('phone' => '12345', 'descriptor' => 'descriptor'),
+            'allowPartialAuth' => 'true',
+            'wallet' => array(
+                'walletSourceType' => 'MasterPass',
+                'walletSourceTypeId' => 'swyfwe',
+            ),
+            'originalNetworkTransactionId' => '12345',
+            'merchantCategoryCode' => '1233',
+            'originalRetrievalReferenceNumber' => 'sdwf',
+            'cumulativeAmount' => '1230',
+            'originalTransactionAmount' => '2345'
+        );
+        $batch->addRealTimeIncreamentalAuthorization($hash_in);
         $request->addBatchRequest($batch);
 
         $resp = new CnpResponseProcessor($request->sendToCnp());
@@ -1836,6 +1960,83 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(0, $response);
     }
 
+    public function test_addIncrementalAuthorization()
+    {
+         if(strtolower($this->preliveStatus) == 'down'){
+             $this->markTestSkipped('Prelive is not available');
+         }
+
+        $hash_in = array('id' => 'id',
+            'cnpTxnId' => '82935478257580213',
+            'orderId' => '82364_cnpApiAuth',
+            'amount' => '1001',
+            'orderSource' => 'telephone',
+            'billToAddress' => array(
+                'name' => 'Jonathan Ross',
+                'firstName' => 'wsdfaaa',
+                'middleInitial' => 'middleInitial',
+                'lastName' => 'lastName',
+                'companyName' => 'companyName',
+                'addressLine1' => '10th Floor',
+                'addressLine2' => 'Tower 2',
+                'addressLine3' => '900 Chelmsford Street',
+                'city' => 'Lowell',
+                'state' => 'MA',
+                'zip' => '01851',
+                'country' => 'USA',
+                'email' => 'jross@litle.com<',
+                'phone' => '800-548-5326',
+                'url' => 'mail',
+            ),
+            'shipToAddress' => array(
+                'name' => 'Jonathan Ross',
+                'firstName' => 'wsdfaaa',
+                'middleInitial' => 'middleInitial',
+                'lastName' => 'lastName',
+                'companyName' => 'companyName',
+                'addressLine1' => '10th Floor',
+                'addressLine2' => 'Tower 2',
+                'addressLine3' => '900 Chelmsford Street',
+                'city' => 'Lowell',
+                'state' => 'MA',
+                'zip' => '01851',
+                'country' => 'USA',
+                'email' => 'jross@litle.com<',
+                'phone' => '800-548-5326',
+                'url' => 'mail',
+            ),
+            'card' => array(
+                'type' => 'VI',
+                'number' => '4005518220000002',
+                'expDate' => '0150',
+                'cardValidationNum' => '987',
+            ),
+            'cardholderAuthentication' => array(
+                'authenticationValue' => 'MTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTIzNDU2Nzg5MDEyMzQ1Njc4OTAxMjM0NTY3ODkw',
+                'customerIpAddress' => '123'
+            ),
+            'customBilling' => array(
+                'phone' => '4454829',
+                'descriptor' => 'descriptor'),
+            'allowPartialAuth' => 'true',
+            'wallet' => array(
+                'walletSourceType' => 'MasterPass',
+                'walletSourceTypeId' => 'swyfwe',
+            ),
+            'originalNetworkTransactionId' => '12345',
+            'merchantCategoryCode' => '1233',
+            'originalRetrievalReferenceNumber' => 'sdwf',
+            'cumulativeAmount' => '1230',
+            'originalTransactionAmount' => '2345'
+        );
+        $batch_request = new BatchRequest ($this->direct);
+        $batch_request->addRealTimeIncreamentalAuthorization($hash_in);
+
+        $this->assertTrue(file_exists($batch_request->batch_file));
+        $cts = $batch_request->getCountsAndAmounts();
+        $this->assertEquals(1, $cts ['auth'] ['count']);
+        $this->assertEquals(1001, $cts ['auth'] ['amount']);
+    }
 //    public function test_fastAccessFundingSFTP()
 //    {
 //        $request = new CnpRequest();
@@ -2259,7 +2460,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_sale_customerInfo_with_accountUsername_batchSFTP()
     {
-        if(strtolower($this->preliveStatus) == 'down'){
+       if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -2308,7 +2509,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function test_enhancedData_with_discountCode_batchSFTP()
     {
-        if(strtolower($this->preliveStatus) == 'down'){
+       if(strtolower($this->preliveStatus) == 'down'){
             $this->markTestSkipped('Prelive is not available');
         }
 
@@ -2493,7 +2694,17 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
             'amount' => '123',
             'secondaryAmount' => '3214',
             'surchargeAmount' => '1',
-            'pin' => '3333'
+            'pin' => '3333',
+            'identityBundle' => array(
+                'merchantId' => '12222',
+                'entityId' => '234567',
+                'entityReference' => '23475',
+                'resourceId' => '67806',
+                'resourceReference' => '231457',
+                'commandId' => '09765',
+                'commandReference' => '5679',
+                'orderReference' => '223555',
+            )
         );
 
         $batch->addCredit($hash_in);
@@ -2520,7 +2731,17 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
         $hash_in = array('id' => 'id',
             'cnpTxnId' => '1234567891234567891',
             'orderId' => '22@33123456789012345678901234567890',
-            'amount' => '123');
+            'amount' => '123',
+            'identityBundle' => array(
+                'merchantId' => '12222',
+                'entityId' => '234567',
+                'entityReference' => '23475',
+                'resourceId' => '67806',
+                'resourceReference' => '231457',
+                'commandId' => '09765',
+                'commandReference' => '5679',
+                'orderReference' => '223555',
+            ));
 
         $batch->addCapture($hash_in);
 
