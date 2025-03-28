@@ -1,5 +1,18 @@
 = CnpOnline CHANGELOG
 
+==Change Log for 12.44 (March 28, 2025)
+Change: [cnpAPI v12.44] In ordersourcetype enum, 'ecommerceDataOnly' value is added.
+Change: [cnpAPI v12.43] Two new elements cumulativeAmount,originalTransactionAmount added in realtimeIncrementalAuthorization.
+Change: [cnpAPI v12.43] In enum networkFieldNameEnumType,'Additional Request Data' value is added.
+Change: [cnpAPI v12.42] For all child elements of identityBundle minOccurs changed to 0 from 1.
+Change: [cnpAPI v12.42] New Transaction type realtimeIncrementalAuthorization added.
+Change: [cnpAPI v12.42] New element originalRetrievalReferenceNumber added in authorization request.
+Change: [cnpAPI v12.41] In authorization,authReversal,capture,sale,credit,depositTransactionReversal,refundTransactionReversal new complex type element added - identityBundle.
+Change: [cnpAPI v12.41] New complex type element identityBundle with child elements-merchantId,entityId,entityReference,resourceId,resourceReference,commandId,commandReference,orderReference with minOccurs as 1.
+Change: [cnpAPI v12.41] New elements are added in authorizationResponse,saleResponse -retrievalReferenceNumber of type string12Type ,orderSource of type orderSourceType.
+Change: [cnpAPI v12.41] New datatype- string12Type - of string type of length 12 to support retrievalReferenceNumber element .
+Change: [cnpAPI v12.41] For existing element cardSuffixType maxLength is increased to 23
+
 ==Version 12.40.0 (v12.40.0)(October 25, 2024)
 * Change: [cnpAPI v12.40] In authorization,sale and captureGivenAuth request new elements added-> 'typeOfDigitalCurrency' and 'conversionAffiliateId'.
 * Change: [cnpAPI v12.40] In existing simple type transactionAmountType range added between minInclusive value -999999999999  and maxInclusive value 999999999999
