@@ -5119,14 +5119,14 @@
     <xs:element name="identityBundle">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="merchantId" type="xp:string25Type" minOccurs="1" />
-                <xs:element name="entityId" type="xp:string25Type" minOccurs="1" />
-                <xs:element name="entityReference" type="xp:string64Type" minOccurs="1" />
-                <xs:element name="resourceId" type="xp:string25Type" minOccurs="1" />
-                <xs:element name="resourceReference" type="xp:string64Type" minOccurs="1" />
-                <xs:element name="commandId" type="xp:string25Type" minOccurs="1" />
-                <xs:element name="commandReference" type="xp:string64Type" minOccurs="1" />
-                <xs:element name="orderReference" type="xp:string64Type" minOccurs="1" />
+                <xs:element name="merchantId" type="xp:string25Type" minOccurs="0"/>
+                <xs:element name="entityId" type="xp:string25Type" minOccurs="0"/>
+                <xs:element name="entityReference" type="xp:string64Type" minOccurs="0"/>
+                <xs:element name="resourceId" type="xp:string25Type" minOccurs="0"/>
+                <xs:element name="resourceReference" type="xp:string64Type" minOccurs="0"/>
+                <xs:element name="commandId" type="xp:string25Type" minOccurs="0"/>
+                <xs:element name="commandReference" type="xp:string64Type" minOccurs="0"/>
+                <xs:element name="orderReference" type="xp:string64Type" minOccurs="0"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

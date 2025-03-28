@@ -2,10 +2,10 @@
 
 ==Change Log for 12.44 (March 28, 2025)
 Change: [cnpAPI v12.44] In ordersourcetype enum, 'ecommerceDataOnly' value is added.
-Change: [cnpAPI v12.43] Two new elements cumulativeAmount,originalTransactionAmount added in realtimeIncrementalAuthorization.
+Change: [cnpAPI v12.43] Two new elements cumulativeAmount,originalTransactionAmount added in realtimeIncrementalAuthorization[Only for Worldpay Internal Usage].
 Change: [cnpAPI v12.43] In enum networkFieldNameEnumType,'Additional Request Data' value is added.
 Change: [cnpAPI v12.42] For all child elements of identityBundle minOccurs changed to 0 from 1.
-Change: [cnpAPI v12.42] New Transaction type realtimeIncrementalAuthorization added.
+Change: [cnpAPI v12.42] New Transaction type realtimeIncrementalAuthorization added [Only for Worldpay Internal Usage].
 Change: [cnpAPI v12.42] New element originalRetrievalReferenceNumber added in authorization request.
 Change: [cnpAPI v12.41] In authorization,authReversal,capture,sale,credit,depositTransactionReversal,refundTransactionReversal new complex type element added - identityBundle.
 Change: [cnpAPI v12.41] New complex type element identityBundle with child elements-merchantId,entityId,entityReference,resourceId,resourceReference,commandId,commandReference,orderReference with minOccurs as 1.
