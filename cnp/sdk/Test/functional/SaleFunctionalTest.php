@@ -1560,7 +1560,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
             'id' => '1211',
             'orderId' => '2111',
             'reportGroup' => 'Planets',
-            'orderSource' => 'ecommerce',
+            'orderSource' => 'ecommerceDataOnly',
             'orderChannel' => 'SCAN_AND_GO',
             'fraudCheckAction' => 'APPROVED_SKIP_FRAUD_CHECK',
             'amount' => '123',
@@ -1576,7 +1576,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
                 'receiverAccountNumber' => '4356872257i',
                 'accountFundingTransactionType' => 'businessDisbursement',
                 'receiverAccountNumberType' => 'RTNAndBAN'),
-            'oltpEncryptionPayload' => true,
+            'oltpEncryptionPayload' => false,
             'identityBundle' => array(
                 'merchantId' => '12222',
                 'entityId' => '234567',

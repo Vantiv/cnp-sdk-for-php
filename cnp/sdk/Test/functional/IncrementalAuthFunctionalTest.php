@@ -91,7 +91,6 @@ class IncrementalAuthFunctionalTest extends \PHPUnit_Framework_TestCase
                 'customerIpAddress' => '123'
             ),
             'customBilling' => array(
-                'phone' => '4454829',
                 'city' => 'Boston',
                 'descriptor' => 'descriptor'),
             'allowPartialAuth' => 'true',

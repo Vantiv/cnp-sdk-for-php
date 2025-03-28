@@ -1659,16 +1659,6 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
                 'commandId' => '09765',
                 'commandReference' => '5679',
                 'orderReference' => '223555',
-            ),
-            'identityBundle' => array(
-                'merchantId' => '12222',
-                'entityId' => '234567',
-                'entityReference' => '23475',
-                'resourceId' => '67806',
-                'resourceReference' => '231457',
-                'commandId' => '09765',
-                'commandReference' => '5679',
-                'orderReference' => '223555',
             )
         );
         $batch_request = new BatchRequest ($this->direct);
@@ -1697,17 +1687,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
             'orderId' => '2111',
             'reportGroup' => 'Planets',
             'orderSource' => 'ecommerce',
-            'amount' => '123',
-            'identityBundle' => array(
-                'merchantId' => '12222',
-                'entityId' => '234567',
-                'entityReference' => '23475',
-                'resourceId' => '67806',
-                'resourceReference' => '231457',
-                'commandId' => '09765',
-                'commandReference' => '5679',
-                'orderReference' => '223555',
-            ),
+            'amount' => '123'
         );
 
         $this->setExpectedException('RuntimeException', 'The transaction could not be added to the batch. It is full.');

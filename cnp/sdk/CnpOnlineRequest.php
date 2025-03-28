@@ -1677,7 +1677,6 @@ class CnpOnlineRequest
             'billToAddress' => (XmlFields::contact(XmlFields::returnArrayValue($hash_in, 'billToAddress'))),
             'shipToAddress' => (XmlFields::contact(XmlFields::returnArrayValue($hash_in, 'shipToAddress'))),
             'card' => (XmlFields::cardType(XmlFields::returnArrayValue($hash_in, 'card'))),
-            'paypal' => (XmlFields::payPal(XmlFields::returnArrayValue($hash_in, 'paypal'))),
             'token' => (XmlFields::cardTokenType(XmlFields::returnArrayValue($hash_in, 'token'))),
             'paypage' => (XmlFields::cardPaypageType(XmlFields::returnArrayValue($hash_in, 'paypage'))),
             'applepay' => (XmlFields::applepayType(XmlFields::returnArrayValue($hash_in, 'applepay'))),
@@ -1688,9 +1687,11 @@ class CnpOnlineRequest
             'originalNetworkTransactionId' => XmlFields::returnArrayValue($hash_in, 'originalNetworkTransactionId'),
             'merchantCategoryCode' => XmlFields::returnArrayValue($hash_in, 'merchantCategoryCode'),
             'originalRetrievalReferenceNumber' => XmlFields::returnArrayValue($hash_in, 'originalRetrievalReferenceNumber'),
+            'cumulativeAmount' => XmlFields::returnArrayValue($hash_in, 'cumulativeAmount'),
+            'originalTransactionAmount' => XmlFields::returnArrayValue($hash_in, 'originalTransactionAmount')
         );
 
-        $choice_hash = array(XmlFields::returnArrayValue($hash_out, 'card'), XmlFields::returnArrayValue($hash_out, 'paypal'), XmlFields::returnArrayValue($hash_out, 'token'), XmlFields::returnArrayValue($hash_out, 'paypage'), XmlFields::returnArrayValue($hash_out, 'applepay'));
+        $choice_hash = array(XmlFields::returnArrayValue($hash_out, 'card'),XmlFields::returnArrayValue($hash_out, 'token'), XmlFields::returnArrayValue($hash_out, 'paypage'), XmlFields::returnArrayValue($hash_out, 'applepay'));
         $authorizationResponse = $this->processRequest($hash_out, $hash_in, 'realtimeIncrementalAuthorization', $choice_hash);
 
         return $authorizationResponse;

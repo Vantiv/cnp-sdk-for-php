@@ -1451,7 +1451,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
                 'receiverAccountNumberType' => 'cardAccount'
             ),
             'amount' => '1512',
-            'oltpEncryptionPayload' => true,
+            'oltpEncryptionPayload' => false,
             'identityBundle' => array(
                 'merchantId' => '12222',
                 'entityId' => '234567',
