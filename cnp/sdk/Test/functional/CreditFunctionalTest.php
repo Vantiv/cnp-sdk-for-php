@@ -438,4 +438,49 @@ class CreditFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('sandbox', $location);
     }
 
+    public function test_identityBundle_credit()
+    {
+        $hash_in = array(
+            'card' => array('type' => 'VI', 'id' => 'id',
+                'number' => '4100000000000000',
+                'expDate' => '1213',
+                'cardValidationNum' => '1213'),
+            'id' => '1211',
+            'orderId' => '2111',
+            'reportGroup' => 'Planets',
+            'orderSource' => 'ecommerce',
+            'amount' => '123',
+            'businessIndicator'=>'rapidMerchantSettlement',
+            'card' => array(
+                'type' => 'VI',
+                'number' => '4100000000000000',
+                'expDate' => '1210'),
+            'accountFundingTransactionData' => array(
+                'receiverLastName' =>'Jon',
+                'receiverState' => 'AZ',
+                'receiverCountry' => 'USA',
+                'receiverAccountNumber' => '4356872257i',
+                'accountFundingTransactionType' => 'paymentOfOwnCreditCardBill',
+                'receiverAccountNumberType' => 'cardAccount'
+            ),
+            'oltpEncryptionPayload' => false,
+            'identityBundle' => array(
+                'merchantId' => '12222',
+                'entityId' => '234567',
+                'entityReference' => '23475',
+                'resourceId' => '67806',
+                'resourceReference' => '231457',
+                'commandId' => '09765',
+                'commandReference' => '5679',
+                'orderReference' => '223555',
+            ),);
+
+        $initialize = new CnpOnlineRequest();
+        $creditResponse = $initialize->creditRequest($hash_in);
+        $response = XmlParser::getNode($creditResponse, 'response');
+        $this->assertEquals('000', $response);
+        $location = XmlParser::getNode($creditResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+    }
+
 }

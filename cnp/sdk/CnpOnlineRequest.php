@@ -156,7 +156,8 @@ class CnpOnlineRequest
                 'fraudCheckAction' => XmlFields::returnArrayValue($hash_in, 'fraudCheckAction'),
                 'typeOfDigitalCurrency' => XmlFields::returnArrayValue($hash_in, 'typeOfDigitalCurrency'),
                 'conversionAffiliateId' => XmlFields::returnArrayValue($hash_in, 'conversionAffiliateId'),
-
+                'identityBundle' => (XmlFields::identityBundle(XmlFields::returnArrayValue($hash_in, 'identityBundle'))),
+                'originalRetrievalReferenceNumber' => XmlFields::returnArrayValue($hash_in, 'originalRetrievalReferenceNumber'),
             );
         }
         $choice_hash = array(XmlFields::returnArrayValue($hash_out, 'card'), XmlFields::returnArrayValue($hash_out, 'paypal'), XmlFields::returnArrayValue($hash_out, 'token'), XmlFields::returnArrayValue($hash_out, 'paypage'), XmlFields::returnArrayValue($hash_out, 'applepay'), XmlFields::returnArrayValue($hash_out, 'mpos'));
@@ -241,7 +242,7 @@ class CnpOnlineRequest
             'fraudCheckAction' => XmlFields::returnArrayValue($hash_in, 'fraudCheckAction'),
             'typeOfDigitalCurrency' => XmlFields::returnArrayValue($hash_in, 'typeOfDigitalCurrency'),
             'conversionAffiliateId' => XmlFields::returnArrayValue($hash_in, 'conversionAffiliateId'),
-
+            'identityBundle' => (XmlFields::identityBundle(XmlFields::returnArrayValue($hash_in, 'identityBundle'))),
         );
 
         $choice_hash = array($hash_out['card'], $hash_out['paypal'], $hash_out['token'], $hash_out['paypage'], $hash_out['applepay'], $hash_out['mpos']);
@@ -266,7 +267,8 @@ class CnpOnlineRequest
             'payPalNotes' => XmlFields::returnArrayValue($hash_in, 'payPalNotes'),
             'actionReason' => XmlFields::returnArrayValue($hash_in, 'actionReason'),
             'additionalCOFData' => (XmlFields::additionalCOFData(XmlFields::returnArrayValue($hash_in, 'additionalCOFData'))),
-            );
+            'identityBundle' => (XmlFields::identityBundle(XmlFields::returnArrayValue($hash_in, 'identityBundle'))),
+        );
         $authReversalResponse = $this->processRequest($hash_out, $hash_in, 'authReversal');
 
         return $authReversalResponse;
@@ -351,7 +353,8 @@ class CnpOnlineRequest
             'merchantCategoryCode' => XmlFields::returnArrayValue($hash_in, 'merchantCategoryCode'),
             'businessIndicator' => XmlFields::returnArrayValue($hash_in, 'businessIndicator'),
             'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData')),
-            'accountFundingTransactionData' => XmlFields::accountFundingTransactionData(XmlFields::returnArrayValue($hash_in, 'accountFundingTransactionData'))
+            'accountFundingTransactionData' => XmlFields::accountFundingTransactionData(XmlFields::returnArrayValue($hash_in, 'accountFundingTransactionData')),
+            'identityBundle' => (XmlFields::identityBundle(XmlFields::returnArrayValue($hash_in, 'identityBundle'))),
         );
 
         $choice_hash = array($hash_out['card'], $hash_out['paypal'], $hash_out['token'], $hash_out['paypage'], $hash_out['mpos'], $hash_out['merchantCategoryCode']);
@@ -481,7 +484,7 @@ class CnpOnlineRequest
             'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData')),
             'foreignRetailerIndicator' => XmlFields::returnArrayValue($hash_in, 'foreignRetailerIndicator'),
             'partialCapture' => XmlFields::partialCapture(XmlFields::returnArrayValue($hash_in, 'partialCapture')),
-
+            'identityBundle' => (XmlFields::identityBundle(XmlFields::returnArrayValue($hash_in, 'identityBundle'))),
         );
         $captureResponse = $this->processRequest($hash_out, $hash_in, 'capture');
 
@@ -776,8 +779,8 @@ class CnpOnlineRequest
             'customBilling' => XmlFields::customBilling($hash_in, 'customBilling'),
             'lodgingInfo' => XmlFields::lodgingInfo($hash_in, 'lodgingInfo'),
             'pin' => (XmlFields::returnArrayValue($hash_in, 'pin')),
-            'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData'))
-
+            'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData')),
+            'identityBundle' => (XmlFields::identityBundle(XmlFields::returnArrayValue($hash_in, 'identityBundle'))),
         );
         $response = $this->processRequest($hash_out, $hash_in, 'depositTransactionReversal');
 
@@ -800,7 +803,8 @@ class CnpOnlineRequest
             'customBilling' => XmlFields::customBilling($hash_in, 'customBilling'),
             'lodgingInfo' => XmlFields::lodgingInfo($hash_in, 'lodgingInfo'),
             'pin' => (XmlFields::returnArrayValue($hash_in, 'pin')),
-            'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData'))
+            'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData')),
+            'identityBundle' => (XmlFields::identityBundle(XmlFields::returnArrayValue($hash_in, 'identityBundle'))),
         );
         $response = $this->processRequest($hash_out, $hash_in, 'refundTransactionReversal');
 
@@ -1611,7 +1615,7 @@ class CnpOnlineRequest
 
                 } else {
                     $path = null;
-                    if(isset($hash_config['oltpEncryptionKeyPath'])){
+                    if(isset($hash_config['oltpEncryptionKeyPath'])) {
                         $path = $hash_config['oltpEncryptionKeyPath'];
                     }
                     if ($path == null) {
@@ -1635,7 +1639,7 @@ class CnpOnlineRequest
 
                     // Create and append the encryptionKeySequence element
                     $encryptionKeySequenceElement = $doc->createElement('encryptionKeySequence');
-                    if(isset($hash_config['oltpEncryptionKeySequence']) and $hash_config['oltpEncryptionKeySequence'] != null ) {
+                    if(isset($hash_config['oltpEncryptionKeySequence']) and $hash_config['oltpEncryptionKeySequence'] != null) {
                         $encryptionKeySequenceElement->nodeValue = (int)$hash_config['oltpEncryptionKeySequence'];
                         $encryptedPayloadElement->appendChild($encryptionKeySequenceElement);
                     } else{
@@ -1655,6 +1659,42 @@ class CnpOnlineRequest
         } catch (Exception $e) {
             throw new Exception('Error processing XML request. Please reach out to SDK Support team.', 0, $e);
         }
+    }
+
+    /**
+     * @param $hash_in
+     * @return \DOMDocument|\SimpleXMLElement
+     * @throws exceptions\cnpSDKException
+     */
+    public function realtimeIncrementalAuthorization($hash_in)
+    {
+        $hash_out = array(
+            'cnpTxnId' => (XmlFields::returnArrayValue($hash_in, 'cnpTxnId')),
+            'orderId' => XmlFields::returnArrayValue($hash_in, 'orderId'),
+            'id' => XmlFields::returnArrayValue($hash_in, 'id'),
+            'amount' => XmlFields::returnArrayValue($hash_in, 'amount'),
+            'orderSource' => XmlFields::returnArrayValue($hash_in, 'orderSource'),
+            'billToAddress' => (XmlFields::contact(XmlFields::returnArrayValue($hash_in, 'billToAddress'))),
+            'shipToAddress' => (XmlFields::contact(XmlFields::returnArrayValue($hash_in, 'shipToAddress'))),
+            'card' => (XmlFields::cardType(XmlFields::returnArrayValue($hash_in, 'card'))),
+            'token' => (XmlFields::cardTokenType(XmlFields::returnArrayValue($hash_in, 'token'))),
+            'paypage' => (XmlFields::cardPaypageType(XmlFields::returnArrayValue($hash_in, 'paypage'))),
+            'applepay' => (XmlFields::applepayType(XmlFields::returnArrayValue($hash_in, 'applepay'))),
+            'cardholderAuthentication' => XmlFields::fraudCheckType(XmlFields::returnArrayValue($hash_in, 'cardholderAuthentication')),
+            'customBilling' => (XmlFields::customBilling(XmlFields::returnArrayValue($hash_in, 'customBilling'))),
+            'allowPartialAuth' => XmlFields::returnArrayValue($hash_in, 'allowPartialAuth'),
+            'wallet' => XmlFields::wallet(XmlFields::returnArrayValue($hash_in, 'wallet')),
+            'originalNetworkTransactionId' => XmlFields::returnArrayValue($hash_in, 'originalNetworkTransactionId'),
+            'merchantCategoryCode' => XmlFields::returnArrayValue($hash_in, 'merchantCategoryCode'),
+            'originalRetrievalReferenceNumber' => XmlFields::returnArrayValue($hash_in, 'originalRetrievalReferenceNumber'),
+            'cumulativeAmount' => XmlFields::returnArrayValue($hash_in, 'cumulativeAmount'),
+            'originalTransactionAmount' => XmlFields::returnArrayValue($hash_in, 'originalTransactionAmount')
+        );
+
+        $choice_hash = array(XmlFields::returnArrayValue($hash_out, 'card'),XmlFields::returnArrayValue($hash_out, 'token'), XmlFields::returnArrayValue($hash_out, 'paypage'), XmlFields::returnArrayValue($hash_out, 'applepay'));
+        $authorizationResponse = $this->processRequest($hash_out, $hash_in, 'realtimeIncrementalAuthorization', $choice_hash);
+
+        return $authorizationResponse;
     }
 }
 

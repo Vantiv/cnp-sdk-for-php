@@ -137,4 +137,41 @@ namespace cnp\sdk;
          $cnpTest->authReversalRequest($hash_in);;
      }
 
+     public function test_authRev_with_IdentityBundle()
+     {
+         $hash_in = array('id' => 'id',
+             'amount' => '123',
+             'payPalNotes' => 'Notes',
+             'cnpTxnId' => '12345678000',
+             'additionalCOFData' => array(
+                 'totalPaymentCount' => 'ND',
+                 'paymentType' => 'Fixed Amount',
+                 'uniqueId' => '234GTYH654RF13',
+                 'frequencyOfMIT' => 'Annually',
+                 'validationReference' => 'ANBH789UHY564RFC@EDB',
+                 'sequenceIndicator' => '86',
+             ),
+             'identityBundle' => array(
+                 'merchantId' => '12222',
+                 'entityId' => '234567',
+                 'entityReference' => '23475',
+                 'resourceId' => '67806',
+                 'resourceReference' => '231457',
+                 'commandId' => '09765',
+                 'commandReference' => '5679',
+                 'orderReference' => '223555',
+             )
+         );
+
+         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
+         $mock
+             ->expects($this->once())
+             ->method('request')
+             ->with($this->matchesRegularExpression('/.*<identityBundle>.*<merchantId>.*12222.*<entityId>234567.*<entityReference>23475.*<resourceId>67806.*<resourceReference>231457.*<commandId>09765.*<orderReference>223555.*/'));
+
+         $cnpTest = new CnpOnlineRequest();
+         $cnpTest->newXML = $mock;
+         $cnpTest->authReversalRequest($hash_in);;
+     }
+
 }

@@ -1134,6 +1134,22 @@ class XmlFields
         }
     }
 
+    public static function identityBundle($hash_in)
+    {
+        if (isset($hash_in)) {
+            $hash_out=	array(
+                "merchantId"=>XmlFields::returnArrayValue($hash_in, "merchantId"),
+                "entityId"=>XmlFields::returnArrayValue($hash_in, "entityId"),
+                "entityReference"=>XmlFields::returnArrayValue($hash_in, "entityReference"),
+                "resourceId"=>XmlFields::returnArrayValue($hash_in, "resourceId"),
+                "resourceReference"=>XmlFields::returnArrayValue($hash_in, "resourceReference"),
+                "commandId"=>XmlFields::returnArrayValue($hash_in, "commandId"),
+                "commandReference"=>XmlFields::returnArrayValue($hash_in, "commandReference"),
+                "orderReference"=>XmlFields::returnArrayValue($hash_in, "orderReference"),
+            );
+            return $hash_out;
+        }
+    }
 
 
 }

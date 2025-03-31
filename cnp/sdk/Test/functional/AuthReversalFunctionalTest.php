@@ -75,7 +75,40 @@ class AuthReversalFunctionalTest extends \PHPUnit_Framework_TestCase
                 'uniqueId' => '234GTYH654RF13',
                 'frequencyOfMIT' => 'Annually',
                 'validationReference' => 'ANBH789UHY564RFC@EDB',
-                'sequenceIndicator' => '86')
+                'sequenceIndicator' => '86'),
+
+        );
+        $initialize = new CnpOnlineRequest();
+        $creditResponse = $initialize->authReversalRequest($hash_in);
+        $message = XmlParser::getAttribute($creditResponse, 'cnpOnlineResponse', 'response');
+        $this->assertEquals("0", $message);
+        $location = XmlParser::getNode($creditResponse, 'location');
+        $this->assertEquals('sandbox', $location);
+    }
+
+    public function test_simple_authRev_with_identityBundle()
+    {
+        $hash_in = array('id' => 'id',
+            'amount' => '123',
+            'payPalNotes' => 'Notes',
+            'cnpTxnId' => '12345678000',
+            'additionalCOFData' => array(
+                'totalPaymentCount' => 'ND',
+                'paymentType' => 'Fixed Amount',
+                'uniqueId' => '234GTYH654RF13',
+                'frequencyOfMIT' => 'Annually',
+                'validationReference' => 'ANBH789UHY564RFC@EDB',
+                'sequenceIndicator' => '86'),
+            'identityBundle' => array(
+                'merchantId' => '12222',
+                'entityId' => '234567',
+                'entityReference' => '23475',
+                'resourceId' => '67806',
+                'resourceReference' => '231457',
+                'commandId' => '09765',
+                'commandReference' => '5679',
+                'orderReference' => '223555',
+            ),
 
         );
         $initialize = new CnpOnlineRequest();

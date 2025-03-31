@@ -280,4 +280,31 @@ class CaptureUnitTest extends \PHPUnit_Framework_TestCase
         $cnpTest->newXML = $mock;
         $cnpTest->captureRequest($hash_in);
     }
+
+    public function test_captureidentityBundle()
+    {
+        $hash_in = array('cnpTxnId'=> '12312312',
+            'id' => 'id',
+            'merchantSdk'=>'PHP;10.1.0',
+            'amount'=>'123',
+            'oltpEncryptionPayload' => false,
+            'identityBundle' => array(
+                'merchantId' => '12222',
+                'entityId' => '234567',
+                'entityReference' => '23475',
+                'resourceId' => '67806',
+                'resourceReference' => '231457',
+                'commandId' => '09765',
+                'commandReference' => '5679',
+                'orderReference' => '223555',
+            ));
+        $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
+        $mock->expects($this->once())
+            ->method('request')
+            ->with($this->matchesRegularExpression('/.*<identityBundle>.*<merchantId>.*12222.*<entityId>234567.*<entityReference>23475.*<resourceId>67806.*<resourceReference>231457.*<commandId>09765.*<orderReference>223555.*/'));
+
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->captureRequest($hash_in);
+    }
 }
