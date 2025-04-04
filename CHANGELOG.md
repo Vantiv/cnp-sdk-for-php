@@ -1,4 +1,6 @@
 = CnpOnline CHANGELOG
+==Change Log for 12.44.1 (April 04, 2025)
+Change: [cnpAPI v12.44.1] Fixed URL setup if URL is not selected from listed ones.
 
 ==Change Log for 12.44 (March 28, 2025)
 Change: [cnpAPI v12.44] In ordersourcetype enum, 'ecommerceDataOnly' value is added.
