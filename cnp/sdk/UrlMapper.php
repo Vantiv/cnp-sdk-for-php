@@ -51,6 +51,6 @@ class UrlMapper
         elseif ($cnpEnv == UrlMapper::TRANSACT_POSTLIVE)
             return 'https://transact.vantivpostlive.com/' . $cnpOnlineCtx;
         else
-            return 'https://www.testvantivcnp.com/sandbox/communicator/online';
+            return $cnpEnv;
     }
 }
