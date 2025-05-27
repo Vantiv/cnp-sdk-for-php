@@ -1502,7 +1502,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
                 'accountFundingTransactionType' => 'businessDisbursement',
                 'receiverAccountNumberType' => 'RTNAndBAN'
             ),
-            'typeOfDigitalCurrency' => '1',
+            'typeOfDigitalCurrency' => '7',
             'conversionAffiliateId' => 'Test',
         );
 

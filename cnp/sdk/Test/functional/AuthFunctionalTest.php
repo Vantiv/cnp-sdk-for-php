@@ -1279,7 +1279,9 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
                 'type' => 'VI',
                 'number' => '4003002345678903',
                 'expDate' => '1199'),
-            'authIndicator' => 'Estimated'
+            'authIndicator' => 'Estimated',
+            'foreignRetailerIndicator' => 'A'
+
         );
         $initialize = new CnpOnlineRequest();
         $authorizationResponse = $initialize->authorizationRequest($hash_in);
@@ -1337,7 +1339,7 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
                 'accountFundingTransactionType' => 'walletTransfer',
                 'receiverAccountNumberType' => 'socialNetworkID'
             ),
-            'typeOfDigitalCurrency' => '1',
+            'typeOfDigitalCurrency' => '4',
             'conversionAffiliateId' => 'Test',
             'orderId' => '22@33',
             'reportGroup' => 'Planets',
