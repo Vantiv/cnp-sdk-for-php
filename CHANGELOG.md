@@ -1,4 +1,10 @@
 = CnpOnline CHANGELOG
+
+==Change Log for 12.45 (May 27,2025)
+Change: [cnpAPI v12.45] In existing enum 'foreignRetailerIndicatorEnum' new values 'A','B'.
+Change: [cnpAPI v12.45] In existing authorization request new element 'foreignRetailerIndicator' of type 'foreignRetailerIndicatorEnum' is added.
+Change: [cnpAPI v12.45] In existing requests 'authorization','sale','captureGivenAuth' type of existing element 'typeOfDigitalCurrency' is changed from string to 'typeOfDigitalCurrencyEnum'.
+
 ==Change Log for 12.44.1 (April 04, 2025)
 Change: [cnpAPI v12.44.1] Fixed URL setup if URL is not selected from listed ones.
 

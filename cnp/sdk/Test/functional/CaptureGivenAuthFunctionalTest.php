@@ -677,7 +677,7 @@ class CaptureGivenAuthFunctionalTest extends \PHPUnit_Framework_TestCase
                 'accountFundingTransactionType' => 'personToPerson',
                 'receiverAccountNumberType' => 'email'
             ),
-            'typeOfDigitalCurrency' => '1',
+            'typeOfDigitalCurrency' => '7',
             'conversionAffiliateId' => 'Test',
         );
 

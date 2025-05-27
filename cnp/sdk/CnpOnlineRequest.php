@@ -152,6 +152,7 @@ class CnpOnlineRequest
                 'fraudSwitchIndicator' => XmlFields::returnArrayValue($hash_in, 'fraudSwitchIndicator'),
                 'passengerTransportData' => XmlFields::passengerTransportData(XmlFields::returnArrayValue($hash_in, 'passengerTransportData')),
                 'authIndicator' => XmlFields::returnArrayValue($hash_in, 'authIndicator'),
+                'foreignRetailerIndicator' => XmlFields::returnArrayValue($hash_in, 'foreignRetailerIndicator'),
                 'accountFundingTransactionData' => XmlFields::accountFundingTransactionData(XmlFields::returnArrayValue($hash_in, 'accountFundingTransactionData')),
                 'fraudCheckAction' => XmlFields::returnArrayValue($hash_in, 'fraudCheckAction'),
                 'typeOfDigitalCurrency' => XmlFields::returnArrayValue($hash_in, 'typeOfDigitalCurrency'),
@@ -1500,7 +1501,7 @@ class CnpOnlineRequest
      */
     public function encryptionKeyRequest($hash_in)
     {
-        $hash_out = array(XmlFields::returnArrayValue($hash_in,'encryptionKeyRequest'));
+        $hash_out = array(XmlFields::returnArrayValue($hash_in, 'encryptionKeyRequest'));
         $encryptionKeyResponse = $this->processRequest($hash_out, $hash_in, 'encryptionKeyRequest');
 
         return $encryptionKeyResponse;
@@ -1577,7 +1578,7 @@ class CnpOnlineRequest
     private function processRequest($hash_out, $hash_in, $type, $choice1 = null, $choice2 = null)
     {
         $hash_config = CnpOnlineRequest::overrideConfig($hash_in);
-        $hash_config= Obj2xml::getConfig($hash_config);
+        $hash_config = Obj2xml::getConfig($hash_config);
         $hash = CnpOnlineRequest::getOptionalAttributes($hash_in, $hash_out);
         $request = Obj2xml::toXml($hash, $hash_config, $type);
 
@@ -1588,8 +1589,8 @@ class CnpOnlineRequest
             $request = str_replace("vendorDebitCtx", "vendorDebit", $request);
 
             // If oltpEncryptionPayload enabled then send reuqest for encryption.
-            if (isset($hash_config['oltpEncryptionPayload']) and (int)$hash_config['oltpEncryptionPayload'] == 1){
-                $request = CnpOnlineRequest::getEncryptedPayload($request,$hash_config);
+            if (isset($hash_config['oltpEncryptionPayload']) and (int)$hash_config['oltpEncryptionPayload'] == 1) {
+                $request = CnpOnlineRequest::getEncryptedPayload($request, $hash_config);
             }
             $cnpOnlineResponse = $this->newXML->request($request, $hash_config, $this->useSimpleXml);
         }
@@ -1615,7 +1616,7 @@ class CnpOnlineRequest
 
                 } else {
                     $path = null;
-                    if(isset($hash_config['oltpEncryptionKeyPath'])) {
+                    if (isset($hash_config['oltpEncryptionKeyPath'])) {
                         $path = $hash_config['oltpEncryptionKeyPath'];
                     }
                     if ($path == null) {
@@ -1639,10 +1640,10 @@ class CnpOnlineRequest
 
                     // Create and append the encryptionKeySequence element
                     $encryptionKeySequenceElement = $doc->createElement('encryptionKeySequence');
-                    if(isset($hash_config['oltpEncryptionKeySequence']) and $hash_config['oltpEncryptionKeySequence'] != null) {
+                    if (isset($hash_config['oltpEncryptionKeySequence']) and $hash_config['oltpEncryptionKeySequence'] != null) {
                         $encryptionKeySequenceElement->nodeValue = (int)$hash_config['oltpEncryptionKeySequence'];
                         $encryptedPayloadElement->appendChild($encryptionKeySequenceElement);
-                    } else{
+                    } else {
                         throw new Exception('Problem in reading the Encryption Key Sequence ...Provide the Encryption key Sequence');
                     }
                     // Create and append the payload element
@@ -1691,7 +1692,7 @@ class CnpOnlineRequest
             'originalTransactionAmount' => XmlFields::returnArrayValue($hash_in, 'originalTransactionAmount')
         );
 
-        $choice_hash = array(XmlFields::returnArrayValue($hash_out, 'card'),XmlFields::returnArrayValue($hash_out, 'token'), XmlFields::returnArrayValue($hash_out, 'paypage'), XmlFields::returnArrayValue($hash_out, 'applepay'));
+        $choice_hash = array(XmlFields::returnArrayValue($hash_out, 'card'), XmlFields::returnArrayValue($hash_out, 'token'), XmlFields::returnArrayValue($hash_out, 'paypage'), XmlFields::returnArrayValue($hash_out, 'applepay'));
         $authorizationResponse = $this->processRequest($hash_out, $hash_in, 'realtimeIncrementalAuthorization', $choice_hash);
 
         return $authorizationResponse;
