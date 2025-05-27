@@ -493,12 +493,13 @@ class AuthUnitTest extends \PHPUnit_Framework_TestCase
                 'type' => 'VI',
                 'number' => '4003002345678903',
                 'expDate' => '1199'),
-            'authIndicator' => 'Estimated'
+            'authIndicator' => 'Estimated',
+            'foreignRetailerIndicator' => 'A'
         );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
             ->method('request')
-            ->with($this->matchesRegularExpression('/.*<authIndicator>Estimated.*/'));
+            ->with($this->matchesRegularExpression('/.*<authIndicator>Estimated.*<foreignRetailerIndicator>A.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;
