@@ -338,6 +338,10 @@ class Obj2xml
                     $config['timeout'] = isset($config_array['timeout'])? $config_array['timeout']:'65';
                 } elseif ($name == 'sftp_timeout') {
                     $config['sftp_timeout'] = isset($config_array['sftp_timeout'])? $config_array['sftp_timeout']:'720';
+                } elseif ($name == 'useFileLocking') {
+                    $config['useFileLocking'] = isset($config_array['useFileLocking'])
+                        ? $config_array['useFileLocking']
+                        : 'true';
                 } else {
                     if ((!isset($config_array[$name])) and ($name != 'proxy') and ($name != 'oltpEncryptionPayload') and ($name != 'oltpEncryptionKeySequence') and ($name != 'oltpEncryptionKeyPath') and ($name != 'neuter_xml')) {
                         throw new \InvalidArgumentException("Missing Field /$name/");

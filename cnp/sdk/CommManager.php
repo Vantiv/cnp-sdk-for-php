@@ -147,7 +147,11 @@ class CommManager
 
     public function findUrl()
     {
-        return $this->synchronized();
+        if ($this->useFileLocking()) {
+            return $this->synchronized();
+        }
+
+        return $this->findUrlHandler();
     }
 
 
@@ -198,5 +202,19 @@ class CommManager
     }
     public function setLastSiteSwitchTime($milliseconds){
         $this->lastSiteSwitchTime = (string)$milliseconds;
+    }
+
+    /**
+     * Determines whether or not file locking will be used when building the requestTarget array. The default is true.
+     * The only way we don't use file locking is if the config value is defined and (string) false.
+     *
+     * @return bool
+     */
+    protected function useFileLocking() {
+        if (!isset($this->configuration['useFileLocking'])) {
+            return true;
+        }
+
+        return !('false' === strtolower($this->configuration['useFileLocking']));
     }
 }
