@@ -321,6 +321,7 @@ class XmlFields
                 "taxAmount" => XmlFields::returnArrayValue($hash_in, "taxAmount"),
                 "lineItemTotal" => XmlFields::returnArrayValue($hash_in, "lineItemTotal"),
                 "lineItemTotalWithTax" => XmlFields::returnArrayValue($hash_in, "lineItemTotalWithTax"),
+                "lineItemDetailIndicator" => XmlFields::returnArrayValue($hash_in, "lineItemDetailIndicator"),
                 "itemDiscountAmount" => XmlFields::returnArrayValue($hash_in, "itemDiscountAmount"),
                 "commodityCode" => XmlFields::returnArrayValue($hash_in, "commodityCode"),
                 "unitCost" => XmlFields::returnArrayValue($hash_in, "unitCost"),
@@ -376,7 +377,8 @@ class XmlFields
                 array(
                     "discountCode" => XmlFields::returnArrayValue($hash_in, "discountCode"),
                     "discountPercent" => XmlFields::returnArrayValue($hash_in, "discountPercent"),
-                    "fulfilmentMethodType" => XmlFields::returnArrayValue($hash_in, "fulfilmentMethodType")
+                    "fulfilmentMethodType" => XmlFields::returnArrayValue($hash_in, "fulfilmentMethodType"),
+                    "numberOfPayments" => XmlFields::returnArrayValue($hash_in, "numberOfPayments")
                     )
             );
             return $hash_out;
@@ -1101,6 +1103,7 @@ class XmlFields
                 "receiverCountry" => XmlFields::returnArrayValue($hash_in, 'receiverCountry'),
                 "receiverAccountNumberType" => XmlFields::returnArrayValue($hash_in, 'receiverAccountNumberType'),
                 "receiverAccountNumber" => XmlFields::returnArrayValue($hash_in, 'receiverAccountNumber'),
+                "receiverAccountNumberCnpToken" => XmlFields::returnArrayValue($hash_in, 'receiverAccountNumberCnpToken'),
                 "accountFundingTransactionType" => XmlFields::returnArrayValue($hash_in, 'accountFundingTransactionType'),
             );
 

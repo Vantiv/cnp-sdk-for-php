@@ -339,7 +339,7 @@ class Obj2xml
                 } elseif ($name == 'sftp_timeout') {
                     $config['sftp_timeout'] = isset($config_array['sftp_timeout'])? $config_array['sftp_timeout']:'720';
                 } else {
-                    if ((!isset($config_array[$name])) and ($name != 'proxy') and ($name != 'oltpEncryptionPayload') and ($name != 'oltpEncryptionKeySequence') and ($name != 'oltpEncryptionKeyPath') and ($name != 'neuter_xml')) {
+                    if ((!isset($config_array[$name])) and ($name != 'proxy') and ($name != 'oltpEncryptionPayload') and ($name != 'oltpEncryptionKeySequence') and ($name != 'oltpEncryptionKeyPath') and ($name != 'neuter_xml') and ($name != 'sendEcomHeader') and ($name != 'ecomHeaderValue')) {
                         throw new \InvalidArgumentException("Missing Field /$name/");
                     }
                     // If encryptionPayload properties are not available in config file then add other properties.

@@ -1086,6 +1086,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
                     'unitOfMeasure' => 'EACH',
                     'lineItemTotal' => '9900',
                     'lineItemTotalWithTax' => '10000',
+                    'lineItemDetailIndicator'=>'0',
                     'itemDiscountAmount' => '0',
                     'commodityCode' => '301',
                     'unitCost' => '31.02',
@@ -1095,6 +1096,7 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
                 'discountCode' => 'OneTimeDiscount11',
                 'discountPercent' => '11',
                 'fulfilmentMethodType' => 'STANDARD_SHIPPING',
+                'numberOfPayments' => '+',
             ),
             'lodgingInfo' => array(
                 'bookingID' => 'book1234512341',

@@ -25,7 +25,8 @@
 namespace cnp\sdk;
 class Communication
 {
-    public static function httpRequest($req,$hash_config=NULL)
+     const ECOM_API = '';
+     public static function httpRequest($req, $hash_config = NULL)
     {
         $config = Obj2xml::getConfig($hash_config);
 
@@ -38,7 +39,33 @@ class Communication
 
         curl_setopt($ch, CURLOPT_PROXY, $config['proxy']);
         curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: text/xml; charset=UTF-8','Expect: '));
+
+        $headers = [
+            'Content-type: text/xml; charset=UTF-8',
+            'Expect: '
+        ];
+
+// Always add the header if sendEcomHeader is true
+        if (isset($config['sendEcomHeader']) && filter_var($config['sendEcomHeader'], FILTER_VALIDATE_BOOLEAN)) {
+            // Get value from config
+            $ecomHeaderValue = isset($config['ecomHeaderValue']) ? trim($config['ecomHeaderValue']) : null;
+
+            // Fallback to class constant if config value is empty
+            if (empty($ecomHeaderValue) && defined(self::ECOM_API)) {
+                $ecomHeaderValue = self::ECOM_API;
+            }
+
+            if(empty($ecomHeaderValue)) {
+                $headers[] = 'X-Ecom-Api;';
+            }
+            else{
+                $headers[] = 'X-Ecom-Api:' . $ecomHeaderValue;
+            }
+        }
+// Set headers after building them
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+
         $commManager = CommManager::instance($config);
         $requestTarget = $commManager->findUrl();
 

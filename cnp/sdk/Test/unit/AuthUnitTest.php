@@ -824,6 +824,57 @@ class AuthUnitTest extends \PHPUnit_Framework_TestCase
         $cnpTest->authorizationRequest($hash_in);
     }
 
+    public function test_auth_with_enhancedData()
+    {
+        $hash_in = array(
+            'id' => 'id',
+            'orderId' => '82364_cnpApiAuth',
+            'amount' => '1001',
+            'orderSource' => 'telephone',
+            'card' => array(
+                'type' => 'VI',
+                'number' => '4005518220000002',
+                'expDate' => '0150',
+                'cardValidationNum' => '987',
+            ),
+            'enhancedData' => array(
+                'customerReference' => 'cust ref sale1',
+                'salesTax' => '1000',
+                'discountAmount' => '0',
+                'shippingAmount' => '0',
+                'dutyAmount' => '0',
+                'lineItemData' => array(
+                    'itemSequenceNumber' => '1',
+                    'itemDescription' => 'Clothes',
+                    'productCode' => 'TB123',
+                    'lineItemTotalWithTax' => '10000',
+                    'lineItemDetailIndicator'=>'0',
+                    'itemDiscountAmount' => '0',
+                    'commodityCode' => '301',
+                    'unitCost' => '31.02',
+                    'itemCategory' => 'Aparel',
+                    'itemSubCategory' => 'Clothing',
+                ),
+                'numberOfPayments' => '5',
+            ),
+            'orderChannel' => 'PHONE',
+            'fraudCheckStatus' => 'CLOSE',
+            'overridePolicy' => 'merchantPolicyToDecline',
+            'fsErrorCode' => 'error123',
+            'merchantAccountStatus' => 'activeAccount',
+            'productEnrolled' => 'GUARPAY3',
+            'decisionPurpose' => 'CONSIDER_DECISION',
+            'fraudSwitchIndicator' => 'POST',
+        );
 
+        $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
+        $mock->expects($this->once())
+            ->method('request')
+            ->with($this->matchesRegularExpression('/.*<enhancedData>.*<lineItemData>.*<lineItemDetailIndicator>0.*<numberOfPayments>5.*POST.*/'));
+
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->authorizationRequest($hash_in);
+    }
 
 }
