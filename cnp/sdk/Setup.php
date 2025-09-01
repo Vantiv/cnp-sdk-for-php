@@ -147,6 +147,18 @@ function initialize()
             $line['oltpEncryptionKeyPath '] = "";
         }
 
+        print "Please input your sendEcomHeader (true/false) (by default values is false): ";
+        $sendEcomHeader = trim(fgets(STDIN));
+        $line['sendEcomHeader'] = $sendEcomHeader;
+        $booleanSendEcomHeaderValue = filter_var(strtolower($sendEcomHeader), FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
+        if  ($booleanSendEcomHeaderValue){
+            print "Please input your ecomHeaderValue: ";
+            $line['ecomHeaderValue'] = formatConfigValue(STDIN);
+        }else{
+            $line['sendEcomHeader'] = "false";
+            $line['ecomHeaderValue'] = "";
+        }
+
         writeConfig($line,$handle);
         #default http timeout set to 500 ms
         fwrite($handle, "timeout =  500".  PHP_EOL);
