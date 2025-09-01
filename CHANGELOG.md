@@ -5,7 +5,7 @@ Change: [cnpAPI v12.47] New header 'X-Ecom-Api' is added in the request on the b
 Change: [cnpAPI v12.47] New enum 'numberOfPaymentsEnum' added with values '1','2','3','4','5','6','7','8','9','+','' .
 Change: [cnpAPI v12.47] New enum 'lineItemDetailIndicatorEnum' added with values '0','1','2','3','4','5'.
 Change: [cnpAPI v12.47] In existing complex element lineItemData new enum 'lineItemDetailIndicator' of type 'lineItemDetailIndicatorEnum' is added.
-Change: [cnpAPI v12.47] In existing complex element 'numberOfPayments' new enum 'numberOfPayments' of type 'numberOfPaymentsEnum' is added.
+Change: [cnpAPI v12.47] In existing complex element 'enhancedData' new enum 'numberOfPayments' of type 'numberOfPaymentsEnum' is added.
 Change: [cnpAPI v12.46] In 'AuthorizationResponse' and 'SaleResponse' simple elements 'credentialType' of type 'string' and 'cardDetails' of type 'ccAccountNumberType' are added.
 Change: [cnpAPI v12.46] In existing complex element 'accountFundingTransactionData' two simple elements 'receiverAccountNumber' of type 'string50Type' and 'receiverAccountNumberCnpToken' of type 'ccAccountNumberType' are added as choice.
 

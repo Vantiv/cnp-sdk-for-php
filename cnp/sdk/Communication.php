@@ -51,7 +51,7 @@ class Communication
             $ecomHeaderValue = isset($config['ecomHeaderValue']) ? trim($config['ecomHeaderValue']) : null;
 
             // Fallback to class constant if config value is empty
-            if (empty($ecomHeaderValue) && defined(self::ECOM_API)) {
+            if ($ecomHeaderValue==='' && defined('self::ECOM_API')) {
                 $ecomHeaderValue = self::ECOM_API;
             }
 
