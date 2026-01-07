@@ -1418,5 +1418,36 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
         $cnpTest->saleRequest($hash_in);
     }
 
+    public function test_sale_with_pazeEncryptedPayload()
+    {
+        $hash_in = array(
+            'pazeEncryptedPayload'=>'NDEwMDAwMDAwMDAwMDAwMA==',
+            'id'=>'654',
+            'orderId'=> '2111',
+            'orderSource'=>'ecommerce',
+            'amount'=>'123',
+            'processingType' => 'accountFunding',
+            'originalNetworkTransactionId' => 'abcdefgh',
+            'originalTransactionAmount' => '1000',
+            'identityBundle' => array(
+                'merchantId' => '12222',
+                'entityId' => '234567',
+                'entityReference' => '23475',
+                'resourceId' => '67806',
+                'resourceReference' => '231457',
+                'commandId' => '09765',
+                'commandReference' => '5679',
+                'orderReference' => '223555',
+            )
+        );
+        $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
+        $mock->expects($this->once())
+            ->method('request')
+            ->with($this->matchesRegularExpression('/.*<pazeEncryptedPayload>NDEwMDAwMDAwMDAwMDAwMA==.*/'));
+
+        $cnpTest = new CnpOnlineRequest();
+        $cnpTest->newXML = $mock;
+        $cnpTest->saleRequest($hash_in);
+    }
 
 }

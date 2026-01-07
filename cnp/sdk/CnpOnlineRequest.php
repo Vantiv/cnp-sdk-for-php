@@ -116,6 +116,7 @@ class CnpOnlineRequest
                 'paypage' => (XmlFields::cardPaypageType(XmlFields::returnArrayValue($hash_in, 'paypage'))),
                 'applepay' => (XmlFields::applepayType(XmlFields::returnArrayValue($hash_in, 'applepay'))),
                 'mpos' => (XmlFields::mposType(XmlFields::returnArrayValue($hash_in, 'mpos'))),
+                'pazeEncryptedPayload' => XmlFields::returnArrayValue($hash_in, 'pazeEncryptedPayload',7500),
                 'billMeLaterRequest' => (XmlFields::billMeLaterRequest(XmlFields::returnArrayValue($hash_in, 'billMeLaterRequest'))),
                 'cardholderAuthentication' => (XmlFields::fraudCheckType(XmlFields::returnArrayValue($hash_in, 'cardholderAuthentication'))),
                 'processingInstructions' => (XmlFields::processingInstructions(XmlFields::returnArrayValue($hash_in, 'processingInstructions'))),
@@ -161,7 +162,7 @@ class CnpOnlineRequest
                 'originalRetrievalReferenceNumber' => XmlFields::returnArrayValue($hash_in, 'originalRetrievalReferenceNumber'),
             );
         }
-        $choice_hash = array(XmlFields::returnArrayValue($hash_out, 'card'), XmlFields::returnArrayValue($hash_out, 'paypal'), XmlFields::returnArrayValue($hash_out, 'token'), XmlFields::returnArrayValue($hash_out, 'paypage'), XmlFields::returnArrayValue($hash_out, 'applepay'), XmlFields::returnArrayValue($hash_out, 'mpos'));
+        $choice_hash = array(XmlFields::returnArrayValue($hash_out, 'card'), XmlFields::returnArrayValue($hash_out, 'paypal'), XmlFields::returnArrayValue($hash_out, 'token'), XmlFields::returnArrayValue($hash_out, 'paypage'), XmlFields::returnArrayValue($hash_out, 'applepay'), XmlFields::returnArrayValue($hash_out, 'mpos'),XmlFields::returnArrayValue($hash_out, 'pazeEncryptedPayload'));
         $authorizationResponse = $this->processRequest($hash_out, $hash_in, 'authorization', $choice_hash);
 
         return $authorizationResponse;
@@ -198,6 +199,7 @@ class CnpOnlineRequest
             'giropay' => (XmlFields::giropayType(XmlFields::returnArrayValue($hash_in, 'giropay'))),
             'sofort' => (XmlFields::sofortType(XmlFields::returnArrayValue($hash_in, 'sofort'))),
             'mpos' => (XmlFields::mposType(XmlFields::returnArrayValue($hash_in, 'mpos'))),
+            'pazeEncryptedPayload' => XmlFields::returnArrayValue($hash_in, 'pazeEncryptedPayload',7500),
             'billMeLaterRequest' => XmlFields::billMeLaterRequest(XmlFields::returnArrayValue($hash_in, 'billMeLaterRequest')),
             'fraudCheck' => XmlFields::fraudCheckType(XmlFields::returnArrayValue($hash_in, 'fraudCheck')),
             'cardholderAuthentication' => XmlFields::fraudCheckType(XmlFields::returnArrayValue($hash_in, 'cardholderAuthentication')),
@@ -246,7 +248,8 @@ class CnpOnlineRequest
             'identityBundle' => (XmlFields::identityBundle(XmlFields::returnArrayValue($hash_in, 'identityBundle'))),
         );
 
-        $choice_hash = array($hash_out['card'], $hash_out['paypal'], $hash_out['token'], $hash_out['paypage'], $hash_out['applepay'], $hash_out['mpos']);
+      //  $choice_hash = array($hash_out['card'], $hash_out['paypal'], $hash_out['token'], $hash_out['paypage'], $hash_out['applepay'], $hash_out['mpos'],$hash_out['pazeEncryptedPayload']);
+        $choice_hash = array(XmlFields::returnArrayValue($hash_out, 'card'), XmlFields::returnArrayValue($hash_out, 'paypal'), XmlFields::returnArrayValue($hash_out, 'token'), XmlFields::returnArrayValue($hash_out, 'paypage'), XmlFields::returnArrayValue($hash_out, 'applepay'), XmlFields::returnArrayValue($hash_out, 'mpos'),XmlFields::returnArrayValue($hash_out, 'pazeEncryptedPayload'));
         $choice2_hash = array($hash_out['fraudCheck'], $hash_out['cardholderAuthentication']);
         $saleResponse = $this->processRequest($hash_out, $hash_in, 'sale', $choice_hash, $choice2_hash);
 
