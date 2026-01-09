@@ -1,5 +1,12 @@
 = CnpOnline CHANGELOG
 
+==Change Log for 12.48 (January 8,2026)
+Change: [cnpAPI v12.48] New element pazeEncryptedPayload added to both Auth and Sale transaction requests.
+Change: [cnpAPI v12.48] New complex element TLID added in authResponse and authReversalResponse.
+Change: [cnpAPI v12.48] New sub elements to support TLID - lifecycleTlid (type: tlidType),economicTlid (type: tlidType),tlidCustomerProvided (type: tlidType) and tlidValidationActionIndicator (type: tlidValidationActionIndicatorType).
+Change: [cnpAPI v12.48] New element tlidValidationActionIndicatorType added with Enum values 1, 2.
+Change: [cnpAPI v12.48] New type tlidType added as string for TLID fields.
+
 ==Change Log for 12.47 (August 28,2025)
 Change: [cnpAPI v12.47] New header 'X-Ecom-Api' is added in the request on the basis 2 cofiguration newly added properties in the property file 'sendEcomHeader' and 'ecomHeaderValue'.
 Change: [cnpAPI v12.47] New enum 'numberOfPaymentsEnum' added with values '1','2','3','4','5','6','7','8','9','+','' .

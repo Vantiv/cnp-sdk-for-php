@@ -2,7 +2,6 @@
 <xs:schema targetNamespace="http://www.vantivcnp.com/schema" xmlns:xp="http://www.vantivcnp.com/schema"
            xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
     <!--cnpCommon-->
-
     <xs:element name="authentication">
         <xs:complexType>
             <xs:sequence>
@@ -242,6 +241,13 @@
             <xs:maxLength value="1" />
         </xs:restriction>
     </xs:simpleType>
+
+    <xs:simpleType name="stringTypeForPazeEncryptedPayload">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="7500" />
+        </xs:restriction>
+    </xs:simpleType>
+
 
     <xs:simpleType name="methodOfPaymentTypeEnum">
         <xs:restriction base="xs:string">
@@ -1477,7 +1483,7 @@
 
     <!--cnpRecurring-->
 
-    <!--<xs:include schemaLocation=cnpCommon_v12.45.xsd />-->
+   <!-- <xs:include schemaLocation="cnpCommon_v12.48.xsd" />-->
 
     <xs:element name="recurringTransaction" type="xp:recurringTransactionType" abstract="true" />
     <xs:element name="recurringTransactionResponse" type="xp:recurringTransactionResponseType" abstract="true" />
@@ -1932,6 +1938,7 @@
                                 <xs:element name="token" type="xp:cardTokenType"/>
                                 <xs:element name="paypage" type="xp:cardPaypageType"/>
                                 <xs:element name="applepay" type="xp:applepayType"/>
+                                <xs:element name="pazeEncryptedPayload" type="xp:stringTypeForPazeEncryptedPayload"/>
                             </xs:choice>
                             <xs:element name="cardholderAuthentication" type="xp:fraudCheckType" minOccurs="0"/>
                             <xs:element ref="xp:processingInstructions" minOccurs="0"/>
@@ -2176,6 +2183,7 @@
                             <xs:element name="ideal" type="xp:idealType"/>
                             <xs:element name="giropay" type="xp:giropayType"/>
                             <xs:element name="sofort" type="xp:sofortType"/>
+                            <xs:element name="pazeEncryptedPayload" type="xp:stringTypeForPazeEncryptedPayload"/>
                         </xs:choice>
                         <!-- fraudCheck is not used in the mapping -->
 
@@ -2712,6 +2720,7 @@
                         <xs:element name="fundingTransactionReferenceNumber" type="xp:string19Type" minOccurs="0"/>
                         <xs:element name="retrievalReferenceNumber" type="xp:string12Type" minOccurs="0"/>
                         <xs:element name="orderSource" type="xp:orderSourceType" minOccurs="0"/>
+                        <xs:element ref="xp:tlid" minOccurs="0"/>
                     </xs:all>
                 </xs:extension>
             </xs:complexContent>
@@ -2889,6 +2898,7 @@
                         <xs:element ref="xp:pinlessDebitResponse" minOccurs="0"/>
                         <!-- Introduced as part of Guaranteed Payments -->
                         <xs:element name="checkoutId" type="xp:string256Type" minOccurs="0"/>
+                        <xs:element ref="xp:tlid" minOccurs="0"/>
                     </xs:all>
                 </xs:extension>
             </xs:complexContent>
@@ -3763,6 +3773,18 @@
             <xs:enumeration value="7"/>
             <xs:enumeration value="8"/>
             <xs:enumeration value="9"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="tlidValidationActionIndicatorType">
+        <xs:restriction base="xs:integer">
+            <xs:enumeration value="1"/>
+            <xs:enumeration value="2"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="tlidType">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="22"/>
         </xs:restriction>
     </xs:simpleType>
 
@@ -5051,6 +5073,17 @@
         </xs:complexType>
     </xs:element>
 
+    <xs:element name="tlid">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="lifecycleTlid" type="xp:tlidType" minOccurs="0"/>
+                <xs:element name="economicTlid" type="xp:tlidType" minOccurs="0"/>
+                <xs:element name="tlidValidationActionIndicator" type="xp:tlidValidationActionIndicatorType" minOccurs="0"/>
+                <xs:element name="tlidCustomerProvided" type="xp:tlidType" minOccurs="0"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
     <xs:element name="sellerInfo">
         <xs:complexType>
             <xs:all>
@@ -5185,7 +5218,7 @@
 
     <!--cnpBatch-->
 
-    <!--    <xs:include schemaLocation="cnpTransaction_v12.24.xsd" />-->
+<!--    <xs:include schemaLocation="cnpTransaction_v12.48.xsd" />-->
 
     <xs:element name="cnpRequest">
         <xs:complexType>
@@ -5591,7 +5624,7 @@
 
     <!--cnpOnline-->
 
-    <!--    <xs:include schemaLocation="cnpTransaction_v12.24.xsd" />-->
+    <!--<xs:include schemaLocation="cnpTransaction_v12.48.xsd" />-->
 
     <xs:complexType name="baseRequest">
         <xs:sequence>
@@ -5899,7 +5932,7 @@
         </xs:complexType>
     </xs:element>
 
-    <!--  <xs:element name="vendorCredit" substitutionGroup="xp:transaction">
+ <!--   <xs:element name="vendorCredit" substitutionGroup="xp:transaction">
         <xs:complexType>
             <xs:complexContent>
                 <xs:extension base="xp:transactionTypeWithReportGroup">
