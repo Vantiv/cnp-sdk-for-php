@@ -1623,7 +1623,8 @@ class SaleFunctionalTest extends \PHPUnit_Framework_TestCase
                 'commandId' => '09765',
                 'commandReference' => '5679',
                 'orderReference' => '223555',
-            ),);
+            ),
+            'preferredCustomer'=> 'true');
 
         $initialize = new CnpOnlineRequest();
         $saleResponse = $initialize->saleRequest($hash_in);

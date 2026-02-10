@@ -1,5 +1,12 @@
 = CnpOnline CHANGELOG
 
+==Change Log for 12.49 (February 10,2026)
+Change: [cnpAPI v12.49]: New simple element 'preferredCustomer' of type 'boolean' is added in 'authorization' and 'sale' request.
+Change: [cnpAPI v12.49]: New simple element 'preferredCustomerDecision' of type 'boolean' is added in Authorization and sale response.
+Change: [cnpAPI v12.49]: New complex element 'tlid' is added in sale response.
+Change: [cnpAPI v12.49]: In existing enum 'tlidValidationActionIndicatorType' new value "3" is added.
+Change: [cnpAPI v12.49]: for existing request "reserveCredit" base type is changed from 'transactionTypeWithReportGroupAndRtp' to 'transactionTypeWithReportGroup'
+
 ==Change Log for 12.48 (January 8,2026)
 Change: [cnpAPI v12.48] New element pazeEncryptedPayload added to both Auth and Sale transaction requests.
 Change: [cnpAPI v12.48] New complex element TLID added in authResponse and authReversalResponse.

@@ -1438,12 +1438,13 @@ class SaleUnitTest extends \PHPUnit_Framework_TestCase
                 'commandId' => '09765',
                 'commandReference' => '5679',
                 'orderReference' => '223555',
-            )
+            ),
+            'preferredCustomer' => 'true'
         );
         $mock = $this->getMock('cnp\sdk\CnpXmlMapper');
         $mock->expects($this->once())
             ->method('request')
-            ->with($this->matchesRegularExpression('/.*<pazeEncryptedPayload>NDEwMDAwMDAwMDAwMDAwMA==.*/'));
+            ->with($this->matchesRegularExpression('/.*<pazeEncryptedPayload>NDEwMDAwMDAwMDAwMDAwMA==.*<preferredCustomer>true.*/'));
 
         $cnpTest = new CnpOnlineRequest();
         $cnpTest->newXML = $mock;

@@ -1508,7 +1508,8 @@ class AuthFunctionalTest extends \PHPUnit_Framework_TestCase
                 'commandReference' => '5679',
                 'orderReference' => '223555',
             ),
-            'originalRetrievalReferenceNumber' => '345378'
+            'originalRetrievalReferenceNumber' => '345378',
+            'preferredCustomer' => 'true'
 
         );
 

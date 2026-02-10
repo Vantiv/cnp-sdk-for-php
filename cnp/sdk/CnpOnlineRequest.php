@@ -160,6 +160,7 @@ class CnpOnlineRequest
                 'conversionAffiliateId' => XmlFields::returnArrayValue($hash_in, 'conversionAffiliateId'),
                 'identityBundle' => (XmlFields::identityBundle(XmlFields::returnArrayValue($hash_in, 'identityBundle'))),
                 'originalRetrievalReferenceNumber' => XmlFields::returnArrayValue($hash_in, 'originalRetrievalReferenceNumber'),
+                'preferredCustomer' => XmlFields::returnArrayValue($hash_in, 'preferredCustomer')
             );
         }
         $choice_hash = array(XmlFields::returnArrayValue($hash_out, 'card'), XmlFields::returnArrayValue($hash_out, 'paypal'), XmlFields::returnArrayValue($hash_out, 'token'), XmlFields::returnArrayValue($hash_out, 'paypage'), XmlFields::returnArrayValue($hash_out, 'applepay'), XmlFields::returnArrayValue($hash_out, 'mpos'),XmlFields::returnArrayValue($hash_out, 'pazeEncryptedPayload'));
@@ -246,6 +247,7 @@ class CnpOnlineRequest
             'typeOfDigitalCurrency' => XmlFields::returnArrayValue($hash_in, 'typeOfDigitalCurrency'),
             'conversionAffiliateId' => XmlFields::returnArrayValue($hash_in, 'conversionAffiliateId'),
             'identityBundle' => (XmlFields::identityBundle(XmlFields::returnArrayValue($hash_in, 'identityBundle'))),
+            'preferredCustomer' => XmlFields::returnArrayValue($hash_in, 'preferredCustomer')
         );
 
       //  $choice_hash = array($hash_out['card'], $hash_out['paypal'], $hash_out['token'], $hash_out['paypage'], $hash_out['applepay'], $hash_out['mpos'],$hash_out['pazeEncryptedPayload']);
