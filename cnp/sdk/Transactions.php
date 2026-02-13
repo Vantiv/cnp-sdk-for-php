@@ -25,6 +25,7 @@ class Transactions{
             'giropay' => (XmlFields::giropayType(XmlFields::returnArrayValue($hash_in, 'giropay'))),
             'sofort' => (XmlFields::sofortType(XmlFields::returnArrayValue($hash_in, 'sofort'))),
             'mpos' => (XmlFields::mposType(XmlFields::returnArrayValue($hash_in, 'mpos'))),
+            'pazeEncryptedPayload' => XmlFields::returnArrayValue($hash_in, 'pazeEncryptedPayload',7500),
             'billMeLaterRequest' => XmlFields::billMeLaterRequest(XmlFields::returnArrayValue($hash_in, 'billMeLaterRequest')),
             'fraudCheck' => XmlFields::fraudCheckType(XmlFields::returnArrayValue($hash_in, 'fraudCheck')),
             'cardholderAuthentication' => XmlFields::fraudCheckType(XmlFields::returnArrayValue($hash_in, 'cardholderAuthentication')),
@@ -69,6 +70,7 @@ class Transactions{
             'accountFundingTransactionData' => XmlFields::accountFundingTransactionData(XmlFields::returnArrayValue($hash_in, 'accountFundingTransactionData')),
             'fraudCheckAction' => XmlFields::returnArrayValue($hash_in, 'fraudCheckAction'),
             'identityBundle' => (XmlFields::identityBundle(XmlFields::returnArrayValue($hash_in, 'identityBundle'))),
+            'preferredCustomer' => XmlFields::returnArrayValue($hash_in, 'preferredCustomer')
         );
 
         return $hash_out;
@@ -101,6 +103,7 @@ class Transactions{
                 'paypage' => (XmlFields::cardPaypageType(XmlFields::returnArrayValue($hash_in, 'paypage'))),
                 'applepay' => (XmlFields::applepayType(XmlFields::returnArrayValue($hash_in, 'applepay'))),
                 'mpos' => (XmlFields::mposType(XmlFields::returnArrayValue($hash_in, 'mpos'))),
+                'pazeEncryptedPayload' => XmlFields::returnArrayValue($hash_in, 'pazeEncryptedPayload',7500),
                 'billMeLaterRequest' => (XmlFields::billMeLaterRequest(XmlFields::returnArrayValue($hash_in, 'billMeLaterRequest'))),
 
                 'cardholderAuthentication' => (XmlFields::fraudCheckType(XmlFields::returnArrayValue($hash_in, 'cardholderAuthentication'))),
@@ -141,7 +144,7 @@ class Transactions{
                 'fraudCheckAction' => XmlFields::returnArrayValue($hash_in, 'fraudCheckAction'),
                 'identityBundle' => (XmlFields::identityBundle(XmlFields::returnArrayValue($hash_in, 'identityBundle'))),
                 'originalRetrievalReferenceNumber' => XmlFields::returnArrayValue($hash_in, 'originalRetrievalReferenceNumber'),
-
+                'preferredCustomer' => XmlFields::returnArrayValue($hash_in, 'preferredCustomer')
             );
         }
 
