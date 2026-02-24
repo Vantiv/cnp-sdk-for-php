@@ -12,10 +12,7 @@ class TransactionsUnitTest extends \PHPUnit_Framework_TestCase
     public function test_auth_with_card()
     {
         $hash_in = array(
-            'card'=>array('type'=>'VI',
-                    'number'=>'4100000000000001',
-                    'expDate'=>'1213',
-                    'cardValidationNum' => '1213'),
+            'pazeEncryptedPayload'=> 'axzfcx',
             'orderId'=> '2111','id' => 'id',
             'orderSource'=>'ecommerce',
             'amount'=>'123');

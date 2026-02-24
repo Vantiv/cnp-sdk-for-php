@@ -246,7 +246,8 @@ class BatchRequest
             $hash_out ['card'],
             $hash_out ['paypal'],
             $hash_out ['token'],
-            $hash_out ['paypage']
+            $hash_out ['paypage'],
+            $hash_out['pazeEncryptedPayload']
         );
         $choice2_hash = array(
             $hash_out ['fraudCheck'],

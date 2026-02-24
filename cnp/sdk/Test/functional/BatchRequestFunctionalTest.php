@@ -27,7 +27,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->direct = sys_get_temp_dir() . '/test' . CURRENT_SDK_VERSION;
+        $this->direct = sys_get_temp_dir() . '/test' .CURRENT_SDK_VERSION;
         $this->preliveStatus = $_SERVER['preliveStatus'];
         if (!file_exists($this->direct)) {
             mkdir($this->direct);
@@ -1826,10 +1826,7 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
 
         $batch = new BatchRequest();
         $hash_in = array(
-            'card'=>array('type'=>'VI',
-                'number'=>'4100000000000001',
-                'expDate'=>'1213',
-                'cardValidationNum' => '1213'),
+            'pazeEncryptedPayload'=>'NDEwMDAwMDAwMDAwMDAwMA==',
             'orderId'=> '2111',
             'orderSource'=>'ecommerce',
             'id'=>'654',
@@ -1844,7 +1841,8 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
                 'commandReference' => '5679',
                 'orderReference' => '223555',
             ),
-            'originalRetrievalReferenceNumber' => '345378');
+            'originalRetrievalReferenceNumber' => '345378',
+            'preferredCustomer' => 'true');
         $batch->addAuth($hash_in);
 
         $hash_in = array(
@@ -1865,7 +1863,8 @@ class BatchRequestFunctionalTest extends \PHPUnit_Framework_TestCase
                 'commandId' => '09765',
                 'commandReference' => '5679',
                 'orderReference' => '223555',
-            ));
+            ),
+            'preferredCustomer' => 'true');
         $batch->addSale($hash_in);
 
         $hash_in = array('id' => 'id',

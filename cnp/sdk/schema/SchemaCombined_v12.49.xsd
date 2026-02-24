@@ -1480,7 +1480,6 @@
         </xs:restriction>
     </xs:simpleType>
 
-
     <!--cnpRecurring-->
 
    <!-- <xs:include schemaLocation="cnpCommon_v12.48.xsd" />-->
@@ -1984,6 +1983,7 @@
                             <xs:element name="conversionAffiliateId" type="xp:string15Type" minOccurs="0"/>
                             <xs:element ref="xp:identityBundle" minOccurs="0"/>
                             <xs:element name="originalRetrievalReferenceNumber" type="xp:string12Type" minOccurs="0"/>
+                            <xs:element name="preferredCustomer" type="xs:boolean" minOccurs="0"/>
                         </xs:sequence>
                     </xs:choice>
                 </xs:extension>
@@ -2235,6 +2235,7 @@
                         <xs:element name="typeOfDigitalCurrency" type="xp:typeOfDigitalCurrencyEnum" minOccurs="0"/>
                         <xs:element name="conversionAffiliateId" type="xp:string15Type" minOccurs="0"/>
                         <xs:element ref="xp:identityBundle" minOccurs="0"/>
+                        <xs:element name="preferredCustomer" type="xs:boolean" minOccurs="0"/>
                     </xs:sequence>
                 </xs:extension>
             </xs:complexContent>
@@ -2721,6 +2722,7 @@
                         <xs:element name="retrievalReferenceNumber" type="xp:string12Type" minOccurs="0"/>
                         <xs:element name="orderSource" type="xp:orderSourceType" minOccurs="0"/>
                         <xs:element ref="xp:tlid" minOccurs="0"/>
+                        <xs:element name="preferredCustomerDecision" type="xs:boolean" minOccurs="0"/>
                     </xs:all>
                 </xs:extension>
             </xs:complexContent>
@@ -3193,6 +3195,8 @@
                         <xs:element name="fundingTransactionReferenceNumber" type="xp:string19Type" minOccurs="0"/>
                         <xs:element name="retrievalReferenceNumber" type="xp:string12Type" minOccurs="0"/>
                         <xs:element name="orderSource" type="xp:orderSourceType" minOccurs="0"/>
+                        <xs:element name="preferredCustomerDecision" type="xs:boolean" minOccurs="0"/>
+                        <xs:element ref="xp:tlid" minOccurs="0"/>
                     </xs:all>
                 </xs:extension>
             </xs:complexContent>
@@ -3780,6 +3784,7 @@
         <xs:restriction base="xs:integer">
             <xs:enumeration value="1"/>
             <xs:enumeration value="2"/>
+            <xs:enumeration value="3"/>
         </xs:restriction>
     </xs:simpleType>
     <xs:simpleType name="tlidType">
@@ -4402,7 +4407,7 @@
     <xs:element name="reserveCredit" substitutionGroup="xp:transaction">
         <xs:complexType>
             <xs:complexContent>
-                <xs:extension base="xp:transactionTypeWithReportGroupAndRtp">
+                <xs:extension base="xp:transactionTypeWithReportGroup">
                     <xs:choice>
                         <xs:sequence>
                             <xs:choice>
@@ -5218,7 +5223,7 @@
 
     <!--cnpBatch-->
 
-<!--    <xs:include schemaLocation="cnpTransaction_v12.48.xsd" />-->
+<!--    <xs:include schemaLocation="cnpTransaction_v12.49.xsd" />-->
 
     <xs:element name="cnpRequest">
         <xs:complexType>
@@ -5624,8 +5629,6 @@
 
     <!--cnpOnline-->
 
-    <!--<xs:include schemaLocation="cnpTransaction_v12.48.xsd" />-->
-
     <xs:complexType name="baseRequest">
         <xs:sequence>
             <xs:element ref="xp:authentication" />
@@ -5932,7 +5935,7 @@
         </xs:complexType>
     </xs:element>
 
- <!--   <xs:element name="vendorCredit" substitutionGroup="xp:transaction">
+<!--<xs:element name="vendorCredit" substitutionGroup="xp:transaction">
         <xs:complexType>
             <xs:complexContent>
                 <xs:extension base="xp:transactionTypeWithReportGroup">
@@ -6051,7 +6054,7 @@
                 </xs:extension>
             </xs:complexContent>
         </xs:complexType>
-      </xs:element>-->
+    </xs:element>-->
 
     <xs:element name="BNPLAuthorizationRequest" substitutionGroup="xp:transaction">
         <xs:complexType>
@@ -6290,4 +6293,4 @@
         </xs:complexType>
     </xs:element>
 
-</xs:schema>
+ </xs:schema>
